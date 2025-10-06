@@ -1,0 +1,22 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "files.associations": {
+    "*.astro": "astro"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["class:list\\s*=\\s*{([^}]*)}"],
+    ["(?:enter|leave)(?:From|To)?=\\s*(?:\"|')([^(?:\"|')]*)",
+    "(?:enter|leave)(?:From|To)?=\\s*(?:\"|'|{`)([^(?:\"|'|`})]*)"
+    ]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "astro": "html"
+  }
+}
