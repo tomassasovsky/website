@@ -1,0 +1,763 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Tomás Sasovsky - Portfolio">
+	<main>
+		<aside class="sidebar" data-sidebar>
+			<div class="sidebar-info">
+				<figure class="avatar-box">
+					<img src="/assets/images/me.jpg" alt="Tomás Sasovsky" width="80" />
+				</figure>
+				<div class="info-content">
+					<h1 class="name" title="Tomás Sasovsky">Tomás Sasovsky</h1>
+					<p class="title">Full-Stack Engineer</p>
+				</div>
+				<button class="info_more-btn" data-sidebar-btn>
+					<span>Show Contacts</span>
+					<ion-icon name="chevron-down"></ion-icon>
+				</button>
+			</div>
+			<div class="sidebar-info_more">
+				<div class="separator"></div>
+				<ul class="contacts-list">
+					<li class="contact-item">
+						<div class="icon-box">
+							<ion-icon name="mail-outline"></ion-icon>
+						</div>
+						<div class="contact-info">
+							<p class="contact-title">Email</p>
+							<a href="mailto:tomas@aquiles.dev" class="contact-link"
+								>tomas@aquiles.dev</a
+							>
+						</div>
+					</li>
+					<li class="contact-item">
+						<div class="icon-box">
+							<ion-icon name="location-outline"></ion-icon>
+						</div>
+						<div class="contact-info">
+							<p class="contact-title">Location</p>
+							<address>Buenos Aires, Argentina</address>
+						</div>
+					</li>
+				</ul>
+				<div class="separator"></div>
+				<ul class="social-list">
+					<li class="social-item">
+						<a
+							href="https://github.com/tomassasovsky"
+							class="social-link"
+							target="_blank"
+							rel="noopener"
+						>
+							<ion-icon name="logo-github"></ion-icon>
+						</a>
+					</li>
+					<li class="social-item">
+						<a
+							href="https://www.linkedin.com/in/tomassasovsky/"
+							class="social-link"
+							target="_blank"
+							rel="noopener"
+						>
+							<ion-icon name="logo-linkedin"></ion-icon>
+						</a>
+					</li>
+					<li class="social-item">
+						<a href="mailto:tomas@aquiles.dev" class="social-link">
+							<ion-icon name="mail-outline"></ion-icon>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+
+		<div class="main-content">
+			<nav class="navbar">
+				<ul class="navbar-list">
+					<li class="navbar-item">
+						<button class="navbar-link active" data-nav-link>About</button>
+					</li>
+					<li class="navbar-item">
+						<button class="navbar-link" data-nav-link>Resume</button>
+					</li>
+					<li class="navbar-item">
+						<button class="navbar-link" data-nav-link>Portfolio</button>
+					</li>
+					<li class="navbar-item">
+						<button class="navbar-link" data-nav-link>Contact</button>
+					</li>
+				</ul>
+			</nav>
+
+			<article class="about active" data-page="about">
+				<header>
+					<h2 class="h2 article-title">About me</h2>
+				</header>
+				<section class="about-text">
+					<p>
+						I’m a full‑stack software developer with 4+ years of experience,
+						specializing in cross‑platform mobile development with Flutter and
+						backend services using TypeScript. I’ve built user‑focused
+						applications across fintech, sports tech, and health, from
+						crypto–fiat exchange APIs for LATAM markets to AI‑enhanced health
+						trackers and high‑performance sports apps.
+					</p>
+					<p>
+						My expertise spans Flutter, Bloc, clean architecture,
+						Node.js/Express, React, Firebase, CI/CD, Docker, and cloud
+						infrastructure on GCP/AWS. I focus on delivering measurable impact
+						with robust engineering, great UX, and maintainable code.
+					</p>
+				</section>
+
+				<section class="service">
+					<h3 class="h3 service-title">What i'm doing</h3>
+					<ul class="service-list">
+						<li class="service-item">
+							<div class="service-icon-box">
+								<img
+									src="/assets/images/icon-design.svg"
+									alt="design icon"
+									width="40"
+								/>
+							</div>
+							<div class="service-content-box">
+								<h4 class="h4 service-item-title">Web design</h4>
+								<p class="service-item-text">
+									The most modern and high-quality design made at a professional
+									level.
+								</p>
+							</div>
+						</li>
+						<li class="service-item">
+							<div class="service-icon-box">
+								<img
+									src="/assets/images/icon-dev.svg"
+									alt="Web development icon"
+									width="40"
+								/>
+							</div>
+							<div class="service-content-box">
+								<h4 class="h4 service-item-title">Web development</h4>
+								<p class="service-item-text">
+									High-quality development of sites at the professional level.
+								</p>
+							</div>
+						</li>
+						<li class="service-item">
+							<div class="service-icon-box">
+								<img
+									src="/assets/images/icon-app.svg"
+									alt="mobile app icon"
+									width="40"
+								/>
+							</div>
+							<div class="service-content-box">
+								<h4 class="h4 service-item-title">Mobile apps</h4>
+								<p class="service-item-text">
+									Professional development of applications for iOS and Android.
+								</p>
+							</div>
+						</li>
+					</ul>
+				</section>
+
+				<section class="testimonials">
+					<h3 class="h3 testimonials-title">Testimonials</h3>
+					<ul class="testimonials-list has-scrollbar">
+						<li class="testimonials-item">
+							<div
+								class="content-card"
+								data-testimonials-item
+								data-testimonials-date="2025-01-25"
+								data-testimonials-date-label="January 25, 2025"
+							>
+								<h4 class="h4 testimonials-item-title" data-testimonials-title>
+									<img
+										src="/assets/images/icon-quote.svg"
+										alt="quote icon"
+									/>Michael Mathieu
+								</h4>
+								<div class="testimonials-text" data-testimonials-text>
+									<p>
+										I had the pleasure of working closely with Tomas for 2.5
+										years on a variety of projects, including the development of
+										a complex Android native app that integrated an NDK-based
+										machine learning model. Though he was new to native Android
+										development at the time he is always up for a challenge.
+										Throughout our time working together, he demonstrated
+										exceptional technical expertise, particularly as a mobile
+										Flutter developer, where his contributions elevated our
+										capabilities in every area of the mobile stack. One of his
+										standout accomplishments was designing and implementing a
+										robust CI/CD pipeline that streamlined our development
+										process and improved the overall efficiency of our team. I
+										strongly recommend them to any team looking for a talented,
+										forward-thinking mobile developer who is eager to make an
+										impact.
+									</p>
+								</div>
+							</div>
+						</li>
+						<li class="testimonials-item">
+							<div
+								class="content-card"
+								data-testimonials-item
+								data-testimonials-date="2021-11-22"
+								data-testimonials-date-label="November 22, 2021"
+							>
+								<h4 class="h4 testimonials-item-title" data-testimonials-title>
+									<img
+										src="/assets/images/icon-quote.svg"
+										alt="quote icon"
+									/>Nicolás Rodsevich
+								</h4>
+								<div class="testimonials-text" data-testimonials-text>
+									<p>
+										Proactive and resolutive young developer. If he doesn't know
+										how to do something he finds it out and gives results,
+										always. He ensures to perform quality code and guarantees
+										you for that.
+									</p>
+								</div>
+							</div>
+						</li>
+						<li class="testimonials-item">
+							<div
+								class="content-card"
+								data-testimonials-item
+								data-testimonials-date="2021-11-22"
+								data-testimonials-date-label="November 22, 2021"
+							>
+								<h4 class="h4 testimonials-item-title" data-testimonials-title>
+									<img
+										src="/assets/images/icon-quote.svg"
+										alt="quote icon"
+									/>Ignacio Suarez Smith
+								</h4>
+								<div class="testimonials-text" data-testimonials-text>
+									<p>
+										Tomas is a very talented young man. He has a solid knowledge
+										of Flutter. He is very committed when he has project
+										responsibilities. I recommend him as a co-worker or project
+										leader, since he is always willing to learn more and help in
+										a totally selfless way.
+									</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</section>
+
+				<div class="modal-container" data-modal-container>
+					<div class="overlay" data-overlay></div>
+					<section class="testimonials-modal">
+						<button class="modal-close-btn" data-modal-close-btn>
+							<ion-icon name="close-outline"></ion-icon>
+						</button>
+						<div class="modal-img-wrapper">
+							<img src="/assets/images/icon-quote.svg" alt="quote icon" />
+						</div>
+						<div class="modal-content">
+							<h4 class="h3 modal-title" data-modal-title>Michael Mathieu</h4>
+							<time datetime="2025-01-25">January 25, 2025</time>
+							<div data-modal-text>
+								<p>
+									I had the pleasure of working closely with Tomas for 2.5 years
+									on a variety of projects, including the development of a
+									complex Android native app that integrated an NDK-based
+									machine learning model... (see card).
+								</p>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<section class="clients">
+					<h3 class="h3 clients-title">Clients</h3>
+					<ul class="clients-list has-scrollbar">
+						<li class="clients-item">
+							<a href="https://eldorado.io/" target="_blank" rel="noopener"
+								><img
+									src="/assets/images/eldorado-logo.png"
+									alt="El Dorado P2P"
+								/></a>
+						</li>
+						<li class="clients-item">
+							<a href="https://sportsvisio.com/" target="_blank" rel="noopener"
+								><img
+									src="/assets/images/sportsvisio-logo.svg"
+									alt="SportsVisio"
+								/></a>
+						</li>
+						<li class="clients-item">
+							<a
+								href="https://www.courtavenue.com/"
+								target="_blank"
+								rel="noopener"
+								><img
+									src="/assets/images/courtavenue-logo-on-dark.png"
+									alt="CourtAvenue"
+									class="logo-badge"
+								/></a>
+						</li>
+						<li class="clients-item">
+							<a href="https://www.visionbox.ca/" target="_blank" rel="noopener"
+								><img
+									src="/assets/images/visionbox-ai-logo.png"
+									alt="VisionBox"
+								/></a>
+						</li>
+						<li class="clients-item">
+							<a
+								href="https://www.creativeadvancedtech.com/"
+								target="_blank"
+								rel="noopener"
+								><img
+									src="/assets/images/cat-logo.webp"
+									alt="Creative Advanced Technologies"
+								/></a>
+						</li>
+						<li class="clients-item">
+							<a href="https://it-techgroup.com/" target="_blank" rel="noopener"
+								><img
+									src="/assets/images/it-techgroup.svg"
+									alt="It-TechGroup"
+								/></a>
+						</li>
+					</ul>
+				</section>
+			</article>
+
+			<article class="resume" data-page="resume">
+				<header>
+					<h2 class="h2 article-title">Resume</h2>
+				</header>
+				<section class="timeline">
+					<div class="title-wrapper">
+						<div class="icon-box">
+							<ion-icon name="book-outline"></ion-icon>
+						</div>
+						<h3 class="h3">Experience</h3>
+					</div>
+					<ol class="timeline-list">
+						<li class="timeline-item">
+							<h4 class="h4 timeline-item-title">
+								Full‑Stack Developer — El Dorado P2P
+							</h4>
+							<span>Feb 2025 — Sep 2025 · Buenos Aires (Hybrid)</span>
+							<p class="timeline-text">
+								Built a public‑facing TypeScript API for crypto‑to‑fiat
+								exchanges across LATAM. Implemented U.S. bank account
+								opening/linking to crypto wallets. Modularized the Flutter app
+								for scalability and testability.
+							</p>
+						</li>
+						<li class="timeline-item">
+							<h4 class="h4 timeline-item-title">
+								Senior Flutter Engineer — SportsVisio
+							</h4>
+							<span>Jan 2022 — Feb 2025 · Remote (US)</span>
+							<p class="timeline-text">
+								Shipped SV Manager with background TUS uploads (−30% upload
+								time). Delivered dual‑view synchronized playback for 1200+
+								monthly users. Led Bloc‑based rewrite (−35% code size). Built
+								Android tracking with Kalman/Hungarian algorithms for
+								single‑angle recording.
+							</p>
+						</li>
+						<li class="timeline-item">
+							<h4 class="h4 timeline-item-title">
+								Team Lead, Senior Flutter Engineer — VisionBox
+							</h4>
+							<span>Jan 2024 — Jun 2024 · Remote (Canada)</span>
+							<p class="timeline-text">
+								Led a team of four; integrated Health Connect/HealthKit for AI
+								insights. Implemented KYC with Google ML Kit; Face verification
+								pipeline; Subscriptions via RevenueCat.
+							</p>
+						</li>
+						<li class="timeline-item">
+							<h4 class="h4 timeline-item-title">
+								Software Engineer (Freelance) — CourtAvenue
+							</h4>
+							<span>Jul 2023 — Sep 2023 · Remote (US)</span>
+							<p class="timeline-text">
+								Built Genjo (ChatGPT web wrapper) with Express/React; delivered
+								ApiConnect in Flutter; internal tooling for multi‑package repos;
+								AI‑driven passport/visa reader.
+							</p>
+						</li>
+						<li class="timeline-item">
+							<h4 class="h4 timeline-item-title">
+								Flutter Engineer — Creative Advanced Technologies
+							</h4>
+							<span>Sep 2021 — Mar 2022 · Remote (UAE)</span>
+							<p class="timeline-text">
+								Launched food ordering and delivery tracking apps (50K+
+								downloads, 4.5★). Google Maps integration and backend
+								coordination.
+							</p>
+						</li>
+						<li class="timeline-item">
+							<h4 class="h4 timeline-item-title">
+								Flutter Engineer — It‑TechGroup
+							</h4>
+							<span>Jan 2021 — Nov 2021 · Remote (AR)</span>
+							<p class="timeline-text">
+								Built a Flutter plugin to integrate MercadoPago Checkout SDK for
+								Android/iOS (Java/Swift). Set up CI/CD for automated builds and
+								tests.
+							</p>
+						</li>
+					</ol>
+				</section>
+			</article>
+
+			<article class="portfolio" data-page="portfolio">
+				<header>
+					<h2 class="h2 article-title">Portfolio</h2>
+				</header>
+				<section class="projects">
+					<ul class="filter-list">
+						<li class="filter-item">
+							<button class="active" data-filter-btn>All</button>
+						</li>
+						<li class="filter-item">
+							<button data-filter-btn>Web design</button>
+						</li>
+						<li class="filter-item">
+							<button data-filter-btn>Applications</button>
+						</li>
+						<li class="filter-item">
+							<button data-filter-btn>Web development</button>
+						</li>
+					</ul>
+					<div class="filter-select-box">
+						<button class="filter-select" data-select>
+							<div class="select-value" data-selecct-value>Select category</div>
+							<div class="select-icon">
+								<ion-icon name="chevron-down"></ion-icon>
+							</div>
+						</button>
+						<ul class="select-list">
+							<li class="select-item"><button data-select-item>All</button></li>
+							<li class="select-item">
+								<button data-select-item>Web design</button>
+							</li>
+							<li class="select-item">
+								<button data-select-item>Applications</button>
+							</li>
+							<li class="select-item">
+								<button data-select-item>Web development</button>
+							</li>
+						</ul>
+					</div>
+					<div class="project-cards">
+						<div class="project-card">
+							<div class="project-card-media" data-dominant-bg>
+								<img
+									class="project-card-image"
+									src="/assets/images/eldorado-preview.jpg"
+									alt="El Dorado P2P preview"
+									loading="lazy"
+								/>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">El Dorado P2P</h3>
+								<p class="project-card-desc">
+									A Stablecoin SuperApp for LATAM offering a USD wallet and a
+									peer‑to‑peer marketplace across 70+ finance apps (PayPal,
+									Zelle, PIX, MercadoPago, Nequi, and more). Built for
+									reliability and ease of use to move value across borders,
+									protect savings in USD, and enable P2P merchant workflows.
+								</p>
+								<div class="project-card-links">
+									<a
+										class="badge badge--play"
+										href="https://play.google.com/store/apps/details?id=io.eldorado.app"
+										target="_blank"
+										rel="noopener"
+										aria-label="El Dorado on Google Play"
+										><ion-icon name="logo-google-playstore"></ion-icon><span
+											>Google Play</span
+										></a
+									>
+									<a
+										class="badge badge--appstore"
+										href="https://apps.apple.com/co/app/el-dorado-p2p/id1591303547"
+										target="_blank"
+										rel="noopener"
+										aria-label="El Dorado on the App Store"
+										><ion-icon name="logo-apple"></ion-icon><span
+											>App Store</span
+										></a
+									>
+								</div>
+							</div>
+						</div>
+						<div class="project-card">
+							<div class="project-card-media" data-dominant-bg>
+								<img
+									class="project-card-image"
+									src="/assets/images/sportsvisio-preview.png"
+									alt="SportsVisio"
+									loading="lazy"
+								/>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">SportsVisio</h3>
+								<p class="project-card-desc">
+									End‑to‑end mobile capture and upload pipeline with background
+									transfers, synchronized dual‑view playback, and analytics
+									features tailored for teams and leagues. Focused on reliable
+									uploads, smooth playback, and scalable media workflows.
+								</p>
+								<div class="project-card-links">
+									<a
+										class="badge badge--play"
+										href="https://play.google.com/store/apps/details?id=com.sportsvisio.svhoops"
+										target="_blank"
+										rel="noopener"
+										aria-label="SportsVisio on Google Play"
+										><ion-icon name="logo-google-playstore"></ion-icon><span
+											>Google Play</span
+										></a
+									>
+									<a
+										class="badge badge--appstore"
+										href="https://apps.apple.com/us/app/sportsvisio/id1611231433"
+										target="_blank"
+										rel="noopener"
+										aria-label="SportsVisio on the App Store"
+										><ion-icon name="logo-apple"></ion-icon><span
+											>App Store</span
+										></a
+									>
+								</div>
+							</div>
+						</div>
+						<div class="project-card">
+							<div class="project-card-media" data-dominant-bg>
+								<img
+									class="project-card-image"
+									src="/assets/images/api-connect-preview.png"
+									alt="APIConnect (CourtAvenue)"
+									loading="lazy"
+								/>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">APIConnect (CourtAvenue)</h3>
+								<p class="project-card-desc">
+									Consumer app for API Abroad built with a modern stack and
+									production‑ready CI/CD. Emphasis on secure auth, dependable
+									releases, and crisp UX to guide users through program
+									discovery and onboarding.
+								</p>
+								<div class="project-card-links">
+									<a
+										class="badge badge--play"
+										href="https://play.google.com/store/apps/details?id=com.apiabroad.api_abroad_app"
+										target="_blank"
+										rel="noopener"
+										aria-label="APIConnect on Google Play"
+										><ion-icon name="logo-google-playstore"></ion-icon><span
+											>Google Play</span
+										></a
+									>
+									<a
+										class="badge badge--appstore"
+										href="https://apps.apple.com/es/app/apiconnect/id6448320549"
+										target="_blank"
+										rel="noopener"
+										aria-label="APIConnect on the App Store"
+										><ion-icon name="logo-apple"></ion-icon><span
+											>App Store</span
+										></a
+									>
+								</div>
+							</div>
+						</div>
+						<div class="project-card">
+							<div class="project-card-media" data-dominant-bg>
+								<img
+									class="project-card-image"
+									src="/assets/images/cat-logo.webp"
+									alt="TAZA Express"
+									loading="lazy"
+								/>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">TAZA Express</h3>
+								<p class="project-card-desc">
+									Food ordering and delivery tracking for a high‑volume
+									marketplace. Implemented map integrations and streamlined
+									order states for a predictable end‑to‑end experience.
+								</p>
+								<div class="project-card-links">
+									<a
+										class="badge badge--play"
+										href="https://play.google.com/store/apps/details?id=com.creativeadvtech.taza_mobile_production"
+										target="_blank"
+										rel="noopener"
+										aria-label="TAZA Express on Google Play"
+										><ion-icon name="logo-google-playstore"></ion-icon><span
+											>Google Play</span
+										></a
+									>
+									<a
+										class="badge badge--appstore"
+										href="https://apps.apple.com/ar/app/taza-express/id1614409775"
+										target="_blank"
+										rel="noopener"
+										aria-label="TAZA Express on the App Store"
+										><ion-icon name="logo-apple"></ion-icon><span
+											>App Store</span
+										></a
+									>
+								</div>
+							</div>
+						</div>
+						<div class="project-card">
+							<div class="project-card-media" data-dominant-bg>
+								<img
+									class="project-card-image"
+									src="/assets/images/courtavenue-logo.png"
+									alt="Genjo (CourtAvenue)"
+									loading="lazy"
+								/>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">Genjo (CourtAvenue)</h3>
+								<p class="project-card-desc">
+									Lightweight web app used internally to streamline LLM‑assisted
+									workflows and knowledge retrieval. Built to move fast:
+									pragmatic stack, clear UX, and rapid iteration.
+								</p>
+								<div class="project-card-links">
+									<a
+										class="badge badge--site"
+										href="https://genjo.ai/"
+										target="_blank"
+										rel="noopener"
+										aria-label="Genjo website"
+										><ion-icon name="globe-outline"></ion-icon><span
+											>Website</span
+										></a
+									>
+								</div>
+							</div>
+						</div>
+						<div class="project-card">
+							<div class="project-card-media" data-dominant-bg>
+								<img
+									class="project-card-image"
+									src="/assets/images/visionbox-ai-logo.png"
+									alt="Genomii (VisionBox)"
+									loading="lazy"
+								/>
+							</div>
+							<div class="project-card-body">
+								<h3 class="project-card-title">Genomii (VisionBox)</h3>
+								<p class="project-card-desc">
+									Health insights and guidance with device integrations and
+									privacy‑first design. Unreleased; responsibilities covered
+									integrations, subscriptions, and KYC/verification flows.
+								</p>
+								<div class="project-card-links">
+									<a
+										class="badge badge--site"
+										href="https://genomii.ai/"
+										target="_blank"
+										rel="noopener"
+										aria-label="Genomii website"
+										><ion-icon name="globe-outline"></ion-icon><span
+											>Website</span
+										></a
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</article>
+
+			<article class="contact" data-page="contact">
+				<header>
+					<h2 class="h2 article-title">Contact</h2>
+				</header>
+				<section class="mapbox" data-mapbox>
+					<figure>
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d164332.42493697674!2d-58.57338566249999!3d-34.6158037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a334f2c0e32b4f%3A0x3cf8e3b7b1b3e3b!2sBuenos%20Aires%2C%20Argentina!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
+							width="400"
+							height="300"
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</figure>
+				</section>
+				<section class="contact-form">
+					<h3 class="h3 form-title">Contact Form</h3>
+					<form
+						action="#"
+						class="form"
+						data-form
+						data-endpoint=""
+						data-cooldown-seconds="30"
+					>
+						<div class="input-wrapper">
+							<input
+								type="text"
+								name="fullname"
+								class="form-input"
+								placeholder="Full name"
+								required
+								data-form-input
+							/>
+							<input
+								type="email"
+								name="email"
+								class="form-input"
+								placeholder="Email address"
+								required
+								data-form-input
+							/>
+						</div>
+						<textarea
+							name="message"
+							class="form-input"
+							placeholder="Your Message"
+							required
+							data-form-input></textarea>
+						<div
+							aria-hidden="true"
+							style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"
+						>
+							<label for="company">Company</label>
+							<input
+								type="text"
+								id="company"
+								name="company"
+								tabindex="-1"
+								autocomplete="off"
+							/>
+						</div>
+						<p
+							class="form-status"
+							data-form-status
+							role="status"
+							aria-live="polite"
+						>
+						</p>
+						<button class="form-btn" type="submit" disabled data-form-btn>
+							<ion-icon name="paper-plane"></ion-icon>
+							<span>Send Message</span>
+						</button>
+					</form>
+				</section>
+			</article>
+		</div>
+	</main>
+</BaseLayout>
