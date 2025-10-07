@@ -11,7 +11,7 @@ import { navItems } from "../data/nav";
             class="navbar-link"
             type="button"
             data-nav-link
-            data-page={n.href.replace("/", "")}
+            data-page={n.href === "/" ? "about" : n.href.replace("/", "")}
           >
             {n.label}
           </button>

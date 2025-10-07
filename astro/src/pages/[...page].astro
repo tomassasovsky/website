@@ -1,12 +1,6 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import SiteSidebar from "../components/SiteSidebar.astro";
-import SiteNavbar from "../components/SiteNavbar.astro";
+import MainShell from "../components/MainShell.astro";
 import { ui, name, tagline } from "../data/site";
-import AboutTab from "../components/tabs/AboutTab.astro";
-import WorkTab from "../components/tabs/WorkTab.astro";
-import ProjectsTab from "../components/tabs/ProjectsTab.astro";
-import ContactTab from "../components/tabs/ContactTab.astro";
 import { aboutParagraphs, services } from "../data/about";
 import { testimonials } from "../data/testimonials";
 import { clients } from "../data/clients";
@@ -22,7 +16,7 @@ const pageMeta = {
   about: {
     title: `${name} - About`,
     description: `${tagline}. Learn more about ${name}, services, and background.`,
-    canonicalPath: "/about",
+    canonicalPath: "/",
   },
   work: {
     title: `${name} - Work`,
@@ -43,44 +37,4 @@ const pageMeta = {
 const meta = pageMeta[current as keyof typeof pageMeta] || pageMeta.about;
 ---
 
-<BaseLayout
-  title={meta.title}
-  description={meta.description}
-  canonicalPath={meta.canonicalPath}
->
-  <main>
-    <SiteSidebar />
-
-    <div class="main-content">
-      <SiteNavbar />
-
-      <article
-        class={"about" + (current === "about" ? " active" : "")}
-        data-page="about"
-      >
-        <AboutTab />
-      </article>
-
-      <article
-        class={"work" + (current === "work" ? " active" : "")}
-        data-page="work"
-      >
-        <WorkTab />
-      </article>
-
-      <article
-        class={"projects" + (current === "projects" ? " active" : "")}
-        data-page="projects"
-      >
-        <ProjectsTab />
-      </article>
-
-      <article
-        class={"contact" + (current === "contact" ? " active" : "")}
-        data-page="contact"
-      >
-        <ContactTab />
-      </article>
-    </div>
-  </main>
-</BaseLayout>
+<MainShell meta={meta} current={current} />

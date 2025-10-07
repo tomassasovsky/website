@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteSidebar from "./SiteSidebar.astro";
+import SiteNavbar from "./SiteNavbar.astro";
+import AboutTab from "./tabs/AboutTab.astro";
+import WorkTab from "./tabs/WorkTab.astro";
+import ProjectsTab from "./tabs/ProjectsTab.astro";
+import ContactTab from "./tabs/ContactTab.astro";
+
+const { meta, current = "about" } = Astro.props as {
+  meta: { title: string; description: string; canonicalPath: string };
+  current?: string;
+};
+---
+
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  canonicalPath={meta.canonicalPath}
+>
+  <main>
+    <SiteSidebar />
+
+    <div class="main-content">
+      <SiteNavbar />
+
+      <article
+        class={"about" + (current === "about" ? " active" : "")}
+        data-page="about"
+      >
+        <AboutTab />
+      </article>
+
+      <article
+        class={"work" + (current === "work" ? " active" : "")}
+        data-page="work"
+      >
+        <WorkTab />
+      </article>
+
+      <article
+        class={"projects" + (current === "projects" ? " active" : "")}
+        data-page="projects"
+      >
+        <ProjectsTab />
+      </article>
+
+      <article
+        class={"contact" + (current === "contact" ? " active" : "")}
+        data-page="contact"
+      >
+        <ContactTab />
+      </article>
+    </div>
+  </main>
+</BaseLayout>

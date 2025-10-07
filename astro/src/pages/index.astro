@@ -1,8 +1,12 @@
 ---
-export function GET() {
-  return new Response(null, {
-    status: 301,
-    headers: { Location: "/about" },
-  });
-}
+import MainShell from "../components/MainShell.astro";
+import { name, tagline } from "../data/site";
+
+const meta = {
+  title: `${name} - About`,
+  description: `${tagline}. Learn more about ${name}, services, and background.`,
+  canonicalPath: "/",
+};
 ---
+
+<MainShell meta={meta} current="about" />
