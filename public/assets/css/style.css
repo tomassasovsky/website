@@ -636,6 +636,7 @@ main {
   border-radius: 12px 12px 0 0;
   box-shadow: var(--shadow-2);
   z-index: 5;
+  transition: transform var(--transition-2), opacity var(--transition-2);
 }
 
 .navbar-list {
@@ -662,6 +663,73 @@ main {
   color: var(--orange-yellow-crayola);
 }
 
+/* auto-hide state */
+.nav-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Keep horizontal centering and only slide vertically on small screens */
+@media (max-width: 1023px) {
+  .nav-hidden {
+    transform: translate(-50%, 120%) !important;
+    /* preserve X centering, slide down */
+  }
+}
+
+
+@media (max-width: 1023px) {
+  .navbar {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: calc(100% - 24px);
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    padding: 6px;
+    border-radius: 999px;
+    background: hsla(240, 1%, 17%, 0.85);
+    backdrop-filter: blur(10px);
+    will-change: transform, opacity;
+  }
+
+  .navbar-list {
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar-item {
+    flex: 0 0 auto;
+  }
+
+  .navbar-link {
+    display: inline-flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    border-radius: 999px;
+    color: var(--light-gray);
+    white-space: nowrap;
+  }
+
+  .navbar-link:hover,
+  .navbar-link:focus {
+    color: var(--white-1);
+  }
+
+  .navbar-link.active {
+    color: var(--orange-yellow-crayola);
+  }
+}
 
 
 
@@ -1691,14 +1759,6 @@ textarea.form-input::-webkit-resizer {
     padding: 10px 15px;
   }
 
-  .info_more-btn span {
-    display: block;
-    font-size: var(--fs-8);
-  }
-
-  .info_more-btn ion-icon {
-    display: none;
-  }
 
   .separator {
     margin: 32px 0;
@@ -1720,7 +1780,7 @@ textarea.form-input::-webkit-resizer {
    */
 
   .navbar {
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px 20px 20px 20px;
   }
 
   .navbar-list {
@@ -2118,8 +2178,10 @@ textarea.form-input::-webkit-resizer {
     right: 0;
     width: max-content;
     border-radius: 0 20px;
-    padding: 0 20px;
+    padding: 6px 20px;
     box-shadow: none;
+    transform: none;
+    /* reset mobile centering */
   }
 
   .navbar-list {
@@ -2129,6 +2191,8 @@ textarea.form-input::-webkit-resizer {
 
   .navbar-link {
     font-weight: var(--fw-500);
+    padding: 20px 14px;
+    /* match taller desktop height */
   }
 
 

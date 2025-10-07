@@ -1,43 +1,87 @@
-# Astro Starter Kit: Minimal
+# Portfolio (Astro) – Fork & Personalize
 
-```sh
-npm create astro@latest -- --template minimal
+An opinionated, single-page portfolio built with Astro. This README explains how to fork it and make it yours quickly.
+
+## Quick start
+
+1) Fork this repo, then clone your fork
+```bash
+git clone YOUR_FORK_URL portfolio && cd portfolio
+```
+2) Install and run
+```bash
+npm install
+npm run dev
+```
+3) Open http://localhost:4321
+
+## What to change (10–15 min)
+
+- Site identity: update `src/data/site.ts`
+  - `name`, `tagline`, `email`, `socials`, and UI headings.
+- About: `src/data/about.ts`
+  - Replace the paragraphs and services.
+- Experience: `src/data/experience.ts`
+- Clients: `src/data/clients.ts`
+- Testimonials: `src/data/testimonials.ts`
+- Projects: `src/data/projects.ts`
+  - Edit project cards and `category` values. Categories shown are defined in `src/data/projectsFilters.ts`.
+- Contact settings (if used): `src/data/contact.ts`
+
+Assets (replace with your own):
+- Avatar/headshot: `public/assets/images/me.jpg`
+- Favicon(s): `public/assets/images/logo.ico` or `public/assets/images/ts-favicon.svg`
+- Logos/preview images: `public/assets/images/*`
+
+## SEO & social preview
+
+- Set your canonical origin in `astro.config.mjs`:
+```js
+export default defineConfig({ site: 'https://your-domain.com' });
+```
+- The global head is handled in `src/layouts/BaseLayout.astro` (title, description, canonical, Open Graph, Twitter). Per‑tab titles/descriptions are set where the main shell/page defines `meta`.
+- Sitemap is served from `src/pages/sitemap.xml.ts` (update the static routes if you add/remove sections).
+- `public/robots.txt` allows indexing and points to `/sitemap.xml`.
+- Share preview image: use a 1200×630 image. Point `og:image` to it in `BaseLayout` or set per‑page.
+
+After deploy, refresh caches with sharing debuggers (Facebook, X/Twitter, LinkedIn).
+
+## Navigation and sections
+
+- Edit nav labels/links in `src/data/nav.ts`.
+- Sections (About/Work/Projects/Contact) live in `src/components/tabs/`.
+- The main shell that renders sidebar, navbar, and tabs lives in `src/components/MainShell.astro`.
+
+## Styling
+
+- Global CSS lives in `public/assets/css/style.css`. Tweak CSS variables (colors, shadows, font sizes) near the top to re‑theme quickly.
+
+## Deployment
+
+Vercel (recommended)
+```bash
+npm run build
+# push to Git; import repo in Vercel; set Framework: Astro
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+Netlify
+```bash
+# Build command: npm run build
+# Publish directory: dist
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+GitHub Pages
+```bash
+npm run build
+# Deploy ./dist via actions or a pages branch
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Docker (optional)
+```bash
+docker build -t portfolio .
+docker run -p 4321:4321 portfolio
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+## License
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT. Please keep a credit link in your README if you use this as a base.

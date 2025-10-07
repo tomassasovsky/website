@@ -6,7 +6,7 @@
   (function () {
     "use strict";
 
-    function toggleActive(elem) {
+    function toggleActive(elem: Element | null) {
       if (elem) {
         elem.classList.toggle("active");
       }
@@ -68,7 +68,7 @@
       sidebarBtn.addEventListener("click", function () {
         toggleActive(sidebar);
         try {
-          var isOpen = sidebar.classList.contains("active");
+          var isOpen = sidebar?.classList.contains("active");
           localStorage.setItem(sidebarStorageKey, isOpen ? "1" : "0");
         } catch (e) {
           /* ignore */
@@ -95,15 +95,15 @@
     }
 
     for (var i = 0; i < testimonialsItem.length; i++) {
-      testimonialsItem[i].addEventListener("click", function () {
+      testimonialsItem[i].addEventListener("click", function (this: Element) {
         var titleEl = this.querySelector("[data-testimonials-title]");
         var textEl = this.querySelector("[data-testimonials-text]");
         if (modalTitle && titleEl) {
-          modalTitle.innerHTML = titleEl.innerHTML;
+          modalTitle.innerHTML = (titleEl as HTMLElement).innerHTML;
         }
         if (modalText && textEl) {
           var raw = textEl.textContent || "";
-          var parts = raw.split(/\r?\n+/).filter(function (s) {
+          var parts = raw.split(/\r?\n+/).filter(function (s: string) {
             return s && s.trim().length > 0;
           });
           var html = "<p>" + parts.join("<br><br>") + "</p>";
@@ -137,7 +137,7 @@
     var navButtons = document.querySelectorAll("[data-nav-link]");
     var pageArticles = document.querySelectorAll("article[data-page]");
 
-    function setActivePage(page) {
+    function setActivePage(page: string) {
       var pageName = (page || "").replace(/^\//, "");
       if (!pageName) pageName = "about";
       var allowed = [];
@@ -181,7 +181,7 @@
       } catch (e) {}
     }
 
-    function navigateTo(page, replace) {
+    function navigateTo(page: string, replace: boolean) {
       var path = "/" + (page || "about");
       try {
         if (replace) {
@@ -224,13 +224,13 @@
       ".project-cards .project-card",
     );
 
-    function normalizeCategory(label) {
+    function normalizeCategory(label: any) {
       var t = (label || "").toString().trim().toLowerCase();
       if (t === "all") return "all";
       return t;
     }
 
-    function applyProjectFilter(label) {
+    function applyProjectFilter(label: string) {
       var key = normalizeCategory(label);
       for (var i = 0; i < projectCards.length; i++) {
         var card = projectCards[i];
@@ -245,7 +245,7 @@
       }
     }
 
-    function setActiveFilterUI(label) {
+    function setActiveFilterUI(label: string) {
       var lbl = (label || "").toString();
       for (var i = 0; i < filterButtons.length; i++) {
         var btn = filterButtons[i];
@@ -298,6 +298,74 @@
       }
       setActiveFilterUI(initial);
       applyProjectFilter(initial);
+    })();
+
+    // Show/hide navbar based on scroll direction (only below 1024px)
+    (function initNavbarAutoHide() {
+      var navbar = document.querySelector(".navbar");
+      if (!navbar) return;
+
+      var mq = window.matchMedia("(max-width: 1023px)");
+      var lastY = window.scrollY || document.documentElement.scrollTop || 0;
+      var ticking = false;
+      var threshold = 12; // px needed to change state
+
+      function setHidden(hidden: boolean) {
+        if (!navbar) return;
+        navbar.classList.toggle("nav-hidden", !!hidden);
+      }
+
+      function reset() {
+        lastY = window.scrollY || document.documentElement.scrollTop || 0;
+        setHidden(false);
+      }
+
+      function update(stateY: number) {
+        if (!mq.matches) {
+          // always show on larger screens
+          setHidden(false);
+          return;
+        }
+        var y = Math.max(stateY, 0);
+        var dy = y - lastY;
+        var atTop = y < 20;
+        lastY = y;
+
+        if (atTop) {
+          setHidden(false);
+          return;
+        }
+
+        if (dy > threshold) {
+          // scrolling down
+          setHidden(true);
+        } else if (dy < -threshold) {
+          // scrolling up
+          setHidden(false);
+        }
+      }
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (!ticking) {
+            window.requestAnimationFrame(function () {
+              update(window.scrollY || document.documentElement.scrollTop || 0);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        },
+        { passive: true },
+      );
+
+      // respond to viewport changes immediately
+      if (typeof mq.addEventListener === "function") {
+        mq.addEventListener("change", reset);
+      } else if (typeof mq.onchange === "function") {
+        mq.onchange = reset;
+      }
+      reset();
     })();
   })();
 </script>
