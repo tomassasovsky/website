@@ -1,0 +1,72 @@
+---
+import { ui } from "../../data/site";
+import { aboutParagraphs, services } from "../../data/about";
+import { testimonials } from "../../data/testimonials";
+import { clients } from "../../data/clients";
+---
+
+<header><h2 class="h2 article-title">{ui.headings.about}</h2></header>
+
+<section class="about-text">
+  {aboutParagraphs.map((p) => <p>{p}</p>)}
+</section>
+
+<section class="service">
+  <h3 class="h3 service-title">{ui.headings.services}</h3>
+  <ul class="service-list">
+    {
+      services.map((s) => (
+        <li class="service-item">
+          <div class="service-icon-box">
+            <img src={s.icon} alt={`${s.title} icon`} width="40" />
+          </div>
+          <div class="service-content-box">
+            <h4 class="h4 service-item-title">{s.title}</h4>
+            <p class="service-item-text">{s.description}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<section class="testimonials">
+  <h3 class="h3 testimonials-title">{ui.headings.testimonials}</h3>
+  <ul class="testimonials-list has-scrollbar">
+    {
+      testimonials.map((t) => (
+        <li class="testimonials-item">
+          <div
+            class="content-card"
+            data-testimonials-item
+            data-testimonials-date={t.dateISO}
+            data-testimonials-date-label={t.dateLabel}
+          >
+            <h4 class="h4 testimonials-item-title" data-testimonials-title>
+              <img src={ui.icons.quote} alt="quote icon" />
+              {t.author}
+            </h4>
+            <div class="testimonials-text" data-testimonials-text>
+              <p>{t.paragraphs.join("\n")}</p>
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<section class="clients">
+  <h3 class="h3 clients-title">{ui.headings.clients}</h3>
+  <ul class="clients-list has-scrollbar">
+    {
+      clients.map((c) => (
+        <li class="clients-item">
+          <a href={c.url} target="_blank" rel="noopener">
+            <img src={c.logo} alt={c.name} class={c.logoClass} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

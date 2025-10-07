@@ -1,0 +1,26 @@
+---
+import { ui } from "../../data/site";
+import { roles } from "../../data/experience";
+---
+
+<header><h2 class="h2 article-title">{ui.headings.work}</h2></header>
+
+<section class="timeline">
+  <div class="title-wrapper">
+    <div class="icon-box">
+      <ion-icon name="book-outline"></ion-icon>
+    </div>
+    <h3 class="h3">Experience</h3>
+  </div>
+  <ol class="timeline-list">
+    {
+      roles.map((r) => (
+        <li class="timeline-item">
+          <h4 class="h4 timeline-item-title">{r.title}</h4>
+          <span>{r.range}</span>
+          <p class="timeline-text">{r.description}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>

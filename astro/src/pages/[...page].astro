@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteSidebar from "../components/SiteSidebar.astro";
+import SiteNavbar from "../components/SiteNavbar.astro";
+import { ui, name } from "../data/site";
+import AboutTab from "../components/tabs/AboutTab.astro";
+import WorkTab from "../components/tabs/WorkTab.astro";
+import PortfolioTab from "../components/tabs/PortfolioTab.astro";
+import ContactTab from "../components/tabs/ContactTab.astro";
+import { aboutParagraphs, services } from "../data/about";
+import { testimonials } from "../data/testimonials";
+import { clients } from "../data/clients";
+import { roles } from "../data/experience";
+import { filters } from "../data/portfolioFilters";
+import { projects } from "../data/projects";
+export function getStaticPaths() {
+  const pages = ["about", "work", "portfolio", "contact"];
+  return pages.map((p) => ({ params: { page: p } }));
+}
+const current = (Astro.params.page as string) || "about";
+---
+
+<BaseLayout title={name + " - Portfolio"}>
+  <main>
+    <SiteSidebar />
+
+    <div class="main-content">
+      <SiteNavbar />
+
+      <article
+        class={"about" + (current === "about" ? " active" : "")}
+        data-page="about"
+      >
+        <AboutTab />
+      </article>
+
+      <article
+        class={"work" + (current === "work" ? " active" : "")}
+        data-page="work"
+      >
+        <WorkTab />
+      </article>
+
+      <article
+        class={"portfolio" + (current === "portfolio" ? " active" : "")}
+        data-page="portfolio"
+      >
+        <PortfolioTab />
+      </article>
+
+      <article
+        class={"contact" + (current === "contact" ? " active" : "")}
+        data-page="contact"
+      >
+        <ContactTab />
+      </article>
+    </div>
+  </main>
+</BaseLayout>

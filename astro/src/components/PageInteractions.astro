@@ -1,0 +1,202 @@
+---
+
+---
+
+<script>
+  (function () {
+    "use strict";
+
+    function toggleActive(elem) {
+      if (elem) {
+        elem.classList.toggle("active");
+      }
+    }
+
+    // Sidebar toggle with persistence
+    var sidebar = document.querySelector("[data-sidebar]");
+    var sidebarBtn = document.querySelector("[data-sidebar-btn]");
+    var sidebarStorageKey = "sidebarOpen";
+
+    function applySidebarPersistedState() {
+      if (!sidebar) {
+        return;
+      }
+      try {
+        var v = localStorage.getItem(sidebarStorageKey);
+        if (v !== "1" && v !== "0") {
+          return;
+        }
+        var nodes = [sidebar].concat(
+          Array.prototype.slice.call(sidebar.querySelectorAll("*")),
+        );
+        for (var i = 0; i < nodes.length; i++) {
+          try {
+            var el = nodes[i];
+            if (el && el instanceof HTMLElement) {
+              el.style.setProperty("transition", "none", "important");
+              el.style.setProperty("animation", "none", "important");
+            }
+          } catch (e1) {}
+        }
+        if (v === "1") {
+          sidebar.classList.add("active");
+        } else {
+          sidebar.classList.remove("active");
+        }
+        try {
+          if (sidebar instanceof HTMLElement) {
+            void sidebar.offsetHeight;
+          }
+        } catch (e2) {}
+        setTimeout(function () {
+          for (var j = 0; j < nodes.length; j++) {
+            try {
+              var el2 = nodes[j];
+              if (el2 && el2 instanceof HTMLElement) {
+                el2.style.removeProperty("transition");
+                el2.style.removeProperty("animation");
+              }
+            } catch (e3) {}
+          }
+        }, 0);
+      } catch (e) {}
+    }
+
+    applySidebarPersistedState();
+
+    if (sidebar && sidebarBtn) {
+      sidebarBtn.addEventListener("click", function () {
+        toggleActive(sidebar);
+        try {
+          var isOpen = sidebar.classList.contains("active");
+          localStorage.setItem(sidebarStorageKey, isOpen ? "1" : "0");
+        } catch (e) {
+          /* ignore */
+        }
+      });
+    }
+
+    // Testimonials modal
+    var testimonialsItem = document.querySelectorAll(
+      "[data-testimonials-item]",
+    );
+    var modalContainer = document.querySelector("[data-modal-container]");
+    var modalCloseBtn = document.querySelector("[data-modal-close-btn]");
+    var overlay = document.querySelector("[data-overlay]");
+    var modalTitle = document.querySelector("[data-modal-title]");
+    var modalText = document.querySelector("[data-modal-text]");
+
+    function toggleModal() {
+      if (!modalContainer || !overlay) {
+        return;
+      }
+      modalContainer.classList.toggle("active");
+      overlay.classList.toggle("active");
+    }
+
+    for (var i = 0; i < testimonialsItem.length; i++) {
+      testimonialsItem[i].addEventListener("click", function () {
+        var titleEl = this.querySelector("[data-testimonials-title]");
+        var textEl = this.querySelector("[data-testimonials-text]");
+        if (modalTitle && titleEl) {
+          modalTitle.innerHTML = titleEl.innerHTML;
+        }
+        if (modalText && textEl) {
+          var raw = textEl.textContent || "";
+          var parts = raw.split(/\r?\n+/).filter(function (s) {
+            return s && s.trim().length > 0;
+          });
+          var html = "<p>" + parts.join("<br><br>") + "</p>";
+          modalText.innerHTML = html;
+        }
+        var dateAttr = this.getAttribute("data-testimonials-date");
+        var dateLabel = this.getAttribute("data-testimonials-date-label");
+        var timeEl = modalContainer
+          ? modalContainer.querySelector(".testimonials-modal time")
+          : null;
+        if (timeEl) {
+          if (dateAttr) {
+            timeEl.setAttribute("datetime", dateAttr);
+          }
+          if (dateLabel) {
+            timeEl.textContent = dateLabel;
+          }
+        }
+        toggleModal();
+      });
+    }
+
+    if (modalCloseBtn) {
+      modalCloseBtn.addEventListener("click", toggleModal);
+    }
+    if (overlay) {
+      overlay.addEventListener("click", toggleModal);
+    }
+
+    // SPA tab routing via History API
+    var navButtons = document.querySelectorAll("[data-nav-link]");
+    var pageArticles = document.querySelectorAll("article[data-page]");
+
+    function setActivePage(page) {
+      var pageName = (page || "").replace(/^\//, "");
+      if (!pageName) pageName = "about";
+      var allowed = [];
+      for (var i = 0; i < pageArticles.length; i++) {
+        var a = pageArticles[i];
+        if (a) {
+          var dp = a.getAttribute("data-page");
+          if (dp) allowed.push(dp);
+        }
+      }
+      if (allowed.indexOf(pageName) === -1) {
+        pageName = "about";
+      }
+      for (var j = 0; j < pageArticles.length; j++) {
+        var art = pageArticles[j];
+        if (!art) continue;
+        var isMatch = art.getAttribute("data-page") === pageName;
+        art.classList.toggle("active", isMatch);
+      }
+      for (var k = 0; k < navButtons.length; k++) {
+        var btn = navButtons[k];
+        if (!btn) continue;
+        var target = btn.getAttribute("data-page");
+        btn.classList.toggle("active", target === pageName);
+      }
+    }
+
+    function navigateTo(page, replace) {
+      var path = "/" + (page || "about");
+      try {
+        if (replace) {
+          history.replaceState({ page: page }, "", path);
+        } else {
+          history.pushState({ page: page }, "", path);
+        }
+      } catch (e) {}
+      setActivePage(page);
+    }
+
+    for (var k = 0; k < navButtons.length; k++) {
+      (function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          var target = btn.getAttribute("data-page");
+          if (target) {
+            navigateTo(target, false);
+          }
+        });
+      })(navButtons[k]);
+    }
+
+    window.addEventListener("popstate", function (ev) {
+      var page =
+        (ev && ev.state && ev.state.page) ||
+        window.location.pathname.replace(/^\//, "");
+      setActivePage(page);
+    });
+
+    // initialize on load based on URL
+    setActivePage(window.location.pathname.replace(/^\//, ""));
+  })();
+</script>

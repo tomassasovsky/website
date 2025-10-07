@@ -1,0 +1,73 @@
+---
+import { ui } from "../../data/site";
+import { filters } from "../../data/portfolioFilters";
+import { projects } from "../../data/projects";
+---
+
+<header>
+  <h2 class="h2 article-title">{ui.headings.portfolio}</h2>
+</header>
+
+<section class="projects">
+  <ul class="filter-list">
+    {
+      filters.map((f, i) => (
+        <li class="filter-item">
+          <button class={i === 0 ? "active" : ""} data-filter-btn>
+            {f}
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="filter-select-box">
+    <button class="filter-select" data-select>
+      <div class="select-value" data-selecct-value>Select category</div>
+      <div class="select-icon">
+        <ion-icon name="chevron-down"></ion-icon>
+      </div>
+    </button>
+    <ul class="select-list">
+      {
+        filters.map((f) => (
+          <li class="select-item">
+            <button data-select-item>{f}</button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="project-cards">
+    {
+      projects.map((p) => (
+        <div class="project-card">
+          <div class="project-card-media" data-dominant-bg>
+            <img
+              class="project-card-image"
+              src={p.image}
+              alt={p.title}
+              loading="lazy"
+            />
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-card-title">{p.title}</h3>
+            <p class="project-card-desc">{p.description}</p>
+            <div class="project-card-links">
+              {p.links.map((l) => (
+                <a
+                  class={`badge ${l.icon === "globe-outline" ? "badge--site" : l.icon === "logo-apple" ? "badge--appstore" : "badge--play"}`}
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <ion-icon name={l.icon} />
+                  <span>{l.label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
