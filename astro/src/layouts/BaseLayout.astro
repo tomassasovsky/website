@@ -1,6 +1,32 @@
 ---
-const { title = "Tomás Sasovsky - Portfolio" } = Astro.props;
 import PageInteractions from "../components/PageInteractions.astro";
+import { name, tagline, avatar, socials, email as contactEmail } from "../data/site";
+
+const {
+  title = name + " - Portfolio",
+  description = tagline,
+  image = avatar,
+  noindex = false,
+  canonicalPath = undefined,
+} = Astro.props;
+
+const siteOrigin = (Astro.site && Astro.site.toString && Astro.site.toString()) ||
+  (Astro.url && Astro.url.origin) || "";
+const canonicalUrl = canonicalPath
+  ? (siteOrigin ? new URL(canonicalPath, siteOrigin).toString() : canonicalPath)
+  : (Astro.url ? Astro.url.href : "");
+const ogImageUrl = image ? (siteOrigin ? new URL(image, siteOrigin).toString() : image) : "";
+const socialUrls = Array.isArray(socials) ? socials.map((s) => s && s.href).filter(Boolean) : [];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name,
+  jobTitle: tagline,
+  url: siteOrigin || undefined,
+  image: ogImageUrl || undefined,
+  email: contactEmail ? `mailto:${contactEmail}` : undefined,
+  sameAs: socialUrls,
+};
 ---
 
 <html lang="en">
@@ -27,6 +53,28 @@ import PageInteractions from "../components/PageInteractions.astro";
 
     <!-- global css -->
     <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <!-- SEO basics -->
+    {description && <meta name="description" content={description} />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={name} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}    
+
+    <!-- JSON-LD Person -->
+    <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
   </head>
   <body>
     <slot />

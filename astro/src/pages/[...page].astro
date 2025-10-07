@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteSidebar from "../components/SiteSidebar.astro";
 import SiteNavbar from "../components/SiteNavbar.astro";
-import { ui, name } from "../data/site";
+import { ui, name, tagline } from "../data/site";
 import AboutTab from "../components/tabs/AboutTab.astro";
 import WorkTab from "../components/tabs/WorkTab.astro";
 import PortfolioTab from "../components/tabs/PortfolioTab.astro";
@@ -18,9 +18,36 @@ export function getStaticPaths() {
   return pages.map((p) => ({ params: { page: p } }));
 }
 const current = (Astro.params.page as string) || "about";
+const pageMeta = {
+  about: {
+    title: `${name} - About`,
+    description: `${tagline}. Learn more about ${name}, services, and background.`,
+    canonicalPath: "/about",
+  },
+  work: {
+    title: `${name} - Work`,
+    description: `Experience and roles held by ${name}.`,
+    canonicalPath: "/work",
+  },
+  portfolio: {
+    title: `${name} - Portfolio`,
+    description: `Selected projects and case studies by ${name}.`,
+    canonicalPath: "/portfolio",
+  },
+  contact: {
+    title: `${name} - Contact`,
+    description: `Get in touch with ${name}.`,
+    canonicalPath: "/contact",
+  },
+} as const;
+const meta = pageMeta[current as keyof typeof pageMeta] || pageMeta.about;
 ---
 
-<BaseLayout title={name + " - Portfolio"}>
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  canonicalPath={meta.canonicalPath}
+>
   <main>
     <SiteSidebar />
 
