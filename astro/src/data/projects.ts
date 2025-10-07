@@ -9,7 +9,7 @@ export const projects: Project[] = [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=io.eldorado.app" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/co/app/el-dorado-p2p/id1591303547" },
     ],
-    category: "web development",
+    category: "frontend",
   },
   {
     title: "SportsVisio",
@@ -19,7 +19,7 @@ export const projects: Project[] = [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.sportsvisio.svhoops" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/us/app/sportsvisio/id1611231433" },
     ],
-    category: "applications",
+    category: "frontend",
   },
   {
     title: "APIConnect (CourtAvenue)",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.apiabroad.api_abroad_app" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/es/app/apiconnect/id6448320549" },
     ],
-    category: "applications",
+    category: "frontend",
   },
   {
     title: "TAZA Express",
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genjo.ai/" },
     ],
-    category: "web development",
+    category: "frontend",
   },
   {
     title: "Genomii (VisionBox)",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genomii.ai/" },
     ],
-    category: "web design",
+    category: "frontend",
   },
 ];
 

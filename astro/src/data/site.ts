@@ -1,6 +1,6 @@
 import type { SocialLink } from "../types";
 
-export const title = "Tomás Sasovsky - Portfolio";
+export const title = "Tomás Sasovsky";
 export const tagline = "Senior Flutter & Full‑Stack Engineer";
 export const email = "tomas@aquiles.dev";
 export const location = "Buenos Aires, Argentina";
@@ -15,7 +15,7 @@ export const ui = {
     testimonials: "Testimonials",
     clients: "Clients",
     work: "Work",
-    portfolio: "Portfolio",
+    projects: "Projects",
     contact: "Contact",
   },
   icons: {

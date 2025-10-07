@@ -5,16 +5,16 @@ import SiteNavbar from "../components/SiteNavbar.astro";
 import { ui, name, tagline } from "../data/site";
 import AboutTab from "../components/tabs/AboutTab.astro";
 import WorkTab from "../components/tabs/WorkTab.astro";
-import PortfolioTab from "../components/tabs/PortfolioTab.astro";
+import ProjectsTab from "../components/tabs/ProjectsTab.astro";
 import ContactTab from "../components/tabs/ContactTab.astro";
 import { aboutParagraphs, services } from "../data/about";
 import { testimonials } from "../data/testimonials";
 import { clients } from "../data/clients";
 import { roles } from "../data/experience";
-import { filters } from "../data/portfolioFilters";
+import { filters } from "../data/projectsFilters";
 import { projects } from "../data/projects";
 export function getStaticPaths() {
-  const pages = ["about", "work", "portfolio", "contact"];
+  const pages = ["about", "work", "projects", "contact"];
   return pages.map((p) => ({ params: { page: p } }));
 }
 const current = (Astro.params.page as string) || "about";
@@ -29,10 +29,10 @@ const pageMeta = {
     description: `Experience and roles held by ${name}.`,
     canonicalPath: "/work",
   },
-  portfolio: {
-    title: `${name} - Portfolio`,
+  projects: {
+    title: `${name} - Projects`,
     description: `Selected projects and case studies by ${name}.`,
-    canonicalPath: "/portfolio",
+    canonicalPath: "/projects",
   },
   contact: {
     title: `${name} - Contact`,
@@ -69,10 +69,10 @@ const meta = pageMeta[current as keyof typeof pageMeta] || pageMeta.about;
       </article>
 
       <article
-        class={"portfolio" + (current === "portfolio" ? " active" : "")}
-        data-page="portfolio"
+        class={"projects" + (current === "projects" ? " active" : "")}
+        data-page="projects"
       >
-        <PortfolioTab />
+        <ProjectsTab />
       </article>
 
       <article

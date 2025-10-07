@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 
-const routes = ["/about", "/work", "/portfolio", "/contact"]; // static sections
+const routes = ["/about", "/work", "/projects", "/contact"]; // static sections
 
 export const GET: APIRoute = async ({ url }) => {
   const origin = url.origin.replace(/\/$/, "");
@@ -19,5 +19,3 @@ export const GET: APIRoute = async ({ url }) => {
     },
   });
 };
-
-
