@@ -163,6 +163,22 @@
         var target = btn.getAttribute("data-page");
         btn.classList.toggle("active", target === pageName);
       }
+
+      // update document.title based on active tab heading
+      try {
+        var siteName =
+          document.body && document.body.getAttribute("data-site-name");
+        var activeArticle = document.querySelector("article[data-page].active");
+        var h2 = activeArticle
+          ? activeArticle.querySelector(".article-title")
+          : null;
+        var titlePart =
+          h2 && h2.textContent
+            ? h2.textContent.trim()
+            : pageName.charAt(0).toUpperCase() + pageName.slice(1);
+        var finalTitle = siteName ? siteName + " - " + titlePart : titlePart;
+        document.title = finalTitle;
+      } catch (e) {}
     }
 
     function navigateTo(page, replace) {

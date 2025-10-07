@@ -37,11 +37,8 @@ const jsonLd = {
     <title>{title}</title>
 
     <!-- favicon -->
-    <link
-      rel="shortcut icon"
-      href="/assets/images/logo.ico"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="/assets/images/ts-favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/assets/images/logo.ico" type="image/x-icon" />
 
     <!-- google font link -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -76,7 +73,7 @@ const jsonLd = {
     <!-- JSON-LD Person -->
     <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
   </head>
-  <body>
+  <body data-site-name={name}>
     <slot />
 
     <div class="modal-container" data-modal-container>
