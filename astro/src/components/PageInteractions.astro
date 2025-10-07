@@ -198,5 +198,90 @@
 
     // initialize on load based on URL
     setActivePage(window.location.pathname.replace(/^\//, ""));
+
+    // Projects filters (buttons and select)
+    var filterButtons = document.querySelectorAll("[data-filter-btn]");
+    var filterSelect = document.querySelector("[data-select]");
+    var filterSelectValue = document.querySelector("[data-selecct-value]");
+    var filterSelectItems = document.querySelectorAll("[data-select-item]");
+    var projectCards = document.querySelectorAll(
+      ".project-cards .project-card",
+    );
+
+    function normalizeCategory(label) {
+      var t = (label || "").toString().trim().toLowerCase();
+      if (t === "all") return "all";
+      return t;
+    }
+
+    function applyProjectFilter(label) {
+      var key = normalizeCategory(label);
+      for (var i = 0; i < projectCards.length; i++) {
+        var card = projectCards[i];
+        if (!card) continue;
+        var cat = (card.getAttribute("data-category") || "").toLowerCase();
+        var show = key === "all" || cat === key;
+        try {
+          if (card instanceof HTMLElement) {
+            card.style.display = show ? "" : "none";
+          }
+        } catch (e) {}
+      }
+    }
+
+    function setActiveFilterUI(label) {
+      var lbl = (label || "").toString();
+      for (var i = 0; i < filterButtons.length; i++) {
+        var btn = filterButtons[i];
+        if (!btn) continue;
+        var text = (btn.textContent || "").trim();
+        btn.classList.toggle("active", text === lbl);
+      }
+      if (filterSelectValue) {
+        filterSelectValue.textContent = lbl;
+      }
+    }
+
+    for (var i1 = 0; i1 < filterButtons.length; i1++) {
+      (function (btn) {
+        btn.addEventListener("click", function () {
+          var label = (btn.textContent || "").trim();
+          setActiveFilterUI(label);
+          applyProjectFilter(label);
+        });
+      })(filterButtons[i1]);
+    }
+
+    if (filterSelect) {
+      filterSelect.addEventListener("click", function () {
+        toggleActive(filterSelect);
+      });
+    }
+
+    for (var i2 = 0; i2 < filterSelectItems.length; i2++) {
+      (function (item) {
+        item.addEventListener("click", function () {
+          var label = (item.textContent || "").trim();
+          setActiveFilterUI(label);
+          applyProjectFilter(label);
+          if (filterSelect) {
+            filterSelect.classList.remove("active");
+          }
+        });
+      })(filterSelectItems[i2]);
+    }
+
+    // initialize projects filter to first active or "All"
+    (function initProjectFilter() {
+      var initial = "All";
+      for (var i = 0; i < filterButtons.length; i++) {
+        if (filterButtons[i].classList.contains("active")) {
+          initial = (filterButtons[i].textContent || "").trim() || initial;
+          break;
+        }
+      }
+      setActiveFilterUI(initial);
+      applyProjectFilter(initial);
+    })();
   })();
 </script>

@@ -40,7 +40,7 @@ import { projects } from "../../data/projects";
   <div class="project-cards">
     {
       projects.map((p) => (
-        <div class="project-card">
+        <div class="project-card" data-category={p.category.toLowerCase()}>
           <div class="project-card-media" data-dominant-bg>
             <img
               class="project-card-image"
