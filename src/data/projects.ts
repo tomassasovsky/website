@@ -87,7 +87,7 @@ export const projects: Project[] = [
   {
     title: "Radio Horizon (Dart)",
     description:
-      "Utilities for radio horizon and line‑of‑sight calculations for RF planning in Dart. Provides Earth‑curvature and Fresnel zone helpers for link budgets and coverage estimation. Designed for accuracy with simple, dependency‑light APIs.",
+      "Radio Horizon is a Discord radio playing bot that brings a whole new level of listening experience to your server. With its powerful song recognition technology, radio-horizon.dart can identify and announce the songs currently playing on the radio, making it easy to keep track of your favorite tunes. Whether you're a music lover, DJ or just looking for an easy way to discover new music, radio-horizon.dart is the perfect companion.",
     image: "/assets/images/radio-horizon-logo.png",
     imageFit: "cover",
     links: [
