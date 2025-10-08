@@ -34,7 +34,6 @@ export const projects: Project[] = [
   {
     title: "TAZA Express",
     description: "Food ordering and delivery tracking for a high‑volume marketplace. Implemented map integrations and streamlined order states for a predictable end‑to‑end experience.",
-    image: "/assets/images/cat-logo.webp",
     links: [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.creativeadvtech.taza_mobile_production" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/ar/app/taza-express/id1614409775" },
@@ -44,7 +43,6 @@ export const projects: Project[] = [
   {
     title: "Genjo (CourtAvenue)",
     description: "Lightweight web app used internally to streamline LLM‑assisted workflows and knowledge retrieval. Built to move fast: pragmatic stack, clear UX, and rapid iteration.",
-    image: "/assets/images/courtavenue-logo.png",
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genjo.ai/" },
     ],
@@ -53,7 +51,6 @@ export const projects: Project[] = [
   {
     title: "Genomii (VisionBox)",
     description: "Health insights and guidance with device integrations and privacy‑first design. Unreleased; responsibilities covered integrations, subscriptions, and KYC/verification flows.",
-    image: "/assets/images/visionbox-ai-logo.png",
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genomii.ai/" },
     ],

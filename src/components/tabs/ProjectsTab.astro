@@ -42,12 +42,22 @@ import { projects } from "../../data/projects";
       projects.map((p) => (
         <div class="project-card" data-category={p.category.toLowerCase()}>
           <div class="project-card-media" data-dominant-bg>
-            <img
-              class="project-card-image"
-              src={p.image}
-              alt={p.title}
-              loading="lazy"
-            />
+            {p.image && (
+              <img
+                class="project-card-image"
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                onerror="this.onerror=null;this.style.display='none';var ph=this.nextElementSibling; if(ph){ph.style.display='flex';}"
+              />
+            )}
+            <div
+              class="project-card-placeholder"
+              aria-hidden="true"
+              style={p.image ? "display:none" : ""}
+            >
+              <ion-icon name="code-slash-outline" />
+            </div>
           </div>
           <div class="project-card-body">
             <h3 class="project-card-title">{p.title}</h3>

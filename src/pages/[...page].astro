@@ -1,12 +1,6 @@
 ---
 import MainShell from "../components/MainShell.astro";
-import { ui, name, tagline } from "../data/site";
-import { aboutParagraphs, services } from "../data/about";
-import { testimonials } from "../data/testimonials";
-import { clients } from "../data/clients";
-import { roles } from "../data/experience";
-import { filters } from "../data/projectsFilters";
-import { projects } from "../data/projects";
+import { name, tagline } from "../data/site";
 export function getStaticPaths() {
   const pages = ["about", "work", "projects", "contact"];
   return pages.map((p) => ({ params: { page: p } }));
