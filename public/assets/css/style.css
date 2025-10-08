@@ -902,11 +902,14 @@ main {
 }
 
 /* Match testimonial social link color to sidebar social-link */
-.testimonials-social-link {
+.testimonials-social-link,
+.testimonials-social-link:link,
+.testimonials-social-link:visited {
   color: var(--light-gray-70);
 }
 
-.testimonials-social-link:hover {
+.testimonials-social-link:hover,
+.testimonials-social-link:active {
   color: var(--light-gray);
 }
 
