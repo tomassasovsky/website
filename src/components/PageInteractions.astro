@@ -65,7 +65,10 @@
     applySidebarPersistedState();
 
     if (sidebar && sidebarBtn) {
-      sidebarBtn.addEventListener("click", function () {
+      sidebarBtn.addEventListener("click", function (e) {
+        try {
+          if (e && typeof e.preventDefault === "function") e.preventDefault();
+        } catch (e0) {}
         toggleActive(sidebar);
         try {
           var isOpen = sidebar?.classList.contains("active");

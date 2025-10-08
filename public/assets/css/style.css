@@ -277,6 +277,12 @@ html[data-theme="light"] {
   --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.12);
   --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.14);
   --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.16);
+
+  /* Accents tuned for light theme so focus/hover look consistent */
+  --bg-gradient-jet: hsl(0, 0%, 100%);
+  --bg-gradient-yellow-2: linear-gradient(135deg,
+      hsla(45, 100%, 71%, 0.25) 0%,
+      hsla(35, 100%, 68%, 0) 60%), hsl(0, 0%, 100%);
 }
 
 /* Theme toggle icon visibility */
@@ -616,12 +622,12 @@ main {
 }
 
 .info_more-btn:hover,
-.info_more-btn:focus {
+.info_more-btn:focus-visible {
   background: var(--bg-gradient-yellow-1);
 }
 
 .info_more-btn:hover::before,
-.info_more-btn:focus::before {
+.info_more-btn:focus-visible::before {
   background: var(--bg-gradient-yellow-2);
 }
 
