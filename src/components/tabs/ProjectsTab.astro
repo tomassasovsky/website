@@ -53,17 +53,67 @@ import { projects } from "../../data/projects";
             <h3 class="project-card-title">{p.title}</h3>
             <p class="project-card-desc">{p.description}</p>
             <div class="project-card-links">
-              {p.links.map((l) => (
-                <a
-                  class={`badge ${l.icon === "globe-outline" ? "badge--site" : l.icon === "logo-apple" ? "badge--appstore" : "badge--play"}`}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <ion-icon name={l.icon} />
-                  <span>{l.label}</span>
-                </a>
-              ))}
+              {p.links.map((l) => {
+                const isSite = l.icon === "globe-outline";
+                const isApple = l.icon === "logo-apple";
+                const isPlay = l.icon === "logo-google-playstore";
+                if (isSite) {
+                  return (
+                    <a
+                      class="badge badge--site"
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <ion-icon name={l.icon} />
+                      <span>{l.label}</span>
+                    </a>
+                  );
+                }
+                if (isApple) {
+                  return (
+                    <a
+                      class="store-badge store-badge--apple"
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Download on the App Store"
+                    >
+                      <img
+                        class="store-badge-img"
+                        data-theme-img
+                        data-src-light="/assets/images/app-store-light.svg"
+                        data-src-dark="/assets/images/app-store-dark.svg"
+                        src="/assets/images/app-store-light.svg"
+                        alt="Download on the App Store"
+                        loading="lazy"
+                      />
+                    </a>
+                  );
+                }
+                if (isPlay) {
+                  return (
+                    <a
+                      class="store-badge store-badge--play"
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener"
+                      aria-label="Get it on Google Play"
+                    >
+                      <img
+                        class="store-badge-img"
+                        data-theme-img
+                        data-src-light="/assets/images/play-store-light.svg"
+                        data-src-dark="/assets/images/play-store-dark.svg"
+                        src="/assets/images/play-store-light.svg"
+                        alt="Get it on Google Play"
+                        loading="lazy"
+                      />
+                    </a>
+                  );
+                }
+                return null;
+              })}
             </div>
           </div>
         </div>

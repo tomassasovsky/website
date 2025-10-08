@@ -367,5 +367,72 @@
       }
       reset();
     })();
+
+    // Theme toggle logic with persistence and cross-tab sync
+    (function initThemeToggle() {
+      var root = document.documentElement;
+      var btn = document.querySelector("[data-theme-toggle]");
+      var storageKey = "theme";
+      var themeImgs = function () {
+        return document.querySelectorAll("[data-theme-img]");
+      };
+
+      function getCurrentTheme() {
+        var attr = root.getAttribute("data-theme");
+        if (attr === "light" || attr === "dark") return attr;
+        var prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return prefersDark ? "dark" : "light";
+      }
+
+      function applyTheme(theme: string) {
+        var t = theme === "light" ? "light" : "dark";
+        root.setAttribute("data-theme", t);
+        try {
+          root.style.colorScheme = t;
+        } catch (e1) {}
+        try {
+          localStorage.setItem(storageKey, t);
+        } catch (e2) {}
+
+        // update any theme-aware images
+        try {
+          var imgs = themeImgs();
+          for (var i = 0; i < imgs.length; i++) {
+            var img = imgs[i] as HTMLImageElement;
+            if (!img) continue;
+            var light = img.getAttribute("data-src-light");
+            var dark = img.getAttribute("data-src-dark");
+            var nextSrc =
+              t === "dark"
+                ? dark || img.getAttribute("src")
+                : light || img.getAttribute("src");
+            if (nextSrc && img.getAttribute("src") !== nextSrc) {
+              img.setAttribute("src", nextSrc);
+            }
+          }
+        } catch (e3) {}
+      }
+
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var next = getCurrentTheme() === "dark" ? "light" : "dark";
+          applyTheme(next);
+        });
+      }
+
+      // Keep in sync across tabs
+      window.addEventListener("storage", function (ev) {
+        if (ev && ev.key === storageKey && ev.newValue) {
+          applyTheme(ev.newValue);
+        }
+      });
+
+      // Initialize images on load to match current theme
+      (function initThemeImages() {
+        applyTheme(getCurrentTheme());
+      })();
+    })();
   })();
 </script>

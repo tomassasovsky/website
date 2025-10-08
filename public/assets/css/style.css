@@ -89,14 +89,21 @@
   font-size: 14px;
 }
 
-.badge--play {
-  color: #34a853;
-  border-color: rgba(52, 168, 83, 0.35);
+/* Store badges: force consistent outer box size */
+.store-badge {
+  display: inline-block;
+  line-height: 0;
+  height: 40px;
+  overflow: visible;
 }
 
-.badge--appstore {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.25);
+.store-badge img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .badge--site {
@@ -168,7 +175,7 @@
   --white-1: hsl(0, 0%, 100%);
   --white-2: hsl(0, 0%, 98%);
   --orange-yellow-crayola: hsl(45, 100%, 72%);
-  --vegas-gold: hsl(45, 54%, 58%);
+  --vegas-gold: hsl(45, 54%, 52%);
   --light-gray: hsl(0, 0%, 84%);
   --light-gray-70: hsla(0, 0%, 84%, 0.7);
   --bittersweet-shimmer: hsl(0, 43%, 51%);
@@ -215,6 +222,60 @@
 
 }
 
+
+/* Light theme overrides */
+html[data-theme="light"] {
+  /* Map semantic variables to light counterparts */
+  --smoky-black: hsl(0, 0%, 98%);
+  --eerie-black-1: hsl(0, 0%, 100%);
+  --eerie-black-2: hsl(0, 0%, 100%);
+  --onyx: hsl(0, 0%, 92%);
+  --jet: hsl(0, 0%, 85%);
+  --white-1: hsl(0, 0%, 12%);
+  --white-2: hsl(0, 0%, 10%);
+  --light-gray: hsl(0, 0%, 35%);
+  --light-gray-70: hsla(0, 0%, 35%, 0.7);
+
+  /* Gradients and shadows adapted for light */
+  --border-gradient-onyx: linear-gradient(to bottom right,
+      hsl(0, 0%, 92%) 0%,
+      hsla(0, 0%, 92%, 0) 50%);
+  --bg-gradient-jet: hsl(0, 0%, 100%);
+  --bg-gradient-onyx: linear-gradient(to bottom right,
+      hsl(0, 0%, 100%) 3%,
+      hsl(0, 0%, 98%) 97%);
+
+  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.10);
+  --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.12);
+  --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.12);
+  --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.14);
+  --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.16);
+}
+
+/* Theme toggle icon visibility */
+.navbar-link.theme-toggle .icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .navbar-link.theme-toggle .icon-sun {
+  display: inline-block;
+}
+
+html[data-theme="light"] .navbar-link.theme-toggle .icon-moon {
+  display: none;
+}
+
+/* Navbar backdrop colors per theme */
+html[data-theme="light"] .navbar {
+  background: hsla(0, 0%, 100%, 0.75);
+  border-color: var(--jet);
+}
+
+@media (max-width: 1023px) {
+  html[data-theme="light"] .navbar {
+    background: hsla(0, 0%, 100%, 0.85);
+  }
+}
 
 
 
@@ -1586,6 +1647,21 @@ textarea.form-input::-webkit-resizer {
 
 .form-btn:hover::before {
   background: var(--bg-gradient-yellow-2);
+}
+
+/* Increase accent contrast for interactive states */
+.navbar-link.active,
+.filter-item button.active,
+.form-btn,
+.icon-box,
+.project-item-icon-box {
+  color: var(--orange-yellow-crayola);
+}
+
+.navbar-link:hover,
+.filter-item button:hover,
+.blog-post-item>a:hover .blog-item-title {
+  color: hsl(45, 100%, 64%);
 }
 
 .form-btn:disabled {
