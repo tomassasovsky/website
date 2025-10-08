@@ -69,6 +69,7 @@
         try {
           if (e && typeof e.preventDefault === "function") e.preventDefault();
         } catch (e0) {}
+        if (!sidebar) return;
         toggleActive(sidebar);
         try {
           var isOpen = sidebar?.classList.contains("active");
@@ -246,8 +247,16 @@
       for (var i = 0; i < projectCards.length; i++) {
         var card = projectCards[i];
         if (!card) continue;
-        var cat = (card.getAttribute("data-category") || "").toLowerCase();
-        var show = key === "all" || cat === key;
+        var raw = card.getAttribute("data-categories") || "";
+        var cats = raw
+          .split(",")
+          .map(function (s) {
+            return normalizeCategory(s);
+          })
+          .filter(function (s) {
+            return !!s && s !== "all";
+          });
+        var show = key === "all" || cats.indexOf(key) !== -1;
         try {
           if (card instanceof HTMLElement) {
             card.style.display = show ? "" : "none";

@@ -1,1 +1,1 @@
-export const filters = ["All", "Frontend", "Backend", "Tools / OSS"];
+export const filters = ["All", "Apps", "OSS / Tools"];

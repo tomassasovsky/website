@@ -13,7 +13,7 @@ import { projects } from "../../data/projects";
     {
       filters.map((f, i) => (
         <li class="filter-item">
-          <button class={i === 0 ? "active" : ""} data-filter-btn>
+          <button class={f === "Apps" ? "active" : ""} data-filter-btn>
             {f}
           </button>
         </li>
@@ -39,95 +39,118 @@ import { projects } from "../../data/projects";
   </div>
   <div class="project-cards">
     {
-      projects.map((p) => (
-        <div class="project-card" data-category={p.category.toLowerCase()}>
-          <div class="project-card-media" data-dominant-bg>
-            {p.image && (
-              <img
-                class="project-card-image"
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                onerror="this.onerror=null;this.style.display='none';var ph=this.nextElementSibling; if(ph){ph.style.display='flex';}"
-              />
-            )}
+      projects.map((p) => {
+        const cats = (p.categories || []).map((c) => c.toLowerCase().trim());
+        const dataCategories = cats.join(",");
+        return (
+          <div class="project-card" data-categories={dataCategories}>
             <div
-              class="project-card-placeholder"
-              aria-hidden="true"
-              style={p.image ? "display:none" : ""}
+              class={
+                "project-card-media" +
+                (p.imageFit === "contain"
+                  ? " project-card-media--outlined"
+                  : "")
+              }
+              data-dominant-bg
             >
-              <ion-icon name="code-slash-outline" />
+              {p.image && (
+                <img
+                  class="project-card-image"
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  style={p.imageFit ? `object-fit:${p.imageFit}` : undefined}
+                  onerror="this.onerror=null;this.style.display='none';var ph=this.nextElementSibling; if(ph){ph.style.display='flex';}"
+                />
+              )}
+              <div
+                class="project-card-placeholder"
+                aria-hidden="true"
+                style={p.image ? "display:none" : ""}
+              >
+                <ion-icon name="code-slash-outline" />
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h3 class="project-card-title">
+                {p.title}
+                {p.unreleased && (
+                  <span
+                    class="unreleased-box"
+                    title="Not publicly released yet"
+                  >
+                    Private beta
+                  </span>
+                )}
+              </h3>
+              <p class="project-card-desc">{p.description}</p>
+              <div class="project-card-links">
+                {p.links.map((l) => {
+                  const isSite = l.icon === "globe-outline";
+                  const isApple = l.icon === "logo-apple";
+                  const isPlay = l.icon === "logo-google-playstore";
+                  if (isSite) {
+                    return (
+                      <a
+                        class="badge badge--site"
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        <ion-icon name={l.icon} />
+                        <span>{l.label}</span>
+                      </a>
+                    );
+                  }
+                  if (isApple) {
+                    return (
+                      <a
+                        class="store-badge store-badge--apple"
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Download on the App Store"
+                      >
+                        <img
+                          class="store-badge-img"
+                          data-theme-img
+                          data-src-light="/assets/images/app-store-light.svg"
+                          data-src-dark="/assets/images/app-store-dark.svg"
+                          src="/assets/images/app-store-light.svg"
+                          alt="Download on the App Store"
+                          loading="lazy"
+                        />
+                      </a>
+                    );
+                  }
+                  if (isPlay) {
+                    return (
+                      <a
+                        class="store-badge store-badge--play"
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Get it on Google Play"
+                      >
+                        <img
+                          class="store-badge-img"
+                          data-theme-img
+                          data-src-light="/assets/images/play-store-light.svg"
+                          data-src-dark="/assets/images/play-store-dark.svg"
+                          src="/assets/images/play-store-light.svg"
+                          alt="Get it on Google Play"
+                          loading="lazy"
+                        />
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
             </div>
           </div>
-          <div class="project-card-body">
-            <h3 class="project-card-title">{p.title}</h3>
-            <p class="project-card-desc">{p.description}</p>
-            <div class="project-card-links">
-              {p.links.map((l) => {
-                const isSite = l.icon === "globe-outline";
-                const isApple = l.icon === "logo-apple";
-                const isPlay = l.icon === "logo-google-playstore";
-                if (isSite) {
-                  return (
-                    <a
-                      class="badge badge--site"
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      <ion-icon name={l.icon} />
-                      <span>{l.label}</span>
-                    </a>
-                  );
-                }
-                if (isApple) {
-                  return (
-                    <a
-                      class="store-badge store-badge--apple"
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Download on the App Store"
-                    >
-                      <img
-                        class="store-badge-img"
-                        data-theme-img
-                        data-src-light="/assets/images/app-store-light.svg"
-                        data-src-dark="/assets/images/app-store-dark.svg"
-                        src="/assets/images/app-store-light.svg"
-                        alt="Download on the App Store"
-                        loading="lazy"
-                      />
-                    </a>
-                  );
-                }
-                if (isPlay) {
-                  return (
-                    <a
-                      class="store-badge store-badge--play"
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Get it on Google Play"
-                    >
-                      <img
-                        class="store-badge-img"
-                        data-theme-img
-                        data-src-light="/assets/images/play-store-light.svg"
-                        data-src-dark="/assets/images/play-store-dark.svg"
-                        src="/assets/images/play-store-light.svg"
-                        alt="Get it on Google Play"
-                        loading="lazy"
-                      />
-                    </a>
-                  );
-                }
-                return null;
-              })}
-            </div>
-          </div>
-        </div>
-      ))
+        );
+      })
     }
   </div>
 </section>

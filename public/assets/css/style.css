@@ -41,6 +41,11 @@
   align-self: start;
 }
 
+/* When imageFit is contain, mirror the placeholder border */
+.project-card-media.project-card-media--outlined {
+  border: 1px dashed var(--jet);
+}
+
 .project-card-image {
   width: 100%;
   height: 100%;
@@ -80,6 +85,9 @@
   font-size: var(--fs-5);
   font-weight: var(--fw-500);
   margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .project-card-desc {
@@ -93,6 +101,37 @@
   flex-wrap: wrap;
   gap: 10px 14px;
   margin-top: 10px;
+}
+
+/* Small row for meta badges above description */
+.project-card-meta {
+  margin: 4px 0 6px 0;
+}
+
+/* Unreleased simple box (not a chip) */
+.unreleased-box {
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-radius: 12px;
+  background: var(--onyx);
+  color: var(--light-gray);
+  font-size: var(--fs-8);
+}
+
+/* No hover effect */
+.unreleased-box:hover {
+  background: var(--onyx);
+  color: var(--light-gray);
+}
+
+/* Visually disabled state for links/badges when unreleased */
+.is-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: default;
 }
 
 .badge {
@@ -357,8 +396,8 @@ button {
 }
 
 ::selection {
-  background: var(--orange-yellow-crayola);
-  color: var(--smoky-black);
+  background: var(--onyx);
+  color: var(--white-1);
 }
 
 html {
@@ -404,7 +443,7 @@ article {
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  color: var(--orange-yellow-crayola);
+  color: var(--light-gray);
   box-shadow: var(--shadow-1);
   z-index: 1;
 }
@@ -420,6 +459,10 @@ article {
 
 .icon-box ion-icon {
   --ionicon-stroke-width: 35px;
+}
+
+.icon-box:hover {
+  color: var(--white-1);
 }
 
 article {
@@ -689,6 +732,14 @@ main {
   padding-left: 7px;
 }
 
+.social-list--with-cta {
+  justify-content: space-between;
+}
+
+.social-item--cta {
+  margin-left: auto;
+}
+
 .social-item .social-link {
   color: var(--light-gray-70);
   font-size: 18px;
@@ -697,6 +748,25 @@ main {
 
 .social-item .social-link:hover {
   color: var(--light-gray);
+}
+
+/* Small CTA pill next to social icons */
+.cta-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--orange-yellow-crayola);
+  color: hsl(0, 0%, 7%);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  text-decoration: none;
+  box-shadow: var(--shadow-2);
+}
+
+.cta-mini:hover {
+  filter: brightness(1.05);
 }
 
 
@@ -734,15 +804,29 @@ main {
   font-size: var(--fs-8);
   padding: 20px 7px;
   transition: color var(--transition-1);
+  position: relative;
 }
 
 .navbar-link:hover,
 .navbar-link:focus {
-  color: var(--light-gray-70);
+  color: var(--white-1);
 }
 
-.navbar-link.active {
-  color: var(--orange-yellow-crayola);
+.navbar-link.active,
+.navbar .navbar-link.active {
+  color: var(--white-1);
+}
+
+/* Desktop underline indicator */
+.navbar-link.active::after {
+  content: "";
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  bottom: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--orange-yellow-crayola);
 }
 
 /* auto-hide state */
@@ -801,6 +885,7 @@ main {
     border-radius: 999px;
     color: var(--light-gray);
     white-space: nowrap;
+    position: relative;
   }
 
   .navbar-link:hover,
@@ -809,7 +894,22 @@ main {
   }
 
   .navbar-link.active {
-    color: var(--orange-yellow-crayola);
+    color: hsl(0, 0%, 7%);
+    background: var(--orange-yellow-crayola);
+  }
+
+  /* Preserve dark text on active pill even when hovered/focused */
+  .navbar-link.active:hover,
+  .navbar-link.active:focus,
+  .navbar .navbar-link.active,
+  .navbar .navbar-link.active:hover,
+  .navbar .navbar-link.active:focus {
+    color: hsl(0, 0%, 7%);
+  }
+
+  /* Hide desktop underline on mobile pill */
+  .navbar-link.active::after {
+    display: none;
   }
 }
 
@@ -1168,7 +1268,7 @@ main {
 }
 
 .timeline-list span {
-  color: var(--vegas-gold);
+  color: var(--light-gray-70);
   font-weight: var(--fw-400);
   line-height: 1.6;
 }
@@ -1298,7 +1398,7 @@ main {
   position: relative;
   width: 100%;
   background: var(--border-gradient-onyx);
-  color: var(--orange-yellow-crayola);
+  color: var(--white-2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1310,6 +1410,11 @@ main {
   box-shadow: var(--shadow-3);
   z-index: 1;
   transition: var(--transition-1);
+}
+
+/* Add a bit more spacing under the "Other ways to reach me" heading */
+.contact-channels .form-title {
+  margin-bottom: 12px;
 }
 
 .form-btn::before {
@@ -1327,22 +1432,18 @@ main {
 }
 
 .form-btn:hover {
-  background: var(--bg-gradient-yellow-1);
+  background: var(--bg-gradient-onyx);
 }
 
 .form-btn:hover::before {
-  background: var(--bg-gradient-yellow-2);
+  background: var(--bg-gradient-jet);
 }
 
-/* Increase accent contrast for interactive states */
-.navbar-link.active,
-.filter-item button.active,
-.form-btn,
-.icon-box {
+/* Increase accent contrast for interactive states (exclude navbar active for neutrality) */
+.filter-item button.active {
   color: var(--orange-yellow-crayola);
 }
 
-.navbar-link:hover,
 .filter-item button:hover {
   color: hsl(45, 100%, 64%);
 }
@@ -1755,7 +1856,7 @@ main {
 
   .form-btn {
     width: max-content;
-    margin-left: auto;
+    margin-left: 0;
     padding: 16px 20px;
     --fs-6: 16px;
   }
@@ -2031,6 +2132,16 @@ main {
   }
 
 
+
+  /**
+ * neutralize sidebar active state at ≥1024px
+ */
+  @media (min-width: 1024px) {
+    .sidebar.active {
+      max-height: none;
+      overflow: visible;
+    }
+  }
 
   /**
 	 * RESUME

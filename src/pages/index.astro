@@ -1,6 +1,7 @@
 ---
 import MainShell from "../components/MainShell.astro";
 import { name, tagline } from "../data/site";
+import { navItems } from "../data/nav";
 
 const meta = {
   title: `${name} - About`,
@@ -9,4 +10,14 @@ const meta = {
 };
 ---
 
-<MainShell meta={meta} current="about" />
+{
+  (() => {
+    const firstEnabled = navItems.find((n) => n.enabled !== false);
+    const current = firstEnabled
+      ? firstEnabled.href === "/"
+        ? "about"
+        : firstEnabled.href.replace("/", "")
+      : "about";
+    return <MainShell meta={meta} current={current} />;
+  })()
+}

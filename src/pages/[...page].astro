@@ -1,11 +1,20 @@
 ---
 import MainShell from "../components/MainShell.astro";
 import { name, tagline } from "../data/site";
+import { navItems } from "../data/nav";
 export function getStaticPaths() {
-  const pages = ["about", "work", "projects", "contact"];
+  const pages = navItems
+    .filter((n) => n.enabled !== false)
+    .map((n) => (n.href === "/" ? "about" : n.href.replace("/", "")));
   return pages.map((p) => ({ params: { page: p } }));
 }
-const current = (Astro.params.page as string) || "about";
+const enabledPages = new Set(
+  navItems
+    .filter((n) => n.enabled !== false)
+    .map((n) => (n.href === "/" ? "about" : n.href.replace("/", ""))),
+);
+const requested = (Astro.params.page as string) || "about";
+const current = enabledPages.has(requested) ? requested : "about";
 const pageMeta = {
   about: {
     title: `${name} - About`,

@@ -5,56 +5,160 @@ export const projects: Project[] = [
     title: "El Dorado P2P",
     description: "A Stablecoin SuperApp for LATAM offering a USD wallet and a peer‑to‑peer marketplace across 70+ finance apps (PayPal, Zelle, PIX, MercadoPago, Nequi, and more). Built for reliability and ease of use to move value across borders, protect savings in USD, and enable P2P merchant workflows.",
     image: "/assets/images/eldorado-preview.jpg",
+    imageFit: "cover",
     links: [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=io.eldorado.app" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/co/app/el-dorado-p2p/id1591303547" },
     ],
-    category: "frontend",
+    categories: ["Apps"],
   },
   {
     title: "SportsVisio",
     description: "End‑to‑end mobile capture and upload pipeline with background transfers, synchronized dual‑view playback, and analytics features tailored for teams and leagues. Focused on reliable uploads, smooth playback, and scalable media workflows.",
     image: "/assets/images/sportsvisio-preview.png",
+    imageFit: "cover",
     links: [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.sportsvisio.svhoops" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/us/app/sportsvisio/id1611231433" },
     ],
-    category: "frontend",
+    categories: ["Apps"],
   },
   {
     title: "APIConnect (CourtAvenue)",
     description: "Consumer app for API Abroad built with a modern stack and production‑ready CI/CD. Emphasis on secure auth, dependable releases, and crisp UX to guide users through program discovery and onboarding.",
     image: "/assets/images/api-connect-preview.png",
+    imageFit: "cover",
     links: [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.apiabroad.api_abroad_app" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/es/app/apiconnect/id6448320549" },
     ],
-    category: "frontend",
+    categories: ["Apps"],
   },
   {
     title: "TAZA Express",
     description: "Food ordering and delivery tracking for a high‑volume marketplace. Implemented map integrations and streamlined order states for a predictable end‑to‑end experience.",
+    imageFit: "cover",
     links: [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.creativeadvtech.taza_mobile_production" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/ar/app/taza-express/id1614409775" },
     ],
-    category: "applications",
+    categories: ["Apps"],
   },
   {
     title: "Genjo (CourtAvenue)",
-    description: "Lightweight web app used internally to streamline LLM‑assisted workflows and knowledge retrieval. Built to move fast: pragmatic stack, clear UX, and rapid iteration.",
+    description: "Genjo is an AI-powered platform designed to transform browsers into buyers, enhance customer interactions, and generate leads. It offers personalized, 24/7 customer engagement, boosting conversions and average order values while reducing returns. Genjo serves industries like Automotive, SaaS, Ecommerce, and more, providing secure and private solutions tailored to your business needs.",
+    imageFit: "contain",
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genjo.ai/" },
     ],
-    category: "frontend",
+    categories: ["Apps"],
   },
   {
     title: "Genomii (VisionBox)",
+    unreleased: true,
     description: "Health insights and guidance with device integrations and privacy‑first design. Unreleased; responsibilities covered integrations, subscriptions, and KYC/verification flows.",
+    imageFit: "cover",
+    image: "/assets/images/genomii-preview.png",
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genomii.ai/" },
     ],
-    category: "frontend",
+    categories: ["Apps"],
+  },
+  {
+    title: "Go Router Guards",
+    description:
+      "Flexible and extensible guard system for Go Router with composable boolean logic and type‑safe routes. Supports ALL/ANY/ONE‑OF combinations, redirect semantics, and a GuardedRoute mixin for type‑safe navigation. Includes examples and tests for building robust, reusable route protection.",
+    image: "/assets/images/go-router-guards-logo.png",
+    imageFit: "contain",
+    links: [
+      {
+        label: "Documentation",
+        icon: "globe-outline",
+        href: "https://guards.aquiles.dev/",
+      },
+      {
+        label: "GitHub",
+        icon: "globe-outline",
+        href: "https://github.com/tomassasovsky/go_router_guards",
+      }
+    ],
+    categories: ["OSS / Tools"],
+  },
+  {
+    title: "Radio Horizon (Dart)",
+    description:
+      "Utilities for radio horizon and line‑of‑sight calculations for RF planning in Dart. Provides Earth‑curvature and Fresnel zone helpers for link budgets and coverage estimation. Designed for accuracy with simple, dependency‑light APIs.",
+    image: "/assets/images/radio-horizon-logo.png",
+    imageFit: "cover",
+    links: [
+      {
+        label: "GitHub",
+        icon: "globe-outline",
+        href: "https://github.com/tomassasovsky/radio-horizon.dart",
+      },
+      {
+        label: "Discord",
+        icon: "logo-discord",
+        href: "https://discord.com/discovery/applications/977793621896093736",
+      }
+    ],
+    categories: ["OSS / Tools"],
+  },
+  {
+    title: "ncnn.dart",
+    description:
+      "Dart FFI bindings and tooling around Tencent NCNN for on‑device neural inference. Targets mobile and desktop with zero‑copy buffers where possible and pragmatic model loading. Useful for small, fast CNNs without heavyweight runtimes.",
+    imageFit: "contain",
+    links: [
+      {
+        label: "GitHub",
+        icon: "globe-outline",
+        href: "https://github.com/tomassasovsky/ncnn.dart",
+      },
+    ],
+    categories: ["OSS / Tools"],
+  },
+  {
+    title: "pytorch.dart",
+    description:
+      "Experimental Dart bindings for LibTorch/PyTorch to enable native tensor ops and model execution. Explores FFI surfaces for tensors, autograd, and model invocation from Flutter. Aimed at research/prototyping rather than production stability.",
+    imageFit: "contain",
+    links: [
+      {
+        label: "GitHub",
+        icon: "globe-outline",
+        href: "https://github.com/tomassasovsky/pytorch.dart",
+      },
+    ],
+    categories: ["OSS / Tools"],
+  },
+  {
+    title: "automatic_version_upgrader.dart",
+    description:
+      "CLI helper to automatically bump Dart/Flutter package versions and changelogs. Parses conventional commits, updates pubspec, and generates changelog entries with semantic versioning. Designed to fit CI pipelines for consistent releases.",
+    imageFit: "contain",
+    links: [
+      {
+        label: "GitHub",
+        icon: "globe-outline",
+        href: "https://github.com/tomassasovsky/automatic_version_upgrader.dart",
+      },
+    ],
+    categories: ["OSS / Tools"],
+  },
+  {
+    title: "tus_client",
+    description:
+      "Dart client for the TUS resumable upload protocol with reliable, restartable uploads. Handles chunking, retries, and metadata, with pluggable storage for resumption across app restarts. Great for large files and flaky networks.",
+    imageFit: "contain",
+    links: [
+      {
+        label: "GitHub",
+        icon: "globe-outline",
+        href: "https://github.com/tomassasovsky/tus_client",
+      },
+    ],
+    categories: ["Tools / OSS"],
   },
 ];
 

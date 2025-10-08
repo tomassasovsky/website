@@ -6,6 +6,7 @@ import AboutTab from "./tabs/AboutTab.astro";
 import WorkTab from "./tabs/WorkTab.astro";
 import ProjectsTab from "./tabs/ProjectsTab.astro";
 import ContactTab from "./tabs/ContactTab.astro";
+import { navItems } from "../data/nav";
 
 const { meta, current = "about" } = Astro.props as {
   meta: { title: string; description: string; canonicalPath: string };
@@ -24,33 +25,65 @@ const { meta, current = "about" } = Astro.props as {
     <div class="main-content">
       <SiteNavbar />
 
-      <article
-        class={"about" + (current === "about" ? " active" : "")}
-        data-page="about"
-      >
-        <AboutTab />
-      </article>
+      {
+        navItems.find(
+          (n) =>
+            (n.href === "/" ? "about" : n.href.replace("/", "")) === "about" &&
+            n.enabled !== false,
+        ) && (
+          <article
+            class={"about" + (current === "about" ? " active" : "")}
+            data-page="about"
+          >
+            <AboutTab />
+          </article>
+        )
+      }
 
-      <article
-        class={"work" + (current === "work" ? " active" : "")}
-        data-page="work"
-      >
-        <WorkTab />
-      </article>
+      {
+        navItems.find(
+          (n) =>
+            (n.href === "/" ? "about" : n.href.replace("/", "")) === "work" &&
+            n.enabled !== false,
+        ) && (
+          <article
+            class={"work" + (current === "work" ? " active" : "")}
+            data-page="work"
+          >
+            <WorkTab />
+          </article>
+        )
+      }
 
-      <article
-        class={"projects" + (current === "projects" ? " active" : "")}
-        data-page="projects"
-      >
-        <ProjectsTab />
-      </article>
+      {
+        navItems.find(
+          (n) =>
+            (n.href === "/" ? "about" : n.href.replace("/", "")) ===
+              "projects" && n.enabled !== false,
+        ) && (
+          <article
+            class={"projects" + (current === "projects" ? " active" : "")}
+            data-page="projects"
+          >
+            <ProjectsTab />
+          </article>
+        )
+      }
 
-      <article
-        class={"contact" + (current === "contact" ? " active" : "")}
-        data-page="contact"
-      >
-        <ContactTab />
-      </article>
+      {
+        navItems.find(
+          (n) =>
+            (n.href === "/" ? "about" : n.href.replace("/", "")) ===
+              "contact" && n.enabled !== false,
+        ) && (
+          <article
+            class={"contact" + (current === "contact" ? " active" : "")}
+            data-page="contact"
+          >
+            <ContactTab />
+          </article>
+        )
+      }
     </div>
   </main>
 </BaseLayout>

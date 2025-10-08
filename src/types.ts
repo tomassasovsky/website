@@ -18,9 +18,9 @@ export type Client = {
 );
 export interface Role { title: string; range: string; description: string; }
 export interface ProjectLink { label: string; icon: string; href: string; }
-export interface Project { title: string; description: string; image?: string; links: ProjectLink[]; category: string; }
+export interface Project { title: string; description: string; image?: string; imageFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'; links: ProjectLink[]; categories: string[]; unreleased?: boolean; }
 export interface ContactSettings { endpoint: string; cooldownSeconds: number; fallbackEmail: string; }
-export interface NavItem { label: string; href: string; }
+export interface NavItem { label: string; href: string; enabled?: boolean; }
 
 export interface Booking {
   ctaTitle: string;

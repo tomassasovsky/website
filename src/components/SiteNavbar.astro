@@ -5,18 +5,20 @@ import { navItems } from "../data/nav";
 <nav class="navbar">
   <ul class="navbar-list">
     {
-      navItems.map((n) => (
-        <li class="navbar-item">
-          <button
-            class="navbar-link"
-            type="button"
-            data-nav-link
-            data-page={n.href === "/" ? "about" : n.href.replace("/", "")}
-          >
-            {n.label}
-          </button>
-        </li>
-      ))
+      navItems
+        .filter((n) => n.enabled !== false)
+        .map((n) => (
+          <li class="navbar-item">
+            <button
+              class="navbar-link"
+              type="button"
+              data-nav-link
+              data-page={n.href === "/" ? "about" : n.href.replace("/", "")}
+            >
+              {n.label}
+            </button>
+          </li>
+        ))
     }
     <li class="navbar-item">
       <button

@@ -37,7 +37,7 @@ import { avatar, name, role, email, location, socials } from "../data/site";
       </li>
     </ul>
     <div class="separator"></div>
-    <ul class="social-list">
+    <ul class="social-list social-list--with-cta">
       {
         socials.map((s) => (
           <li class="social-item">
@@ -52,6 +52,16 @@ import { avatar, name, role, email, location, socials } from "../data/site";
           </li>
         ))
       }
+      <li class="social-item social-item--cta">
+        <a
+          href={"https://calendar.app.google/km4dUWyzkW97TRhG9"}
+          class="cta-mini"
+          target="_blank"
+          rel="noopener"
+        >
+          <span>Let's talk</span>
+        </a>
+      </li>
     </ul>
   </div>
 </aside>
