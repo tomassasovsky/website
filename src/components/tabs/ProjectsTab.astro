@@ -144,7 +144,17 @@ import { projects } from "../../data/projects";
                       </a>
                     );
                   }
-                  return null;
+                  return (
+                    <a
+                      class="badge badge--site"
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <ion-icon name={l.icon} />
+                      <span>{l.label}</span>
+                    </a>
+                  );
                 })}
               </div>
             </div>
