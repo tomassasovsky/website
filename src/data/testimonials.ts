@@ -2,6 +2,19 @@ import type { Testimonial } from "../types";
 
 export const testimonials: Testimonial[] = [
   {
+    author: "Jorge Rincon Arias",
+    paragraphs: [
+      "I'm excited to recommend Tomás as an outstanding software engineer. I've had the unique privilege of working alongside Tomás at IT-TechGroup and later leading him as Team Lead at SportsVisio, witnessing his remarkable evolution from promising junior developer to all-star engineer.",
+      "What distinguishes Tomás is his unwavering reliability in delivering high-quality solutions. His work on background TUS upload optimization and Bloc-based architecture rewrite at SportsVisio exemplifies his ability to tackle complex, high-impact challenges and deliver measurable results.",
+      "Tomás thrives on difficult problems that would intimidate most engineers. Whether implementing dual-view synchronized playback or building Android tracking with Kalman/Hungarian algorithms, he approaches each challenge with analytical rigor and creative problem-solving.",
+      "I've learned tremendously from Tomás throughout our collaboration, and he continues to be my primary Flutter reference—a testament to his deep expertise and generous knowledge sharing. I could confidently take holidays knowing he'd handle any critical issue.",
+      "Any organization would be fortunate to have Tomás on their team. He's the engineer you want on your most challenging projects.",
+    ],
+    dateISO: "2025-10-08",
+    dateLabel: "October 8, 2025",
+    linkedinUrl: "https://www.linkedin.com/in/jorgejrincon/",
+  },
+  {
     author: "Tomás Tisocco",
     paragraphs: [
       "I am thrilled to recommend Tomás Sasovsky as an exceptional Flutter Developer. Over the past three years, I’ve had the pleasure of working with Tomás as both a coworker and his team lead, and his contributions to our team have been invaluable.",
