@@ -344,6 +344,12 @@ button {
   cursor: pointer;
 }
 
+/* Remove blue tap highlight on mobile browsers while preserving keyboard focus */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 ::selection {
   background: var(--orange-yellow-crayola);
   color: var(--smoky-black);
