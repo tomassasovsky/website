@@ -95,35 +95,43 @@
     }
 
     for (var i = 0; i < testimonialsItem.length; i++) {
-      testimonialsItem[i].addEventListener("click", function (this: Element) {
-        var titleEl = this.querySelector("[data-testimonials-title]");
-        var textEl = this.querySelector("[data-testimonials-text]");
-        if (modalTitle && titleEl) {
-          modalTitle.innerHTML = (titleEl as HTMLElement).innerHTML;
-        }
-        if (modalText && textEl) {
-          var raw = textEl.textContent || "";
-          var parts = raw.split(/\r?\n+/).filter(function (s: string) {
-            return s && s.trim().length > 0;
-          });
-          var html = "<p>" + parts.join("<br><br>") + "</p>";
-          modalText.innerHTML = html;
-        }
-        var dateAttr = this.getAttribute("data-testimonials-date");
-        var dateLabel = this.getAttribute("data-testimonials-date-label");
-        var timeEl = modalContainer
-          ? modalContainer.querySelector(".testimonials-modal time")
-          : null;
-        if (timeEl) {
-          if (dateAttr) {
-            timeEl.setAttribute("datetime", dateAttr);
+      testimonialsItem[i].addEventListener(
+        "click",
+        function (this: Element, e) {
+          var target = (e && (e.target as Element)) || null;
+          if (target && target.closest("a[data-testimonials-link]")) {
+            // Click on a testimonial link should not open the modal
+            return;
           }
-          if (dateLabel) {
-            timeEl.textContent = dateLabel;
+          var titleEl = this.querySelector("[data-testimonials-title]");
+          var textEl = this.querySelector("[data-testimonials-text]");
+          if (modalTitle && titleEl) {
+            modalTitle.innerHTML = (titleEl as HTMLElement).innerHTML;
           }
-        }
-        toggleModal();
-      });
+          if (modalText && textEl) {
+            var raw = textEl.textContent || "";
+            var parts = raw.split(/\r?\n+/).filter(function (s: string) {
+              return s && s.trim().length > 0;
+            });
+            var html = "<p>" + parts.join("<br><br>") + "</p>";
+            modalText.innerHTML = html;
+          }
+          var dateAttr = this.getAttribute("data-testimonials-date");
+          var dateLabel = this.getAttribute("data-testimonials-date-label");
+          var timeEl = modalContainer
+            ? modalContainer.querySelector(".testimonials-modal time")
+            : null;
+          if (timeEl) {
+            if (dateAttr) {
+              timeEl.setAttribute("datetime", dateAttr);
+            }
+            if (dateLabel) {
+              timeEl.textContent = dateLabel;
+            }
+          }
+          toggleModal();
+        },
+      );
     }
 
     if (modalCloseBtn) {

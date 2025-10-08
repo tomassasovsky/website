@@ -45,6 +45,40 @@ import { clients } from "../../data/clients";
             <h4 class="h4 testimonials-item-title" data-testimonials-title>
               <img src={ui.icons.quote} alt="quote icon" />
               {t.author}
+              {(t.linkedinUrl || t.contactUrl) && (
+                <span style="margin-left:8px; display:inline-flex; gap:8px; align-items:center;">
+                  {t.linkedinUrl && (
+                    <a
+                      href={t.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="View LinkedIn"
+                      data-testimonials-link
+                      class="testimonials-social-link"
+                    >
+                      <ion-icon
+                        name="logo-linkedin"
+                        style="font-size:14px; vertical-align:middle;"
+                      />
+                    </a>
+                  )}
+                  {t.contactUrl && (
+                    <a
+                      href={t.contactUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Contact"
+                      data-testimonials-link
+                      class="testimonials-social-link"
+                    >
+                      <ion-icon
+                        name="link-outline"
+                        style="font-size:14px; vertical-align:middle;"
+                      />
+                    </a>
+                  )}
+                </span>
+              )}
             </h4>
             <div class="testimonials-text" data-testimonials-text>
               <p>{t.paragraphs.join("\n")}</p>

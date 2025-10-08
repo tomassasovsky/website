@@ -13,6 +13,7 @@ export const testimonials: Testimonial[] = [
     ],
     dateISO: "2025-01-27",
     dateLabel: "January 27, 2025",
+    linkedinUrl: "https://www.linkedin.com/in/tomastisocco/",
   },
   {
     author: "Michael Mathieu",
@@ -24,6 +25,7 @@ export const testimonials: Testimonial[] = [
     ],
     dateISO: "2025-01-25",
     dateLabel: "January 25, 2025",
+    linkedinUrl: "https://www.linkedin.com/in/michael-mathieu-b1973571/",
   },
   {
     author: "Nicolás Rodsevich",
@@ -33,6 +35,7 @@ export const testimonials: Testimonial[] = [
     ],
     dateISO: "2021-11-22",
     dateLabel: "November 22, 2021",
+    linkedinUrl: "https://www.linkedin.com/in/nicolas-rodsevich/",
   },
   {
     author: "Ignacio Suarez Smith",
@@ -41,5 +44,6 @@ export const testimonials: Testimonial[] = [
     ],
     dateISO: "2021-11-22",
     dateLabel: "November 22, 2021",
+    linkedinUrl: "https://www.linkedin.com/in/ignaciossmith/",
   },
 ];
