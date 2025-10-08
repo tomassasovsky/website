@@ -98,19 +98,29 @@ import { clients } from "../../data/clients";
         <li class="clients-item">
           <a href={c.url} target="_blank" rel="noopener">
             {(() => {
-              const hasVariants = (c as any).lightLogo && (c as any).darkLogo;
-              const light = hasVariants
-                ? (c as any).lightLogo
-                : (c as any).logo;
-              const dark = hasVariants ? (c as any).darkLogo : (c as any).logo;
+              if ("lightLogo" in c && "darkLogo" in c) {
+                const light = c.lightLogo;
+                const dark = c.darkLogo;
+                return (
+                  <img
+                    src={light}
+                    alt={c.name}
+                    class={c.logoClass}
+                    data-theme-img
+                    data-src-light={light}
+                    data-src-dark={dark}
+                  />
+                );
+              }
+              const logo = c.logo;
               return (
                 <img
-                  src={light}
+                  src={logo}
                   alt={c.name}
                   class={c.logoClass}
                   data-theme-img
-                  data-src-light={light}
-                  data-src-dark={dark}
+                  data-src-light={logo}
+                  data-src-dark={logo}
                 />
               );
             })()}

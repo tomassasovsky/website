@@ -146,7 +146,7 @@
     var pageArticles = document.querySelectorAll("article[data-page]");
 
     function setActivePage(page: string) {
-      var pageName = (page || "").replace(/^\//, "");
+      var pageName = (page || "").replace(/^\/+|\/+$/g, "");
       if (!pageName) pageName = "about";
       var allowed = [];
       for (var i = 0; i < pageArticles.length; i++) {
@@ -216,12 +216,12 @@
     window.addEventListener("popstate", function (ev) {
       var page =
         (ev && ev.state && ev.state.page) ||
-        window.location.pathname.replace(/^\//, "");
+        window.location.pathname.replace(/^\/+|\/+$/g, "");
       setActivePage(page);
     });
 
     // initialize on load based on URL
-    setActivePage(window.location.pathname.replace(/^\//, ""));
+    setActivePage(window.location.pathname.replace(/^\/+|\/+$/g, ""));
 
     // Projects filters (buttons and select)
     var filterButtons = document.querySelectorAll("[data-filter-btn]");
