@@ -6,6 +6,7 @@ export const projects: Project[] = [
     description: "A Stablecoin SuperApp for LATAM offering a USD wallet and a peer‑to‑peer marketplace across 70+ finance apps (PayPal, Zelle, PIX, MercadoPago, Nequi, and more). Built for reliability and ease of use to move value across borders, protect savings in USD, and enable P2P merchant workflows.",
     image: "/assets/images/eldorado-preview.jpg",
     imageFit: "cover",
+    tech: ["Flutter", "Dart", "node.js", "bun"],
     links: [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=io.eldorado.app" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/co/app/el-dorado-p2p/id1591303547" },
@@ -13,14 +14,34 @@ export const projects: Project[] = [
     categories: ["Apps"],
   },
   {
-    title: "SportsVisio",
-    description: "End‑to‑end mobile capture and upload pipeline with background transfers, synchronized dual‑view playback, and analytics features tailored for teams and leagues. Focused on reliable uploads, smooth playback, and scalable media workflows.",
+    title: "SportsVisio App",
+    description: "SportsVisio delivers player stats, analysis, and highlights in a secure, simple-to-use app to elevate your game with game-changing AI technology.",
     image: "/assets/images/sportsvisio-preview.png",
     imageFit: "cover",
+    tech: ["Flutter", "Dart"],
     links: [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.sportsvisio.svhoops" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/us/app/sportsvisio/id1611231433" },
     ],
+    categories: ["Apps"],
+  },
+  {
+    title: "SportsVisio Manager",
+    description: "Publish schedules and upload game video. SportsVisio converts footage into player stats and highlights for easy review in the SportsVisio app.",
+    image: "/assets/images/sportsvisio-preview.png",
+    links: [
+      { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.sportsvisio.svrecord" },
+    ],
+    imageFit: "cover",
+    tech: ["Flutter", "Dart"],
+    categories: ["Apps"],
+  },
+  {
+    title: "SportsVisio Track (Experimental, Native Android)",
+    unreleased: true,
+    description: "Experimental native Android app for single‑phone player/ball tracking. YOLO + MOT (Kalman + Hungarian), homography for court mapping. Kotlin (CameraX/MediaCodec), real‑time and low power.",
+    imageFit: "cover",
+    tech: ["Android", "Kotlin", "YOLO", "Kalman", "Hungarian", "CameraX", "MediaCodec"],
     categories: ["Apps"],
   },
   {
@@ -32,6 +53,7 @@ export const projects: Project[] = [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.apiabroad.api_abroad_app" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/es/app/apiconnect/id6448320549" },
     ],
+    tech: ["Flutter", "Dart"],
     categories: ["Apps"],
   },
   {
@@ -42,6 +64,7 @@ export const projects: Project[] = [
       { label: "Google Play", icon: "logo-google-playstore", href: "https://play.google.com/store/apps/details?id=com.creativeadvtech.taza_mobile_production" },
       { label: "App Store", icon: "logo-apple", href: "https://apps.apple.com/ar/app/taza-express/id1614409775" },
     ],
+    tech: ["Flutter", "Dart"],
     categories: ["Apps"],
   },
   {
@@ -51,6 +74,7 @@ export const projects: Project[] = [
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genjo.ai/" },
     ],
+    tech: ["React Native", "TypeScript", "Expo"],
     categories: ["Apps"],
   },
   {
@@ -62,6 +86,7 @@ export const projects: Project[] = [
     links: [
       { label: "Website", icon: "globe-outline", href: "https://genomii.ai/" },
     ],
+    tech: ["Flutter", "Dart"],
     categories: ["Apps"],
   },
   {
@@ -83,6 +108,7 @@ export const projects: Project[] = [
       }
     ],
     categories: ["OSS / Tools"],
+    tech: ["Flutter", "Dart"],
   },
   {
     title: "Radio Horizon (Dart)",
@@ -103,6 +129,7 @@ export const projects: Project[] = [
       }
     ],
     categories: ["OSS / Tools"],
+    tech: ["Dart"],
   },
   {
     title: "ncnn.dart",
@@ -117,6 +144,7 @@ export const projects: Project[] = [
       },
     ],
     categories: ["OSS / Tools"],
+    tech: ["Flutter", "Dart"],
   },
   {
     title: "pytorch.dart",
@@ -131,6 +159,7 @@ export const projects: Project[] = [
       },
     ],
     categories: ["OSS / Tools"],
+    tech: ["Flutter", "Dart"],
   },
   {
     title: "automatic_version_upgrader.dart",
@@ -145,6 +174,7 @@ export const projects: Project[] = [
       },
     ],
     categories: ["OSS / Tools"],
+    tech: ["Dart"],
   },
   {
     title: "tus_client",
@@ -159,6 +189,7 @@ export const projects: Project[] = [
       },
     ],
     categories: ["OSS / Tools"],
+    tech: ["Dart"],
   },
 ];
 

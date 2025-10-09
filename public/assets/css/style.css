@@ -103,6 +103,27 @@
   margin-top: 10px;
 }
 
+/* Tech chips row under description */
+.project-card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin-top: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: var(--fs-8);
+  font-weight: var(--fw-400);
+  line-height: 1;
+  border: 1px solid var(--jet);
+  background: var(--eerie-black-2);
+  color: var(--light-gray);
+}
+
 /* Small row for meta badges above description */
 .project-card-meta {
   margin: 4px 0 6px 0;

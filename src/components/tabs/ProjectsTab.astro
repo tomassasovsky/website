@@ -84,8 +84,19 @@ import { projects } from "../../data/projects";
                 )}
               </h3>
               <p class="project-card-desc">{p.description}</p>
+              {p.tech?.length ? (
+                <div class="project-card-tech">
+                  {p.tech.map((t) => {
+                    const slug = t
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/(^-|-$)/g, "");
+                    return <span class={"chip chip--" + slug}>{t}</span>;
+                  })}
+                </div>
+              ) : null}
               <div class="project-card-links">
-                {p.links.map((l) => {
+                {p.links?.map((l) => {
                   const isSite = l.icon === "globe-outline";
                   const isApple = l.icon === "logo-apple";
                   const isPlay = l.icon === "logo-google-playstore";
