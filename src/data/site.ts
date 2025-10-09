@@ -11,9 +11,9 @@ export const avatar = "/assets/images/me-avatar.png";
 export const ui = {
   headings: {
     about: "About me",
-    services: "What i'm doing",
+    services: "What I do",
     testimonials: "Testimonials",
-    clients: "Clients",
+    clients: "Trusted By",
     work: "Work",
     projects: "Projects",
     contact: "Contact",

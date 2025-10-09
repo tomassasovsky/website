@@ -1017,6 +1017,7 @@ main {
   margin: 0 -15px;
   padding: 25px 15px;
   padding-bottom: 35px;
+  padding-top: 0px;
   overflow-x: auto;
   scroll-behavior: smooth;
   overscroll-behavior-inline: contain;
@@ -1189,6 +1190,7 @@ main {
 
 .clients {
   margin-bottom: 15px;
+  margin-top: 0px;
 }
 
 .clients-list {
@@ -1672,7 +1674,7 @@ main {
   /* testimonials */
 
   .testimonials-title {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 
   .testimonials-list {
