@@ -325,6 +325,13 @@ html[data-theme="light"] {
       hsla(203, 89%, 54%, 0) 60%), hsl(0, 0%, 100%);
 }
 
+/* Improve action badge hover in light theme */
+html[data-theme="light"] .badge:hover {
+  background: hsla(203, 89%, 54%, 0.12);
+  border-color: hsla(203, 89%, 54%, 0.35);
+  color: var(--white-1);
+}
+
 /* Theme toggle icon visibility */
 .navbar-link.theme-toggle .icon-sun {
   display: none;
