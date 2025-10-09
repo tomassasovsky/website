@@ -556,7 +556,7 @@ article.active {
   content: "";
   position: absolute;
   inset: 1px;
-  background: var(--bg-gradient-jet);
+  background: var(--eerie-black-2);
   border-radius: inherit;
   z-index: -1;
 }
@@ -969,7 +969,7 @@ main {
   content: "";
   position: absolute;
   inset: 1px;
-  background: var(--bg-gradient-jet);
+  background: var(--eerie-black-2);
   border-radius: inherit;
   z-index: -1;
 }
@@ -1140,12 +1140,11 @@ main {
 }
 
 .modal-close-btn {
-  position: sticky;
+  position: absolute;
   top: 10px;
-  margin-left: auto;
-  /* works in flex layout ≥580px and normal flow on small screens */
+  right: 10px;
   background: var(--onyx);
-  border-radius: 8px;
+  border-radius: 999px;
   width: 32px;
   height: 32px;
   display: flex;
@@ -1714,6 +1713,7 @@ main {
     padding: 30px;
     border-radius: 20px;
     max-height: calc(100vh - 40px);
+    position: relative;
   }
 
   /* clients */
