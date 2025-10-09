@@ -1126,6 +1126,10 @@ main {
   opacity: 0;
   transition: var(--transition-1);
   z-index: 2;
+  /* keep modal within the viewport and allow internal scrolling */
+  max-height: calc(100vh - 30px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-container.active .testimonials-modal {
@@ -1134,9 +1138,10 @@ main {
 }
 
 .modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  position: sticky;
+  top: 10px;
+  margin-left: auto;
+  /* works in flex layout ≥580px and normal flow on small screens */
   background: var(--onyx);
   border-radius: 8px;
   width: 32px;
@@ -1147,6 +1152,7 @@ main {
   color: var(--white-2);
   font-size: 18px;
   opacity: 0.7;
+  z-index: 3;
 }
 
 .modal-close-btn:hover,
@@ -1704,6 +1710,7 @@ main {
     gap: 25px;
     padding: 30px;
     border-radius: 20px;
+    max-height: calc(100vh - 40px);
   }
 
   /* clients */
