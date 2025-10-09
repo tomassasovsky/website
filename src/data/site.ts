@@ -6,7 +6,7 @@ export const email = "tomas@aquiles.dev";
 export const location = "Buenos Aires, Argentina";
 export const name = "Tomás Sasovsky";
 export const role = "Full-Stack Engineer";
-export const avatar = "/assets/images/me-avatar.png";
+export const avatar = "/assets/images/me-photo.png";
 
 export const ui = {
   headings: {
