@@ -6,6 +6,22 @@
   (function () {
     "use strict";
 
+    // Force legacy-collapsed sidebars open (handles cached CSS/old state)
+    (function forceOpenSidebar() {
+      var s = document.querySelector("[data-sidebar]");
+      if (!s) return;
+      try {
+        localStorage.removeItem("sidebarOpen");
+      } catch (e0) {}
+      try {
+        s.classList.add("active");
+        if (s instanceof HTMLElement) {
+          s.style.maxHeight = "none";
+          s.style.overflow = "visible";
+        }
+      } catch (e1) {}
+    })();
+
     function toggleActive(elem: Element | null) {
       if (elem) {
         elem.classList.toggle("active");
