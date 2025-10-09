@@ -41,7 +41,7 @@ export const projects: Project[] = [
     unreleased: true,
     description: "Experimental native Android app for single‑phone player/ball tracking. YOLO + MOT (Kalman + Hungarian), homography for court mapping. Kotlin (CameraX/MediaCodec), real‑time and low power.",
     imageFit: "cover",
-    tech: ["Android", "Kotlin", "YOLO", "Kalman", "Hungarian", "CameraX", "MediaCodec"],
+    tech: ["Android", "Kotlin", "YOLO"],
     categories: ["Apps"],
   },
   {
