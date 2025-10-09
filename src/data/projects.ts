@@ -158,7 +158,7 @@ export const projects: Project[] = [
         href: "https://github.com/tomassasovsky/tus_client",
       },
     ],
-    categories: ["Tools / OSS"],
+    categories: ["OSS / Tools"],
   },
 ];
 

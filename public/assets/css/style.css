@@ -584,8 +584,8 @@ main {
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
   transition: max-height var(--transition-2);
 }
 
@@ -679,8 +679,8 @@ main {
 }
 
 .sidebar-info_more {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
   transition: opacity var(--transition-2);
 }
 
@@ -1561,12 +1561,12 @@ main {
    */
 
   .sidebar {
-    max-height: 180px;
+    max-height: none;
     margin-bottom: 30px;
   }
 
   .sidebar.active {
-    max-height: 584px;
+    max-height: none;
   }
 
   .sidebar-info {

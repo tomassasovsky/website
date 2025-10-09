@@ -12,73 +12,7 @@
       }
     }
 
-    // Sidebar toggle with persistence
-    var sidebar = document.querySelector("[data-sidebar]");
-    var sidebarBtn = document.querySelector("[data-sidebar-btn]");
-    var sidebarStorageKey = "sidebarOpen";
-
-    function applySidebarPersistedState() {
-      if (!sidebar) {
-        return;
-      }
-      try {
-        var v = localStorage.getItem(sidebarStorageKey);
-        if (v !== "1" && v !== "0") {
-          return;
-        }
-        var nodes = [sidebar].concat(
-          Array.prototype.slice.call(sidebar.querySelectorAll("*")),
-        );
-        for (var i = 0; i < nodes.length; i++) {
-          try {
-            var el = nodes[i];
-            if (el && el instanceof HTMLElement) {
-              el.style.setProperty("transition", "none", "important");
-              el.style.setProperty("animation", "none", "important");
-            }
-          } catch (e1) {}
-        }
-        if (v === "1") {
-          sidebar.classList.add("active");
-        } else {
-          sidebar.classList.remove("active");
-        }
-        try {
-          if (sidebar instanceof HTMLElement) {
-            void sidebar.offsetHeight;
-          }
-        } catch (e2) {}
-        setTimeout(function () {
-          for (var j = 0; j < nodes.length; j++) {
-            try {
-              var el2 = nodes[j];
-              if (el2 && el2 instanceof HTMLElement) {
-                el2.style.removeProperty("transition");
-                el2.style.removeProperty("animation");
-              }
-            } catch (e3) {}
-          }
-        }, 0);
-      } catch (e) {}
-    }
-
-    applySidebarPersistedState();
-
-    if (sidebar && sidebarBtn) {
-      sidebarBtn.addEventListener("click", function (e) {
-        try {
-          if (e && typeof e.preventDefault === "function") e.preventDefault();
-        } catch (e0) {}
-        if (!sidebar) return;
-        toggleActive(sidebar);
-        try {
-          var isOpen = sidebar?.classList.contains("active");
-          localStorage.setItem(sidebarStorageKey, isOpen ? "1" : "0");
-        } catch (e) {
-          /* ignore */
-        }
-      });
-    }
+    // Sidebar is always expanded on mobile/tablet; remove toggle/persistence
 
     // Testimonials modal
     var testimonialsItem = document.querySelectorAll(
@@ -230,7 +164,9 @@
     // Projects filters (buttons and select)
     var filterButtons = document.querySelectorAll("[data-filter-btn]");
     var filterSelect = document.querySelector("[data-select]");
-    var filterSelectValue = document.querySelector("[data-selecct-value]");
+    var filterSelectValue =
+      document.querySelector("[data-select-value]") ||
+      document.querySelector("[data-selecct-value]");
     var filterSelectItems = document.querySelectorAll("[data-select-item]");
     var projectCards = document.querySelectorAll(
       ".project-cards .project-card",
