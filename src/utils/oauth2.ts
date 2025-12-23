@@ -10,9 +10,10 @@ import { google } from "googleapis";
  * Automatically refreshes the token if expired
  */
 export async function getAccessToken(): Promise<string> {
-  const clientId = import.meta.env.GOOGLE_CLIENT_ID;
-  const clientSecret = import.meta.env.GOOGLE_CLIENT_SECRET;
-  const refreshToken = import.meta.env.GOOGLE_REFRESH_TOKEN;
+  // Read from process.env directly for SSR/runtime environment variables
+  const clientId = import.meta.env.GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = import.meta.env.GOOGLE_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = import.meta.env.GOOGLE_REFRESH_TOKEN || process.env.GOOGLE_REFRESH_TOKEN;
 
   if (!clientId || !clientSecret || !refreshToken) {
     throw new Error(
@@ -22,8 +23,8 @@ export async function getAccessToken(): Promise<string> {
 
   // Use configurable redirect URI from environment, fallback to localhost for development
   const redirectUri =
-    import.meta.env.GOOGLE_REDIRECT_URI ||
-    import.meta.env.PUBLIC_SITE_URL + "/callback" ||
+    import.meta.env.GOOGLE_REDIRECT_URI || process.env.GOOGLE_REDIRECT_URI ||
+    (import.meta.env.PUBLIC_SITE_URL || process.env.PUBLIC_SITE_URL) + "/callback" ||
     "http://localhost:3000/callback";
 
   const oauth2Client = new google.auth.OAuth2(
