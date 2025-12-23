@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
-RUN npm ci --no-audit --no-fund
+RUN npm ci --no-fund
 
 # Build the site
 COPY . .
@@ -11,6 +11,9 @@ RUN npm run build
 
 # --- Runtime image: serve static files with nginx ---
 FROM nginx:alpine AS runtime
+
+# Copy nginx configuration with security headers
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built site to nginx html directory
 COPY --from=build /app/dist/ /usr/share/nginx/html

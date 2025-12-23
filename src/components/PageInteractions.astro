@@ -60,15 +60,25 @@
           var titleEl = this.querySelector("[data-testimonials-title]");
           var textEl = this.querySelector("[data-testimonials-text]");
           if (modalTitle && titleEl) {
-            modalTitle.innerHTML = (titleEl as HTMLElement).innerHTML;
+            // Use textContent instead of innerHTML to prevent XSS
+            modalTitle.textContent = titleEl.textContent || "";
           }
           if (modalText && textEl) {
             var raw = textEl.textContent || "";
             var parts = raw.split(/\r?\n+/).filter(function (s: string) {
               return s && s.trim().length > 0;
             });
-            var html = "<p>" + parts.join("<br><br>") + "</p>";
-            modalText.innerHTML = html;
+            // Clear existing content and create paragraphs safely
+            modalText.textContent = "";
+            for (var p = 0; p < parts.length; p++) {
+              var para = document.createElement("p");
+              para.textContent = parts[p];
+              modalText.appendChild(para);
+              if (p < parts.length - 1) {
+                var br = document.createElement("br");
+                modalText.appendChild(br);
+              }
+            }
           }
           var dateAttr = this.getAttribute("data-testimonials-date");
           var dateLabel = this.getAttribute("data-testimonials-date-label");

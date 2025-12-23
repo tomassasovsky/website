@@ -1,6 +1,7 @@
 ---
-import { ui, email, socials } from "../../data/site";
+import { ui, socials } from "../../data/site";
 import { booking } from "../../data/contact";
+import ContactForm from "../ContactForm.astro";
 ---
 
 <header><h2 class="h2 article-title">{ui.headings.contact}</h2></header>
@@ -26,16 +27,16 @@ import { booking } from "../../data/contact";
 
 <div class="separator"></div>
 
+<section class="contact-form-section">
+  <h3 class="h3 form-title">Send me a message</h3>
+  <ContactForm />
+</section>
+
+<div class="separator"></div>
+
 <section class="contact-channels">
   <h3 class="h3 form-title">Other ways to reach me</h3>
   <ul class="contacts-list">
-    <li class="contact-item">
-      <div class="icon-box"><ion-icon name="mail-outline"></ion-icon></div>
-      <div class="contact-info">
-        <p class="contact-title">Email</p>
-        <a href={`mailto:${email}`} class="contact-link">{email}</a>
-      </div>
-    </li>
     {
       socials
         .filter(

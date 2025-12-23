@@ -1,5 +1,6 @@
 ---
-import { avatar, name, role, email, location, socials } from "../data/site";
+import { avatar, name, role, location, socials } from "../data/site";
+import { booking } from "../data/contact";
 ---
 
 <aside class="sidebar" data-sidebar>
@@ -15,13 +16,6 @@ import { avatar, name, role, email, location, socials } from "../data/site";
   <div class="sidebar-info_more">
     <div class="separator"></div>
     <ul class="contacts-list">
-      <li class="contact-item">
-        <div class="icon-box"><ion-icon name="mail-outline"></ion-icon></div>
-        <div class="contact-info">
-          <p class="contact-title">Email</p>
-          <a href={`mailto:${email}`} class="contact-link">{email}</a>
-        </div>
-      </li>
       <li class="contact-item">
         <div class="icon-box">
           <ion-icon name="location-outline"></ion-icon>
@@ -49,12 +43,7 @@ import { avatar, name, role, email, location, socials } from "../data/site";
         ))
       }
       <li class="social-item social-item--cta">
-        <a
-          href={"https://calendar.app.google/km4dUWyzkW97TRhG9"}
-          class="cta-mini"
-          target="_blank"
-          rel="noopener"
-        >
+        <a href={booking.url} class="cta-mini" target="_blank" rel="noopener">
           <span>Let's talk</span>
         </a>
       </li>

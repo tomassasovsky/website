@@ -10,8 +10,12 @@ export const booking: Booking = {
 };
 
 export const contact: ContactSettings = {
-  endpoint: "", // set to your API/endpoint to enable
+  // API endpoint path - this is safe to expose in frontend (just a URL path)
+  // The actual email sending happens server-side in src/pages/api/contact.ts
+  endpoint: "/api/contact",
   cooldownSeconds: 30,
-  fallbackEmail: "tomas@aquiles.dev",
+  // Fallback email should be stored in environment variable, not hardcoded
+  // Use: import.meta.env.CONTACT_EMAIL in API endpoints only (server-side)
+  fallbackEmail: "", // Removed for security - use environment variable instead
 };
 

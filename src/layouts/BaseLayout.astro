@@ -1,6 +1,6 @@
 ---
 import PageInteractions from "../components/PageInteractions.astro";
-import { name, tagline, avatar, socials, email as contactEmail } from "../data/site";
+import { name, tagline, avatar, socials } from "../data/site";
 
 const {
   title = name,
@@ -24,7 +24,6 @@ const jsonLd = {
   jobTitle: tagline,
   url: siteOrigin || undefined,
   image: ogImageUrl || undefined,
-  email: contactEmail ? `mailto:${contactEmail}` : undefined,
   sameAs: socialUrls,
 };
 ---
@@ -120,12 +119,9 @@ const jsonLd = {
     <PageInteractions />
 
     <!-- ionicon link -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module">
+      import { defineCustomElements } from 'ionicons/loader';
+      defineCustomElements();
+    </script>
   </body>
 </html>

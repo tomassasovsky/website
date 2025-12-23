@@ -1,0 +1,536 @@
+---
+import { contact } from "../data/contact";
+
+const endpoint = contact.endpoint || "";
+---
+
+<form
+  class="contact-form"
+  id="contact-form"
+  data-contact-form
+  data-endpoint={endpoint}
+>
+  <!-- Honeypot field for spam protection (hidden from users) -->
+  <input
+    type="text"
+    name="website"
+    autocomplete="off"
+    tabindex="-1"
+    aria-hidden="true"
+    style="position: absolute; left: -9999px;"
+    data-honeypot
+  />
+
+  <div class="form-group">
+    <label for="contact-name" class="form-label">Name</label>
+    <input
+      type="text"
+      id="contact-name"
+      name="name"
+      class="form-input"
+      required
+      autocomplete="name"
+      data-form-field
+    />
+    <span class="form-error" data-error="name" aria-live="polite"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="contact-email" class="form-label">Email</label>
+    <input
+      type="email"
+      id="contact-email"
+      name="email"
+      class="form-input"
+      required
+      autocomplete="email"
+      data-form-field
+    />
+    <span class="form-error" data-error="email" aria-live="polite"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="contact-subject" class="form-label">Subject</label>
+    <input
+      type="text"
+      id="contact-subject"
+      name="subject"
+      class="form-input"
+      required
+      autocomplete="off"
+      data-form-field
+    />
+    <span class="form-error" data-error="subject" aria-live="polite"></span>
+  </div>
+
+  <div class="form-group">
+    <label for="contact-message" class="form-label">Message</label>
+    <textarea
+      id="contact-message"
+      name="message"
+      class="form-input form-textarea"
+      rows="5"
+      required
+      data-form-field></textarea>
+    <span class="form-error" data-error="message" aria-live="polite"></span>
+  </div>
+
+  <div
+    class="form-message form-message--success"
+    data-success-message
+    role="alert"
+    aria-live="polite"
+    style="display: none;"
+  >
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+    <span>Thank you! Your message has been sent successfully.</span>
+  </div>
+
+  <div
+    class="form-message form-message--error"
+    data-error-message
+    role="alert"
+    aria-live="polite"
+    style="display: none;"
+  >
+    <ion-icon name="close-circle-outline"></ion-icon>
+    <span
+      >Sorry, there was an error sending your message. Please try again later.</span
+    >
+  </div>
+
+  <button type="submit" class="form-btn form-btn--submit" data-submit-btn>
+    <ion-icon name="send-outline"></ion-icon>
+    <span>Send Message</span>
+  </button>
+</form>
+
+<script>
+  (function () {
+    "use strict";
+
+    // Import validation function (will be available at runtime)
+    function isValidEmail(email: string): boolean {
+      if (!email || typeof email !== "string") {
+        return false;
+      }
+      const emailRegex =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+      return emailRegex.test(email.trim());
+    }
+
+    function showError(field: string, message: string) {
+      const errorEl = document.querySelector(
+        `[data-error="${field}"]`,
+      ) as HTMLElement;
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.style.display = "block";
+      }
+      const inputEl = document.querySelector(
+        `[name="${field}"]`,
+      ) as HTMLElement;
+      if (inputEl) {
+        inputEl.setAttribute("aria-invalid", "true");
+      }
+    }
+
+    function clearError(field: string) {
+      const errorEl = document.querySelector(
+        `[data-error="${field}"]`,
+      ) as HTMLElement;
+      if (errorEl) {
+        errorEl.textContent = "";
+        errorEl.style.display = "none";
+      }
+      const inputEl = document.querySelector(
+        `[name="${field}"]`,
+      ) as HTMLElement;
+      if (inputEl) {
+        inputEl.removeAttribute("aria-invalid");
+      }
+    }
+
+    function hideMessages() {
+      const successMsg = document.querySelector(
+        "[data-success-message]",
+      ) as HTMLElement;
+      const errorMsg = document.querySelector(
+        "[data-error-message]",
+      ) as HTMLElement;
+      if (successMsg) successMsg.style.display = "none";
+      if (errorMsg) errorMsg.style.display = "none";
+    }
+
+    function showSuccess() {
+      const successMsg = document.querySelector(
+        "[data-success-message]",
+      ) as HTMLElement;
+      const errorMsg = document.querySelector(
+        "[data-error-message]",
+      ) as HTMLElement;
+      if (successMsg) successMsg.style.display = "flex";
+      if (errorMsg) errorMsg.style.display = "none";
+    }
+
+    function showErrorMsg() {
+      const successMsg = document.querySelector(
+        "[data-success-message]",
+      ) as HTMLElement;
+      const errorMsg = document.querySelector(
+        "[data-error-message]",
+      ) as HTMLElement;
+      if (successMsg) successMsg.style.display = "none";
+      if (errorMsg) errorMsg.style.display = "flex";
+    }
+
+    function validateForm(formData: FormData): boolean {
+      let isValid = true;
+      const name = (formData.get("name") as string)?.trim() || "";
+      const email = (formData.get("email") as string)?.trim() || "";
+      const subject = (formData.get("subject") as string)?.trim() || "";
+      const message = (formData.get("message") as string)?.trim() || "";
+
+      // Clear all errors first
+      clearError("name");
+      clearError("email");
+      clearError("subject");
+      clearError("message");
+
+      // Validate name
+      if (!name || name.length < 2) {
+        showError("name", "Please enter your name (at least 2 characters)");
+        isValid = false;
+      }
+
+      // Validate email
+      if (!email) {
+        showError("email", "Please enter your email address");
+        isValid = false;
+      } else if (!isValidEmail(email)) {
+        showError("email", "Please enter a valid email address");
+        isValid = false;
+      }
+
+      // Validate subject
+      if (!subject || subject.length < 3) {
+        showError("subject", "Please enter a subject (at least 3 characters)");
+        isValid = false;
+      }
+
+      // Validate message
+      if (!message || message.length < 10) {
+        showError("message", "Please enter a message (at least 10 characters)");
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    const form = document.querySelector(
+      "[data-contact-form]",
+    ) as HTMLFormElement;
+    if (!form) return;
+
+    // Clear errors on input
+    const fields = form.querySelectorAll("[data-form-field]");
+    for (var i = 0; i < fields.length; i++) {
+      const field = fields[i] as HTMLInputElement | HTMLTextAreaElement;
+      field.addEventListener(
+        "input",
+        function (this: HTMLInputElement | HTMLTextAreaElement) {
+          const fieldName = this.name;
+          if (fieldName) clearError(fieldName);
+        },
+      );
+    }
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      hideMessages();
+
+      const formData = new FormData(form);
+
+      // Check honeypot field (spam protection)
+      const honeypot = formData.get("website");
+      if (honeypot && (honeypot as string).length > 0) {
+        // Bot detected, silently fail
+        return;
+      }
+
+      // Validate form
+      if (!validateForm(formData)) {
+        return;
+      }
+
+      // Disable submit button
+      const submitBtn = form.querySelector(
+        "[data-submit-btn]",
+      ) as HTMLButtonElement;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+      }
+
+      try {
+        // Check if endpoint is configured
+        const endpoint = form.getAttribute("data-endpoint") || "";
+        if (endpoint && endpoint.trim() !== "") {
+          // Submit to API endpoint
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.get("name"),
+              email: formData.get("email"),
+              subject: formData.get("subject"),
+              message: formData.get("message"),
+              website: formData.get("website"), // Honeypot field
+            }),
+          });
+
+          if (response.ok) {
+            form.reset();
+            showSuccess();
+          } else {
+            // Try to get error message from response
+            try {
+              const errorData = await response.json();
+              const errorText = document.querySelector(
+                "[data-error-message] span",
+              ) as HTMLElement;
+              if (errorText && errorData.error) {
+                errorText.textContent = errorData.error;
+              }
+            } catch (e) {
+              // If parsing fails, use default message
+            }
+            showErrorMsg();
+          }
+        } else {
+          // No endpoint configured - show success message (form can be extended later)
+          // In production, this should use a service like Formspree, EmailJS, or an API endpoint
+          form.reset();
+          showSuccess();
+
+          // Log form data (for development - remove in production or use proper logging)
+          console.log("Contact form submission:", {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            subject: formData.get("subject"),
+            message: formData.get("message"),
+          });
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        showErrorMsg();
+      } finally {
+        // Re-enable submit button
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML =
+            '<ion-icon name="send-outline"></ion-icon><span>Send Message</span>';
+        }
+      }
+    });
+  })();
+</script>
+
+<style>
+  .contact-form {
+    max-width: 100%;
+    margin: 0;
+    margin-top: 30px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: var(--fw-500);
+    color: var(--white-2);
+    font-size: var(--fs-6);
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--jet);
+    border-radius: 14px;
+    font-family: inherit;
+    font-size: var(--fs-6);
+    background: var(--eerie-black-2);
+    color: var(--white-2);
+    transition: var(--transition-1);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--orange-yellow-crayola);
+    box-shadow: 0 0 0 3px hsla(203, 89%, 54%, 0.15);
+  }
+
+  .form-input[aria-invalid="true"],
+  .form-textarea[aria-invalid="true"] {
+    border-color: var(--bittersweet-shimmer);
+    box-shadow: 0 0 0 3px hsla(0, 43%, 51%, 0.15);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.6;
+  }
+
+  .form-error {
+    display: none;
+    color: var(--bittersweet-shimmer);
+    font-size: var(--fs-7);
+    margin-top: 6px;
+    padding-left: 4px;
+  }
+
+  .form-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    font-size: var(--fs-6);
+    position: relative;
+    background: var(--border-gradient-onyx);
+    border: 1px solid var(--jet);
+    z-index: 1;
+  }
+
+  .form-message::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .form-message--success {
+    color: hsl(120, 40%, 70%);
+  }
+
+  .form-message--success::before {
+    background: hsla(120, 40%, 20%, 0.3);
+  }
+
+  .form-message--error {
+    color: var(--bittersweet-shimmer);
+  }
+
+  .form-message--error::before {
+    background: hsla(0, 43%, 20%, 0.3);
+  }
+
+  .form-message ion-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .form-btn--submit {
+    position: relative;
+    width: max-content;
+    margin-left: auto;
+    padding: 13px 20px;
+    background: var(--border-gradient-onyx);
+    color: var(--white-2);
+    border: 1px solid var(--jet);
+    border-radius: 14px;
+    font-size: var(--fs-6);
+    font-weight: var(--fw-500);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: var(--transition-1);
+    box-shadow: var(--shadow-3);
+    z-index: 1;
+    text-transform: capitalize;
+  }
+
+  .form-btn--submit::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: var(--bg-gradient-jet);
+    border-radius: inherit;
+    z-index: -1;
+    transition: var(--transition-1);
+  }
+
+  .form-btn--submit:hover:not(:disabled) {
+    background: var(--bg-gradient-onyx);
+    border-color: var(--jet);
+  }
+
+  .form-btn--submit:hover:not(:disabled)::before {
+    background: var(--bg-gradient-jet);
+  }
+
+  .form-btn--submit:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: var(--shadow-2);
+  }
+
+  .form-btn--submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .form-btn--submit ion-icon {
+    font-size: 16px;
+  }
+
+  @media (min-width: 580px) {
+    .contact-form {
+      margin-top: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-input,
+    .form-textarea {
+      padding: 14px 18px;
+      font-size: var(--fs-6);
+    }
+
+    .form-textarea {
+      min-height: 160px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .form-btn--submit {
+      width: max-content;
+      margin-left: auto;
+      padding: 16px 24px;
+    }
+  }
+
+  /* Light theme: Remove blue light effects */
+  html[data-theme="light"] .form-btn--submit:hover:not(:disabled) {
+    border-color: var(--jet);
+  }
+
+  html[data-theme="light"] .form-btn--submit:hover:not(:disabled)::before {
+    background: var(--bg-gradient-jet);
+  }
+</style>
