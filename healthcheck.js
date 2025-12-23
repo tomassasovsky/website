@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Simple healthcheck script for Docker
-const http = require('http');
+import http from 'http';
 
 const port = process.env.PORT || 4321;
 const options = {
