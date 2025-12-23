@@ -150,7 +150,16 @@ export const POST: APIRoute = async ({ request, url }) => {
     }
 
     // Read from process.env directly for SSR/runtime environment variables
-    const recipientEmail = import.meta.env.CONTACT_EMAIL || process.env.CONTACT_EMAIL;
+    // Debug: Log available env vars (without exposing secrets)
+    if (!process.env.CONTACT_EMAIL && !import.meta.env.CONTACT_EMAIL) {
+      console.error("CONTACT_EMAIL environment variable not set");
+      console.error("Available env vars:", {
+        hasProcessEnv: typeof process !== 'undefined' && typeof process.env !== 'undefined',
+        hasImportMetaEnv: typeof import.meta !== 'undefined' && typeof import.meta.env !== 'undefined',
+        processEnvKeys: typeof process !== 'undefined' && process.env ? Object.keys(process.env).filter(k => k.includes('GOOGLE') || k.includes('CONTACT')).length : 0,
+      });
+    }
+    const recipientEmail = process.env.CONTACT_EMAIL || import.meta.env.CONTACT_EMAIL;
     if (!recipientEmail) {
       console.error("CONTACT_EMAIL environment variable not set");
       return new Response(
@@ -164,7 +173,7 @@ export const POST: APIRoute = async ({ request, url }) => {
       );
     }
 
-    const userEmail = import.meta.env.GOOGLE_USER_EMAIL || process.env.GOOGLE_USER_EMAIL;
+    const userEmail = process.env.GOOGLE_USER_EMAIL || import.meta.env.GOOGLE_USER_EMAIL;
     if (!userEmail) {
       console.error("GOOGLE_USER_EMAIL environment variable not set");
       return new Response(
@@ -203,9 +212,9 @@ export const POST: APIRoute = async ({ request, url }) => {
       );
     }
 
-    const clientId = import.meta.env.GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID;
-    const clientSecret = import.meta.env.GOOGLE_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET;
-    const refreshToken = import.meta.env.GOOGLE_REFRESH_TOKEN || process.env.GOOGLE_REFRESH_TOKEN;
+    const clientId = process.env.GOOGLE_CLIENT_ID || import.meta.env.GOOGLE_CLIENT_ID;
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET || import.meta.env.GOOGLE_CLIENT_SECRET;
+    const refreshToken = process.env.GOOGLE_REFRESH_TOKEN || import.meta.env.GOOGLE_REFRESH_TOKEN;
 
     if (!clientId || !clientSecret || !refreshToken) {
       console.error("OAuth2 credentials incomplete:", {

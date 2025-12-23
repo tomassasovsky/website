@@ -11,4 +11,9 @@ services:
       - NODE_ENV=production
       - PORT=4321
       - HOST=0.0.0.0
+      - CONTACT_EMAIL=${CONTACT_EMAIL}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_REFRESH_TOKEN=${GOOGLE_REFRESH_TOKEN}
+      - GOOGLE_USER_EMAIL=${GOOGLE_USER_EMAIL}
     restart: unless-stopped

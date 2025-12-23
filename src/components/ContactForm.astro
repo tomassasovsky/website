@@ -406,34 +406,18 @@ const endpoint = contact.endpoint || "";
     border-radius: 14px;
     margin-bottom: 20px;
     font-size: var(--fs-6);
-    position: relative;
-    background: var(--border-gradient-onyx);
+    background: var(--eerie-black-2);
     border: 1px solid var(--jet);
-    z-index: 1;
-  }
-
-  .form-message::before {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: inherit;
-    z-index: -1;
   }
 
   .form-message--success {
     color: hsl(120, 40%, 70%);
-  }
-
-  .form-message--success::before {
-    background: hsla(120, 40%, 20%, 0.3);
+    background: hsla(120, 40%, 25%, 0.5);
   }
 
   .form-message--error {
     color: var(--bittersweet-shimmer);
-  }
-
-  .form-message--error::before {
-    background: hsla(0, 43%, 20%, 0.3);
+    background: hsla(0, 43%, 25%, 0.5);
   }
 
   .form-message ion-icon {
@@ -532,5 +516,16 @@ const endpoint = contact.endpoint || "";
 
   html[data-theme="light"] .form-btn--submit:hover:not(:disabled)::before {
     background: var(--bg-gradient-jet);
+  }
+
+  /* Light theme: Form message colors for better contrast */
+  html[data-theme="light"] .form-message--success {
+    color: hsl(120, 50%, 35%);
+    background: hsla(120, 50%, 95%, 0.8);
+  }
+
+  html[data-theme="light"] .form-message--error {
+    color: hsl(0, 60%, 40%);
+    background: hsla(0, 60%, 97%, 0.8);
   }
 </style>
