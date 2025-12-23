@@ -10,4 +10,5 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4321
+      - HOST=0.0.0.0
     restart: unless-stopped
