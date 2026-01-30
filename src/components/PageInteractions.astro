@@ -153,16 +153,16 @@
         document.title = finalTitle;
       } catch (e) {}
 
-      // Plausible SPA pageviews (avoid double-counting initial load)
+      // Plausible SPA pageviews.
+      // The snippet you provided doesn't include `data-domain`, so Plausible may not
+      // auto-send the initial pageview. We therefore send one pageview on first load
+      // and on subsequent SPA tab navigations.
       try {
-        if (!hasHandledInitialPageview) {
-          hasHandledInitialPageview = true;
-        } else {
-          var p = (window as any).plausible;
-          if (typeof p === "function") {
-            p("pageview", { u: window.location.href });
-          }
+        var p = (window as any).plausible;
+        if (typeof p === "function") {
+          p("pageview", { u: window.location.href });
         }
+        hasHandledInitialPageview = true;
       } catch (e) {}
     }
 
