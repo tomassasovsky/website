@@ -294,6 +294,12 @@ const endpoint = contact.endpoint || "";
           if (response.ok) {
             form.reset();
             showSuccess();
+            try {
+              var p = (window as any).plausible;
+              if (typeof p === "function") {
+                p("contact_submit");
+              }
+            } catch (e) {}
           } else {
             // Try to get error message from response
             try {
@@ -314,6 +320,12 @@ const endpoint = contact.endpoint || "";
           // In production, this should use a service like Formspree, EmailJS, or an API endpoint
           form.reset();
           showSuccess();
+          try {
+            var p2 = (window as any).plausible;
+            if (typeof p2 === "function") {
+              p2("contact_submit");
+            }
+          } catch (e) {}
 
           // Log form data (for development - remove in production or use proper logging)
           console.log("Contact form submission:", {

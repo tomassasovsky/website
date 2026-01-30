@@ -1359,6 +1359,75 @@ main {
   margin-bottom: 25px;
 }
 
+.project-search {
+  margin-bottom: 18px;
+}
+
+.project-search-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.project-search-control {
+  background: var(--eerie-black-2);
+  border: 1px solid var(--jet);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.project-search-control ion-icon {
+  color: var(--light-gray-70);
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+
+.project-search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--white-2);
+  font-size: var(--fs-6);
+}
+
+.project-search-input::placeholder {
+  color: var(--light-gray-70);
+}
+
+.project-search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--light-gray-70);
+  padding: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.project-search-clear ion-icon {
+  font-size: 20px;
+}
+
+.projects-empty {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+}
+
 .filter-select {
   background: var(--eerie-black-2);
   color: var(--light-gray);

@@ -56,6 +56,38 @@ After deploy, refresh caches with sharing debuggers (Facebook, X/Twitter, Linked
 
 - Global CSS lives in `public/assets/css/style.css`. Tweak CSS variables (colors, shadows, font sizes) near the top to re‑theme quickly.
 
+## Search (Projects)
+
+This site is a single-page app (tabs). A lightweight **Projects search** is already wired up:
+
+- UI: `src/components/tabs/ProjectsTab.astro` (`Search projects…` input)
+- Logic: `src/components/PageInteractions.astro` (filters by **category + query**)
+
+No extra setup is needed.
+
+## Metrics / analytics
+
+Because the site uses History API tab routing, the project includes an SPA pageview hook so analytics counts `/projects`, `/contact`, etc.
+
+### Plausible
+
+1) Paste the Plausible snippet into the `<head>` in `src/components/Analytics.astro`.
+
+2) Deploy. Pageviews will be tracked on initial load + tab changes.
+
+### Track conversions (contact form)
+
+On successful contact form submission, the site fires an analytics event named `contact_submit`.
+
+## Search Console verification (SEO metrics)
+
+If you want Google/Bing indexing and performance reports:
+
+- **Google Search Console**: set `PUBLIC_GOOGLE_SITE_VERIFICATION` to your verification token
+- **Bing Webmaster Tools**: set `PUBLIC_BING_SITE_VERIFICATION` to your verification token
+
+Those become `<meta>` tags in `src/layouts/BaseLayout.astro`.
+
 ## Deployment
 
 Vercel (recommended)

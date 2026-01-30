@@ -108,6 +108,7 @@
     // SPA tab routing via History API
     var navButtons = document.querySelectorAll("[data-nav-link]");
     var pageArticles = document.querySelectorAll("article[data-page]");
+    var hasHandledInitialPageview = false;
 
     function setActivePage(page: string) {
       var pageName = (page || "").replace(/^\/+|\/+$/g, "");
@@ -150,6 +151,18 @@
             : pageName.charAt(0).toUpperCase() + pageName.slice(1);
         var finalTitle = siteName ? siteName + " - " + titlePart : titlePart;
         document.title = finalTitle;
+      } catch (e) {}
+
+      // Plausible SPA pageviews (avoid double-counting initial load)
+      try {
+        if (!hasHandledInitialPageview) {
+          hasHandledInitialPageview = true;
+        } else {
+          var p = (window as any).plausible;
+          if (typeof p === "function") {
+            p("pageview", { u: window.location.href });
+          }
+        }
       } catch (e) {}
     }
 
@@ -197,6 +210,18 @@
     var projectCards = document.querySelectorAll(
       ".project-cards .project-card",
     );
+    var projectSearchInput = document.querySelector(
+      "[data-project-search]",
+    ) as HTMLInputElement | null;
+    var projectSearchClear = document.querySelector(
+      "[data-project-search-clear]",
+    ) as HTMLButtonElement | null;
+    var projectsEmpty = document.querySelector(
+      "[data-projects-empty]",
+    ) as HTMLElement | null;
+
+    var activeProjectFilterLabel = "All";
+    var activeProjectQuery = "";
 
     function normalizeCategory(label: any) {
       var t = (label || "").toString().trim().toLowerCase();
@@ -204,8 +229,20 @@
       return t;
     }
 
-    function applyProjectFilter(label: string) {
-      var key = normalizeCategory(label);
+    function normalizeQuery(q: any) {
+      return (q || "").toString().trim().toLowerCase();
+    }
+
+    function cardMatchesQuery(card: Element, query: string) {
+      if (!query) return true;
+      var raw = card.getAttribute("data-search") || "";
+      return raw.toLowerCase().indexOf(query) !== -1;
+    }
+
+    function applyProjectsFilter() {
+      var key = normalizeCategory(activeProjectFilterLabel);
+      var query = normalizeQuery(activeProjectQuery);
+      var visibleCount = 0;
       for (var i = 0; i < projectCards.length; i++) {
         var card = projectCards[i];
         if (!card) continue;
@@ -218,12 +255,19 @@
           .filter(function (s) {
             return !!s && s !== "all";
           });
-        var show = key === "all" || cats.indexOf(key) !== -1;
+        var matchCategory = key === "all" || cats.indexOf(key) !== -1;
+        var matchQuery = cardMatchesQuery(card, query);
+        var show = matchCategory && matchQuery;
         try {
           if (card instanceof HTMLElement) {
             card.style.display = show ? "" : "none";
           }
         } catch (e) {}
+        if (show) visibleCount++;
+      }
+
+      if (projectsEmpty) {
+        projectsEmpty.style.display = visibleCount === 0 ? "block" : "none";
       }
     }
 
@@ -244,8 +288,9 @@
       (function (btn) {
         btn.addEventListener("click", function () {
           var label = (btn.textContent || "").trim();
+          activeProjectFilterLabel = label || "All";
           setActiveFilterUI(label);
-          applyProjectFilter(label);
+          applyProjectsFilter();
         });
       })(filterButtons[i1]);
     }
@@ -260,8 +305,9 @@
       (function (item) {
         item.addEventListener("click", function () {
           var label = (item.textContent || "").trim();
+          activeProjectFilterLabel = label || "All";
           setActiveFilterUI(label);
-          applyProjectFilter(label);
+          applyProjectsFilter();
           if (filterSelect) {
             filterSelect.classList.remove("active");
           }
@@ -278,8 +324,43 @@
           break;
         }
       }
+      activeProjectFilterLabel = initial;
       setActiveFilterUI(initial);
-      applyProjectFilter(initial);
+      applyProjectsFilter();
+    })();
+
+    // Projects search (client-side)
+    (function initProjectSearch() {
+      if (!projectSearchInput) return;
+
+      function syncClearButton() {
+        if (!projectSearchClear) return;
+        var hasValue = !!normalizeQuery(projectSearchInput.value);
+        projectSearchClear.style.display = hasValue ? "inline-flex" : "none";
+      }
+
+      projectSearchInput.addEventListener("input", function () {
+        activeProjectQuery = projectSearchInput ? projectSearchInput.value : "";
+        syncClearButton();
+        applyProjectsFilter();
+      });
+
+      if (projectSearchClear) {
+        projectSearchClear.addEventListener("click", function () {
+          activeProjectQuery = "";
+          projectSearchInput.value = "";
+          syncClearButton();
+          applyProjectsFilter();
+          try {
+            projectSearchInput.focus();
+          } catch (e) {}
+        });
+      }
+
+      // Initialize UI in case the input has a preset value (e.g. browser restore)
+      activeProjectQuery = projectSearchInput.value || "";
+      syncClearButton();
+      applyProjectsFilter();
     })();
 
     // Show/hide navbar based on scroll direction (only below 1024px)

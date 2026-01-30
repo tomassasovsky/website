@@ -37,13 +37,57 @@ import { projects } from "../../data/projects";
       }
     </ul>
   </div>
+
+  <div class="project-search">
+    <label class="project-search-label" for="project-search-input">
+      Search projects
+    </label>
+    <div class="project-search-control">
+      <ion-icon name="search-outline"></ion-icon>
+      <input
+        id="project-search-input"
+        class="project-search-input"
+        type="search"
+        placeholder="Search projects…"
+        autocomplete="off"
+        spellcheck="false"
+        data-project-search
+      />
+      <button
+        type="button"
+        class="project-search-clear"
+        aria-label="Clear search"
+        data-project-search-clear
+        style="display: none;"
+      >
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <p class="projects-empty" data-projects-empty style="display: none;">
+    No projects match your filters.
+  </p>
+
   <div class="project-cards">
     {
       projects.map((p) => {
         const cats = (p.categories || []).map((c) => c.toLowerCase().trim());
         const dataCategories = cats.join(",");
+        const searchText = [
+          p.title,
+          p.description,
+          ...(p.tech || []),
+          ...(p.categories || []),
+        ]
+          .filter(Boolean)
+          .join(" ");
         return (
-          <div class="project-card" data-categories={dataCategories}>
+          <div
+            class="project-card"
+            data-categories={dataCategories}
+            data-search={searchText}
+          >
             <div
               class={
                 "project-card-media" +
