@@ -440,10 +440,10 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "website_scaffold",
+      "name": "website",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.10"
+      "languageVersion": "3.11"
     }
   ],
   "generator": "pub",

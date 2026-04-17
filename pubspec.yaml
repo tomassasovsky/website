@@ -1,9 +1,9 @@
-name: website_scaffold
-description: A new Jaspr project
-version: 0.0.1
+name: website
+description: Tomás Sasovsky's personal portfolio — built with Jaspr & Dart
+version: 0.1.0
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.11.0
 
 dependencies:
   jaspr: ^0.23.0

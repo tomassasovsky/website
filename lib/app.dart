@@ -2,52 +2,39 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
-import 'components/header.dart';
-import 'pages/about.dart';
-import 'pages/home.dart';
+import 'components/footer.dart';
+import 'components/nav_bar.dart';
+import 'pages/contact_page.dart';
+import 'pages/home_page.dart';
+import 'pages/projects_page.dart';
 
-// The main component of your application.
-//
-// By using multi-page routing, this component will only be built on the server during pre-rendering and
-// **not** executed on the client. Instead only the nested [Home] and [About] components will be mounted on the client.
 class App extends StatelessComponent {
   const App({super.key});
 
   @override
   Component build(BuildContext context) {
-    // This method is rerun every time the component is rebuilt.
-    
-    // Renders a <div class="main"> html element with children.
-    return div(classes: 'main', [
-      const Header(),
-      Router(routes: [
-        Route(path: '/', title: 'Home', builder: (context, state) => const Home()),
-        Route(path: '/about', title: 'About', builder: (context, state) => const About()),
-      ]),
+    return div(classes: 'site-wrapper', [
+      const NavBar(),
+      Router(
+        routes: [
+          Route(
+            path: '/',
+            title: 'About — Tomás Sasovsky',
+            builder: (context, state) => const HomePage(),
+          ),
+          Route(
+            path: '/projects',
+            title: 'Projects — Tomás Sasovsky',
+            builder: (context, state) => const ProjectsPage(),
+          ),
+          Route(
+            path: '/contact',
+            title: 'Contact — Tomás Sasovsky',
+            builder: (context, state) => const ContactPage(),
+          ),
+        ],
+      ),
+      const Footer(),
     ]);
   }
-
-  // Defines the CSS styles for this component.
-  //
-  // By using the @css annotation, these will be rendered automatically to CSS and included in your page.
-  // Must be a variable or getter of type [List<StyleRule>].
-  @css
-  static List<StyleRule> get styles => [
-    css('.main', [
-      // The '&' refers to the parent selector of a nested style rules.
-      css('&').styles(
-        display: .flex,
-        height: 100.vh,
-        flexDirection: .column,
-        flexWrap: .wrap,
-      ),
-      css('section').styles(
-        display: .flex,
-        flexDirection: .column,
-        justifyContent: .center,
-        alignItems: .center,
-        flex: Flex(grow: 1),
-      ),
-    ]),
-  ];
 }

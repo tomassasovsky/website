@@ -1,11 +1,11 @@
 {
   "roots": [
-    "website_scaffold"
+    "website"
   ],
   "packages": [
     {
-      "name": "website_scaffold",
-      "version": "0.0.1",
+      "name": "website",
+      "version": "0.1.0",
       "dependencies": [
         "jaspr",
         "jaspr_router"
