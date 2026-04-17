@@ -1,8 +1,6 @@
 import '../models/models.dart';
 
 const siteName = 'Tomás Sasovsky';
-const siteTagline = 'Sr. Flutter & Backend Engineer';
-const siteLocation = 'Buenos Aires, Argentina';
 const siteAvatar = '/assets/images/profile.jpg';
 
 const socials = <SocialLink>[

@@ -6,6 +6,8 @@
 
 import 'package:jaspr/client.dart';
 
+import 'package:website/pages/projects_page.dart' deferred as _projects_page;
+
 /// Default [ClientOptions] for use with your Jaspr project.
 ///
 /// Use this to initialize Jaspr **before** calling [runApp].
@@ -13,7 +15,7 @@ import 'package:jaspr/client.dart';
 /// Example:
 /// ```dart
 /// import 'main.client.options.dart';
-/// 
+///
 /// void main() {
 ///   Jaspr.initializeApp(
 ///     options: defaultClientOptions,
@@ -22,4 +24,13 @@ import 'package:jaspr/client.dart';
 ///   runApp(...);
 /// }
 /// ```
-ClientOptions get defaultClientOptions => ClientOptions();
+ClientOptions get defaultClientOptions => ClientOptions(
+  clients: {
+    'projects_page': ClientLoader(
+      (p) => _projects_page.ProjectsClientSection(
+        localeCode: p['localeCode'] as String,
+      ),
+      loader: _projects_page.loadLibrary,
+    ),
+  },
+);

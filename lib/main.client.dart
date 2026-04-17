@@ -8,7 +8,11 @@ library;
 import 'package:jaspr/client.dart';
 
 // This file is generated automatically by Jaspr, do not remove or edit.
+import 'package:jaspr_riverpod/jaspr_riverpod.dart';
+import 'package:jaspr_riverpod/legacy.dart';
+
 import 'main.client.options.dart';
+import 'providers/projects_filter_provider.dart';
 
 void main() {
   // Initializes the client environment with the generated default options.
@@ -23,6 +27,9 @@ void main() {
   // You can wrap this with additional [InheritedComponent]s to share state across multiple
   // @client components if needed.
   runApp(
-    const ClientApp(),
+    ProviderScope(
+      sync: [projectsFilterProvider.syncWith(kProjectsFilterSyncId)],
+      child: const ClientApp(),
+    ),
   );
 }

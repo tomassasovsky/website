@@ -14,8 +14,9 @@
 include: package:lints/recommended.yaml
 
 analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+  exclude:
+    # Slang output is generated; jaspr_lints can stack-overflow on very large files.
+    - lib/l10n/generated/**
 
 # Jaspr has a custom analyzer plugin 'jaspr_lints', which is enabled here.
 #
@@ -27,6 +28,8 @@ plugins:
       prefer_html_components: true
       sort_children_last: true
       styles_ordering: true
+      # Disabled: slang's generated strings.g.dart is huge and can overflow the plugin stack.
+      unsafe_imports: false
 
 # Uncomment the following section to enable or disable additional rules.
 

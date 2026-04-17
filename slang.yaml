@@ -1,0 +1,26 @@
+# Slang: ARB → type-safe Dart (same idea as Flutter gen-l10n, works without Flutter SDK).
+# Run: dart run slang
+# Docs: https://pub.dev/packages/slang
+base_locale: en
+fallback_strategy: base_locale
+input_directory: lib/l10n/arb
+input_file_pattern: .arb
+output_directory: lib/l10n/generated
+flutter_integration: false
+lazy: false
+translate_var: strings
+class_name: AppLocalizations
+enum_name: AppLocale
+string_interpolation: braces
+format:
+  enabled: true
+  width: 100
+
+# Used by dev tool: dart run tool/translate_arb.dart (slang_gpt → OpenAI).
+gpt:
+  model: gpt-4o-mini
+  description: |
+    Personal portfolio for Tomás Sasovsky, a senior Flutter and backend engineer
+    based in Buenos Aires. The site highlights projects (mobile, OSS, integrations),
+    experience, testimonials, and contact. Prefer natural, professional UI copy;
+    preserve product names (e.g. SportsVisio, El Dorado) and technical terms (Flutter, Dart, CI/CD).

@@ -1,53 +1,96 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
-import '../data/projects_data.dart';
+import '../data/portfolio_content.dart';
+import '../l10n/generated/strings.g.dart';
+import '../l10n/locale_codec.dart';
+import '../l10n/l10n_extension.dart';
 import '../models/models.dart';
+import '../providers/projects_filter_provider.dart';
 
-@client
-class ProjectsPage extends StatefulComponent {
+const _kAll = 'all';
+const _kApps = 'apps';
+const _kOss = 'oss';
+
+/// Portfolio projects with in-memory filter state (Riverpod), not URL-driven.
+class ProjectsPage extends StatelessComponent {
   const ProjectsPage({super.key});
 
   @override
-  State<ProjectsPage> createState() => ProjectsPageState();
+  Component build(BuildContext context) {
+    final locale = context.locale;
+    return .fragment([
+      Document.head(title: context.strings.metaTitleProjects),
+      ProjectsClientSection(localeCode: locale.languageCode),
+    ]);
+  }
 }
 
-class ProjectsPageState extends State<ProjectsPage> {
-  String _filter = 'All';
+@client
+class ProjectsClientSection extends StatelessComponent {
+  const ProjectsClientSection({required this.localeCode});
 
-  static const _filters = ['All', 'Apps', 'OSS / Tools'];
+  /// Passed from the server shell; the hydrated client subtree is not under [LocaleScope].
+  final String localeCode;
 
   @override
   Component build(BuildContext context) {
-    final filtered = _filter == 'All' ? projects : projects.where((proj) => proj.categories.contains(_filter)).toList();
+    final locale = localeFromPathSegment(localeCode) ?? AppLocale.en;
+    final s = locale.buildSync();
+    final projects = loadProjects(locale.buildSync());
+    final raw = context.watch(projectsFilterProvider);
+    final activeFilter = (raw == _kApps || raw == _kOss) ? raw : _kAll;
+
+    final filters = <({String key, String label})>[
+      (key: _kAll, label: s.filterAll),
+      (key: _kApps, label: s.filterApps),
+      (key: _kOss, label: s.filterOss),
+    ];
+
+    final filtered = activeFilter == _kAll
+        ? projects
+        : projects.where((proj) => proj.categories.contains(activeFilter)).toList();
 
     return div(classes: 'page', [
       div(classes: 'container', [
         div(classes: 'section', [
           div(classes: 'section-header', [
-            p(classes: 'section-label', [.text('Portfolio')]),
-            h1(classes: 'section-title', [.text('Projects')]),
+            p(classes: 'section-label', [.text(s.portfolioLabel)]),
+            h1(classes: 'section-title', [.text(s.projectsHeading)]),
             p(classes: 'section-subtitle', [
-              .text('${projects.length} projects across mobile, backend, and open source.'),
+              .text(s.projectsSubtitle(projectCount: projects.length)),
             ]),
           ]),
           div(classes: 'projects-filters', [
-            for (final f in _filters)
+            for (final f in filters)
               button(
-                classes: 'filter-btn${_filter == f ? ' active' : ''}',
-                onClick: () => setState(() => _filter = f),
-                [.text(f)],
+                classes: 'filter-btn${activeFilter == f.key ? ' active' : ''}',
+                onClick: () {
+                  final next = (f.key == _kApps || f.key == _kOss) ? f.key : _kAll;
+                  context.read(projectsFilterProvider.notifier).state = next;
+                },
+                [.text(f.label)],
               ),
           ]),
           div(classes: 'projects-grid', [
-            for (final project in filtered) _buildProjectCard(project),
+            for (final project in filtered) _ProjectCard(project: project, strings: s),
           ]),
         ]),
       ]),
     ]);
   }
+}
 
-  Component _buildProjectCard(Project project) {
+class _ProjectCard extends StatelessComponent {
+  const _ProjectCard({required this.project, required this.strings});
+
+  final Project project;
+  final AppLocalizations strings;
+
+  @override
+  Component build(BuildContext context) {
+    final s = strings;
     return div(classes: 'project-card', [
       if (project.image != null)
         img(
@@ -62,7 +105,7 @@ class ProjectsPageState extends State<ProjectsPage> {
       div(classes: 'project-card__body', [
         div(classes: 'project-card__header', [
           h3(classes: 'project-card__title', [.text(project.title)]),
-          if (project.unreleased) span(classes: 'project-card__badge', [.text('Unreleased')]),
+          if (project.unreleased) span(classes: 'project-card__badge', [.text(s.projectUnreleased)]),
         ]),
         p(classes: 'project-card__desc', [.text(project.description)]),
         if (project.tech.isNotEmpty)
