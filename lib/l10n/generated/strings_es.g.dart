@@ -51,7 +51,7 @@ class AppLocalizationsEs extends AppLocalizations
 
   // Translations
   @override
-  String get metaTitleHome => 'Acerca de — Tomás Sasovsky';
+  String get metaTitleHome => 'Sobre — Tomás Sasovsky';
   @override
   String get metaTitleProjects => 'Proyectos — Tomás Sasovsky';
   @override
@@ -61,7 +61,7 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get siteLocation => 'Buenos Aires, Argentina';
   @override
-  String get navAbout => 'Acerca de';
+  String get navAbout => 'Sobre';
   @override
   String get navProjects => 'Proyectos';
   @override
@@ -73,7 +73,7 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get heroSecondaryCta => 'Ver mi trabajo';
   @override
-  String get sectionAbout => 'Sobre mí';
+  String get sectionAbout => 'Acerca de mí';
   @override
   String get sectionWhoIAm => 'Quién soy';
   @override
@@ -89,14 +89,14 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get sectionTestimonials => 'Testimonios';
   @override
-  String get sectionWhatPeopleSay => 'Lo que dicen';
+  String get sectionWhatPeopleSay => 'Lo que dicen las personas';
   @override
-  String get portfolioLabel => 'Portfolio';
+  String get portfolioLabel => 'Portafolio';
   @override
   String get projectsHeading => 'Proyectos';
   @override
   String projectsSubtitle({required int projectCount}) =>
-      '${projectCount} proyectos en móvil, backend, y código abierto.';
+      '${projectCount} proyectos en móviles, backend y open source.';
   @override
   String get filterAll => 'Todo';
   @override
@@ -104,28 +104,59 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get filterOss => 'OSS / Herramientas';
   @override
-  String get projectUnreleased => 'Unreleased';
+  String get projectUnreleased => 'Inédito';
   @override
-  String get contactGetInTouch => 'Estar en contacto';
+  String get contactGetInTouch => 'Contacto';
   @override
   String get contactHeading => 'Contacto';
   @override
-  String get contactSubtitle => '¡Let\'s work together on something great!';
+  String get contactSubtitle => 'Vamos a trabajar juntos en algo genial.';
   @override
-  String get contactBookTitle => 'Reservar una reunión';
+  String get contactBookTitle => 'Agenda una reunión';
   @override
-  String get contactBookLine1 =>
-      'Seleccione un momento que funcione para ti utilizando mi calendario.';
+  String get contactBookLine1 => 'Elige un tiempo que funcione para ti utilizando mi calendario.';
   @override
   String get contactBookLine2 =>
-      'Recibirás una confirmación y un enlace de video de reunión automáticamente.';
+      'Recibirás una confirmación y un enlace de reunión de video automáticamente.';
   @override
-  String get contactScheduleCall => 'Programar una llamada →';
+  String get contactScheduleCall => 'Agendar una llamada →';
   @override
-  String get contactOnlineTitle => 'Encuentra mi perfil en línea';
+  String get contactOnlineTitle => 'Encuentra mi online';
   @override
   String get contactOnlineBody =>
-      'Puedes enviarme directamente — siempre feliz de charlar sobre Flutter, proyectos interesantes o nuevas oportunidades.';
+      'Ponte en contacto directamente — siempre feliz de hablar sobre Flutter, proyectos interesantes o oportunidades nuevas.';
+  @override
+  String get contactFormTitle => 'Enviar un mensaje';
+  @override
+  String get contactFormDesc => 'Completa el formulario y te responderé en uno o dos días.';
+  @override
+  String get formName => 'Nombre';
+  @override
+  String get formNameHint => 'Tu nombre';
+  @override
+  String get formEmail => 'Email';
+  @override
+  String get formEmailHint => 'tu@email.com';
+  @override
+  String get formSubject => 'Asunto';
+  @override
+  String get formSubjectHint => '¿De qué se trata?';
+  @override
+  String get formMessage => 'Mensaje';
+  @override
+  String get formMessageHint => 'Cuéntame sobre tu proyecto, idea o simplemente saluda…';
+  @override
+  String get formSend => 'Enviar mensaje';
+  @override
+  String get formSending => 'Enviando…';
+  @override
+  String get formSuccess => '¡Mensaje enviado! Te responderé en breve.';
+  @override
+  String get formErrorGeneric => 'Algo salió mal. Por favor, inténtalo de nuevo.';
+  @override
+  String get formErrorRequired => 'Por favor, completa todos los campos.';
+  @override
+  String get formErrorEmail => 'Por favor, ingresa una dirección de email válida.';
   @override
   String footerCopyright({required int year}) => '© ${year} Tomás Sasovsky · Construido con ';
   @override
@@ -133,38 +164,38 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get langSwitchSpanish => 'ES';
   @override
-  String get langSwitchLabel => 'Lenguaje';
+  String get langSwitchLabel => 'Idioma';
   @override
   String get aboutP0 =>
-      'Soy un ingeniero de software con experiencia de 5+ años, especializado en el desarrollo de aplicaciones móviles multiplataforma con Flutter y Dart. He diseñado y entregado aplicaciones de producción Flutter utilizadas por usuarios reales a escala en sectores financieros, deportivos y de salud.';
+      'Soy un desarrollador de software full-stack con más de 5 años de experiencia profesional, especializado en el desarrollo de aplicaciones móviles multiplataforma con Flutter y Dart. He diseñado y desarrollado aplicaciones de producción de Flutter utilizadas por usuarios reales a escala en sectores financieros, deportivos y de salud.';
   @override
   String get aboutP1 =>
-      'Mis fortalezas incluyen el manejo del estado (Bloc, MVVM), la arquitectura de capas de Flutter, el manejo de la arquitectura limpia y las prácticas de CI/CD modernas. También tengo experiencia en el desarrollo de aplicaciones de backend con TypeScript/Node.js, la integración de API (REST/GraphQL) y la infraestructura en la nube (GCP/AWS). Soy capaz de liderar equipos y proyectos, dirigir iniciativas técnicas complejas desde la concepción hasta la producción y valorar la excelencia en la ingeniería, la arquitectura escalable y las experiencias de usuario excepcionales.';
+      'Mis fortalezas incluyen el estado de gestión (Bloc, MVVM), la arquitectura de Flutter de capas, la arquitectura limpia, y las prácticas de CI/CD modernas. También tengo experiencia en el desarrollo de backend con TypeScript/Node.js, integración de API (REST/GraphQL), y infraestructura en la nube (GCP/AWS). Soy capaz de liderar equipos y proyectos, y llevar iniciativas técnicas complejas desde la concepción hasta la producción, y me preocupo profundamente por la excelencia técnica, la arquitectura escalable y las experiencias de usuario excepcionales.';
   @override
   String get svc0Title => 'Desarrollo de aplicaciones móviles';
   @override
   String get svc0Desc =>
-      'Diseño y construcción de aplicaciones móviles confiables y de gran usabilidad.';
+      'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.';
   @override
-  String get svc1Title => 'Desarrollo de API y servicios de backend';
+  String get svc1Title => 'Desarrollo de back-end y API';
   @override
   String get svc1Desc =>
-      'Servicios de TypeScript/Node.js, APIs, autenticación, pagos, y documentación.';
+      'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.';
   @override
-  String get svc2Title => 'Desarrollo de aplicaciones web y frontend';
+  String get svc2Title => 'Aplicaciones web y front-end';
   @override
   String get svc2Desc =>
-      'Interfaces web accesibles y de alta rendimiento en todos los dispositivos.';
+      'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.';
   @override
   String get svc3Title => 'Integraciones y DevOps';
   @override
   String get svc3Desc =>
-      'Integraciones de productos, monitoreo y pipelines de CI/CD para lanzamientos confiables.';
+      'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.';
   @override
-  String get svc4Title => 'Contribución a código abierto';
+  String get svc4Title => 'Contribuciones a código abierto';
   @override
   String get svc4Desc =>
-      'Contribuidor activo a herramientas y bibliotecas de código abierto; mantenimiento y lanzamiento de OSS.';
+      'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y liberando código de código abierto.';
   @override
   String get labelGooglePlay => 'Google Play';
   @override
@@ -181,157 +212,157 @@ class AppLocalizationsEs extends AppLocalizations
   String get proj0Title => 'El Dorado P2P';
   @override
   String get proj0Desc =>
-      'A Stablecoin SuperApp for LATAM offering a USD wallet and a peer-to-peer marketplace across 70+ finance apps (PayPal, Zelle, PIX, MercadoPago, Nequi, and more). Built for reliability and ease of use to move value across borders, protect savings in USD, and enable P2P merchant workflows.';
+      'Una aplicación de Stablecoin SuperApp para LATAM que ofrece una billetera en USD y un mercado de intercambio entre 70+ aplicaciones de finanzas (PayPal, Zelle, PIX, MercadoPago, Nequi, y más). Diseñado para confiabilidad y facilidad de uso para mover valor entre fronteras, proteger ahorros en USD, y habilitar flujos de trabajo de comerciantes P2P.';
   @override
-  String get proj1Title => 'SportsVisio App';
+  String get proj1Title => 'Aplicación SportsVisio';
   @override
   String get proj1Desc =>
-      'SportsVisio delivers player stats, analysis, and highlights in a secure, simple-to-use app to elevate your game with game-changing AI technology.';
+      'SportsVisio entrega estadísticas de jugadores, análisis y destacados en una aplicación segura, fácil de usar con tecnología de inteligencia artificial que eleva tu juego con tecnología de juego revolucionaria.';
   @override
   String get proj2Title => 'SportsVisio Manager';
   @override
   String get proj2Desc =>
-      'Publish schedules and upload game video. SportsVisio converts footage into player stats and highlights for easy review in the SportsVisio app.';
+      'Publica horarios y sube videos de juego. SportsVisio convierte videos de juego en estadísticas de jugadores y destacados para facilitar su revisión en la aplicación SportsVisio.';
   @override
   String get proj3Title => 'SportsVisio Track';
   @override
   String get proj3Desc =>
-      'Experimental native Android app for single-phone player/ball tracking. YOLO + MOT (Kalman + Hungarian), homography for court mapping. Kotlin (CameraX/MediaCodec), real-time and low power.';
+      'Aplicación nativa de Android experimental para el seguimiento de jugadores/bolas individuales. YOLO + MOT (Kalman + Hungarian), homografía para el mapeo del campo. Kotlin (CameraX/MediaCodec), tiempo real y bajo consumo de energía.';
   @override
   String get proj4Title => 'APIConnect';
   @override
   String get proj4Desc =>
-      'Consumer app for API Abroad built with a modern stack and production-ready CI/CD. Emphasis on secure auth, dependable releases, and crisp UX to guide users through program discovery and onboarding.';
+      'Aplicación de consumo para la API Abroad construida con una pila moderna y producción lista. Se enfoca en la autenticación segura, versiones confiables y una experiencia de usuario clara para guiar a los usuarios a través del descubrimiento del programa y la onboarding.';
   @override
   String get proj5Title => 'TAZA Express';
   @override
   String get proj5Desc =>
-      'Food ordering and delivery tracking for a high-volume marketplace. Implemented map integrations and streamlined order states for a predictable end-to-end experience.';
+      'Aplicación de orden de comida y seguimiento de entregas para una tienda de comida de alta demanda. Implementó integraciones de mapas y redujo los estados de pedido para una experiencia de entrega predecible.';
   @override
   String get proj6Title => 'Genjo';
   @override
   String get proj6Desc =>
-      'AI-powered platform designed to transform browsers into buyers, enhance customer interactions, and generate leads. Offers personalised, 24/7 customer engagement, boosting conversions and average order values while reducing returns.';
+      'Plataforma de inteligencia artificial diseñada para transformar navegadores en compradores, mejorar las interacciones con los clientes y generar prospectos. Ofrece interacciones de clientes personales, 24/7, y booste las conversiones y los valores promedio de pedidos al reducir los devoluciones.';
   @override
   String get proj7Title => 'Genomii';
   @override
   String get proj7Desc =>
-      'Health insights and guidance with device integrations and privacy-first design. Responsibilities covered integrations, subscriptions, and KYC/verification flows.';
+      'Información de salud y orientación con integraciones de dispositivos y diseño de privacidad. Responsabilidades cubiertas son las integraciones, las suscripciones y los flujos de KYC/verificación.';
   @override
-  String get proj8Title => 'Go Router Guards';
+  String get proj8Title => 'Guardias de Go Router';
   @override
   String get proj8Desc =>
-      'Flexible and extensible guard system for Go Router with composable boolean logic and type-safe routes. Supports ALL/ANY/ONE-OF combinations, redirect semantics, and a GuardedRoute mixin. Includes examples and tests for robust, reusable route protection.';
+      'Sistema de protección flexible y extensible para Go Router con lógica booleana composable y un mixin GuardedRoute. Admite combinaciones ALL/ANY/ONE-OF, redirección semántica y pruebas robustas para protecciones de rutas reutilizables.';
   @override
   String get proj9Title => 'Radio Horizon (Dart)';
   @override
   String get proj9Desc =>
-      'Discord radio playing bot with powerful song recognition technology. Identifies and announces songs currently playing on the radio, making it easy to keep track of your favourite tunes.';
+      'Bot de radio que reconoce canciones actualmente en la radio. Identifica y anuncia las canciones actuales en la radio, lo que facilita el seguimiento de tus canciones favoritas.';
   @override
   String get proj10Title => 'ncnn.dart';
   @override
   String get proj10Desc =>
-      'Dart FFI bindings and tooling around Tencent NCNN for on-device neural inference. Targets mobile and desktop with zero-copy buffers where possible and pragmatic model loading. Useful for small, fast CNNs without heavyweight runtimes.';
+      'Enlaces FFI de Dart para el protocolo de carga de TUS para cargas de archivos en dispositivos móviles y escritorio con memoria compartida y modelos pragmáticos. Destinados a modelos pequeños, rápidos CNN y sin grandes entornos de ejecución.';
   @override
   String get proj11Title => 'pytorch.dart';
   @override
   String get proj11Desc =>
-      'Experimental Dart bindings for LibTorch/PyTorch to enable native tensor ops and model execution. Explores FFI surfaces for tensors, autograd, and model invocation from Flutter. Aimed at research/prototyping.';
+      'Enlaces de Dart para la biblioteca LibTorch/PyTorch para operaciones tensoriales y ejecución de modelos. Explora superficies FFI para tensores, autograd, y invocación de modelos desde Flutter. Destinado a investigación/prototipos.';
   @override
   String get proj12Title => 'automatic_version_upgrader.dart';
   @override
   String get proj12Desc =>
-      'CLI helper to automatically bump Dart/Flutter package versions and changelogs. Parses conventional commits, updates pubspec, and generates changelog entries with semantic versioning. Designed to fit CI pipelines.';
+      'CLI de apoyo para elevar automáticamente las versiones de Dart/Flutter y las entradas de registro de cambios. Analiza commits convencionales, actualiza pubspec, y genera entradas de registro de cambios con semántica de versión. Diseñado para adaptarse a pipelines de CI.';
   @override
   String get proj13Title => 'tus_client';
   @override
   String get proj13Desc =>
-      'Dart client for the TUS resumable upload protocol with reliable, restartable uploads. Handles chunking, retries, and metadata, with pluggable storage for resumption across app restarts. Great for large files and flaky networks.';
+      'Cliente de Dart para el protocolo de carga de TUS para cargas de archivos grandes y redes inestables. Manipula trozos, reintentos y metadatos, y almacena la continuación de la carga entre reinicios de la aplicación. Ideal para archivos grandes y redes inestables.';
   @override
   String get testi0Date => 'Octubre 2025';
   @override
   String get testi0P0 =>
-      'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y, posteriormente, como líder del equipo en SportsVisio, presenciando su evolución desde un desarrollador junior prometedor hasta un gran ingeniero.';
+      'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y luego como líder del equipo en SportsVisio, viendo su evolución de joven prometedor a estrella del ingeniero.';
   @override
   String get testi0P1 =>
-      'Lo que distingue a Tomás es su confiabilidad en entregar soluciones de alta calidad. Su trabajo en la optimización de cargas de TUS y la revisión de la arquitectura de Bloc en SportsVisio ilustra su capacidad para abordar desafíos complejos y de gran impacto.';
+      'Lo que distingue a Tomás es su confiabilidad incuestionable en la entrega de soluciones de alta calidad. Su trabajo en la optimización de carga TUS en segundo plano y la reescritura de la arquitectura Bloc en SportsVisio ilustra su capacidad para enfrentar desafíos complejos y críticos.';
   @override
   String get testi0P2 =>
-      'Tomás se ajusta a las dificultades que intimidarían a la mayoría de los ingenieros. Podía tomar vacaciones con la certeza de que manejaría cualquier problema crítico. Cualquier organización sería afortunada de tener a Tomás en sus proyectos más desafiantes.';
+      'Tomás se apunta a los problemas difíciles que intimidarían a la mayoría de los ingenieros. Puedo tomar vacaciones con confianza sabiendo que manejará cualquier problema crítico. Cualquier organización estaría afortunada de tener a Tomás en sus proyectos más desafiantes.';
   @override
   String get testi1Date => 'Enero 2025';
   @override
   String get testi1P0 =>
-      'Me alegra recomendar a Tomás Sasovsky como un excepcional desarrollador de Flutter. Durante los últimos tres años, he tenido el gusto de trabajar con Tomás como compañero de trabajo y como líder del equipo en SportsVisio, y sus contribuciones al equipo han sido de gran valor.';
+      'Me alegra recomendar a Tomás Sasovsky como un excelente desarrollador de Flutter. Durante los últimos tres años, he tenido el placer de trabajar con Tomás como compañero de trabajo y como líder del equipo en SportsVisio, y sus contribuciones al equipo han sido invaluables.';
   @override
   String get testi1P1 =>
-      'Tomás trae conocimientos profundos en Flutter y desarrollo móvil, y siempre entrega aplicaciones de alta calidad. Su habilidad para resolver problemas y escribir código limpio y escalable ha llevado a cabo éxitos en numerosos proyectos.';
+      'Tomás tiene profunda experiencia en Flutter y desarrollo de móviles, y siempre entrega soluciones de alta calidad. Su habilidad para resolver problemas y escribir código limpio y escalable ha llevado al éxito de numerosos proyectos.';
   @override
   String get testi1P2 =>
-      'Lo que realmente lo diferencia es su espíritu colaborativo y su dedicación. Es un miembro de equipo natural que comparte conocimientos generosamente, se hace cargo de los jóvenes desarrolladores y crea un ambiente de trabajo positivo.';
+      'Lo que realmente lo distingue es su espíritu colaborativo y dedicación. Es un miembro de equipo natural que comparte conocimiento generosamente, enseña a los ingenieros junior y crea un ambiente de trabajo positivo.';
   @override
   String get testi2Date => 'Enero 2025';
   @override
   String get testi2P0 =>
-      'He disfrutado trabajar juntos en proyectos de variados tipos, incluyendo el desarrollo de una aplicación de Android nativa compleja que integraba un modelo de aprendizaje automático basado en NDK.';
+      'Tuve el gusto de trabajar de cerca con Tomás por 2.5 años en una variedad de proyectos, incluyendo el desarrollo de una aplicación nativa de Android compleja que integraba un modelo de aprendizaje automático basado en NDK.';
   @override
   String get testi2P1 =>
-      'A lo largo de nuestra colaboración, ha demostrado conocimientos técnicos excepcionales, especialmente en el campo del desarrollo móvil, lo que ha mejorado significativamente nuestra capacidad en cada área de la pila móvil.';
+      'A lo largo de nuestro tiempo trabajando juntos, demostró habilidades técnicas excepcionales, especialmente como desarrollador de móviles de Flutter, y eleva nuestras capacidades en todas las capas de la pila móvil.';
   @override
   String get testi2P2 =>
-      'Una de sus logros destacados fue diseñar y implementar una canalización de CI/CD flexible y escalable que aceleró nuestro proceso de desarrollo. Te recomiendo encarecidamente como un desarrollador móvil de confianza.';
+      'Uno de sus logros más destacados fue diseñar y implementar un pipeline de CI/CD fluido que aceleró nuestro proceso de desarrollo. Estoy seguro de recomendarlo como un colaborador o líder de proyecto que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.';
   @override
   String get testi3Date => 'Noviembre 2021';
   @override
   String get testi3P0 =>
-      'Proactivo y resolutivo joven desarrollador. Si no sabe cómo hacer algo, lo busca y da resultados, siempre. Garantiza código de alta calidad y lo asegura.';
+      'Desarrollador proactivo y resolutivo. Si no sabe cómo hacer algo, lo busca y da resultados, siempre. Asegura la calidad del código y garantiza que lo haga.';
   @override
   String get testi4Date => 'Noviembre 2021';
   @override
   String get testi4P0 =>
-      'Tomás es un joven muy talentoso. Tiene conocimientos sólidos de Flutter. Es muy comprometido cuando tiene responsabilidades de proyecto. Te recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente autosuficiente.';
+      'Tomás es un joven muy talentoso. Tiene conocimientos sólidos de Flutter. Es muy comprometido cuando tiene responsabilidades de proyecto. Recomiendo su trabajo como un colega o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.';
   @override
-  String get exp0Title => 'Desarrollador de software Full Stack — El Dorado P2P';
+  String get exp0Title => 'Desarrollador de Software de Pleno - El Dorado P2P';
   @override
-  String get exp0Range => 'Feb 2025 — Sep 2025 · Buenos Aires (Híbrido)';
+  String get exp0Range => 'Febrero 2025 — Septiembre 2025 · Buenos Aires (Híbrido)';
   @override
   String get exp0Desc =>
-      'Diseñé una API pública de TypeScript para intercambios de criptomonedas en Latinoamérica. Implementé la apertura de cuentas bancarias en USD y el enlace de crypto wallets. Modularicé la aplicación de Flutter para escalabilidad y fiabilidad.';
+      'Diseñé y desarrollé una API pública de TypeScript para intercambios de criptomoneda en LATAM. Implementé la apertura y enlace de cuentas bancarias en EE. UU. con criptomonedas. Modularicé la aplicación de Flutter para escalabilidad y testabilidad.';
   @override
-  String get exp1Title => 'Ingeniero Flutter Senior — SportsVisio';
+  String get exp1Title => 'Senior Flutter Engineer — SportsVisio';
   @override
-  String get exp1Range => 'Jan 2022 — Feb 2025 · Remoto (EE.UU.)';
+  String get exp1Range => 'Enero 2022 — Febrero 2025 · Remoto (EE. UU.)';
   @override
   String get exp1Desc =>
-      'Entregué SV Manager con carga de fondo TUS para subidas de archivos (−30% tiempo de subida). Implementé la sincronización de reproducción dual para 1200+ usuarios al mes. Líder de la reescritura de Bloc (−35% tamaño del código). Implementé la detección de rostros con algoritmos de Kalman/Hungarian para la grabación de ángulo único.';
+      'Lidericé un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.';
   @override
-  String get exp2Title => 'Lider de equipo, Ingeniero Flutter Senior — VisionBox';
+  String get exp2Title => 'Lider técnico, Senior Flutter Engineer — VisionBox';
   @override
-  String get exp2Range => 'Jan 2024 — Jun 2024 · Remoto (Canadá)';
+  String get exp2Range => 'Enero 2024 — Junio 2024 · Remoto (Canadá)';
   @override
   String get exp2Desc =>
-      'Led a team of four; implemented Health Connect/HealthKit for AI insights. Implemented KYC with Google ML Kit; Face verification pipeline; Subscriptions via RevenueCat.';
+      'Lidericé a un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.';
   @override
-  String get exp3Title => 'Ingeniero de software (prácticas) — CourtAvenue';
+  String get exp3Title => 'Ingeniero de Software (Freelance) — CourtAvenue';
   @override
-  String get exp3Range => 'Jul 2023 — Sep 2023 · Remoto (EE.UU.)';
+  String get exp3Range => 'Julio 2023 — Septiembre 2023 · Remoto (EE. UU.)';
   @override
   String get exp3Desc =>
-      'Build Genjo (wrapper de ChatGPT para web) con Express/React; entregado ApiConnect en Flutter; herramientas internas para repositorios múltiples; lector de pasaportes/visas AI-driven.';
+      'Diseñé y desarrollé Genjo (contenedor de ChatGPT de web) con Express/React; entregué ApiConnect en Flutter; herramientas internas para repositorios multi-paquete; lector de pasaportes y visas AI.';
   @override
   String get exp4Title => 'Ingeniero Flutter — Creative Advanced Technologies';
   @override
-  String get exp4Range => 'Sep 2021 — Mar 2022 · Remoto (Emiratos Árabes Unidos)';
+  String get exp4Range => 'Septiembre 2021 — Marzo 2022 · Remoto (Emiratos Árabes Unidos)';
   @override
   String get exp4Desc =>
-      'Lanzé aplicaciones de pedido y seguimiento de envíos de alimentos (50K+ descargas, 4.5★). Integración de Google Maps y coordinación de backend.';
+      'Lanzamos aplicaciones de pedidos de comida y seguimiento de entregas (50K+ descargas, 4.5★). Integración de Google Maps y coordinación de backend.';
   @override
   String get exp5Title => 'Ingeniero Flutter — It-TechGroup';
   @override
-  String get exp5Range => 'Jan 2021 — Nov 2021 · Remoto (Argentina)';
+  String get exp5Range => 'Enero 2021 — Noviembre 2021 · Remoto (AR)';
   @override
   String get exp5Desc =>
-      'Build a Flutter plugin to integrate MercadoPago Checkout SDK for Android/iOS (Java/Swift). Set up CI/CD for automated builds and tests.';
+      'Diseñé y desarrollé un plugin de Flutter para integrar MercadoPago Checkout SDK para Android/iOS (Java/Swift). Configuricé CI/CD para construcciones y pruebas automáticas.';
 }
 
 /// The flat map containing all translations for locale <es>.
@@ -342,18 +373,18 @@ class AppLocalizationsEs extends AppLocalizations
 extension on AppLocalizationsEs {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
-      'metaTitleHome' => 'Acerca de — Tomás Sasovsky',
+      'metaTitleHome' => 'Sobre — Tomás Sasovsky',
       'metaTitleProjects' => 'Proyectos — Tomás Sasovsky',
       'metaTitleContact' => 'Contacto — Tomás Sasovsky',
       'siteTagline' => 'Sr. Flutter & Backend Engineer',
       'siteLocation' => 'Buenos Aires, Argentina',
-      'navAbout' => 'Acerca de',
+      'navAbout' => 'Sobre',
       'navProjects' => 'Proyectos',
       'navContact' => 'Contacto',
       'heroBadge' => 'Disponible para nuevas oportunidades',
       'heroPrimaryCta' => 'Hablemos →',
       'heroSecondaryCta' => 'Ver mi trabajo',
-      'sectionAbout' => 'Sobre mí',
+      'sectionAbout' => 'Acerca de mí',
       'sectionWhoIAm' => 'Quién soy',
       'sectionAboutSubtitle' => 'Ingeniero, constructor, contribuyente de código abierto.',
       'sectionServices' => 'Servicios',
@@ -361,48 +392,66 @@ extension on AppLocalizationsEs {
       'sectionExperience' => 'Experiencia',
       'sectionTrustedBy' => 'Confianza',
       'sectionTestimonials' => 'Testimonios',
-      'sectionWhatPeopleSay' => 'Lo que dicen',
-      'portfolioLabel' => 'Portfolio',
+      'sectionWhatPeopleSay' => 'Lo que dicen las personas',
+      'portfolioLabel' => 'Portafolio',
       'projectsHeading' => 'Proyectos',
       'projectsSubtitle' =>
         ({required int projectCount}) =>
-            '${projectCount} proyectos en móvil, backend, y código abierto.',
+            '${projectCount} proyectos en móviles, backend y open source.',
       'filterAll' => 'Todo',
       'filterApps' => 'Aplicaciones',
       'filterOss' => 'OSS / Herramientas',
-      'projectUnreleased' => 'Unreleased',
-      'contactGetInTouch' => 'Estar en contacto',
+      'projectUnreleased' => 'Inédito',
+      'contactGetInTouch' => 'Contacto',
       'contactHeading' => 'Contacto',
-      'contactSubtitle' => '¡Let\'s work together on something great!',
-      'contactBookTitle' => 'Reservar una reunión',
-      'contactBookLine1' => 'Seleccione un momento que funcione para ti utilizando mi calendario.',
+      'contactSubtitle' => 'Vamos a trabajar juntos en algo genial.',
+      'contactBookTitle' => 'Agenda una reunión',
+      'contactBookLine1' => 'Elige un tiempo que funcione para ti utilizando mi calendario.',
       'contactBookLine2' =>
-        'Recibirás una confirmación y un enlace de video de reunión automáticamente.',
-      'contactScheduleCall' => 'Programar una llamada →',
-      'contactOnlineTitle' => 'Encuentra mi perfil en línea',
+        'Recibirás una confirmación y un enlace de reunión de video automáticamente.',
+      'contactScheduleCall' => 'Agendar una llamada →',
+      'contactOnlineTitle' => 'Encuentra mi online',
       'contactOnlineBody' =>
-        'Puedes enviarme directamente — siempre feliz de charlar sobre Flutter, proyectos interesantes o nuevas oportunidades.',
+        'Ponte en contacto directamente — siempre feliz de hablar sobre Flutter, proyectos interesantes o oportunidades nuevas.',
+      'contactFormTitle' => 'Enviar un mensaje',
+      'contactFormDesc' => 'Completa el formulario y te responderé en uno o dos días.',
+      'formName' => 'Nombre',
+      'formNameHint' => 'Tu nombre',
+      'formEmail' => 'Email',
+      'formEmailHint' => 'tu@email.com',
+      'formSubject' => 'Asunto',
+      'formSubjectHint' => '¿De qué se trata?',
+      'formMessage' => 'Mensaje',
+      'formMessageHint' => 'Cuéntame sobre tu proyecto, idea o simplemente saluda…',
+      'formSend' => 'Enviar mensaje',
+      'formSending' => 'Enviando…',
+      'formSuccess' => '¡Mensaje enviado! Te responderé en breve.',
+      'formErrorGeneric' => 'Algo salió mal. Por favor, inténtalo de nuevo.',
+      'formErrorRequired' => 'Por favor, completa todos los campos.',
+      'formErrorEmail' => 'Por favor, ingresa una dirección de email válida.',
       'footerCopyright' => ({required int year}) => '© ${year} Tomás Sasovsky · Construido con ',
       'langSwitchEnglish' => 'EN',
       'langSwitchSpanish' => 'ES',
-      'langSwitchLabel' => 'Lenguaje',
+      'langSwitchLabel' => 'Idioma',
       'aboutP0' =>
-        'Soy un ingeniero de software con experiencia de 5+ años, especializado en el desarrollo de aplicaciones móviles multiplataforma con Flutter y Dart. He diseñado y entregado aplicaciones de producción Flutter utilizadas por usuarios reales a escala en sectores financieros, deportivos y de salud.',
+        'Soy un desarrollador de software full-stack con más de 5 años de experiencia profesional, especializado en el desarrollo de aplicaciones móviles multiplataforma con Flutter y Dart. He diseñado y desarrollado aplicaciones de producción de Flutter utilizadas por usuarios reales a escala en sectores financieros, deportivos y de salud.',
       'aboutP1' =>
-        'Mis fortalezas incluyen el manejo del estado (Bloc, MVVM), la arquitectura de capas de Flutter, el manejo de la arquitectura limpia y las prácticas de CI/CD modernas. También tengo experiencia en el desarrollo de aplicaciones de backend con TypeScript/Node.js, la integración de API (REST/GraphQL) y la infraestructura en la nube (GCP/AWS). Soy capaz de liderar equipos y proyectos, dirigir iniciativas técnicas complejas desde la concepción hasta la producción y valorar la excelencia en la ingeniería, la arquitectura escalable y las experiencias de usuario excepcionales.',
+        'Mis fortalezas incluyen el estado de gestión (Bloc, MVVM), la arquitectura de Flutter de capas, la arquitectura limpia, y las prácticas de CI/CD modernas. También tengo experiencia en el desarrollo de backend con TypeScript/Node.js, integración de API (REST/GraphQL), y infraestructura en la nube (GCP/AWS). Soy capaz de liderar equipos y proyectos, y llevar iniciativas técnicas complejas desde la concepción hasta la producción, y me preocupo profundamente por la excelencia técnica, la arquitectura escalable y las experiencias de usuario excepcionales.',
       'svc0Title' => 'Desarrollo de aplicaciones móviles',
       'svc0Desc' =>
-        'Diseño y construcción de aplicaciones móviles confiables y de gran usabilidad.',
-      'svc1Title' => 'Desarrollo de API y servicios de backend',
-      'svc1Desc' => 'Servicios de TypeScript/Node.js, APIs, autenticación, pagos, y documentación.',
-      'svc2Title' => 'Desarrollo de aplicaciones web y frontend',
-      'svc2Desc' => 'Interfaces web accesibles y de alta rendimiento en todos los dispositivos.',
+        'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.',
+      'svc1Title' => 'Desarrollo de back-end y API',
+      'svc1Desc' =>
+        'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.',
+      'svc2Title' => 'Aplicaciones web y front-end',
+      'svc2Desc' =>
+        'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.',
       'svc3Title' => 'Integraciones y DevOps',
       'svc3Desc' =>
-        'Integraciones de productos, monitoreo y pipelines de CI/CD para lanzamientos confiables.',
-      'svc4Title' => 'Contribución a código abierto',
+        'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.',
+      'svc4Title' => 'Contribuciones a código abierto',
       'svc4Desc' =>
-        'Contribuidor activo a herramientas y bibliotecas de código abierto; mantenimiento y lanzamiento de OSS.',
+        'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y liberando código de código abierto.',
       'labelGooglePlay' => 'Google Play',
       'labelAppStore' => 'App Store',
       'labelWebsite' => 'Sitio web',
@@ -411,97 +460,97 @@ extension on AppLocalizationsEs {
       'labelDiscord' => 'Discord',
       'proj0Title' => 'El Dorado P2P',
       'proj0Desc' =>
-        'A Stablecoin SuperApp for LATAM offering a USD wallet and a peer-to-peer marketplace across 70+ finance apps (PayPal, Zelle, PIX, MercadoPago, Nequi, and more). Built for reliability and ease of use to move value across borders, protect savings in USD, and enable P2P merchant workflows.',
-      'proj1Title' => 'SportsVisio App',
+        'Una aplicación de Stablecoin SuperApp para LATAM que ofrece una billetera en USD y un mercado de intercambio entre 70+ aplicaciones de finanzas (PayPal, Zelle, PIX, MercadoPago, Nequi, y más). Diseñado para confiabilidad y facilidad de uso para mover valor entre fronteras, proteger ahorros en USD, y habilitar flujos de trabajo de comerciantes P2P.',
+      'proj1Title' => 'Aplicación SportsVisio',
       'proj1Desc' =>
-        'SportsVisio delivers player stats, analysis, and highlights in a secure, simple-to-use app to elevate your game with game-changing AI technology.',
+        'SportsVisio entrega estadísticas de jugadores, análisis y destacados en una aplicación segura, fácil de usar con tecnología de inteligencia artificial que eleva tu juego con tecnología de juego revolucionaria.',
       'proj2Title' => 'SportsVisio Manager',
       'proj2Desc' =>
-        'Publish schedules and upload game video. SportsVisio converts footage into player stats and highlights for easy review in the SportsVisio app.',
+        'Publica horarios y sube videos de juego. SportsVisio convierte videos de juego en estadísticas de jugadores y destacados para facilitar su revisión en la aplicación SportsVisio.',
       'proj3Title' => 'SportsVisio Track',
       'proj3Desc' =>
-        'Experimental native Android app for single-phone player/ball tracking. YOLO + MOT (Kalman + Hungarian), homography for court mapping. Kotlin (CameraX/MediaCodec), real-time and low power.',
+        'Aplicación nativa de Android experimental para el seguimiento de jugadores/bolas individuales. YOLO + MOT (Kalman + Hungarian), homografía para el mapeo del campo. Kotlin (CameraX/MediaCodec), tiempo real y bajo consumo de energía.',
       'proj4Title' => 'APIConnect',
       'proj4Desc' =>
-        'Consumer app for API Abroad built with a modern stack and production-ready CI/CD. Emphasis on secure auth, dependable releases, and crisp UX to guide users through program discovery and onboarding.',
+        'Aplicación de consumo para la API Abroad construida con una pila moderna y producción lista. Se enfoca en la autenticación segura, versiones confiables y una experiencia de usuario clara para guiar a los usuarios a través del descubrimiento del programa y la onboarding.',
       'proj5Title' => 'TAZA Express',
       'proj5Desc' =>
-        'Food ordering and delivery tracking for a high-volume marketplace. Implemented map integrations and streamlined order states for a predictable end-to-end experience.',
+        'Aplicación de orden de comida y seguimiento de entregas para una tienda de comida de alta demanda. Implementó integraciones de mapas y redujo los estados de pedido para una experiencia de entrega predecible.',
       'proj6Title' => 'Genjo',
       'proj6Desc' =>
-        'AI-powered platform designed to transform browsers into buyers, enhance customer interactions, and generate leads. Offers personalised, 24/7 customer engagement, boosting conversions and average order values while reducing returns.',
+        'Plataforma de inteligencia artificial diseñada para transformar navegadores en compradores, mejorar las interacciones con los clientes y generar prospectos. Ofrece interacciones de clientes personales, 24/7, y booste las conversiones y los valores promedio de pedidos al reducir los devoluciones.',
       'proj7Title' => 'Genomii',
       'proj7Desc' =>
-        'Health insights and guidance with device integrations and privacy-first design. Responsibilities covered integrations, subscriptions, and KYC/verification flows.',
-      'proj8Title' => 'Go Router Guards',
+        'Información de salud y orientación con integraciones de dispositivos y diseño de privacidad. Responsabilidades cubiertas son las integraciones, las suscripciones y los flujos de KYC/verificación.',
+      'proj8Title' => 'Guardias de Go Router',
       'proj8Desc' =>
-        'Flexible and extensible guard system for Go Router with composable boolean logic and type-safe routes. Supports ALL/ANY/ONE-OF combinations, redirect semantics, and a GuardedRoute mixin. Includes examples and tests for robust, reusable route protection.',
+        'Sistema de protección flexible y extensible para Go Router con lógica booleana composable y un mixin GuardedRoute. Admite combinaciones ALL/ANY/ONE-OF, redirección semántica y pruebas robustas para protecciones de rutas reutilizables.',
       'proj9Title' => 'Radio Horizon (Dart)',
       'proj9Desc' =>
-        'Discord radio playing bot with powerful song recognition technology. Identifies and announces songs currently playing on the radio, making it easy to keep track of your favourite tunes.',
+        'Bot de radio que reconoce canciones actualmente en la radio. Identifica y anuncia las canciones actuales en la radio, lo que facilita el seguimiento de tus canciones favoritas.',
       'proj10Title' => 'ncnn.dart',
       'proj10Desc' =>
-        'Dart FFI bindings and tooling around Tencent NCNN for on-device neural inference. Targets mobile and desktop with zero-copy buffers where possible and pragmatic model loading. Useful for small, fast CNNs without heavyweight runtimes.',
+        'Enlaces FFI de Dart para el protocolo de carga de TUS para cargas de archivos en dispositivos móviles y escritorio con memoria compartida y modelos pragmáticos. Destinados a modelos pequeños, rápidos CNN y sin grandes entornos de ejecución.',
       'proj11Title' => 'pytorch.dart',
       'proj11Desc' =>
-        'Experimental Dart bindings for LibTorch/PyTorch to enable native tensor ops and model execution. Explores FFI surfaces for tensors, autograd, and model invocation from Flutter. Aimed at research/prototyping.',
+        'Enlaces de Dart para la biblioteca LibTorch/PyTorch para operaciones tensoriales y ejecución de modelos. Explora superficies FFI para tensores, autograd, y invocación de modelos desde Flutter. Destinado a investigación/prototipos.',
       'proj12Title' => 'automatic_version_upgrader.dart',
       'proj12Desc' =>
-        'CLI helper to automatically bump Dart/Flutter package versions and changelogs. Parses conventional commits, updates pubspec, and generates changelog entries with semantic versioning. Designed to fit CI pipelines.',
+        'CLI de apoyo para elevar automáticamente las versiones de Dart/Flutter y las entradas de registro de cambios. Analiza commits convencionales, actualiza pubspec, y genera entradas de registro de cambios con semántica de versión. Diseñado para adaptarse a pipelines de CI.',
       'proj13Title' => 'tus_client',
       'proj13Desc' =>
-        'Dart client for the TUS resumable upload protocol with reliable, restartable uploads. Handles chunking, retries, and metadata, with pluggable storage for resumption across app restarts. Great for large files and flaky networks.',
+        'Cliente de Dart para el protocolo de carga de TUS para cargas de archivos grandes y redes inestables. Manipula trozos, reintentos y metadatos, y almacena la continuación de la carga entre reinicios de la aplicación. Ideal para archivos grandes y redes inestables.',
       'testi0Date' => 'Octubre 2025',
       'testi0P0' =>
-        'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y, posteriormente, como líder del equipo en SportsVisio, presenciando su evolución desde un desarrollador junior prometedor hasta un gran ingeniero.',
+        'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y luego como líder del equipo en SportsVisio, viendo su evolución de joven prometedor a estrella del ingeniero.',
       'testi0P1' =>
-        'Lo que distingue a Tomás es su confiabilidad en entregar soluciones de alta calidad. Su trabajo en la optimización de cargas de TUS y la revisión de la arquitectura de Bloc en SportsVisio ilustra su capacidad para abordar desafíos complejos y de gran impacto.',
+        'Lo que distingue a Tomás es su confiabilidad incuestionable en la entrega de soluciones de alta calidad. Su trabajo en la optimización de carga TUS en segundo plano y la reescritura de la arquitectura Bloc en SportsVisio ilustra su capacidad para enfrentar desafíos complejos y críticos.',
       'testi0P2' =>
-        'Tomás se ajusta a las dificultades que intimidarían a la mayoría de los ingenieros. Podía tomar vacaciones con la certeza de que manejaría cualquier problema crítico. Cualquier organización sería afortunada de tener a Tomás en sus proyectos más desafiantes.',
+        'Tomás se apunta a los problemas difíciles que intimidarían a la mayoría de los ingenieros. Puedo tomar vacaciones con confianza sabiendo que manejará cualquier problema crítico. Cualquier organización estaría afortunada de tener a Tomás en sus proyectos más desafiantes.',
       'testi1Date' => 'Enero 2025',
       'testi1P0' =>
-        'Me alegra recomendar a Tomás Sasovsky como un excepcional desarrollador de Flutter. Durante los últimos tres años, he tenido el gusto de trabajar con Tomás como compañero de trabajo y como líder del equipo en SportsVisio, y sus contribuciones al equipo han sido de gran valor.',
+        'Me alegra recomendar a Tomás Sasovsky como un excelente desarrollador de Flutter. Durante los últimos tres años, he tenido el placer de trabajar con Tomás como compañero de trabajo y como líder del equipo en SportsVisio, y sus contribuciones al equipo han sido invaluables.',
       'testi1P1' =>
-        'Tomás trae conocimientos profundos en Flutter y desarrollo móvil, y siempre entrega aplicaciones de alta calidad. Su habilidad para resolver problemas y escribir código limpio y escalable ha llevado a cabo éxitos en numerosos proyectos.',
+        'Tomás tiene profunda experiencia en Flutter y desarrollo de móviles, y siempre entrega soluciones de alta calidad. Su habilidad para resolver problemas y escribir código limpio y escalable ha llevado al éxito de numerosos proyectos.',
       'testi1P2' =>
-        'Lo que realmente lo diferencia es su espíritu colaborativo y su dedicación. Es un miembro de equipo natural que comparte conocimientos generosamente, se hace cargo de los jóvenes desarrolladores y crea un ambiente de trabajo positivo.',
+        'Lo que realmente lo distingue es su espíritu colaborativo y dedicación. Es un miembro de equipo natural que comparte conocimiento generosamente, enseña a los ingenieros junior y crea un ambiente de trabajo positivo.',
       'testi2Date' => 'Enero 2025',
       'testi2P0' =>
-        'He disfrutado trabajar juntos en proyectos de variados tipos, incluyendo el desarrollo de una aplicación de Android nativa compleja que integraba un modelo de aprendizaje automático basado en NDK.',
+        'Tuve el gusto de trabajar de cerca con Tomás por 2.5 años en una variedad de proyectos, incluyendo el desarrollo de una aplicación nativa de Android compleja que integraba un modelo de aprendizaje automático basado en NDK.',
       'testi2P1' =>
-        'A lo largo de nuestra colaboración, ha demostrado conocimientos técnicos excepcionales, especialmente en el campo del desarrollo móvil, lo que ha mejorado significativamente nuestra capacidad en cada área de la pila móvil.',
+        'A lo largo de nuestro tiempo trabajando juntos, demostró habilidades técnicas excepcionales, especialmente como desarrollador de móviles de Flutter, y eleva nuestras capacidades en todas las capas de la pila móvil.',
       'testi2P2' =>
-        'Una de sus logros destacados fue diseñar y implementar una canalización de CI/CD flexible y escalable que aceleró nuestro proceso de desarrollo. Te recomiendo encarecidamente como un desarrollador móvil de confianza.',
+        'Uno de sus logros más destacados fue diseñar y implementar un pipeline de CI/CD fluido que aceleró nuestro proceso de desarrollo. Estoy seguro de recomendarlo como un colaborador o líder de proyecto que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.',
       'testi3Date' => 'Noviembre 2021',
       'testi3P0' =>
-        'Proactivo y resolutivo joven desarrollador. Si no sabe cómo hacer algo, lo busca y da resultados, siempre. Garantiza código de alta calidad y lo asegura.',
+        'Desarrollador proactivo y resolutivo. Si no sabe cómo hacer algo, lo busca y da resultados, siempre. Asegura la calidad del código y garantiza que lo haga.',
       'testi4Date' => 'Noviembre 2021',
       'testi4P0' =>
-        'Tomás es un joven muy talentoso. Tiene conocimientos sólidos de Flutter. Es muy comprometido cuando tiene responsabilidades de proyecto. Te recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente autosuficiente.',
-      'exp0Title' => 'Desarrollador de software Full Stack — El Dorado P2P',
-      'exp0Range' => 'Feb 2025 — Sep 2025 · Buenos Aires (Híbrido)',
+        'Tomás es un joven muy talentoso. Tiene conocimientos sólidos de Flutter. Es muy comprometido cuando tiene responsabilidades de proyecto. Recomiendo su trabajo como un colega o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.',
+      'exp0Title' => 'Desarrollador de Software de Pleno - El Dorado P2P',
+      'exp0Range' => 'Febrero 2025 — Septiembre 2025 · Buenos Aires (Híbrido)',
       'exp0Desc' =>
-        'Diseñé una API pública de TypeScript para intercambios de criptomonedas en Latinoamérica. Implementé la apertura de cuentas bancarias en USD y el enlace de crypto wallets. Modularicé la aplicación de Flutter para escalabilidad y fiabilidad.',
-      'exp1Title' => 'Ingeniero Flutter Senior — SportsVisio',
-      'exp1Range' => 'Jan 2022 — Feb 2025 · Remoto (EE.UU.)',
+        'Diseñé y desarrollé una API pública de TypeScript para intercambios de criptomoneda en LATAM. Implementé la apertura y enlace de cuentas bancarias en EE. UU. con criptomonedas. Modularicé la aplicación de Flutter para escalabilidad y testabilidad.',
+      'exp1Title' => 'Senior Flutter Engineer — SportsVisio',
+      'exp1Range' => 'Enero 2022 — Febrero 2025 · Remoto (EE. UU.)',
       'exp1Desc' =>
-        'Entregué SV Manager con carga de fondo TUS para subidas de archivos (−30% tiempo de subida). Implementé la sincronización de reproducción dual para 1200+ usuarios al mes. Líder de la reescritura de Bloc (−35% tamaño del código). Implementé la detección de rostros con algoritmos de Kalman/Hungarian para la grabación de ángulo único.',
-      'exp2Title' => 'Lider de equipo, Ingeniero Flutter Senior — VisionBox',
-      'exp2Range' => 'Jan 2024 — Jun 2024 · Remoto (Canadá)',
+        'Lidericé un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.',
+      'exp2Title' => 'Lider técnico, Senior Flutter Engineer — VisionBox',
+      'exp2Range' => 'Enero 2024 — Junio 2024 · Remoto (Canadá)',
       'exp2Desc' =>
-        'Led a team of four; implemented Health Connect/HealthKit for AI insights. Implemented KYC with Google ML Kit; Face verification pipeline; Subscriptions via RevenueCat.',
-      'exp3Title' => 'Ingeniero de software (prácticas) — CourtAvenue',
-      'exp3Range' => 'Jul 2023 — Sep 2023 · Remoto (EE.UU.)',
+        'Lidericé a un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.',
+      'exp3Title' => 'Ingeniero de Software (Freelance) — CourtAvenue',
+      'exp3Range' => 'Julio 2023 — Septiembre 2023 · Remoto (EE. UU.)',
       'exp3Desc' =>
-        'Build Genjo (wrapper de ChatGPT para web) con Express/React; entregado ApiConnect en Flutter; herramientas internas para repositorios múltiples; lector de pasaportes/visas AI-driven.',
+        'Diseñé y desarrollé Genjo (contenedor de ChatGPT de web) con Express/React; entregué ApiConnect en Flutter; herramientas internas para repositorios multi-paquete; lector de pasaportes y visas AI.',
       'exp4Title' => 'Ingeniero Flutter — Creative Advanced Technologies',
-      'exp4Range' => 'Sep 2021 — Mar 2022 · Remoto (Emiratos Árabes Unidos)',
+      'exp4Range' => 'Septiembre 2021 — Marzo 2022 · Remoto (Emiratos Árabes Unidos)',
       'exp4Desc' =>
-        'Lanzé aplicaciones de pedido y seguimiento de envíos de alimentos (50K+ descargas, 4.5★). Integración de Google Maps y coordinación de backend.',
+        'Lanzamos aplicaciones de pedidos de comida y seguimiento de entregas (50K+ descargas, 4.5★). Integración de Google Maps y coordinación de backend.',
       'exp5Title' => 'Ingeniero Flutter — It-TechGroup',
-      'exp5Range' => 'Jan 2021 — Nov 2021 · Remoto (Argentina)',
+      'exp5Range' => 'Enero 2021 — Noviembre 2021 · Remoto (AR)',
       'exp5Desc' =>
-        'Build a Flutter plugin to integrate MercadoPago Checkout SDK for Android/iOS (Java/Swift). Set up CI/CD for automated builds and tests.',
+        'Diseñé y desarrollé un plugin de Flutter para integrar MercadoPago Checkout SDK para Android/iOS (Java/Swift). Configuricé CI/CD para construcciones y pruebas automáticas.',
       _ => null,
     };
   }

@@ -157,6 +157,54 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get contactOnlineBody =>
       'Reach out directly — always happy to chat about Flutter, interesting projects, or new opportunities.';
 
+  /// en: 'Send a message'
+  String get contactFormTitle => 'Send a message';
+
+  /// en: 'Fill out the form and I'll get back to you within a day or two.'
+  String get contactFormDesc => 'Fill out the form and I\'ll get back to you within a day or two.';
+
+  /// en: 'Name'
+  String get formName => 'Name';
+
+  /// en: 'Your name'
+  String get formNameHint => 'Your name';
+
+  /// en: 'Email'
+  String get formEmail => 'Email';
+
+  /// en: 'your@email.com'
+  String get formEmailHint => 'your@email.com';
+
+  /// en: 'Subject'
+  String get formSubject => 'Subject';
+
+  /// en: 'What's this about?'
+  String get formSubjectHint => 'What\'s this about?';
+
+  /// en: 'Message'
+  String get formMessage => 'Message';
+
+  /// en: 'Tell me about your project, idea, or just say hi…'
+  String get formMessageHint => 'Tell me about your project, idea, or just say hi…';
+
+  /// en: 'Send Message'
+  String get formSend => 'Send Message';
+
+  /// en: 'Sending…'
+  String get formSending => 'Sending…';
+
+  /// en: 'Message sent — I'll get back to you shortly.'
+  String get formSuccess => 'Message sent — I\'ll get back to you shortly.';
+
+  /// en: 'Something went wrong. Please try again.'
+  String get formErrorGeneric => 'Something went wrong. Please try again.';
+
+  /// en: 'Please fill in all fields.'
+  String get formErrorRequired => 'Please fill in all fields.';
+
+  /// en: 'Please enter a valid email address.'
+  String get formErrorEmail => 'Please enter a valid email address.';
+
   /// en: '© {year: int} Tomás Sasovsky · Built with '
   String footerCopyright({required int year}) => '© ${year} Tomás Sasovsky · Built with ';
 
@@ -495,6 +543,22 @@ extension on AppLocalizations {
       'contactOnlineTitle' => 'Find me online',
       'contactOnlineBody' =>
         'Reach out directly — always happy to chat about Flutter, interesting projects, or new opportunities.',
+      'contactFormTitle' => 'Send a message',
+      'contactFormDesc' => 'Fill out the form and I\'ll get back to you within a day or two.',
+      'formName' => 'Name',
+      'formNameHint' => 'Your name',
+      'formEmail' => 'Email',
+      'formEmailHint' => 'your@email.com',
+      'formSubject' => 'Subject',
+      'formSubjectHint' => 'What\'s this about?',
+      'formMessage' => 'Message',
+      'formMessageHint' => 'Tell me about your project, idea, or just say hi…',
+      'formSend' => 'Send Message',
+      'formSending' => 'Sending…',
+      'formSuccess' => 'Message sent — I\'ll get back to you shortly.',
+      'formErrorGeneric' => 'Something went wrong. Please try again.',
+      'formErrorRequired' => 'Please fill in all fields.',
+      'formErrorEmail' => 'Please enter a valid email address.',
       'footerCopyright' => ({required int year}) => '© ${year} Tomás Sasovsky · Built with ',
       'langSwitchEnglish' => 'EN',
       'langSwitchSpanish' => 'ES',

@@ -94,6 +94,10 @@ class _Hero extends StatelessComponent {
           .text(' ${siteName.split(' ').last}'),
         ]),
         p(classes: 'hero__tagline', [.text(tagline)]),
+        div(classes: 'hero__stack', [
+          for (final tech in const ['Flutter', 'Dart', 'TypeScript', 'Node.js', 'GCP'])
+            span(classes: 'stack-tag', [.text(tech)]),
+        ]),
         p(classes: 'hero__location', [.text('📍  $location')]),
         div(classes: 'hero__actions', [
           a(href: contactHref, classes: 'btn btn-primary', [.text(primaryCta)]),
@@ -131,6 +135,12 @@ class _AboutSection extends StatelessComponent {
         p(classes: 'section-subtitle', [
           .text(sectionAboutSubtitle),
         ]),
+      ]),
+      div(classes: 'about-stats', [
+        _Stat(value: '5+', label: 'Years experience'),
+        _Stat(value: '14+', label: 'Projects shipped'),
+        _Stat(value: '3', label: 'Continents served'),
+        _Stat(value: '∞', label: 'Bugs squashed'),
       ]),
       div(classes: 'about-text', [
         for (final paragraph in paragraphs) p([.text(paragraph)]),
@@ -235,6 +245,21 @@ class _TestimonialsSection extends StatelessComponent {
       div(classes: 'testimonials-grid', [
         for (final t in testimonials) _TestimonialCard(t: t),
       ]),
+    ]);
+  }
+}
+
+class _Stat extends StatelessComponent {
+  const _Stat({required this.value, required this.label});
+
+  final String value;
+  final String label;
+
+  @override
+  Component build(BuildContext context) {
+    return div(classes: 'about-stat', [
+      span(classes: 'about-stat__value', [.text(value)]),
+      span(classes: 'about-stat__label', [.text(label)]),
     ]);
   }
 }

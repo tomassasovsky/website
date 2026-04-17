@@ -6,6 +6,7 @@ import 'package:jaspr/server.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_riverpod/legacy.dart';
 
+import 'api/contact_api.dart';
 import 'app.dart';
 import 'main.server.options.dart';
 import 'middleware/serve_generated_client_js.dart';
@@ -15,6 +16,7 @@ void main() {
   // Serves `/packages/...` and `/main.client*.js` from pub-cache / build output when
   // using `dart run lib/main.server.dart`. Always register (even if `JASPR_PROXY_PORT`
   // is set) so a stray env var does not skip this and break MIME types for DDC.
+  ServerApp.addMiddleware(contactApiMiddleware);
   ServerApp.addMiddleware(serveLocalDevWebAssets);
 
   Jaspr.initializeApp(options: defaultServerOptions);
