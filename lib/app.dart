@@ -46,6 +46,10 @@ class App extends StatelessComponent {
               Document.html(attributes: {'lang': locale.languageCode}),
               Document.head(
                 children: [
+                  // Favicon
+                  link(rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'),
+                  // Disable link previews on WhatsApp, Telegram, etc.
+                  meta(name: 'robots', content: 'noai, noimageai'),
                   script(src: '/scroll-avatar.js', defer: true),
                   // Plausible analytics
                   script(
