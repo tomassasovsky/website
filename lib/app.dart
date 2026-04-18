@@ -46,11 +46,22 @@ class App extends StatelessComponent {
               Document.html(attributes: {'lang': locale.languageCode}),
               Document.head(
                 children: [
+                  // Inline script: apply stored theme immediately to prevent flash
+                  script(
+                    content:
+                        "(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();",
+                  ),
                   // Favicon
                   link(rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'),
                   // Disable link previews on WhatsApp, Telegram, etc.
                   meta(name: 'robots', content: 'noai, noimageai'),
+                  // Lottie player (defer so it runs in order before theme.js)
+                  script(
+                    src: 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js',
+                    defer: true,
+                  ),
                   script(src: '/scroll-avatar.js', defer: true),
+                  script(src: '/theme.js', defer: true),
                   // Plausible analytics
                   script(
                     src: 'https://stats.aquiles.dev/js/pa-72E8qMm_ZzdUZJw4uBtzt.js',

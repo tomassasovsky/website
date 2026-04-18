@@ -66,6 +66,15 @@ class NavBar extends StatelessComponent {
               ]),
           ]),
           div(classes: 'navbar__right', [
+            button(
+              classes: 'theme-toggle',
+              attributes: const {
+                'onclick': 'window.toggleTheme(this)',
+                'title': 'Toggle theme',
+                'type': 'button',
+              },
+              [div(id: 'theme-lottie', classes: 'theme-lottie', [])],
+            ),
             div(
               classes: 'navbar__lang',
               attributes: {'title': s.langSwitchLabel},
