@@ -1,8 +1,8 @@
-(function () {
-  var HERO_KEY   = 'nav_hero_visible';   // hero was in view (not docked) when we left
+(() => {
+  var HERO_KEY = 'nav_hero_visible';   // hero was in view (not docked) when we left
   var AVATAR_KEY = 'nav_avatar_visible'; // avatar was docked when we left
-  var observer   = null;
-  var debounce   = null;
+  var observer = null;
+  var debounce = null;
   var heroVisible = false;
 
   // ── Persist state before any navigation ───────────────────────────────────
@@ -15,7 +15,7 @@
       sessionStorage.removeItem(HERO_KEY);
     }
 
-    var av  = document.querySelector('.navbar__avatar');
+    var av = document.querySelector('.navbar__avatar');
     var avW = av ? (parseFloat(getComputedStyle(av).width) || 0) : 0;
     if (avW > 0) {
       sessionStorage.setItem(AVATAR_KEY, '1');
@@ -24,7 +24,7 @@
     }
   }
 
-  document.addEventListener('click', function (e) {
+  document.addEventListener('click', (e) => {
     if (e.target.closest('a[href]')) saveState();
   }, true);
   window.addEventListener('pagehide', saveState);
@@ -32,19 +32,19 @@
   // ── Core sync ─────────────────────────────────────────────────────────────
 
   function syncNow() {
-    var nav  = document.querySelector('.navbar');
+    var nav = document.querySelector('.navbar');
     if (!nav) return;
     var hero = document.getElementById('hero-avatar');
 
     if (observer) { observer.disconnect(); observer = null; }
 
     if (hero) {
-      var av              = nav.querySelector('.navbar__avatar');
-      var avatarWasDocked = sessionStorage.getItem(AVATAR_KEY) === '1';
+      const av = nav.querySelector('.navbar__avatar');
+      const avatarWasDocked = sessionStorage.getItem(AVATAR_KEY) === '1';
       sessionStorage.removeItem(AVATAR_KEY);
       sessionStorage.removeItem(HERO_KEY); // stale once we're on home
 
-      var r = hero.getBoundingClientRect();
+      const r = hero.getBoundingClientRect();
       heroVisible = r.bottom > 0;
       nav.classList.toggle('navbar--scrolled', r.bottom <= 0);
 
@@ -54,8 +54,8 @@
         if (av) av.style.cssText = '';
       }
 
-      observer = new IntersectionObserver(function (entries) {
-        var e = entries[0];
+      observer = new IntersectionObserver((entries) => {
+        const e = entries[0];
         heroVisible = e.isIntersecting;
         nav.classList.toggle('navbar--scrolled', !e.isIntersecting);
       }, { threshold: 0 });
@@ -84,15 +84,15 @@
   function slideIn(nav) {
     var av = nav.querySelector('.navbar__avatar');
     if (!av) return;
-    av.style.transition  = 'none';
-    av.style.width       = '0px';
-    av.style.opacity     = '0';
+    av.style.transition = 'none';
+    av.style.width = '0px';
+    av.style.opacity = '0';
     av.style.marginRight = '0px';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        av.style.transition  = '';
-        av.style.width       = '';
-        av.style.opacity     = '';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        av.style.transition = '';
+        av.style.width = '';
+        av.style.opacity = '';
         av.style.marginRight = '';
         // .navbar--scrolled .navbar__avatar rules take over → CSS transition fires.
       });
@@ -112,15 +112,15 @@
 
     // Full-reload case: avatar starts at 0. Force to visible, then release so
     // the CSS transition fires from 26 px → 0.
-    av.style.transition  = 'none';
-    av.style.width       = '26px';
-    av.style.opacity     = '1';
+    av.style.transition = 'none';
+    av.style.width = '26px';
+    av.style.opacity = '1';
     av.style.marginRight = '0.5rem';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        av.style.transition  = '';
-        av.style.width       = '';
-        av.style.opacity     = '';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        av.style.transition = '';
+        av.style.width = '';
+        av.style.opacity = '';
         av.style.marginRight = '';
       });
     });
@@ -133,8 +133,8 @@
     debounce = setTimeout(syncNow, 20);
   }
 
-  window.addEventListener('scroll', function () {
-    var hero = document.getElementById('hero-avatar');
+  window.addEventListener('scroll', () => {
+    const hero = document.getElementById('hero-avatar');
     if (hero) heroVisible = hero.getBoundingClientRect().bottom > 0;
   }, { passive: true });
 

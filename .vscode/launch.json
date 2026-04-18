@@ -2,10 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "./node_modules/.bin/astro dev",
-      "name": "Development server",
+      "type": "dart",
       "request": "launch",
-      "type": "node-terminal"
+      "name": "Launch Jaspr App",
+      "program": "lib/main.server.dart"
     }
   ]
 }

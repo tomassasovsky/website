@@ -7,7 +7,7 @@ import 'link_kind.dart';
 final List<ProjectShell> projectShells = [
   (
     tech: ['Flutter', 'Dart', 'Node.js', 'Bun'],
-    image: '/assets/images/eldorado-preview.jpg',
+  image: '/assets/images/eldorado-preview.jpeg',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: false,
@@ -18,7 +18,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: '/assets/images/sportsvisio-preview.png',
+    image: '/assets/images/sportsvisio-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: false,
@@ -29,7 +29,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: '/assets/images/sportsvisio-preview.png',
+    image: '/assets/images/sportsvisio-manager-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: false,
@@ -39,7 +39,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Android', 'Kotlin', 'YOLO'],
-    image: null,
+    image: '/assets/images/sportsvisio-track-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: true,
@@ -47,7 +47,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: '/assets/images/api-connect-preview.png',
+    image: '/assets/images/apiconnect-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: false,
@@ -58,7 +58,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: null,
+    image: '/assets/images/taza-express-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: false,
@@ -69,8 +69,8 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['React Native', 'TypeScript', 'Expo'],
-    image: null,
-    imageFit: 'cover',
+    image: '/assets/images/genjo-portfolio-cover.png',
+    imageFit: 'fill',
     categories: ['apps'],
     unreleased: false,
     links: [
@@ -79,7 +79,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: '/assets/images/genomii-preview.png',
+    image: '/assets/images/genomii-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: true,
@@ -89,8 +89,8 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: '/assets/images/go-router-guards-logo.png',
-    imageFit: 'contain',
+    image: '/assets/images/guards-portfolio-cover.png',
+    imageFit: 'cover',
     categories: ['oss'],
     unreleased: false,
     links: [
@@ -100,7 +100,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Dart'],
-    image: '/assets/images/radio-horizon-logo.png',
+    image: '/assets/images/radio-horizon-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['oss'],
     unreleased: false,
@@ -111,7 +111,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: null,
+    image: '/assets/images/ncnn-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['oss'],
     unreleased: false,
@@ -121,7 +121,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Flutter', 'Dart'],
-    image: null,
+    image: '/assets/images/pytorch-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['oss'],
     unreleased: false,
@@ -131,7 +131,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Dart'],
-    image: null,
+    image: '/assets/images/version-upgrader-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['oss'],
     unreleased: false,
@@ -141,7 +141,7 @@ final List<ProjectShell> projectShells = [
   ),
   (
     tech: ['Dart'],
-    image: null,
+    image: '/assets/images/tus-client-portfolio-cover.png',
     imageFit: 'cover',
     categories: ['oss'],
     unreleased: false,

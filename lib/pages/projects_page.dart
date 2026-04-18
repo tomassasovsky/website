@@ -41,6 +41,7 @@ class ProjectsClientSection extends StatelessComponent {
     final projects = loadProjects(locale.buildSync());
     final raw = context.watch(projectsFilterProvider);
     final activeFilter = (raw == _kApps || raw == _kOss) ? raw : _kAll;
+    final selectedProject = context.watch(selectedProjectProvider);
 
     final filters = <({String key, String label})>[
       (key: _kAll, label: s.filterAll),
@@ -51,6 +52,10 @@ class ProjectsClientSection extends StatelessComponent {
     final filtered = activeFilter == _kAll
         ? projects
         : projects.where((proj) => proj.categories.contains(activeFilter)).toList();
+
+    void closeModal() {
+      context.read(selectedProjectProvider.notifier).state = null;
+    }
 
     return div(classes: 'page', [
       div(classes: 'container', [
@@ -74,55 +79,156 @@ class ProjectsClientSection extends StatelessComponent {
               ),
           ]),
           div(classes: 'projects-grid', [
-            for (final project in filtered) _ProjectCard(project: project, strings: s),
+            for (final project in filtered)
+              _ProjectCard(
+                project: project,
+                strings: s,
+                onTap: () {
+                  context.read(selectedProjectProvider.notifier).state = project;
+                },
+              ),
           ]),
         ]),
       ]),
+      if (selectedProject != null)
+        _ProjectModal(
+          project: selectedProject,
+          strings: s,
+          onClose: closeModal,
+        ),
     ]);
   }
 }
 
 class _ProjectCard extends StatelessComponent {
-  const _ProjectCard({required this.project, required this.strings});
+  const _ProjectCard({
+    required this.project,
+    required this.strings,
+    required this.onTap,
+  });
 
   final Project project;
   final AppLocalizations strings;
+  final VoidCallback onTap;
 
   @override
   Component build(BuildContext context) {
     final s = strings;
-    return div(classes: 'project-card', [
-      if (project.image != null)
-        img(
-          src: project.image!,
-          alt: project.title,
-          classes: 'project-card__img${project.imageFit == 'contain' ? ' project-card__img--contain' : ''}',
-        )
-      else
-        div(classes: 'project-card__placeholder', [
-          span(classes: 'project-card__placeholder-text', [.text('{ }')]),
-        ]),
-      div(classes: 'project-card__body', [
-        div(classes: 'project-card__header', [
-          h3(classes: 'project-card__title', [.text(project.title)]),
-          if (project.unreleased) span(classes: 'project-card__badge', [.text(s.projectUnreleased)]),
-        ]),
-        p(classes: 'project-card__desc', [.text(project.description)]),
-        if (project.tech.isNotEmpty)
-          div(classes: 'project-card__tech', [
-            for (final tech in project.tech) span(classes: 'tech-badge', [.text(tech)]),
+    return div(
+      classes: 'project-card project-card--clickable',
+      events: events(onClick: onTap),
+      [
+        if (project.image != null)
+          img(
+            src: project.image!,
+            alt: project.title,
+            classes:
+                'project-card__img${switch (project.imageFit) {
+                  'contain' => ' project-card__img--contain',
+                  'fill' => ' project-card__img--fill',
+                  'scale-down' => ' project-card__img--scale-down',
+                  _ => '',
+                }}',
+          )
+        else
+          div(classes: 'project-card__placeholder', [
+            span(classes: 'project-card__placeholder-text', [.text('{ }')]),
           ]),
-        if (project.links.isNotEmpty)
-          div(classes: 'project-card__links', [
-            for (final link in project.links)
-              a(
-                href: link.href,
-                classes: 'project-link',
-                attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
-                [.text(link.label)],
-              ),
+        div(classes: 'project-card__body', [
+          div(classes: 'project-card__header', [
+            h3(classes: 'project-card__title', [.text(project.title)]),
+            if (project.unreleased) span(classes: 'project-card__badge', [.text(s.projectUnreleased)]),
           ]),
-      ]),
-    ]);
+          p(classes: 'project-card__desc', [.text(project.description)]),
+          if (project.tech.isNotEmpty)
+            div(classes: 'project-card__tech', [
+              for (final tech in project.tech) span(classes: 'tech-badge', [.text(tech)]),
+            ]),
+          if (project.links.isNotEmpty)
+            div(classes: 'project-card__links', [
+              for (final link in project.links)
+                a(
+                  href: link.href,
+                  classes: 'project-link',
+                  attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
+                  [.text(link.label)],
+                ),
+            ]),
+        ]),
+      ],
+    );
+  }
+}
+
+class _ProjectModal extends StatelessComponent {
+  const _ProjectModal({
+    required this.project,
+    required this.strings,
+    required this.onClose,
+  });
+
+  final Project project;
+  final AppLocalizations strings;
+  final VoidCallback onClose;
+
+  @override
+  Component build(BuildContext context) {
+    final s = strings;
+    return div(
+      classes: 'project-modal-backdrop',
+      events: events(onClick: onClose),
+      [
+        div(
+          classes: 'project-modal',
+          events: {
+            'click': (e) => e.stopPropagation(),
+          },
+          [
+            button(
+              classes: 'project-modal__close',
+              onClick: onClose,
+              [.text('×')],
+            ),
+            if (project.image != null)
+              img(
+                src: project.image!,
+                alt: project.title,
+                classes:
+                    'project-modal__img${switch (project.imageFit) {
+                      'contain' => ' project-card__img--contain',
+                      'fill' => ' project-card__img--fill',
+                      'scale-down' => ' project-card__img--scale-down',
+                      _ => '',
+                    }}',
+              )
+            else
+              div(classes: 'project-modal__placeholder', [
+                span(classes: 'project-card__placeholder-text', [.text('{ }')]),
+              ]),
+            div(classes: 'project-modal__body', [
+              div(classes: 'project-card__header', [
+                h2(classes: 'project-modal__title', [.text(project.title)]),
+                if (project.unreleased) span(classes: 'project-card__badge', [.text(s.projectUnreleased)]),
+              ]),
+              p(classes: 'project-modal__desc', [.text(project.description)]),
+              if (project.tech.isNotEmpty)
+                div(classes: 'project-card__tech', [
+                  for (final tech in project.tech) span(classes: 'tech-badge', [.text(tech)]),
+                ]),
+              if (project.links.isNotEmpty)
+                div(classes: 'project-card__links', [
+                  for (final link in project.links)
+                    a(
+                      href: link.href,
+                      classes: 'project-link project-link--lg',
+                      attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
+                      [.text(link.label)],
+                    ),
+                ]),
+            ]),
+          ],
+        ),
+      ],
+    );
   }
 }
