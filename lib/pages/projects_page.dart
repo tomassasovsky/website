@@ -1,6 +1,8 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
+import 'package:universal_web/js_interop.dart';
+import 'package:universal_web/web.dart' as web;
 
 import '../data/portfolio_content.dart';
 import '../l10n/generated/strings.g.dart';
@@ -160,7 +162,7 @@ class _ProjectCard extends StatelessComponent {
   }
 }
 
-class _ProjectModal extends StatelessComponent {
+class _ProjectModal extends StatefulComponent {
   const _ProjectModal({
     required this.project,
     required this.strings,
@@ -172,8 +174,34 @@ class _ProjectModal extends StatelessComponent {
   final VoidCallback onClose;
 
   @override
+  State<_ProjectModal> createState() => _ProjectModalState();
+}
+
+class _ProjectModalState extends State<_ProjectModal> {
+  late final web.EventListener _keyHandler;
+
+  @override
+  void initState() {
+    super.initState();
+    _keyHandler = (web.Event e) {
+      if ((e as web.KeyboardEvent).key == 'Escape') {
+        component.onClose();
+      }
+    }.toJS;
+    web.document.addEventListener('keydown', _keyHandler);
+  }
+
+  @override
+  void dispose() {
+    web.document.removeEventListener('keydown', _keyHandler);
+    super.dispose();
+  }
+
+  @override
   Component build(BuildContext context) {
-    final s = strings;
+    final s = component.strings;
+    final project = component.project;
+    final onClose = component.onClose;
     return div(
       classes: 'project-modal-backdrop',
       events: events(onClick: onClose),
