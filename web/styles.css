@@ -20,7 +20,7 @@
   --pink:            #f472b6;
   --text:            #f0f0f8;
   --text-2:          #b8b8d0;
-  --text-muted:      #5a5a78;
+  --text-muted:      #8080a0;
   --orange:          #fb923c;
   --orange-faint:    rgba(251, 146, 60, 0.10);
   --orange-ring:     rgba(251, 146, 60, 0.25);
@@ -394,6 +394,7 @@ button { font-family: inherit; cursor: pointer; }
   justify-items: center;
   align-items: stretch;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .tcard-item {
