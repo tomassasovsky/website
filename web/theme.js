@@ -45,7 +45,7 @@
     }
 
     // ── Public toggle ─────────────────────────────────────────────────────────
-    window.toggleTheme = function (btn) {
+    window.toggleTheme = (btn) => {
         if (isAnimating) return;
 
         const current = document.documentElement.getAttribute('data-theme') || 'dark';
@@ -68,18 +68,26 @@
         // ── View Transitions API (Chrome 111+, Safari 18+) ──────────────────────
         if (document.startViewTransition) {
             isAnimating = true;
-            // No transition suppression needed — the VT API holds a frozen snapshot
+
+            // Inject a @keyframes rule with the actual pixel coordinates baked in.
+            // CSS custom properties are not inherited by ::view-transition pseudo-
+            // elements (they live outside the DOM), so we must write the values
+            // directly into the keyframe. The rule is applied before the transition
+            // starts, so clip-path is circle(0px) on the very first rendered frame.
+            const kfStyle = document.createElement('style');
+            kfStyle.id = '__vt-kf';
+            kfStyle.textContent = `@keyframes vt-circle-reveal {
+  from { clip-path: circle(0px at ${x}px ${y}px); }
+  to   { clip-path: circle(200vmax at ${x}px ${y}px); }
+}`;
+            document.head.appendChild(kfStyle);
+
             const transition = document.startViewTransition(() => applyTheme(next, false));
 
-            transition.ready.then(() => {
-                // Clip the INCOMING (new-theme) snapshot from a tiny circle to full screen
-                document.documentElement.animate(
-                    { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(200vmax at ${x}px ${y}px)`] },
-                    { duration: 550, easing: 'cubic-bezier(0.4,0,0.2,1)', pseudoElement: '::view-transition-new(root)' }
-                );
+            transition.finished.then(() => {
+                kfStyle.remove();
+                isAnimating = false;
             });
-
-            transition.finished.then(() => { isAnimating = false; });
             return;
         }
 

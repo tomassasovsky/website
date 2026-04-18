@@ -1,7 +1,23 @@
 /* ── View Transitions (theme switch circle-reveal) ─────────── */
-/* Keep the old snapshot static; the new one is animated by JS  */
-::view-transition-old(root) { animation: none; }
-::view-transition-new(root) { animation: none; }
+/* Old snapshot is hidden instantly; new snapshot is revealed by  */
+/* a CSS-driven circle expanding from the button origin.          */
+/* --vt-x / --vt-y are set on <html> by JS before the transition */
+/* starts, so the keyframe is applied on the very first frame.    */
+/* Old snapshot stays put; new snapshot is revealed by a circle    */
+/* whose @keyframes are injected dynamically by theme.js with the  */
+/* exact button coordinates baked in (CSS vars don't inherit into   */
+/* ::view-transition pseudo-elements which are outside the DOM).   */
+::view-transition-old(root) {
+  animation: none;
+}
+::view-transition-new(root) {
+  animation: vt-circle-reveal 550ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+/* fallback @keyframes – overridden by the JS-injected rule */
+@keyframes vt-circle-reveal {
+  from { clip-path: circle(0px   at 50% 50%); }
+  to   { clip-path: circle(200vmax at 50% 50%); }
+}
 
 /* ── Reset ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
