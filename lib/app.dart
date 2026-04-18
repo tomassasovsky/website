@@ -44,7 +44,20 @@ class App extends StatelessComponent {
             final strings = locale.buildSync();
             return .fragment([
               Document.html(attributes: {'lang': locale.languageCode}),
-              Document.head(children: [script(src: '/scroll-avatar.js', defer: true)]),
+              Document.head(
+                children: [
+                  script(src: '/scroll-avatar.js', defer: true),
+                  // Plausible analytics
+                  script(
+                    src: 'https://stats.aquiles.dev/js/pa-72E8qMm_ZzdUZJw4uBtzt.js',
+                    async: true,
+                  ),
+                  script(
+                    content:
+                        'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()',
+                  ),
+                ],
+              ),
               LocaleScope(
                 locale: locale,
                 strings: strings,
