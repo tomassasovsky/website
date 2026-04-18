@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4323:8080"
+      - "4321:8080"
     environment:
       - CONTACT_EMAIL=${CONTACT_EMAIL}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
