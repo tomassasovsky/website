@@ -120,7 +120,7 @@ button { font-family: inherit; cursor: pointer; }
   height: 58px;
 }
 .navbar__links { justify-self: center; }
-.navbar__lang  { justify-self: end; }
+.navbar__right { justify-self: end; display: flex; align-items: center; }
 .navbar__brand {
   display: flex; align-items: center;
   font-size: 0.9375rem; font-weight: 800; letter-spacing: -0.025em;
@@ -162,6 +162,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 .navbar__lang-link:hover { color: var(--text); background: var(--surface-hover); }
 .navbar__lang-link.active { color: var(--accent); }
+
+/* ── Navbar hamburger (mobile only) ───────────────────────── */
+.nav-toggle { display: none; }       /* functional checkbox — always visually hidden */
+.navbar__hamburger { display: none; } /* shown only on mobile */
+.navbar__mobile-menu { display: none; }
 
 /* ── Buttons ───────────────────────────────────────────────── */
 .btn {
@@ -770,7 +775,75 @@ button { font-family: inherit; cursor: pointer; }
   .hero__image { width: 170px; height: 170px; }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Last card alone on its row → span both columns, no empty slot */
+  .services-grid .service-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .projects-grid .project-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
+
+/* Testimonials: card can't be wider than the viewport */
+@media (max-width: 720px) {
+  .tcard-item { width: min(640px, calc(100vw - 2.5rem)); }
+  .tcard-item--prev { transform: translateX(-120%) scale(0.68); }
+  .tcard-item--next { transform: translateX(120%)  scale(0.68); }
+}
+
+/* Hamburger menu */
+@media (max-width: 640px) {
+  /* Switch to 2-col grid: brand | right */
+  .navbar__inner { grid-template-columns: 1fr auto; }
+  .navbar__links { display: none; }
+  .navbar__right .navbar__lang { display: none; }
+
+  /* Hamburger button */
+  .navbar__hamburger {
+    display: flex; flex-direction: column; justify-content: space-between;
+    width: 36px; height: 36px; padding: 10px 8px;
+    cursor: pointer; border-radius: var(--r-sm);
+    transition: background var(--t);
+  }
+  .navbar__hamburger:hover { background: var(--surface-hover); }
+  .navbar__bar {
+    display: block; width: 100%; height: 2px;
+    background: var(--text-2); border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* Bars → X when checked */
+  .nav-toggle:checked ~ .navbar__inner .navbar__hamburger .navbar__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle:checked ~ .navbar__inner .navbar__hamburger .navbar__bar:nth-child(2) {
+    opacity: 0; transform: scaleX(0);
+  }
+  .nav-toggle:checked ~ .navbar__inner .navbar__hamburger .navbar__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile dropdown */
+  .nav-toggle:checked ~ .navbar__mobile-menu { display: flex; }
+  .navbar__mobile-menu {
+    position: absolute; top: 58px; left: 0; right: 0; z-index: 99;
+    flex-direction: column;
+    background: rgba(8,8,16,0.96);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 1.25rem 1rem;
+  }
+  .navbar__mobile-link {
+    display: block; padding: 0.75rem 0;
+    color: var(--text-2); font-size: 0.9375rem; font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--t);
+  }
+  .navbar__mobile-link:last-of-type { border-bottom: none; }
+  .navbar__mobile-link:hover { color: var(--text); }
+  .navbar__mobile-link.active { color: var(--accent); }
+  .navbar__mobile-lang {
+    display: flex; align-items: center; gap: 0.25rem;
+    padding-top: 0.75rem; font-size: 0.75rem;
+  }
+}
+
 @media (max-width: 600px) {
   .container { padding: 0 1.25rem; }
   .section   { padding: 3.5rem 0; }
@@ -780,6 +853,10 @@ button { font-family: inherit; cursor: pointer; }
   .form-row  { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: repeat(2, 1fr); }
   .hero__name { font-size: 2.75rem; }
-  .navbar__link { padding: 0.25rem 0.55rem; font-size: 0.78rem; }
-  .navbar__lang { display: none; }
+  /* Stack contact sidebar to a single column */
+  .contact-sidebar { flex-direction: column; }
+  .contact-sidebar .contact-card { flex: none; min-width: 0; }
+  /* Reduce card padding on mobile */
+  .contact-card { padding: 1.25rem; border-radius: var(--r-lg); }
+  .contact-card--form { padding: 1.25rem; }
 }

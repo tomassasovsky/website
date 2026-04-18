@@ -25,8 +25,26 @@ class NavBar extends StatelessComponent {
 
     final onHome = _pathMatches(path, AppPaths.home(locale));
 
+    final langLinks = <Component>[
+      _LangLink(
+        label: s.langSwitchEnglish,
+        targetLocale: AppLocale.en,
+        currentLocale: locale,
+        location: RouteState.of(context).location,
+      ),
+      .text(' · '),
+      _LangLink(
+        label: s.langSwitchSpanish,
+        targetLocale: AppLocale.es,
+        currentLocale: locale,
+        location: RouteState.of(context).location,
+      ),
+    ];
+
     return nav(classes: 'navbar${onHome ? '' : ' navbar--scrolled'}', [
       div(classes: 'container', [
+        // Hidden checkbox — CSS-only mobile menu toggle
+        input(type: InputType.checkbox, id: 'nav-toggle', classes: 'nav-toggle'),
         div(classes: 'navbar__inner', [
           Link(
             to: AppPaths.home(locale),
@@ -47,24 +65,36 @@ class NavBar extends StatelessComponent {
                 ),
               ]),
           ]),
+          div(classes: 'navbar__right', [
+            div(
+              classes: 'navbar__lang',
+              attributes: {'title': s.langSwitchLabel},
+              langLinks,
+            ),
+            label(
+              htmlFor: 'nav-toggle',
+              classes: 'navbar__hamburger',
+              attributes: const {'aria-label': 'Toggle menu'},
+              [
+                span(classes: 'navbar__bar', []),
+                span(classes: 'navbar__bar', []),
+                span(classes: 'navbar__bar', []),
+              ],
+            ),
+          ]),
+        ]),
+        // Mobile dropdown (shown when checkbox is checked)
+        div(classes: 'navbar__mobile-menu', [
+          for (final item in links)
+            Link(
+              to: item.href,
+              classes: 'navbar__mobile-link${_pathMatches(path, item.href) ? ' active' : ''}',
+              children: [.text(item.label)],
+            ),
           div(
-            classes: 'navbar__lang',
+            classes: 'navbar__mobile-lang',
             attributes: {'title': s.langSwitchLabel},
-            [
-              _LangLink(
-                label: s.langSwitchEnglish,
-                targetLocale: AppLocale.en,
-                currentLocale: locale,
-                location: RouteState.of(context).location,
-              ),
-              .text(' · '),
-              _LangLink(
-                label: s.langSwitchSpanish,
-                targetLocale: AppLocale.es,
-                currentLocale: locale,
-                location: RouteState.of(context).location,
-              ),
-            ],
+            langLinks,
           ),
         ]),
       ]),
