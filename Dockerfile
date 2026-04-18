@@ -1,40 +1,37 @@
-FROM node:20-bookworm-slim AS build
+# ─────────────────────────────────────────────────────────────────────────────
+# Stage 1 – build
+# ─────────────────────────────────────────────────────────────────────────────
+FROM dart:stable AS build
 WORKDIR /app
 
-# Install dependencies
-COPY package*.json ./
-RUN npm ci --no-fund
+# Cache pub dependencies before copying source
+COPY pubspec.* ./
+RUN dart pub get
 
-# Build the site
+# Copy source, then compile Dart → JS (dart2js, release mode) for client hydration
 COPY . .
-RUN npm run build
+RUN dart run build_runner build --release --delete-conflicting-outputs
 
-# --- Runtime image: Node.js server ---
-FROM node:20-bookworm-slim AS runtime
+# Compile the server to a native AOT binary (no Dart SDK needed at runtime)
+RUN dart compile exe lib/main.server.dart -o bin/server
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Stage 2 – runtime (minimal Debian image, no Dart SDK required)
+# ─────────────────────────────────────────────────────────────────────────────
+FROM debian:bookworm-slim AS runtime
 WORKDIR /app
 
-# Copy package files and install production dependencies only
-COPY package*.json ./
-RUN npm ci --only=production --no-fund
+# AOT server binary
+COPY --from=build /app/bin/server ./server
 
-# Copy built application
-COPY --from=build /app/dist ./dist
+# Static web assets (CSS, images, favicon, scroll-avatar.js)
+COPY --from=build /app/web ./web
 
-# Copy healthcheck and startup scripts
-COPY healthcheck.js ./
-COPY start-server.js ./
+# Compiled client-side JS – Jaspr's middleware reads from this path at runtime
+COPY --from=build /app/.dart_tool/build/generated/website/web/ \
+                  ./.dart_tool/build/generated/website/web/
 
-# Expose port (Astro defaults to 4321, but can be overridden)
-# Set HOST to 0.0.0.0 to listen on all interfaces (required for Docker)
-ENV PORT=4321
-ENV HOST=0.0.0.0
-EXPOSE 4321
+# Jaspr server listens on 8080 by default (override with JASPR_PORT)
+EXPOSE 8080
 
-# Healthcheck - wait longer for server to start, then check every 30s
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node healthcheck.js
-
-# Start the server - the adapter auto-starts when entry.mjs is imported
-# Ensure HOST and PORT are set for Docker networking
-CMD ["sh", "-c", "HOST=${HOST:-0.0.0.0} PORT=${PORT:-4321} node ./dist/server/entry.mjs"]
-
+CMD ["./server"]
