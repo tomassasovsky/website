@@ -73,6 +73,14 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get heroSecondaryCta => 'Ver mi trabajo';
   @override
+  String get statYearsExperience => 'Años de experiencia';
+  @override
+  String get statProjectsShipped => 'Proyectos entregados';
+  @override
+  String get statContinentsServed => 'Continentes atendidos';
+  @override
+  String get statBugsSquashed => 'Bugs aplastados';
+  @override
   String get sectionAbout => 'Acerca de mí';
   @override
   String get sectionWhoIAm => 'Quién soy';
@@ -85,7 +93,7 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get sectionExperience => 'Experiencia';
   @override
-  String get sectionTrustedBy => 'Confianza';
+  String get sectionTrustedBy => 'Confían en mí';
   @override
   String get sectionTestimonials => 'Testimonios';
   @override
@@ -121,7 +129,7 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get contactScheduleCall => 'Agendar una llamada →';
   @override
-  String get contactOnlineTitle => 'Encuentra mi online';
+  String get contactOnlineTitle => 'Encontrame en línea';
   @override
   String get contactOnlineBody =>
       'Ponte en contacto directamente — siempre feliz de hablar sobre Flutter, proyectos interesantes o oportunidades nuevas.';
@@ -170,7 +178,7 @@ class AppLocalizationsEs extends AppLocalizations
       'Soy un desarrollador de software full-stack con más de 5 años de experiencia profesional, especializado en el desarrollo de aplicaciones móviles multiplataforma con Flutter y Dart. He diseñado y desarrollado aplicaciones de producción de Flutter utilizadas por usuarios reales a escala en sectores financieros, deportivos y de salud.';
   @override
   String get aboutP1 =>
-      'Mis fortalezas incluyen el estado de gestión (Bloc, MVVM), la arquitectura de Flutter de capas, la arquitectura limpia, y las prácticas de CI/CD modernas. También tengo experiencia en el desarrollo de backend con TypeScript/Node.js, integración de API (REST/GraphQL), y infraestructura en la nube (GCP/AWS). Soy capaz de liderar equipos y proyectos, y llevar iniciativas técnicas complejas desde la concepción hasta la producción, y me preocupo profundamente por la excelencia técnica, la arquitectura escalable y las experiencias de usuario excepcionales.';
+      'Mis fortalezas incluyen la gestión de estado (Bloc, MVVM), la arquitectura por capas de Flutter, la arquitectura limpia y las prácticas modernas de CI/CD. También cuento con sólida experiencia en backend con TypeScript/Node.js, integración de APIs (REST/GraphQL) e infraestructura en la nube (GCP/AWS). Me siento cómodo liderando equipos y proyectos, impulsando iniciativas técnicas complejas desde su concepción hasta producción, y me importa profundamente la excelencia en ingeniería, la arquitectura escalable y las experiencias de usuario excepcionales.';
   @override
   String get svc0Title => 'Desarrollo de aplicaciones móviles';
   @override
@@ -195,7 +203,7 @@ class AppLocalizationsEs extends AppLocalizations
   String get svc4Title => 'Contribuciones a código abierto';
   @override
   String get svc4Desc =>
-      'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y liberando código de código abierto.';
+      'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y publicando proyectos de código abierto.';
   @override
   String get labelGooglePlay => 'Google Play';
   @override
@@ -217,7 +225,7 @@ class AppLocalizationsEs extends AppLocalizations
   String get proj1Title => 'Aplicación SportsVisio';
   @override
   String get proj1Desc =>
-      'SportsVisio entrega estadísticas de jugadores, análisis y destacados en una aplicación segura, fácil de usar con tecnología de inteligencia artificial que eleva tu juego con tecnología de juego revolucionaria.';
+      'SportsVisio entrega estadísticas de jugadores, análisis y destacados en una aplicación segura y fácil de usar, con tecnología de inteligencia artificial que lleva tu juego al siguiente nivel.';
   @override
   String get proj2Title => 'SportsVisio Manager';
   @override
@@ -232,17 +240,17 @@ class AppLocalizationsEs extends AppLocalizations
   String get proj4Title => 'APIConnect';
   @override
   String get proj4Desc =>
-      'Aplicación de consumo para la API Abroad construida con una pila moderna y producción lista. Se enfoca en la autenticación segura, versiones confiables y una experiencia de usuario clara para guiar a los usuarios a través del descubrimiento del programa y la onboarding.';
+      'Aplicación de consumo para API Abroad, construida con un stack moderno y listo para producción. Énfasis en autenticación segura, versiones confiables y una experiencia de usuario clara para guiar a los usuarios en el descubrimiento e incorporación al programa.';
   @override
   String get proj5Title => 'TAZA Express';
   @override
   String get proj5Desc =>
-      'Aplicación de orden de comida y seguimiento de entregas para una tienda de comida de alta demanda. Implementó integraciones de mapas y redujo los estados de pedido para una experiencia de entrega predecible.';
+      'Aplicación de pedidos de comida y seguimiento de entregas para un marketplace de alto volumen. Implementé integraciones de mapas y simplifiqué los estados de pedido para una experiencia de extremo a extremo predecible.';
   @override
   String get proj6Title => 'Genjo';
   @override
   String get proj6Desc =>
-      'Plataforma de inteligencia artificial diseñada para transformar navegadores en compradores, mejorar las interacciones con los clientes y generar prospectos. Ofrece interacciones de clientes personales, 24/7, y booste las conversiones y los valores promedio de pedidos al reducir los devoluciones.';
+      'Plataforma de inteligencia artificial diseñada para transformar visitantes en compradores, mejorar las interacciones con los clientes y generar leads. Ofrece atención al cliente personalizada las 24 horas, aumenta las conversiones y los valores promedio de pedidos, y reduce las devoluciones.';
   @override
   String get proj7Title => 'Genomii';
   @override
@@ -262,7 +270,7 @@ class AppLocalizationsEs extends AppLocalizations
   String get proj10Title => 'ncnn.dart';
   @override
   String get proj10Desc =>
-      'Enlaces FFI de Dart para el protocolo de carga de TUS para cargas de archivos en dispositivos móviles y escritorio con memoria compartida y modelos pragmáticos. Destinados a modelos pequeños, rápidos CNN y sin grandes entornos de ejecución.';
+      'Bindings FFI de Dart y herramientas para Tencent NCNN para inferencia neuronal en dispositivo. Compatible con móvil y escritorio con buffers de copia cero donde es posible y carga pragmática de modelos. Ideal para CNNs pequeñas y rápidas sin entornos de ejecución pesados.';
   @override
   String get proj11Title => 'pytorch.dart';
   @override
@@ -278,6 +286,46 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get proj13Desc =>
       'Cliente de Dart para el protocolo de carga de TUS para cargas de archivos grandes y redes inestables. Manipula trozos, reintentos y metadatos, y almacena la continuación de la carga entre reinicios de la aplicación. Ideal para archivos grandes y redes inestables.';
+  @override
+  String get testiPageTitle => 'Dejar un testimonio — Tomás Sasovsky';
+  @override
+  String get testiPageHeading => 'Dejar un testimonio';
+  @override
+  String get testiPageSubtitle =>
+      'Si hemos trabajado juntos y quieres compartir algunas palabras, te lo agradecería mucho. Tu opinión ayuda a otros a entender cómo es colaborar conmigo.';
+  @override
+  String get testiPageExamplesTitle => 'Lo que otros han dicho';
+  @override
+  String get testiPageExamplesDesc =>
+      'Aquí hay algunos ejemplos de compañeros y clientes anteriores — no hay un formato requerido, simplemente escribe con tus propias palabras.';
+  @override
+  String get testiPageFormTitle => 'Tu testimonio';
+  @override
+  String get testiPageFormDesc =>
+      'Lo revisaré y lo agregaré al sitio si encaja bien. Una o dos oraciones están genial — un párrafo o más es aún mejor.';
+  @override
+  String get testiFormName => 'Tu nombre *';
+  @override
+  String get testiFormNameHint => 'Ana García';
+  @override
+  String get testiFormRole => 'Rol / Empresa';
+  @override
+  String get testiFormRoleHint => 'CTO en Acme Corp (opcional)';
+  @override
+  String get testiFormLinkedin => 'URL de perfil de LinkedIn';
+  @override
+  String get testiFormLinkedinHint => 'https://linkedin.com/in/tuperfil (opcional)';
+  @override
+  String get testiFormTestimonial => 'Tu testimonio *';
+  @override
+  String get testiFormTestimonialHint =>
+      'Escribe libremente — unas pocas oraciones a varios párrafos está perfecto. Puedes mencionar el proyecto en el que trabajamos, lo que te llamó la atención y cualquier cosa que le dirías a alguien que esté considerando trabajar conmigo.';
+  @override
+  String get testiFormErrorRequired => 'Por favor, completa tu nombre y tu testimonio.';
+  @override
+  String get testiFormSuccess => '¡Gracias! Tu testimonio ha sido enviado y lo revisaré en breve.';
+  @override
+  String get testiFormSubmit => 'Enviar testimonio';
   @override
   String get testi0Date => 'Octubre 2025';
   @override
@@ -307,10 +355,10 @@ class AppLocalizationsEs extends AppLocalizations
       'Tuve el gusto de trabajar de cerca con Tomás por 2.5 años en una variedad de proyectos, incluyendo el desarrollo de una aplicación nativa de Android compleja que integraba un modelo de aprendizaje automático basado en NDK.';
   @override
   String get testi2P1 =>
-      'A lo largo de nuestro tiempo trabajando juntos, demostró habilidades técnicas excepcionales, especialmente como desarrollador de móviles de Flutter, y eleva nuestras capacidades en todas las capas de la pila móvil.';
+      'A lo largo de nuestro tiempo trabajando juntos, demostró habilidades técnicas excepcionales, especialmente como desarrollador Flutter, y elevó nuestras capacidades en todas las capas del stack móvil.';
   @override
   String get testi2P2 =>
-      'Uno de sus logros más destacados fue diseñar y implementar un pipeline de CI/CD fluido que aceleró nuestro proceso de desarrollo. Estoy seguro de recomendarlo como un colaborador o líder de proyecto que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.';
+      'Uno de sus logros más destacados fue diseñar e implementar un pipeline de CI/CD robusto que agilizó nuestro proceso de desarrollo. Lo recomiendo firmemente a cualquier equipo que busque un desarrollador móvil talentoso y con visión de futuro.';
   @override
   String get testi3Date => 'Noviembre 2021';
   @override
@@ -320,9 +368,9 @@ class AppLocalizationsEs extends AppLocalizations
   String get testi4Date => 'Noviembre 2021';
   @override
   String get testi4P0 =>
-      'Tomás es un joven muy talentoso. Tiene conocimientos sólidos de Flutter. Es muy comprometido cuando tiene responsabilidades de proyecto. Recomiendo su trabajo como un colega o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.';
+      'Tomás es un joven muy talentoso. Tiene un sólido conocimiento de Flutter. Es muy comprometido cuando tiene responsabilidades en un proyecto. Lo recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente desinteresada.';
   @override
-  String get exp0Title => 'Desarrollador de Software de Pleno - El Dorado P2P';
+  String get exp0Title => 'Desarrollador Full-Stack — El Dorado P2P';
   @override
   String get exp0Range => 'Febrero 2025 — Septiembre 2025 · Buenos Aires (Híbrido)';
   @override
@@ -334,14 +382,14 @@ class AppLocalizationsEs extends AppLocalizations
   String get exp1Range => 'Enero 2022 — Febrero 2025 · Remoto (EE. UU.)';
   @override
   String get exp1Desc =>
-      'Lidericé un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.';
+      'Lancé SV Manager con cargas TUS en segundo plano (−30% de tiempo de carga). Implementé reproducción sincronizada de doble vista para más de 1200 usuarios mensuales. Lideré la reescritura basada en Bloc (−35% de tamaño de código). Construí el seguimiento en Android con algoritmos Kalman/Hungarian para grabación de ángulo único.';
   @override
   String get exp2Title => 'Lider técnico, Senior Flutter Engineer — VisionBox';
   @override
   String get exp2Range => 'Enero 2024 — Junio 2024 · Remoto (Canadá)';
   @override
   String get exp2Desc =>
-      'Lidericé a un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.';
+      'Lideré un equipo de cuatro; integré Health Connect/HealthKit para información de AI. Implementé KYC con Google ML Kit, pipeline de verificación facial y suscripciones vía RevenueCat.';
   @override
   String get exp3Title => 'Ingeniero de Software (Freelance) — CourtAvenue';
   @override
@@ -355,14 +403,14 @@ class AppLocalizationsEs extends AppLocalizations
   String get exp4Range => 'Septiembre 2021 — Marzo 2022 · Remoto (Emiratos Árabes Unidos)';
   @override
   String get exp4Desc =>
-      'Lanzamos aplicaciones de pedidos de comida y seguimiento de entregas (50K+ descargas, 4.5★). Integración de Google Maps y coordinación de backend.';
+      'Lancé aplicaciones de pedidos de comida y seguimiento de entregas (50K+ descargas, 4.5★). Integración de Google Maps y coordinación con el equipo de backend.';
   @override
   String get exp5Title => 'Ingeniero Flutter — It-TechGroup';
   @override
   String get exp5Range => 'Enero 2021 — Noviembre 2021 · Remoto (AR)';
   @override
   String get exp5Desc =>
-      'Diseñé y desarrollé un plugin de Flutter para integrar MercadoPago Checkout SDK para Android/iOS (Java/Swift). Configuricé CI/CD para construcciones y pruebas automáticas.';
+      'Diseñé y desarrollé un plugin de Flutter para integrar el SDK de MercadoPago Checkout para Android/iOS (Java/Swift). Configuré CI/CD para builds y pruebas automatizadas.';
 }
 
 /// The flat map containing all translations for locale <es>.
@@ -384,13 +432,17 @@ extension on AppLocalizationsEs {
       'heroBadge' => 'Disponible para nuevas oportunidades',
       'heroPrimaryCta' => 'Hablemos →',
       'heroSecondaryCta' => 'Ver mi trabajo',
+      'statYearsExperience' => 'Años de experiencia',
+      'statProjectsShipped' => 'Proyectos entregados',
+      'statContinentsServed' => 'Continentes atendidos',
+      'statBugsSquashed' => 'Bugs aplastados',
       'sectionAbout' => 'Acerca de mí',
       'sectionWhoIAm' => 'Quién soy',
       'sectionAboutSubtitle' => 'Ingeniero, constructor, contribuyente de código abierto.',
       'sectionServices' => 'Servicios',
       'sectionWhatIDo' => 'Lo que hago',
       'sectionExperience' => 'Experiencia',
-      'sectionTrustedBy' => 'Confianza',
+      'sectionTrustedBy' => 'Confían en mí',
       'sectionTestimonials' => 'Testimonios',
       'sectionWhatPeopleSay' => 'Lo que dicen las personas',
       'portfolioLabel' => 'Portafolio',
@@ -410,7 +462,7 @@ extension on AppLocalizationsEs {
       'contactBookLine2' =>
         'Recibirás una confirmación y un enlace de reunión de video automáticamente.',
       'contactScheduleCall' => 'Agendar una llamada →',
-      'contactOnlineTitle' => 'Encuentra mi online',
+      'contactOnlineTitle' => 'Encontrame en línea',
       'contactOnlineBody' =>
         'Ponte en contacto directamente — siempre feliz de hablar sobre Flutter, proyectos interesantes o oportunidades nuevas.',
       'contactFormTitle' => 'Enviar un mensaje',
@@ -436,7 +488,7 @@ extension on AppLocalizationsEs {
       'aboutP0' =>
         'Soy un desarrollador de software full-stack con más de 5 años de experiencia profesional, especializado en el desarrollo de aplicaciones móviles multiplataforma con Flutter y Dart. He diseñado y desarrollado aplicaciones de producción de Flutter utilizadas por usuarios reales a escala en sectores financieros, deportivos y de salud.',
       'aboutP1' =>
-        'Mis fortalezas incluyen el estado de gestión (Bloc, MVVM), la arquitectura de Flutter de capas, la arquitectura limpia, y las prácticas de CI/CD modernas. También tengo experiencia en el desarrollo de backend con TypeScript/Node.js, integración de API (REST/GraphQL), y infraestructura en la nube (GCP/AWS). Soy capaz de liderar equipos y proyectos, y llevar iniciativas técnicas complejas desde la concepción hasta la producción, y me preocupo profundamente por la excelencia técnica, la arquitectura escalable y las experiencias de usuario excepcionales.',
+        'Mis fortalezas incluyen la gestión de estado (Bloc, MVVM), la arquitectura por capas de Flutter, la arquitectura limpia y las prácticas modernas de CI/CD. También cuento con sólida experiencia en backend con TypeScript/Node.js, integración de APIs (REST/GraphQL) e infraestructura en la nube (GCP/AWS). Me siento cómodo liderando equipos y proyectos, impulsando iniciativas técnicas complejas desde su concepción hasta producción, y me importa profundamente la excelencia en ingeniería, la arquitectura escalable y las experiencias de usuario excepcionales.',
       'svc0Title' => 'Desarrollo de aplicaciones móviles',
       'svc0Desc' =>
         'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.',
@@ -451,7 +503,7 @@ extension on AppLocalizationsEs {
         'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.',
       'svc4Title' => 'Contribuciones a código abierto',
       'svc4Desc' =>
-        'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y liberando código de código abierto.',
+        'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y publicando proyectos de código abierto.',
       'labelGooglePlay' => 'Google Play',
       'labelAppStore' => 'App Store',
       'labelWebsite' => 'Sitio web',
@@ -463,7 +515,7 @@ extension on AppLocalizationsEs {
         'Una aplicación de Stablecoin SuperApp para LATAM que ofrece una billetera en USD y un mercado de intercambio entre 70+ aplicaciones de finanzas (PayPal, Zelle, PIX, MercadoPago, Nequi, y más). Diseñado para confiabilidad y facilidad de uso para mover valor entre fronteras, proteger ahorros en USD, y habilitar flujos de trabajo de comerciantes P2P.',
       'proj1Title' => 'Aplicación SportsVisio',
       'proj1Desc' =>
-        'SportsVisio entrega estadísticas de jugadores, análisis y destacados en una aplicación segura, fácil de usar con tecnología de inteligencia artificial que eleva tu juego con tecnología de juego revolucionaria.',
+        'SportsVisio entrega estadísticas de jugadores, análisis y destacados en una aplicación segura y fácil de usar, con tecnología de inteligencia artificial que lleva tu juego al siguiente nivel.',
       'proj2Title' => 'SportsVisio Manager',
       'proj2Desc' =>
         'Publica horarios y sube videos de juego. SportsVisio convierte videos de juego en estadísticas de jugadores y destacados para facilitar su revisión en la aplicación SportsVisio.',
@@ -472,13 +524,13 @@ extension on AppLocalizationsEs {
         'Aplicación nativa de Android experimental para el seguimiento de jugadores/bolas individuales. YOLO + MOT (Kalman + Hungarian), homografía para el mapeo del campo. Kotlin (CameraX/MediaCodec), tiempo real y bajo consumo de energía.',
       'proj4Title' => 'APIConnect',
       'proj4Desc' =>
-        'Aplicación de consumo para la API Abroad construida con una pila moderna y producción lista. Se enfoca en la autenticación segura, versiones confiables y una experiencia de usuario clara para guiar a los usuarios a través del descubrimiento del programa y la onboarding.',
+        'Aplicación de consumo para API Abroad, construida con un stack moderno y listo para producción. Énfasis en autenticación segura, versiones confiables y una experiencia de usuario clara para guiar a los usuarios en el descubrimiento e incorporación al programa.',
       'proj5Title' => 'TAZA Express',
       'proj5Desc' =>
-        'Aplicación de orden de comida y seguimiento de entregas para una tienda de comida de alta demanda. Implementó integraciones de mapas y redujo los estados de pedido para una experiencia de entrega predecible.',
+        'Aplicación de pedidos de comida y seguimiento de entregas para un marketplace de alto volumen. Implementé integraciones de mapas y simplifiqué los estados de pedido para una experiencia de extremo a extremo predecible.',
       'proj6Title' => 'Genjo',
       'proj6Desc' =>
-        'Plataforma de inteligencia artificial diseñada para transformar navegadores en compradores, mejorar las interacciones con los clientes y generar prospectos. Ofrece interacciones de clientes personales, 24/7, y booste las conversiones y los valores promedio de pedidos al reducir los devoluciones.',
+        'Plataforma de inteligencia artificial diseñada para transformar visitantes en compradores, mejorar las interacciones con los clientes y generar leads. Ofrece atención al cliente personalizada las 24 horas, aumenta las conversiones y los valores promedio de pedidos, y reduce las devoluciones.',
       'proj7Title' => 'Genomii',
       'proj7Desc' =>
         'Información de salud y orientación con integraciones de dispositivos y diseño de privacidad. Responsabilidades cubiertas son las integraciones, las suscripciones y los flujos de KYC/verificación.',
@@ -490,7 +542,7 @@ extension on AppLocalizationsEs {
         'Bot de radio que reconoce canciones actualmente en la radio. Identifica y anuncia las canciones actuales en la radio, lo que facilita el seguimiento de tus canciones favoritas.',
       'proj10Title' => 'ncnn.dart',
       'proj10Desc' =>
-        'Enlaces FFI de Dart para el protocolo de carga de TUS para cargas de archivos en dispositivos móviles y escritorio con memoria compartida y modelos pragmáticos. Destinados a modelos pequeños, rápidos CNN y sin grandes entornos de ejecución.',
+        'Bindings FFI de Dart y herramientas para Tencent NCNN para inferencia neuronal en dispositivo. Compatible con móvil y escritorio con buffers de copia cero donde es posible y carga pragmática de modelos. Ideal para CNNs pequeñas y rápidas sin entornos de ejecución pesados.',
       'proj11Title' => 'pytorch.dart',
       'proj11Desc' =>
         'Enlaces de Dart para la biblioteca LibTorch/PyTorch para operaciones tensoriales y ejecución de modelos. Explora superficies FFI para tensores, autograd, y invocación de modelos desde Flutter. Destinado a investigación/prototipos.',
@@ -500,6 +552,28 @@ extension on AppLocalizationsEs {
       'proj13Title' => 'tus_client',
       'proj13Desc' =>
         'Cliente de Dart para el protocolo de carga de TUS para cargas de archivos grandes y redes inestables. Manipula trozos, reintentos y metadatos, y almacena la continuación de la carga entre reinicios de la aplicación. Ideal para archivos grandes y redes inestables.',
+      'testiPageTitle' => 'Dejar un testimonio — Tomás Sasovsky',
+      'testiPageHeading' => 'Dejar un testimonio',
+      'testiPageSubtitle' =>
+        'Si hemos trabajado juntos y quieres compartir algunas palabras, te lo agradecería mucho. Tu opinión ayuda a otros a entender cómo es colaborar conmigo.',
+      'testiPageExamplesTitle' => 'Lo que otros han dicho',
+      'testiPageExamplesDesc' =>
+        'Aquí hay algunos ejemplos de compañeros y clientes anteriores — no hay un formato requerido, simplemente escribe con tus propias palabras.',
+      'testiPageFormTitle' => 'Tu testimonio',
+      'testiPageFormDesc' =>
+        'Lo revisaré y lo agregaré al sitio si encaja bien. Una o dos oraciones están genial — un párrafo o más es aún mejor.',
+      'testiFormName' => 'Tu nombre *',
+      'testiFormNameHint' => 'Ana García',
+      'testiFormRole' => 'Rol / Empresa',
+      'testiFormRoleHint' => 'CTO en Acme Corp (opcional)',
+      'testiFormLinkedin' => 'URL de perfil de LinkedIn',
+      'testiFormLinkedinHint' => 'https://linkedin.com/in/tuperfil (opcional)',
+      'testiFormTestimonial' => 'Tu testimonio *',
+      'testiFormTestimonialHint' =>
+        'Escribe libremente — unas pocas oraciones a varios párrafos está perfecto. Puedes mencionar el proyecto en el que trabajamos, lo que te llamó la atención y cualquier cosa que le dirías a alguien que esté considerando trabajar conmigo.',
+      'testiFormErrorRequired' => 'Por favor, completa tu nombre y tu testimonio.',
+      'testiFormSuccess' => '¡Gracias! Tu testimonio ha sido enviado y lo revisaré en breve.',
+      'testiFormSubmit' => 'Enviar testimonio',
       'testi0Date' => 'Octubre 2025',
       'testi0P0' =>
         'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y luego como líder del equipo en SportsVisio, viendo su evolución de joven prometedor a estrella del ingeniero.',
@@ -518,27 +592,27 @@ extension on AppLocalizationsEs {
       'testi2P0' =>
         'Tuve el gusto de trabajar de cerca con Tomás por 2.5 años en una variedad de proyectos, incluyendo el desarrollo de una aplicación nativa de Android compleja que integraba un modelo de aprendizaje automático basado en NDK.',
       'testi2P1' =>
-        'A lo largo de nuestro tiempo trabajando juntos, demostró habilidades técnicas excepcionales, especialmente como desarrollador de móviles de Flutter, y eleva nuestras capacidades en todas las capas de la pila móvil.',
+        'A lo largo de nuestro tiempo trabajando juntos, demostró habilidades técnicas excepcionales, especialmente como desarrollador Flutter, y elevó nuestras capacidades en todas las capas del stack móvil.',
       'testi2P2' =>
-        'Uno de sus logros más destacados fue diseñar y implementar un pipeline de CI/CD fluido que aceleró nuestro proceso de desarrollo. Estoy seguro de recomendarlo como un colaborador o líder de proyecto que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.',
+        'Uno de sus logros más destacados fue diseñar e implementar un pipeline de CI/CD robusto que agilizó nuestro proceso de desarrollo. Lo recomiendo firmemente a cualquier equipo que busque un desarrollador móvil talentoso y con visión de futuro.',
       'testi3Date' => 'Noviembre 2021',
       'testi3P0' =>
         'Desarrollador proactivo y resolutivo. Si no sabe cómo hacer algo, lo busca y da resultados, siempre. Asegura la calidad del código y garantiza que lo haga.',
       'testi4Date' => 'Noviembre 2021',
       'testi4P0' =>
-        'Tomás es un joven muy talentoso. Tiene conocimientos sólidos de Flutter. Es muy comprometido cuando tiene responsabilidades de proyecto. Recomiendo su trabajo como un colega o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera autosuficiente.',
-      'exp0Title' => 'Desarrollador de Software de Pleno - El Dorado P2P',
+        'Tomás es un joven muy talentoso. Tiene un sólido conocimiento de Flutter. Es muy comprometido cuando tiene responsabilidades en un proyecto. Lo recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente desinteresada.',
+      'exp0Title' => 'Desarrollador Full-Stack — El Dorado P2P',
       'exp0Range' => 'Febrero 2025 — Septiembre 2025 · Buenos Aires (Híbrido)',
       'exp0Desc' =>
         'Diseñé y desarrollé una API pública de TypeScript para intercambios de criptomoneda en LATAM. Implementé la apertura y enlace de cuentas bancarias en EE. UU. con criptomonedas. Modularicé la aplicación de Flutter para escalabilidad y testabilidad.',
       'exp1Title' => 'Senior Flutter Engineer — SportsVisio',
       'exp1Range' => 'Enero 2022 — Febrero 2025 · Remoto (EE. UU.)',
       'exp1Desc' =>
-        'Lidericé un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.',
+        'Lancé SV Manager con cargas TUS en segundo plano (−30% de tiempo de carga). Implementé reproducción sincronizada de doble vista para más de 1200 usuarios mensuales. Lideré la reescritura basada en Bloc (−35% de tamaño de código). Construí el seguimiento en Android con algoritmos Kalman/Hungarian para grabación de ángulo único.',
       'exp2Title' => 'Lider técnico, Senior Flutter Engineer — VisionBox',
       'exp2Range' => 'Enero 2024 — Junio 2024 · Remoto (Canadá)',
       'exp2Desc' =>
-        'Lidericé a un equipo de cuatro; integré Health Connect/HealthKit para obtener información de AI. Implementicé KYC con Google ML Kit; Face verificación pipeline; Subscripciones via RevenueCat.',
+        'Lideré un equipo de cuatro; integré Health Connect/HealthKit para información de AI. Implementé KYC con Google ML Kit, pipeline de verificación facial y suscripciones vía RevenueCat.',
       'exp3Title' => 'Ingeniero de Software (Freelance) — CourtAvenue',
       'exp3Range' => 'Julio 2023 — Septiembre 2023 · Remoto (EE. UU.)',
       'exp3Desc' =>
@@ -546,11 +620,11 @@ extension on AppLocalizationsEs {
       'exp4Title' => 'Ingeniero Flutter — Creative Advanced Technologies',
       'exp4Range' => 'Septiembre 2021 — Marzo 2022 · Remoto (Emiratos Árabes Unidos)',
       'exp4Desc' =>
-        'Lanzamos aplicaciones de pedidos de comida y seguimiento de entregas (50K+ descargas, 4.5★). Integración de Google Maps y coordinación de backend.',
+        'Lancé aplicaciones de pedidos de comida y seguimiento de entregas (50K+ descargas, 4.5★). Integración de Google Maps y coordinación con el equipo de backend.',
       'exp5Title' => 'Ingeniero Flutter — It-TechGroup',
       'exp5Range' => 'Enero 2021 — Noviembre 2021 · Remoto (AR)',
       'exp5Desc' =>
-        'Diseñé y desarrollé un plugin de Flutter para integrar MercadoPago Checkout SDK para Android/iOS (Java/Swift). Configuricé CI/CD para construcciones y pruebas automáticas.',
+        'Diseñé y desarrollé un plugin de Flutter para integrar el SDK de MercadoPago Checkout para Android/iOS (Java/Swift). Configuré CI/CD para builds y pruebas automatizadas.',
       _ => null,
     };
   }

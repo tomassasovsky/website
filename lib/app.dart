@@ -9,11 +9,13 @@ import 'l10n/locale_codec.dart';
 import 'l10n/locale_scope.dart';
 import 'pages/contact_page.dart';
 import 'pages/home_page.dart';
+import 'pages/new_testimonial_page.dart';
 import 'pages/projects_page.dart';
 
 String? _ensureLocalePrefix(BuildContext context, RouteState state) {
   final uri = Uri.parse(state.location);
   final path = uri.path.isEmpty ? '/' : uri.path;
+
   final segments = path.split('/').where((segment) => segment.isNotEmpty).toList();
 
   if (segments.isEmpty) {
@@ -42,6 +44,7 @@ class App extends StatelessComponent {
             final strings = locale.buildSync();
             return .fragment([
               Document.html(attributes: {'lang': locale.languageCode}),
+              Document.head(children: [script(src: '/scroll-avatar.js', defer: true)]),
               LocaleScope(
                 locale: locale,
                 strings: strings,
@@ -65,6 +68,10 @@ class App extends StatelessComponent {
                 Route(
                   path: 'contact',
                   builder: (context, state) => const ContactPage(),
+                ),
+                Route(
+                  path: 'new-testimonial',
+                  builder: (context, state) => const NewTestimonialPage(),
                 ),
               ],
             ),

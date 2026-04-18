@@ -8,6 +8,8 @@ abstract final class AppPaths {
 
   static String contact(AppLocale locale) => '/${locale.languageCode}/contact';
 
+  static String newTestimonial(AppLocale locale) => '/${locale.languageCode}/new-testimonial';
+
   /// Same path with a different locale prefix (first segment).
   static String switchLocale(String currentLocation, AppLocale target) {
     final uri = Uri.parse(currentLocation);

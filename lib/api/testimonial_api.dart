@@ -9,20 +9,19 @@ import 'api_utils.dart';
 
 // In-memory rate limit: IP → last submission time. Pruned on every request.
 final _rateLimit = <String, DateTime>{};
-const _rateLimitWindow = Duration(seconds: 30);
+const _rateLimitWindow = Duration(seconds: 60);
 
-/// Shelf middleware that handles [POST /api/contact].
+/// Shelf middleware that handles [POST /api/testimonial].
 ///
-/// Reads Gmail OAuth2 credentials from environment variables, exchanges the
-/// stored refresh token for an access token, then sends the message via the
-/// Gmail REST API. Falls back to stderr logging if credentials are absent (dev).
-Middleware get contactApiMiddleware {
+/// Receives a testimonial submission from a past client and forwards it via
+/// Gmail so it can be reviewed before adding it to the site.
+Middleware get testimonialApiMiddleware {
   return (Handler inner) {
     return (Request request) async {
-      if (request.method == 'POST' && request.requestedUri.path == '/api/contact') {
-        return _handleContact(request);
+      if (request.method == 'POST' && request.requestedUri.path == '/api/testimonial') {
+        return _handleTestimonial(request);
       }
-      if (request.method == 'OPTIONS' && request.requestedUri.path == '/api/contact') {
+      if (request.method == 'OPTIONS' && request.requestedUri.path == '/api/testimonial') {
         return Response.ok('', headers: _corsHeaders);
       }
       return inner(request);
@@ -33,7 +32,7 @@ Middleware get contactApiMiddleware {
 const _jsonHeaders = {'content-type': 'application/json; charset=utf-8'};
 const _corsHeaders = {'access-control-allow-origin': '*', 'access-control-allow-headers': 'content-type'};
 
-Future<Response> _handleContact(Request request) async {
+Future<Response> _handleTestimonial(Request request) async {
   final headers = {..._jsonHeaders, ..._corsHeaders};
 
   // --- rate limiting ---------------------------------------------------
@@ -49,7 +48,7 @@ Future<Response> _handleContact(Request request) async {
   Map<String, dynamic> data;
   try {
     final body = await request.readAsString();
-    if (body.length > 10000) {
+    if (body.length > 20000) {
       return Response(413, body: '{"error":"Request too large"}', headers: headers);
     }
     data = (jsonDecode(body) as Map<String, dynamic>);
@@ -59,37 +58,43 @@ Future<Response> _handleContact(Request request) async {
 
   // --- honeypot check ---------------------------------------------------
   if ((data['website'] as String? ?? '').trim().isNotEmpty) {
-    // Bot detected – silently succeed
     return Response.ok('{"success":true}', headers: headers);
   }
 
   // --- validate fields --------------------------------------------------
   final name = (data['name'] as String? ?? '').trim();
   final email = (data['email'] as String? ?? '').trim();
-  final subject = (data['subject'] as String? ?? '').trim();
-  final message = (data['message'] as String? ?? '').trim();
+  final role = (data['role'] as String? ?? '').trim();
+  final linkedinUrl = (data['linkedinUrl'] as String? ?? '').trim();
+  final testimonial = (data['testimonial'] as String? ?? '').trim();
 
-  if (name.isEmpty || email.isEmpty || subject.isEmpty || message.isEmpty) {
-    return Response.badRequest(body: '{"error":"All fields are required"}', headers: headers);
+  if (name.isEmpty || testimonial.isEmpty) {
+    return Response.badRequest(body: '{"error":"Name and testimonial are required"}', headers: headers);
   }
-  if (name.length > 100 || email.length > 200 || subject.length > 200 || message.length > 5000) {
+  if (name.length > 100 ||
+      email.length > 200 ||
+      role.length > 200 ||
+      linkedinUrl.length > 500 ||
+      testimonial.length > 10000) {
     return Response.badRequest(body: '{"error":"Input too long"}', headers: headers);
   }
-
   final emailRe = RegExp(r'^[^\s@]+@[^\s@]+\.[^\s@]+$');
-  if (!emailRe.hasMatch(email)) {
+  if (email.isNotEmpty && !emailRe.hasMatch(email)) {
     return Response.badRequest(body: '{"error":"Invalid email address"}', headers: headers);
+  }
+  if (linkedinUrl.isNotEmpty && !linkedinUrl.startsWith('https://')) {
+    return Response.badRequest(body: '{"error":"LinkedIn URL must start with https://"}', headers: headers);
   }
 
   // --- send email -------------------------------------------------------
   try {
-    await _sendEmail(name: name, email: email, subject: subject, message: message);
+    await _sendEmail(name: name, email: email, role: role, linkedinUrl: linkedinUrl, testimonial: testimonial);
     _rateLimit[ip] = DateTime.now();
     return Response.ok('{"success":true}', headers: headers);
   } catch (e) {
-    stderr.writeln('[contact] Failed to send email: $e');
+    stderr.writeln('[testimonial] Failed to send email: $e');
     return Response.internalServerError(
-      body: '{"error":"Failed to send message. Please try again later."}',
+      body: '{"error":"Failed to submit testimonial. Please try again later."}',
       headers: headers,
     );
   }
@@ -98,8 +103,9 @@ Future<Response> _handleContact(Request request) async {
 Future<void> _sendEmail({
   required String name,
   required String email,
-  required String subject,
-  required String message,
+  required String role,
+  required String linkedinUrl,
+  required String testimonial,
 }) async {
   final env = appEnv;
   final clientId = env['GOOGLE_CLIENT_ID'];
@@ -109,12 +115,12 @@ Future<void> _sendEmail({
   final toEmail = env['CONTACT_EMAIL'];
 
   if ([clientId, clientSecret, refreshToken, fromEmail, toEmail].any((v) => v == null || v.isEmpty)) {
-    // Credentials not configured – log to console for local dev
-    stderr.writeln('[contact] (no credentials) message from $name <$email>: $subject');
+    stderr.writeln(
+      '[testimonial] (no credentials) submission from $name: ${testimonial.substring(0, testimonial.length.clamp(0, 80))}…',
+    );
     return;
   }
 
-  // 1. Exchange refresh token for access token
   final tokenResp = await http.post(
     Uri.parse('https://oauth2.googleapis.com/token'),
     headers: {'content-type': 'application/x-www-form-urlencoded'},
@@ -130,37 +136,36 @@ Future<void> _sendEmail({
   }
   final accessToken = (jsonDecode(tokenResp.body) as Map<String, dynamic>)['access_token'] as String;
 
-  // 2. Build RFC 2822 message — sanitize every user value used in headers.
+  // Sanitize every user value used in headers to prevent SMTP header injection.
   final safeName = sanitizeHeader(name);
-  final safeEmail = sanitizeHeader(email);
-  final safeSubject = sanitizeHeader(subject);
+  final safeEmail = email.isNotEmpty ? sanitizeHeader(email) : '';
 
   final raw = [
     'From: $fromEmail',
     'To: $toEmail',
-    'Reply-To: "$safeName" <$safeEmail>',
-    'Subject: [Contact] $safeSubject',
+    if (safeEmail.isNotEmpty) 'Reply-To: "$safeName" <$safeEmail>',
+    'Subject: [Testimonial] New submission from $safeName',
     'MIME-Version: 1.0',
     'Content-Type: text/plain; charset=UTF-8',
     '',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    'Contact form submission',
+    'Testimonial submission',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     '',
-    'Name:    $name',
-    'Email:   $email',
-    'Subject: $subject',
+    'Name:  $name',
+    if (email.isNotEmpty) 'Email: $email',
+    if (role.isNotEmpty) 'Role:  $role',
+    if (linkedinUrl.isNotEmpty) 'LinkedIn / social: $linkedinUrl',
     '',
-    '--- Message ---',
+    '--- Testimonial ---',
     '',
-    message,
+    testimonial,
     '',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
   ].join('\r\n');
 
   final encoded = base64Url.encode(utf8.encode(raw)).replaceAll('=', '');
 
-  // 3. Send via Gmail API
   final sendResp = await http.post(
     Uri.parse('https://gmail.googleapis.com/gmail/v1/users/me/messages/send'),
     headers: {

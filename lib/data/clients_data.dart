@@ -8,7 +8,7 @@ const clients = <Client>[
   ),
   Client(
     name: 'SportsVisio',
-    darkLogo: '/assets/images/sportsvisio-logo-dark.svg',
+    logo: '/assets/images/sportsvisio-logo-light.svg',
     url: 'https://sportsvisio.com/',
   ),
   Client(

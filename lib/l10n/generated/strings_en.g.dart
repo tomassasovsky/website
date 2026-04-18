@@ -79,6 +79,18 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'See my work'
   String get heroSecondaryCta => 'See my work';
 
+  /// en: 'Years experience'
+  String get statYearsExperience => 'Years experience';
+
+  /// en: 'Projects shipped'
+  String get statProjectsShipped => 'Projects shipped';
+
+  /// en: 'Continents served'
+  String get statContinentsServed => 'Continents served';
+
+  /// en: 'Bugs squashed'
+  String get statBugsSquashed => 'Bugs squashed';
+
   /// en: 'About me'
   String get sectionAbout => 'About me';
 
@@ -376,6 +388,65 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get proj13Desc =>
       'Dart client for the TUS resumable upload protocol with reliable, restartable uploads. Handles chunking, retries, and metadata, with pluggable storage for resumption across app restarts. Great for large files and flaky networks.';
 
+  /// en: 'Leave a Testimonial — Tomás Sasovsky'
+  String get testiPageTitle => 'Leave a Testimonial — Tomás Sasovsky';
+
+  /// en: 'Leave a testimonial'
+  String get testiPageHeading => 'Leave a testimonial';
+
+  /// en: 'If we've worked together and you'd like to share a few words, I'd really appreciate it. Your feedback helps others understand what it's like to collaborate with me.'
+  String get testiPageSubtitle =>
+      'If we\'ve worked together and you\'d like to share a few words, I\'d really appreciate it. Your feedback helps others understand what it\'s like to collaborate with me.';
+
+  /// en: 'What others have said'
+  String get testiPageExamplesTitle => 'What others have said';
+
+  /// en: 'Here are a few examples from past colleagues and clients — there's no required format, just write in your own words.'
+  String get testiPageExamplesDesc =>
+      'Here are a few examples from past colleagues and clients — there\'s no required format, just write in your own words.';
+
+  /// en: 'Your testimonial'
+  String get testiPageFormTitle => 'Your testimonial';
+
+  /// en: 'I'll review it and add it to the site if it's a good fit. A sentence or two is great — a paragraph or more is even better.'
+  String get testiPageFormDesc =>
+      'I\'ll review it and add it to the site if it\'s a good fit. A sentence or two is great — a paragraph or more is even better.';
+
+  /// en: 'Your name *'
+  String get testiFormName => 'Your name *';
+
+  /// en: 'Jane Smith'
+  String get testiFormNameHint => 'Jane Smith';
+
+  /// en: 'Role / Company'
+  String get testiFormRole => 'Role / Company';
+
+  /// en: 'CTO at Acme Corp (optional)'
+  String get testiFormRoleHint => 'CTO at Acme Corp (optional)';
+
+  /// en: 'LinkedIn profile URL'
+  String get testiFormLinkedin => 'LinkedIn profile URL';
+
+  /// en: 'https://linkedin.com/in/yourprofile (optional)'
+  String get testiFormLinkedinHint => 'https://linkedin.com/in/yourprofile (optional)';
+
+  /// en: 'Your testimonial *'
+  String get testiFormTestimonial => 'Your testimonial *';
+
+  /// en: 'Write freely — a few sentences to a few paragraphs is perfect. Feel free to mention the project we worked on, what stood out, and anything you'd tell someone considering working with me.'
+  String get testiFormTestimonialHint =>
+      'Write freely — a few sentences to a few paragraphs is perfect. Feel free to mention the project we worked on, what stood out, and anything you\'d tell someone considering working with me.';
+
+  /// en: 'Please fill in your name and testimonial.'
+  String get testiFormErrorRequired => 'Please fill in your name and testimonial.';
+
+  /// en: 'Thank you! Your testimonial has been submitted and I'll review it shortly.'
+  String get testiFormSuccess =>
+      'Thank you! Your testimonial has been submitted and I\'ll review it shortly.';
+
+  /// en: 'Submit testimonial'
+  String get testiFormSubmit => 'Submit testimonial';
+
   /// en: 'October 2025'
   String get testi0Date => 'October 2025';
 
@@ -515,6 +586,10 @@ extension on AppLocalizations {
       'heroBadge' => 'Available for new opportunities',
       'heroPrimaryCta' => 'Let\'s talk →',
       'heroSecondaryCta' => 'See my work',
+      'statYearsExperience' => 'Years experience',
+      'statProjectsShipped' => 'Projects shipped',
+      'statContinentsServed' => 'Continents served',
+      'statBugsSquashed' => 'Bugs squashed',
       'sectionAbout' => 'About me',
       'sectionWhoIAm' => 'Who I am',
       'sectionAboutSubtitle' => 'Engineer, builder, open-source contributor.',
@@ -629,6 +704,29 @@ extension on AppLocalizations {
       'proj13Title' => 'tus_client',
       'proj13Desc' =>
         'Dart client for the TUS resumable upload protocol with reliable, restartable uploads. Handles chunking, retries, and metadata, with pluggable storage for resumption across app restarts. Great for large files and flaky networks.',
+      'testiPageTitle' => 'Leave a Testimonial — Tomás Sasovsky',
+      'testiPageHeading' => 'Leave a testimonial',
+      'testiPageSubtitle' =>
+        'If we\'ve worked together and you\'d like to share a few words, I\'d really appreciate it. Your feedback helps others understand what it\'s like to collaborate with me.',
+      'testiPageExamplesTitle' => 'What others have said',
+      'testiPageExamplesDesc' =>
+        'Here are a few examples from past colleagues and clients — there\'s no required format, just write in your own words.',
+      'testiPageFormTitle' => 'Your testimonial',
+      'testiPageFormDesc' =>
+        'I\'ll review it and add it to the site if it\'s a good fit. A sentence or two is great — a paragraph or more is even better.',
+      'testiFormName' => 'Your name *',
+      'testiFormNameHint' => 'Jane Smith',
+      'testiFormRole' => 'Role / Company',
+      'testiFormRoleHint' => 'CTO at Acme Corp (optional)',
+      'testiFormLinkedin' => 'LinkedIn profile URL',
+      'testiFormLinkedinHint' => 'https://linkedin.com/in/yourprofile (optional)',
+      'testiFormTestimonial' => 'Your testimonial *',
+      'testiFormTestimonialHint' =>
+        'Write freely — a few sentences to a few paragraphs is perfect. Feel free to mention the project we worked on, what stood out, and anything you\'d tell someone considering working with me.',
+      'testiFormErrorRequired' => 'Please fill in your name and testimonial.',
+      'testiFormSuccess' =>
+        'Thank you! Your testimonial has been submitted and I\'ll review it shortly.',
+      'testiFormSubmit' => 'Submit testimonial',
       'testi0Date' => 'October 2025',
       'testi0P0' =>
         'I\'m excited to recommend Tomás as an outstanding software engineer. I\'ve had the unique privilege of working alongside Tomás at IT-TechGroup and later leading him as Team Lead at SportsVisio, witnessing his remarkable evolution from promising junior developer to all-star engineer.',

@@ -23,15 +23,17 @@ class NavBar extends StatelessComponent {
       (href: AppPaths.contact(locale), label: s.navContact),
     ];
 
-    return nav(classes: 'navbar', [
+    final onHome = _pathMatches(path, AppPaths.home(locale));
+
+    return nav(classes: 'navbar${onHome ? '' : ' navbar--scrolled'}', [
       div(classes: 'container', [
         div(classes: 'navbar__inner', [
           Link(
             to: AppPaths.home(locale),
             classes: 'navbar__brand',
             children: [
-              .text('${siteName.split(' ').first} '),
-              span([.text(siteName.split(' ').last)]),
+              img(src: siteAvatar, alt: siteName, classes: 'navbar__avatar'),
+              .text(siteName),
             ],
           ),
           ul(classes: 'navbar__links', [
@@ -41,6 +43,7 @@ class NavBar extends StatelessComponent {
                   to: item.href,
                   classes: 'navbar__link${_pathMatches(path, item.href) ? ' active' : ''}',
                   children: [.text(item.label)],
+                  styles: item == links.last ? null : Styles(margin: Spacing.symmetric(horizontal: 0.5.em)),
                 ),
               ]),
           ]),

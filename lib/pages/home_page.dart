@@ -1,6 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
+import '../components/testimonials_carousel.dart';
 import '../data/clients_data.dart';
 import '../data/portfolio_content.dart';
 import '../data/site_data.dart';
@@ -17,7 +18,6 @@ class HomePage extends StatelessComponent {
     final locale = context.locale;
     final aboutParagraphs = loadAboutParagraphs(s);
     final services = loadServices(s);
-    final testimonials = loadTestimonials(s);
 
     return .fragment([
       Document.head(title: s.metaTitleHome),
@@ -39,6 +39,10 @@ class HomePage extends StatelessComponent {
             sectionWhoIAm: s.sectionWhoIAm,
             sectionAboutSubtitle: s.sectionAboutSubtitle,
             paragraphs: aboutParagraphs,
+            statYearsExperience: s.statYearsExperience,
+            statProjectsShipped: s.statProjectsShipped,
+            statContinentsServed: s.statContinentsServed,
+            statBugsSquashed: s.statBugsSquashed,
           ),
           hr(classes: 'divider'),
           _ServicesSection(
@@ -55,7 +59,7 @@ class HomePage extends StatelessComponent {
           _TestimonialsSection(
             sectionTestimonials: s.sectionTestimonials,
             sectionWhatPeopleSay: s.sectionWhatPeopleSay,
-            testimonials: testimonials,
+            localeCode: locale.languageCode,
           ),
         ]),
       ]),
@@ -89,10 +93,7 @@ class _Hero extends StatelessComponent {
     return div(classes: 'hero', [
       div(classes: 'hero__text', [
         div(classes: 'hero__badge', [.text(badge)]),
-        h1(classes: 'hero__name', [
-          span(classes: 'hero__name-accent', [.text(siteName.split(' ').first)]),
-          .text(' ${siteName.split(' ').last}'),
-        ]),
+        h1(classes: 'hero__name', [.text(siteName)]),
         p(classes: 'hero__tagline', [.text(tagline)]),
         div(classes: 'hero__stack', [
           for (final tech in const ['Flutter', 'Dart', 'TypeScript', 'Node.js', 'GCP'])
@@ -108,6 +109,7 @@ class _Hero extends StatelessComponent {
         src: siteAvatar,
         alt: siteName,
         classes: 'hero__image',
+        id: 'hero-avatar',
       ),
     ]);
   }
@@ -119,12 +121,20 @@ class _AboutSection extends StatelessComponent {
     required this.sectionWhoIAm,
     required this.sectionAboutSubtitle,
     required this.paragraphs,
+    required this.statYearsExperience,
+    required this.statProjectsShipped,
+    required this.statContinentsServed,
+    required this.statBugsSquashed,
   });
 
   final String sectionAbout;
   final String sectionWhoIAm;
   final String sectionAboutSubtitle;
   final List<String> paragraphs;
+  final String statYearsExperience;
+  final String statProjectsShipped;
+  final String statContinentsServed;
+  final String statBugsSquashed;
 
   @override
   Component build(BuildContext context) {
@@ -137,10 +147,10 @@ class _AboutSection extends StatelessComponent {
         ]),
       ]),
       div(classes: 'about-stats', [
-        _Stat(value: '5+', label: 'Years experience'),
-        _Stat(value: '14+', label: 'Projects shipped'),
-        _Stat(value: '3', label: 'Continents served'),
-        _Stat(value: '∞', label: 'Bugs squashed'),
+        _Stat(value: '5+', label: statYearsExperience),
+        _Stat(value: '14+', label: statProjectsShipped),
+        _Stat(value: '3', label: statContinentsServed),
+        _Stat(value: '∞', label: statBugsSquashed),
       ]),
       div(classes: 'about-text', [
         for (final paragraph in paragraphs) p([.text(paragraph)]),
@@ -205,20 +215,30 @@ class _ClientsSection extends StatelessComponent {
         p(classes: 'section-label', [.text(sectionExperience)]),
         h2(classes: 'section-title', [.text(sectionTrustedBy)]),
       ]),
-      div(classes: 'clients-grid', [
-        for (final client in clients)
-          if (client.effectiveLogo != null)
-            a(
-              href: client.url,
-              attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
-              [
-                img(
-                  src: client.effectiveLogo!,
-                  alt: client.name,
-                  classes: 'client-logo',
-                ),
-              ],
-            ),
+      div(classes: 'clients-carousel', [
+        div(classes: 'clients-track', [
+          // First pass
+          for (final client in clients)
+            if (client.effectiveLogo != null)
+              a(
+                href: client.url,
+                attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
+                [img(src: client.effectiveLogo!, alt: client.name, classes: 'client-logo')],
+              ),
+          // Duplicate for seamless loop (aria-hidden = decorative repeat)
+          for (final client in clients)
+            if (client.effectiveLogo != null)
+              a(
+                href: client.url,
+                attributes: const {
+                  'target': '_blank',
+                  'rel': 'noopener noreferrer',
+                  'aria-hidden': 'true',
+                  'tabindex': '-1',
+                },
+                [img(src: client.effectiveLogo!, alt: '', classes: 'client-logo')],
+              ),
+        ]),
       ]),
     ]);
   }
@@ -228,12 +248,12 @@ class _TestimonialsSection extends StatelessComponent {
   const _TestimonialsSection({
     required this.sectionTestimonials,
     required this.sectionWhatPeopleSay,
-    required this.testimonials,
+    required this.localeCode,
   });
 
   final String sectionTestimonials;
   final String sectionWhatPeopleSay;
-  final List<Testimonial> testimonials;
+  final String localeCode;
 
   @override
   Component build(BuildContext context) {
@@ -242,9 +262,7 @@ class _TestimonialsSection extends StatelessComponent {
         p(classes: 'section-label', [.text(sectionTestimonials)]),
         h2(classes: 'section-title', [.text(sectionWhatPeopleSay)]),
       ]),
-      div(classes: 'testimonials-grid', [
-        for (final t in testimonials) _TestimonialCard(t: t),
-      ]),
+      TestimonialsCarousel(localeCode: localeCode),
     ]);
   }
 }
@@ -260,30 +278,6 @@ class _Stat extends StatelessComponent {
     return div(classes: 'about-stat', [
       span(classes: 'about-stat__value', [.text(value)]),
       span(classes: 'about-stat__label', [.text(label)]),
-    ]);
-  }
-}
-
-class _TestimonialCard extends StatelessComponent {
-  const _TestimonialCard({required this.t});
-
-  final Testimonial t;
-
-  @override
-  Component build(BuildContext context) {
-    return div(classes: 'testimonial-card', [
-      div(classes: 'testimonial-card__meta', [
-        span(classes: 'testimonial-card__author', [.text(t.author)]),
-        a(
-          href: t.linkedinUrl,
-          classes: 'testimonial-card__linkedin',
-          attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
-          [.text(t.dateLabel)],
-        ),
-      ]),
-      div(classes: 'testimonial-card__body', [
-        for (final paragraph in t.paragraphs) p([.text(paragraph)]),
-      ]),
     ]);
   }
 }
