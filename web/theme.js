@@ -6,14 +6,21 @@
     let animReady = false;
     let isAnimating = false;
 
-    // ── Theme flip (instant, no transitions) ──────────────────────────────────
-    function applyTheme(next) {
-        document.documentElement.style.setProperty('--t', '0s');
+    // ── Theme flip ────────────────────────────────────────────────────────────
+    // suppressTransitions=true is only needed for the no-VT fallback path,
+    // where there is no frozen snapshot and colour transitions would be visible.
+    function applyTheme(next, suppressTransitions) {
+        if (suppressTransitions) {
+            document.documentElement.style.setProperty('--t', '0s');
+        }
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem(KEY, next);
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-            document.documentElement.style.removeProperty('--t');
-        }));
+        if (suppressTransitions) {
+            // Restore transitions after two frames so hover effects still work
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                document.documentElement.style.removeProperty('--t');
+            }));
+        }
     }
 
     // ── Lottie init ───────────────────────────────────────────────────────────
@@ -61,7 +68,8 @@
         // ── View Transitions API (Chrome 111+, Safari 18+) ──────────────────────
         if (document.startViewTransition) {
             isAnimating = true;
-            const transition = document.startViewTransition(() => applyTheme(next));
+            // No transition suppression needed — the VT API holds a frozen snapshot
+            const transition = document.startViewTransition(() => applyTheme(next, false));
 
             transition.ready.then(() => {
                 // Clip the INCOMING (new-theme) snapshot from a tiny circle to full screen
@@ -75,8 +83,8 @@
             return;
         }
 
-        // ── Fallback: instant flip, no animation ────────────────────────────────
-        applyTheme(next);
+        // ── Fallback: instant flip, suppress colour transitions ──────────────────
+        applyTheme(next, true);
     };
 
     // ── Boot ──────────────────────────────────────────────────────────────────
