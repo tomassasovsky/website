@@ -15,12 +15,3 @@ string_interpolation: braces
 format:
   enabled: true
   width: 100
-
-# Used by dev tool: dart run tool/translate_arb.dart (slang_gpt → OpenAI).
-gpt:
-  model: gpt-4o-mini
-  description: |
-    Personal portfolio for Tomás Sasovsky, a senior Flutter and backend engineer
-    based in Buenos Aires. The site highlights projects (mobile, OSS, integrations),
-    experience, testimonials, and contact. Prefer natural, professional UI copy;
-    preserve product names (e.g. SportsVisio, El Dorado) and technical terms (Flutter, Dart, CI/CD).
