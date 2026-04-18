@@ -1,0 +1,25 @@
+{
+	"version": 1.1,
+	"pseudoElements": [
+		{
+			"name": "::view-transition",
+			"description": "View Transitions API: represents the entire view transition."
+		},
+		{
+			"name": "::view-transition-group",
+			"description": "View Transitions API: represents a single view transition group."
+		},
+		{
+			"name": "::view-transition-image-pair",
+			"description": "View Transitions API: contains the old and new view states."
+		},
+		{
+			"name": "::view-transition-old",
+			"description": "View Transitions API: represents the old view state."
+		},
+		{
+			"name": "::view-transition-new",
+			"description": "View Transitions API: represents the new view state."
+		}
+	]
+}

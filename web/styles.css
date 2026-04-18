@@ -1,3 +1,5 @@
+/** biome-ignore-all lint/correctness/noUnknownTypeSelector: idc */
+
 /* ── View Transitions (theme switch circle-reveal) ─────────── */
 /* Old snapshot is hidden instantly; new snapshot is revealed by  */
 /* a CSS-driven circle expanding from the button origin.          */
@@ -81,105 +83,6 @@
   --orange-ring:     rgba(217, 119, 6, 0.25);
   --shadow-card:     0 4px 24px rgba(0,0,0,0.07), 0 1px 0 0 rgba(255,255,255,0.9) inset;
   --shadow-hover:    0 16px 56px rgba(0,0,0,0.13), 0 0 0 1px rgba(109,64,240,0.18);
-}
-
-[data-theme="light"] body {
-  background-image: none;
-}
-
-[data-theme="light"] .site-wrapper {
-  background-image: none;
-}
-
-[data-theme="light"] .navbar {
-  background: rgba(245, 245, 251, 0.88);
-}
-
-[data-theme="light"] .navbar__mobile-menu {
-  background: rgba(245, 245, 251, 0.98);
-}
-
-[data-theme="light"] .project-modal-backdrop {
-  background: rgba(245, 245, 251, 0.85);
-}
-
-[data-theme="light"] .btn-ghost {
-  background: var(--surface-2);
-}
-
-[data-theme="light"] .hero__badge {
-  color: var(--accent);
-}
-
-[data-theme="light"] .hero__name-accent {
-  background: linear-gradient(135deg, var(--accent) 0%, #4338ca 50%, #3b82f6 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-[data-theme="light"] .about-stat__value {
-  background: linear-gradient(135deg, var(--accent), #4338ca);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-[data-theme="light"] .tech-badge {
-  color: var(--accent);
-}
-
-/* Shadows — darken rgba(0,0,0,…) values are far too heavy on light */
-[data-theme="light"] .hero__image {
-  box-shadow:
-    0 0 0 2px var(--bg),
-    0 0 0 4px var(--accent),
-    0 0 0 7px rgba(109,64,240,0.14),
-    0 20px 50px rgba(109,64,240,0.11);
-}
-
-[data-theme="light"] .project-modal {
-  box-shadow: 0 24px 60px rgba(0,0,0,0.10), 0 0 0 1px var(--border);
-}
-
-/* Testimonial card active shine — soften the harsh white burst */
-[data-theme="light"] .tcard-item--active::after {
-  background: conic-gradient(
-    from var(--shine-angle),
-    rgba(109,64,240,0.25) 0%,
-    rgba(109,64,240,0.25) 55%,
-    rgba(109,64,240,0.65) 70%,
-    rgba(255,255,255,0.85) 75%,
-    rgba(109,64,240,0.65) 80%,
-    rgba(109,64,240,0.25) 95%,
-    rgba(109,64,240,0.25) 100%
-  );
-}
-
-/* Quote decoration — more readable on light bg */
-[data-theme="light"] .tcard-item::before {
-  color: rgba(109,64,240,0.08);
-}
-
-/* Timeline dot border should use light bg */
-[data-theme="light"] .timeline-item::before {
-  border-color: var(--bg);
-}
-
-/* Hero orb gradients — remove entirely on light */
-[data-theme="light"] .hero::after,
-[data-theme="light"] .hero::before {
-  background: none;
-}
-
-/* Service card icon glow */
-[data-theme="light"] .service-card__icon {
-  filter: drop-shadow(0 0 6px rgba(109,64,240,0.22));
-}
-
-/* Form error text — #f87171 is too washed-out on white */
-[data-theme="light"] .form-error-msg {
-  color: #b91c1c;
-  background: rgba(185,28,28,0.06);
-  border-color: rgba(185,28,28,0.20);
 }
 
 /* ── Base ──────────────────────────────────────────────────── */
@@ -581,15 +484,6 @@ button { font-family: inherit; cursor: pointer; }
     box-shadow var(--t);
 }
 
-/* Light mode: remove heavy drop shadows from testimonial cards */
-[data-theme="light"] .tcard-item {
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px var(--border);
-}
-[data-theme="light"] .tcard-item--active {
-  box-shadow: none;
-  border-color: transparent;
-}
-
 /* Decorative open-quote — kept inside card bounds */
 .tcard-item::before {
   content: '\201C';
@@ -645,6 +539,14 @@ button { font-family: inherit; cursor: pointer; }
 
 @keyframes tcard-shine {
   to { --shine-angle: 360deg; }
+}
+/* Light mode: remove heavy drop shadows from testimonial cards */
+[data-theme="light"] .tcard-item {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px var(--border);
+}
+[data-theme="light"] .tcard-item--active {
+  box-shadow: none;
+  border-color: transparent;
 }
 .tcard-item--prev {
   transform: translateX(-380px) scale(0.68);
@@ -1105,4 +1007,104 @@ button { font-family: inherit; cursor: pointer; }
   .project-modal { border-radius: var(--r-lg); }
   .project-modal__body { padding: 1.25rem; }
   .project-modal__title { font-size: 1.15rem; }
+}
+
+/* ── Light theme component overrides ──────────────────────── */
+[data-theme="light"] body {
+  background-image: none;
+}
+
+[data-theme="light"] .site-wrapper {
+  background-image: none;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(245, 245, 251, 0.88);
+}
+
+[data-theme="light"] .navbar__mobile-menu {
+  background: rgba(245, 245, 251, 0.98);
+}
+
+[data-theme="light"] .project-modal-backdrop {
+  background: rgba(245, 245, 251, 0.85);
+}
+
+[data-theme="light"] .btn-ghost {
+  background: var(--surface-2);
+}
+
+[data-theme="light"] .hero__badge {
+  color: var(--accent);
+}
+
+[data-theme="light"] .hero__name-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #4338ca 50%, #3b82f6 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .about-stat__value {
+  background: linear-gradient(135deg, var(--accent), #4338ca);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .tech-badge {
+  color: var(--accent);
+}
+
+/* Shadows — darken rgba(0,0,0,…) values are far too heavy on light */
+[data-theme="light"] .hero__image {
+  box-shadow:
+    0 0 0 2px var(--bg),
+    0 0 0 4px var(--accent),
+    0 0 0 7px rgba(109,64,240,0.14),
+    0 20px 50px rgba(109,64,240,0.11);
+}
+
+[data-theme="light"] .project-modal {
+  box-shadow: 0 24px 60px rgba(0,0,0,0.10), 0 0 0 1px var(--border);
+}
+
+/* Testimonial card active shine — soften the harsh white burst */
+[data-theme="light"] .tcard-item--active::after {
+  background: conic-gradient(
+    from var(--shine-angle),
+    rgba(109,64,240,0.25) 0%,
+    rgba(109,64,240,0.25) 55%,
+    rgba(109,64,240,0.65) 70%,
+    rgba(255,255,255,0.85) 75%,
+    rgba(109,64,240,0.65) 80%,
+    rgba(109,64,240,0.25) 95%,
+    rgba(109,64,240,0.25) 100%
+  );
+}
+
+/* Quote decoration — more readable on light bg */
+[data-theme="light"] .tcard-item::before {
+  color: rgba(109,64,240,0.08);
+}
+
+/* Timeline dot border should use light bg */
+[data-theme="light"] .timeline-item::before {
+  border-color: var(--bg);
+}
+
+/* Hero orb gradients — remove entirely on light */
+[data-theme="light"] .hero::after,
+[data-theme="light"] .hero::before {
+  background: none;
+}
+
+/* Service card icon glow */
+[data-theme="light"] .service-card__icon {
+  filter: drop-shadow(0 0 6px rgba(109,64,240,0.22));
+}
+
+/* Form error text — #f87171 is too washed-out on white */
+[data-theme="light"] .form-error-msg {
+  color: #b91c1c;
+  background: rgba(185,28,28,0.06);
+  border-color: rgba(185,28,28,0.20);
 }
