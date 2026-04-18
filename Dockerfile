@@ -1,40 +1,33 @@
-FROM node:20-bookworm-slim AS build
+# ─────────────────────────────────────────────────────────────────────────────
+# Stage 1 – build
+# Uses jaspr_cli to compile server (AOT) + client (dart2js) in one step.
+# Output lands in /app/build/jaspr/
+# ─────────────────────────────────────────────────────────────────────────────
+FROM dart:stable AS build
+RUN dart pub global activate jaspr_cli
 WORKDIR /app
 
-# Install dependencies
-COPY package*.json ./
-RUN npm ci --no-fund
+# Cache pub deps before copying source
+COPY pubspec.* ./
+RUN dart pub get
 
-# Build the site
 COPY . .
-RUN npm run build
 
-# --- Runtime image: Node.js server ---
-FROM node:20-bookworm-slim AS runtime
+# Drop any local overrides that could break the production build
+RUN rm -f pubspec_overrides.yaml
+
+RUN dart pub global run jaspr_cli:jaspr build
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Stage 2 – runtime
+# FROM scratch + the Dart minimal runtime = tiny final image (~10 MB)
+# ─────────────────────────────────────────────────────────────────────────────
+FROM scratch
+COPY --from=build /runtime/ /
+COPY --from=build /app/build/jaspr/ /app/
 WORKDIR /app
 
-# Copy package files and install production dependencies only
-COPY package*.json ./
-RUN npm ci --only=production --no-fund
+# Jaspr server listens on 8080 by default (override with JASPR_PORT)
+EXPOSE 8080
 
-# Copy built application
-COPY --from=build /app/dist ./dist
-
-# Copy healthcheck and startup scripts
-COPY healthcheck.js ./
-COPY start-server.js ./
-
-# Expose port (Astro defaults to 4321, but can be overridden)
-# Set HOST to 0.0.0.0 to listen on all interfaces (required for Docker)
-ENV PORT=4321
-ENV HOST=0.0.0.0
-EXPOSE 4321
-
-# Healthcheck - wait longer for server to start, then check every 30s
-HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD node healthcheck.js
-
-# Start the server - the adapter auto-starts when entry.mjs is imported
-# Ensure HOST and PORT are set for Docker networking
-CMD ["sh", "-c", "HOST=${HOST:-0.0.0.0} PORT=${PORT:-4321} node ./dist/server/entry.mjs"]
-
+CMD ["./app"]
