@@ -1,117 +1,121 @@
-# Portfolio (Astro) – Fork & Personalize
+# Portfolio – Fork & Personalize
 
-An opinionated, single-page portfolio built with Astro. This README explains how to fork it and make it yours quickly.
+An opinionated personal portfolio built with [Jaspr](https://docs.page/schultek/jaspr) and Dart. Server-side rendered, with client-side hydration, i18n (English + Spanish), and a dark/light theme. This README explains how to fork it and make it yours.
+
+## Tech stack
+
+| Layer | Tool |
+|---|---|
+| Framework | [Jaspr](https://docs.page/schultek/jaspr) (server mode) |
+| Language | Dart ≥ 3.11 |
+| State | [jaspr_riverpod](https://pub.dev/packages/jaspr_riverpod) |
+| Routing | [jaspr_router](https://pub.dev/packages/jaspr_router) |
+| i18n | [slang](https://pub.dev/packages/slang) |
+| Styling | Plain CSS (`web/styles.css`) |
+| Deployment | Docker + scratch image |
 
 ## Quick start
 
-1) Fork this repo, then clone your fork
+1. Fork this repo, then clone your fork:
 ```bash
 git clone YOUR_FORK_URL portfolio && cd portfolio
 ```
-2) Install and run
+2. Get dependencies:
 ```bash
-npm install
-npm run dev
+dart pub get
 ```
-3) Open http://localhost:4321
+3. Generate code (i18n strings + Jaspr builder output):
+```bash
+dart run build_runner build
+```
+4. Run the dev server:
+```bash
+dart run lib/main.server.dart
+```
+5. Open http://localhost:8080
 
 ## What to change (10–15 min)
 
-- Site identity: update `src/data/site.ts`
-  - `name`, `tagline`, `email`, `socials`, and UI headings.
-- About: `src/data/about.ts`
-  - Replace the paragraphs and services.
-- Experience: `src/data/experience.ts`
-- Clients: `src/data/clients.ts`
-- Testimonials: `src/data/testimonials.ts`
-- Projects: `src/data/projects.ts`
-  - Edit project cards and `category` values. Categories shown are defined in `src/data/projectsFilters.ts`.
-- Contact settings (if used): `src/data/contact.ts`
+### Site identity
+- **`lib/data/site_data.dart`** — `siteName`, `siteAvatar`, and social links.
+- **`lib/data/contact_data.dart`** — booking/calendar URL.
+- **`lib/data/portfolio_content.dart`** — services list shown on the home page.
 
-Assets (replace with your own):
-- Avatar/headshot: `public/assets/images/me.jpg`
-- Favicon(s): `public/assets/images/logo.ico` or `public/assets/images/ts-favicon.svg`
-- Logos/preview images: `public/assets/images/*`
+### Clients & projects
+- **`lib/data/clients_data.dart`** — client logos and URLs.
+- **`lib/data/project_catalog.dart`** — project cover images, tech stack, categories, and links.
 
-## SEO & social preview
+### Copy / translations
+- **`lib/l10n/arb/en.arb`** — all English strings (name, tagline, about text, project titles/descriptions, etc.).
+- **`lib/l10n/arb/es.arb`** — Spanish equivalents.
 
-- Set your canonical origin in `astro.config.mjs`:
-```js
-export default defineConfig({ site: 'https://your-domain.com' });
+After editing ARB files, regenerate:
+```bash
+dart run slang
+dart run build_runner build
 ```
-- The global head is handled in `src/layouts/BaseLayout.astro` (title, description, canonical, Open Graph, Twitter). Per‑tab titles/descriptions are set where the main shell/page defines `meta`.
-- Sitemap is served from `src/pages/sitemap.xml.ts` (update the static routes if you add/remove sections).
-- `public/robots.txt` allows indexing and points to `/sitemap.xml`.
-- Share preview image: use a 1200×630 image. Point `og:image` to it in `BaseLayout` or set per‑page.
 
-After deploy, refresh caches with sharing debuggers (Facebook, X/Twitter, LinkedIn).
-
-## Navigation and sections
-
-- Edit nav labels/links in `src/data/nav.ts`.
-- Sections (About/Work/Projects/Contact) live in `src/components/tabs/`.
-- The main shell that renders sidebar, navbar, and tabs lives in `src/components/MainShell.astro`.
+### Assets
+- Avatar: `web/assets/images/profile.jpg`
+- Favicon: `web/favicon.svg` (or `web/favicon.ico`)
+- Client logos & project covers: `web/assets/images/`
 
 ## Styling
 
-- Global CSS lives in `public/assets/css/style.css`. Tweak CSS variables (colors, shadows, font sizes) near the top to re‑theme quickly.
+Global CSS lives in `web/styles.css`. CSS custom properties (colors, shadows, radii) are near the top — tweak those to re-theme quickly. Light/dark theme tokens are in `[data-theme="light"]`.
 
-## Search (Projects)
+## Analytics
 
-This site is a single-page app (tabs). A lightweight **Projects search** is already wired up:
+The project ships a [Plausible](https://plausible.io) Docker Compose file (`plausible-docker-compose.yml`). To enable:
 
-- UI: `src/components/tabs/ProjectsTab.astro` (`Search projects…` input)
-- Logic: `src/components/PageInteractions.astro` (filters by **category + query**)
-
-No extra setup is needed.
-
-## Metrics / analytics
-
-Because the site uses History API tab routing, the project includes an SPA pageview hook so analytics counts `/projects`, `/contact`, etc.
-
-### Plausible
-
-1) Paste the Plausible snippet into the `<head>` in `src/components/Analytics.astro`.
-
-2) Deploy. Pageviews will be tracked on initial load + tab changes.
-
-### Track conversions (contact form)
-
-On successful contact form submission, the site fires an analytics event named `contact_submit`.
-
-## Search Console verification (SEO metrics)
-
-If you want Google/Bing indexing and performance reports:
-
-- **Google Search Console**: set `PUBLIC_GOOGLE_SITE_VERIFICATION` to your verification token
-- **Bing Webmaster Tools**: set `PUBLIC_BING_SITE_VERIFICATION` to your verification token
-
-Those become `<meta>` tags in `src/layouts/BaseLayout.astro`.
+1. Fill in the required env vars in that file.
+2. Add the Plausible script tag to `lib/app.dart` (inside the `Document` head).
 
 ## Deployment
 
-Vercel (recommended)
-```bash
-npm run build
-# push to Git; import repo in Vercel; set Framework: Astro
-```
-
-Netlify
-```bash
-# Build command: npm run build
-# Publish directory: dist
-```
-
-GitHub Pages
-```bash
-npm run build
-# Deploy ./dist via actions or a pages branch
-```
-
-Docker (optional)
+### Docker (recommended)
 ```bash
 docker build -t portfolio .
-docker run -p 4321:4321 portfolio
+docker run -p 8080:8080 portfolio
+```
+
+The multi-stage `Dockerfile` compiles a minimal scratch-based image (~10 MB).
+
+### Docker Compose
+```bash
+docker-compose up --build
+```
+
+### Manual (AOT binary)
+```bash
+dart pub global activate jaspr_cli
+dart pub global run jaspr_cli:jaspr build
+./build/jaspr/app
+```
+
+The server listens on port **8080** by default. Override with the `JASPR_PORT` environment variable.
+
+## Project structure
+
+```
+lib/
+  app.dart                  # Root Jaspr component (Document shell, router)
+  data/                     # All content data (edit these to personalise)
+  components/               # Reusable UI components
+  pages/                    # Route-level page components
+  l10n/                     # i18n: ARB source files + slang-generated code
+  middleware/               # Shelf middleware (locale redirect, dev asset server)
+  models/                   # Shared data models
+web/
+  styles.css                # Global stylesheet
+  theme.js                  # Dark/light theme toggle + view-transition
+  scroll-avatar.js          # Navbar avatar scroll behavior
+  assets/
+    images/                 # All image assets served at /assets/images/
+    theme-switch.json       # Lottie animation for theme button
+public/
+  robots.txt
+  assets/images/            # Static fallback copies of core images
 ```
 
 ## License
