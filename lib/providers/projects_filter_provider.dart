@@ -6,7 +6,7 @@ import '../models/models.dart';
 const kProjectsFilterSyncId = 'projects_filter_v1';
 
 /// In-memory project filter: `all`, `apps`, or `oss` (not stored in the URL).
-final projectsFilterProvider = StateProvider<String>((ref) => 'all');
+final projectsFilterProvider = StateProvider<String>((ref) => 'apps');
 
 /// The project currently shown in the detail modal, or null when closed.
 final selectedProjectProvider = StateProvider<Project?>((ref) => null);

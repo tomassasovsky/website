@@ -287,6 +287,11 @@ class AppLocalizationsEs extends AppLocalizations
   String get proj13Desc =>
       'Cliente de Dart para el protocolo de carga de TUS para cargas de archivos grandes y redes inestables. Manipula trozos, reintentos y metadatos, y almacena la continuación de la carga entre reinicios de la aplicación. Ideal para archivos grandes y redes inestables.';
   @override
+  String get proj14Title => 'radio-browser-api.dart';
+  @override
+  String get proj14Desc =>
+      'Wrapper de Dart para la API abierta de Radio Browser para descubrir y reproducir emisoras de radio por internet. Permite buscar por nombre, país, idioma y etiqueta, con modelos tipados y una interfaz asíncrona sencilla.';
+  @override
   String get testiPageTitle => 'Dejar un testimonio — Tomás Sasovsky';
   @override
   String get testiPageHeading => 'Dejar un testimonio';
@@ -552,6 +557,9 @@ extension on AppLocalizationsEs {
       'proj13Title' => 'tus_client',
       'proj13Desc' =>
         'Cliente de Dart para el protocolo de carga de TUS para cargas de archivos grandes y redes inestables. Manipula trozos, reintentos y metadatos, y almacena la continuación de la carga entre reinicios de la aplicación. Ideal para archivos grandes y redes inestables.',
+      'proj14Title' => 'radio-browser-api.dart',
+      'proj14Desc' =>
+        'Wrapper de Dart para la API abierta de Radio Browser para descubrir y reproducir emisoras de radio por internet. Permite buscar por nombre, país, idioma y etiqueta, con modelos tipados y una interfaz asíncrona sencilla.',
       'testiPageTitle' => 'Dejar un testimonio — Tomás Sasovsky',
       'testiPageHeading' => 'Dejar un testimonio',
       'testiPageSubtitle' =>

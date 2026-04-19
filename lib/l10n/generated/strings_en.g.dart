@@ -388,6 +388,13 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get proj13Desc =>
       'Dart client for the TUS resumable upload protocol with reliable, restartable uploads. Handles chunking, retries, and metadata, with pluggable storage for resumption across app restarts. Great for large files and flaky networks.';
 
+  /// en: 'radio-browser-api.dart'
+  String get proj14Title => 'radio-browser-api.dart';
+
+  /// en: 'Dart wrapper around the Radio Browser open API for discovering and streaming internet radio stations. Supports search by name, country, language, and tag, with typed models and a simple async interface.'
+  String get proj14Desc =>
+      'Dart wrapper around the Radio Browser open API for discovering and streaming internet radio stations. Supports search by name, country, language, and tag, with typed models and a simple async interface.';
+
   /// en: 'Leave a Testimonial — Tomás Sasovsky'
   String get testiPageTitle => 'Leave a Testimonial — Tomás Sasovsky';
 
@@ -704,6 +711,9 @@ extension on AppLocalizations {
       'proj13Title' => 'tus_client',
       'proj13Desc' =>
         'Dart client for the TUS resumable upload protocol with reliable, restartable uploads. Handles chunking, retries, and metadata, with pluggable storage for resumption across app restarts. Great for large files and flaky networks.',
+      'proj14Title' => 'radio-browser-api.dart',
+      'proj14Desc' =>
+        'Dart wrapper around the Radio Browser open API for discovering and streaming internet radio stations. Supports search by name, country, language, and tag, with typed models and a simple async interface.',
       'testiPageTitle' => 'Leave a Testimonial — Tomás Sasovsky',
       'testiPageHeading' => 'Leave a testimonial',
       'testiPageSubtitle' =>

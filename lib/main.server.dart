@@ -10,6 +10,7 @@ import 'api/contact_api.dart';
 import 'api/testimonial_api.dart';
 import 'app.dart';
 import 'main.server.options.dart';
+import 'middleware/locale_redirect_middleware.dart';
 import 'middleware/serve_generated_client_js.dart';
 import 'providers/projects_filter_provider.dart';
 
@@ -17,6 +18,7 @@ void main() {
   // Serves `/packages/...` and `/main.client*.js` from pub-cache / build output when
   // using `dart run lib/main.server.dart`. Always register (even if `JASPR_PROXY_PORT`
   // is set) so a stray env var does not skip this and break MIME types for DDC.
+  ServerApp.addMiddleware(localeRedirectMiddleware);
   ServerApp.addMiddleware(contactApiMiddleware);
   ServerApp.addMiddleware(testimonialApiMiddleware);
   ServerApp.addMiddleware(serveLocalDevWebAssets);

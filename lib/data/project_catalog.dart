@@ -149,6 +149,16 @@ final List<ProjectShell> projectShells = [
       (LinkKind.github, 'https://github.com/tomassasovsky/tus_client'),
     ],
   ),
+  (
+    tech: ['Dart'],
+    image: '/assets/images/radio-browser-api-portfolio-cover.png',
+    imageFit: 'cover',
+    categories: ['oss'],
+    unreleased: false,
+    links: [
+      (LinkKind.github, 'https://github.com/tomassasovsky/radio-browser-api.dart'),
+    ],
+  ),
 ];
 
 typedef ProjectShell = ({
