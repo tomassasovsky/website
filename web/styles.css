@@ -452,6 +452,18 @@ button { font-family: inherit; cursor: pointer; }
 }
 [data-theme="light"] .client-logo:hover { opacity: 1; filter: brightness(0) saturate(1); }
 
+/* Faster animation on smaller viewports */
+@media (max-width: 768px) {
+  .clients-track { animation-duration: 16s; gap: 3rem; }
+  .client-logo { max-height: 36px; max-width: 120px; }
+}
+
+/* Touch devices: tighter spacing; animation runs but can be dragged */
+@media (pointer: coarse) {
+  .clients-track { gap: 3rem; }
+  .client-logo { max-height: 38px; max-width: 130px; }
+}
+
 /* ── Testimonials 3-card coverflow ─────────────────────────── */
 .tcarousel { position: relative; }
 
