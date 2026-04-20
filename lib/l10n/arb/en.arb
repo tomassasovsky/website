@@ -37,6 +37,8 @@
 	"filterAll": "All",
 	"filterApps": "Apps",
 	"filterOss": "OSS / Tools",
+	"projectsCtaApps": "Also check out my apps →",
+	"projectsCtaOss": "Also check out my OSS & tools →",
 	"projectUnreleased": "Unreleased",
 	"contactGetInTouch": "Get in touch",
 	"contactHeading": "Contact",

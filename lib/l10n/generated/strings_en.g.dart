@@ -137,6 +137,12 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'OSS / Tools'
   String get filterOss => 'OSS / Tools';
 
+  /// en: 'Also check out my apps →'
+  String get projectsCtaApps => 'Also check out my apps →';
+
+  /// en: 'Also check out my OSS & tools →'
+  String get projectsCtaOss => 'Also check out my OSS & tools →';
+
   /// en: 'Unreleased'
   String get projectUnreleased => 'Unreleased';
 
@@ -614,6 +620,8 @@ extension on AppLocalizations {
       'filterAll' => 'All',
       'filterApps' => 'Apps',
       'filterOss' => 'OSS / Tools',
+      'projectsCtaApps' => 'Also check out my apps →',
+      'projectsCtaOss' => 'Also check out my OSS & tools →',
       'projectUnreleased' => 'Unreleased',
       'contactGetInTouch' => 'Get in touch',
       'contactHeading' => 'Contact',

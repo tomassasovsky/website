@@ -90,6 +90,24 @@ class ProjectsClientSection extends StatelessComponent {
                 },
               ),
           ]),
+          if (activeFilter == _kApps || activeFilter == _kOss)
+            div(classes: 'projects-cta', [
+              button(
+                classes: 'filter-btn projects-cta__btn',
+                onClick: () {
+                  context.read(projectsFilterProvider.notifier).state = activeFilter == _kApps ? _kOss : _kApps;
+                  Future.delayed(
+                    Duration.zero,
+                    () => web.window.scrollTo(web.ScrollToOptions(top: 0, behavior: 'smooth')),
+                  );
+                },
+                [
+                  .text(
+                    activeFilter == _kApps ? s.projectsCtaOss : s.projectsCtaApps,
+                  ),
+                ],
+              ),
+            ]),
         ]),
       ]),
       if (selectedProject != null)
