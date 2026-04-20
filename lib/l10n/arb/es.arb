@@ -37,6 +37,8 @@
 	"filterAll": "Todo",
 	"filterApps": "Aplicaciones",
 	"filterOss": "OSS / Herramientas",
+	"projectsCtaApps": "Ver también mis aplicaciones →",
+	"projectsCtaOss": "Ver también mis herramientas OSS →",
 	"projectUnreleased": "Inédito",
 	"contactGetInTouch": "Contacto",
 	"contactHeading": "Contacto",

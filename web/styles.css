@@ -646,6 +646,12 @@ button { font-family: inherit; cursor: pointer; }
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
+.projects-cta {
+  display: flex; justify-content: center; margin-top: 2.5rem;
+}
+.projects-cta__btn {
+  padding: 0.6rem 1.75rem; font-size: 0.9375rem;
+}
 .project-card {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--r-lg); overflow: hidden;

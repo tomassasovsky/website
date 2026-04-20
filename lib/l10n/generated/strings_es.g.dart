@@ -112,6 +112,10 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get filterOss => 'OSS / Herramientas';
   @override
+  String get projectsCtaApps => 'Ver también mis aplicaciones →';
+  @override
+  String get projectsCtaOss => 'Ver también mis herramientas OSS →';
+  @override
   String get projectUnreleased => 'Inédito';
   @override
   String get contactGetInTouch => 'Contacto';
@@ -458,6 +462,8 @@ extension on AppLocalizationsEs {
       'filterAll' => 'Todo',
       'filterApps' => 'Aplicaciones',
       'filterOss' => 'OSS / Herramientas',
+      'projectsCtaApps' => 'Ver también mis aplicaciones →',
+      'projectsCtaOss' => 'Ver también mis herramientas OSS →',
       'projectUnreleased' => 'Inédito',
       'contactGetInTouch' => 'Contacto',
       'contactHeading' => 'Contacto',
