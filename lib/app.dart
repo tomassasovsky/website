@@ -62,6 +62,7 @@ class App extends StatelessComponent {
                   ),
                   script(src: '/scroll-avatar.js', defer: true),
                   script(src: '/theme.js', defer: true),
+                  script(src: '/clients-carousel.js', defer: true),
                   // Plausible analytics
                   script(
                     src: 'https://stats.aquiles.dev/js/pa-72E8qMm_ZzdUZJw4uBtzt.js',
