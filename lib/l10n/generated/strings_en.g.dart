@@ -508,16 +508,16 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'November 2021'
   String get testi3Date => 'November 2021';
 
-  /// en: 'Proactive and resolutive young developer. If he doesn't know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.'
+  /// en: 'Proactive and resolutive developer. If he doesn't know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.'
   String get testi3P0 =>
-      'Proactive and resolutive young developer. If he doesn\'t know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.';
+      'Proactive and resolutive developer. If he doesn\'t know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.';
 
   /// en: 'November 2021'
   String get testi4Date => 'November 2021';
 
-  /// en: 'Tomás is a very talented young man. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.'
+  /// en: 'Tomás is a very talented engineer. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.'
   String get testi4P0 =>
-      'Tomás is a very talented young man. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.';
+      'Tomás is a very talented engineer. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.';
 
   /// en: 'Full-Stack Developer — El Dorado P2P'
   String get exp0Title => 'Full-Stack Developer — El Dorado P2P';
@@ -768,10 +768,10 @@ extension on AppLocalizations {
         'One of his standout accomplishments was designing and implementing a robust CI/CD pipeline that streamlined our development process. I strongly recommend him to any team looking for a talented, forward-thinking mobile developer.',
       'testi3Date' => 'November 2021',
       'testi3P0' =>
-        'Proactive and resolutive young developer. If he doesn\'t know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.',
+        'Proactive and resolutive developer. If he doesn\'t know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.',
       'testi4Date' => 'November 2021',
       'testi4P0' =>
-        'Tomás is a very talented young man. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.',
+        'Tomás is a very talented engineer. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.',
       'exp0Title' => 'Full-Stack Developer — El Dorado P2P',
       'exp0Range' => 'Feb 2025 — Sep 2025 · Buenos Aires (Hybrid)',
       'exp0Desc' =>

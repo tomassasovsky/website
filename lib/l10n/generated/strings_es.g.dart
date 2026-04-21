@@ -339,7 +339,7 @@ class AppLocalizationsEs extends AppLocalizations
   String get testi0Date => 'Octubre 2025';
   @override
   String get testi0P0 =>
-      'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y luego como líder del equipo en SportsVisio, viendo su evolución de joven prometedor a estrella del ingeniero.';
+      'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y luego como líder del equipo en SportsVisio, viendo su evolución de prometedor a estrella del ingeniero.';
   @override
   String get testi0P1 =>
       'Lo que distingue a Tomás es su confiabilidad incuestionable en la entrega de soluciones de alta calidad. Su trabajo en la optimización de carga TUS en segundo plano y la reescritura de la arquitectura Bloc en SportsVisio ilustra su capacidad para enfrentar desafíos complejos y críticos.';
@@ -377,7 +377,7 @@ class AppLocalizationsEs extends AppLocalizations
   String get testi4Date => 'Noviembre 2021';
   @override
   String get testi4P0 =>
-      'Tomás es un joven muy talentoso. Tiene un sólido conocimiento de Flutter. Es muy comprometido cuando tiene responsabilidades en un proyecto. Lo recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente desinteresada.';
+      'Tomás es un ingeniero muy talentoso. Tiene un sólido conocimiento de Flutter. Es muy comprometido cuando tiene responsabilidades en un proyecto. Lo recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente desinteresada.';
   @override
   String get exp0Title => 'Desarrollador Full-Stack — El Dorado P2P';
   @override
@@ -590,7 +590,7 @@ extension on AppLocalizationsEs {
       'testiFormSubmit' => 'Enviar testimonio',
       'testi0Date' => 'Octubre 2025',
       'testi0P0' =>
-        'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y luego como líder del equipo en SportsVisio, viendo su evolución de joven prometedor a estrella del ingeniero.',
+        'Me alegra recomendar a Tomás como un excelente ingeniero de software. He tenido el privilegio de trabajar junto a Tomás en IT-TechGroup y luego como líder del equipo en SportsVisio, viendo su evolución de prometedor a estrella del ingeniero.',
       'testi0P1' =>
         'Lo que distingue a Tomás es su confiabilidad incuestionable en la entrega de soluciones de alta calidad. Su trabajo en la optimización de carga TUS en segundo plano y la reescritura de la arquitectura Bloc en SportsVisio ilustra su capacidad para enfrentar desafíos complejos y críticos.',
       'testi0P2' =>
@@ -614,7 +614,7 @@ extension on AppLocalizationsEs {
         'Desarrollador proactivo y resolutivo. Si no sabe cómo hacer algo, lo busca y da resultados, siempre. Asegura la calidad del código y garantiza que lo haga.',
       'testi4Date' => 'Noviembre 2021',
       'testi4P0' =>
-        'Tomás es un joven muy talentoso. Tiene un sólido conocimiento de Flutter. Es muy comprometido cuando tiene responsabilidades en un proyecto. Lo recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente desinteresada.',
+        'Tomás es un ingeniero muy talentoso. Tiene un sólido conocimiento de Flutter. Es muy comprometido cuando tiene responsabilidades en un proyecto. Lo recomiendo como compañero de trabajo o líder de proyecto, ya que siempre está dispuesto a aprender más y ayudar de manera totalmente desinteresada.',
       'exp0Title' => 'Desarrollador Full-Stack — El Dorado P2P',
       'exp0Range' => 'Febrero 2025 — Septiembre 2025 · Buenos Aires (Híbrido)',
       'exp0Desc' =>
