@@ -56,7 +56,7 @@ dart run build_runner build
 ```
 
 ### Assets
-- Avatar: `web/assets/images/profile.jpg`
+- Avatar: `web/assets/images/profile.png`
 - Favicon: `web/favicon.svg` (or `web/favicon.ico`)
 - Client logos & project covers: `web/assets/images/`
 

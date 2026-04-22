@@ -1,7 +1,7 @@
 import '../models/models.dart';
 
 const siteName = 'Tomás Sasovsky';
-const siteAvatar = '/assets/images/profile.jpg';
+const siteAvatar = '/assets/images/profile.png';
 
 const socials = <SocialLink>[
   SocialLink(label: 'GitHub', href: 'https://github.com/tomassasovsky'),
