@@ -29,6 +29,52 @@ String? _ensureLocalePrefix(BuildContext context, RouteState state) {
   return null;
 }
 
+String _normalizePath(String location) {
+  final uri = Uri.parse(location);
+  var path = uri.path.isEmpty ? '/' : uri.path;
+
+  if (path.length > 1 && path.endsWith('/')) {
+    path = path.substring(0, path.length - 1);
+  }
+
+  return path;
+}
+
+String _canonicalPath(String location) {
+  final path = _normalizePath(location);
+  final segments = path.split('/').where((segment) => segment.isNotEmpty).toList();
+
+  if (segments.isEmpty) {
+    return '/en';
+  }
+
+  if (localeFromPathSegment(segments.first) == null) {
+    return '/en$path';
+  }
+
+  return path;
+}
+
+String _withLocalePrefix(String path, AppLocale locale) {
+  final segments = path.split('/').where((segment) => segment.isNotEmpty).toList();
+
+  if (segments.isEmpty) {
+    return '/${locale.languageCode}';
+  }
+
+  if (localeFromPathSegment(segments.first) == null) {
+    segments.insert(0, locale.languageCode);
+  } else {
+    segments[0] = locale.languageCode;
+  }
+
+  return '/${segments.join('/')}';
+}
+
+bool _isIndexablePath(String path) {
+  return !path.endsWith('/new-testimonial');
+}
+
 class App extends StatelessComponent {
   const App({super.key});
 
@@ -42,6 +88,14 @@ class App extends StatelessComponent {
             final langCode = state.params['lang'];
             final locale = localeFromPathSegment(langCode) ?? AppLocale.en;
             final strings = locale.buildSync();
+            final canonicalPath = _canonicalPath(state.location);
+            final alternatePaths = AppLocale.values
+                .map((target) => _withLocalePrefix(canonicalPath, target))
+                .toList(growable: false);
+            final robotsContent = _isIndexablePath(canonicalPath)
+                ? 'index, follow, noai, noimageai'
+                : 'noindex, nofollow, noai, noimageai';
+
             return .fragment([
               Document.html(attributes: {'lang': locale.languageCode}),
               Document.head(
@@ -53,8 +107,20 @@ class App extends StatelessComponent {
                   ),
                   // Favicon
                   link(rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'),
-                  // Disable link previews on WhatsApp, Telegram, etc.
-                  meta(name: 'robots', content: 'noai, noimageai'),
+                  // Keep one canonical URL per locale path and expose alternates.
+                  link(rel: 'canonical', href: canonicalPath),
+                  for (final path in alternatePaths)
+                    link(
+                      rel: 'alternate',
+                      href: path,
+                      attributes: {'hreflang': Uri.parse(path).pathSegments.first},
+                    ),
+                  link(
+                    rel: 'alternate',
+                    href: _withLocalePrefix(canonicalPath, AppLocale.en),
+                    attributes: const {'hreflang': 'x-default'},
+                  ),
+                  meta(name: 'robots', content: robotsContent),
                   // Lottie player (defer so it runs in order before theme.js)
                   script(
                     src: 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js',
