@@ -57,6 +57,8 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get metaTitleContact => 'Contacto — Tomás Sasovsky';
   @override
+  String get metaTitleBookMeeting => 'Agendar reunión — Tomás Sasovsky';
+  @override
   String get siteTagline => 'Sr. Flutter & Backend Engineer';
   @override
   String get siteLocation => 'Buenos Aires, Argentina';
@@ -126,12 +128,79 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get contactBookTitle => 'Agenda una reunión';
   @override
-  String get contactBookLine1 => 'Elige un tiempo que funcione para ti utilizando mi calendario.';
+  String get contactBookLine1 => 'Elige un horario que te funcione.';
   @override
   String get contactBookLine2 =>
-      'Recibirás una confirmación y un enlace de reunión de video automáticamente.';
+      'Recibirás una confirmación y un enlace de videollamada automáticamente.';
   @override
   String get contactScheduleCall => 'Agendar una llamada →';
+  @override
+  String get bookingMeetingTitle => 'Llamada introductoria';
+  @override
+  String get bookingMeetingDuration => '30 min';
+  @override
+  String get bookingSelectDateTime => 'Elige fecha y hora';
+  @override
+  String get bookingStepDateTitle => 'Elige una fecha';
+  @override
+  String get bookingStepTimeTitle => 'Elige un horario';
+  @override
+  String get bookingStepDate => 'Fecha';
+  @override
+  String get bookingStepTime => 'Hora';
+  @override
+  String get bookingStepDetails => 'Datos';
+  @override
+  String get bookingChangeDate => 'Cambiar fecha';
+  @override
+  String get bookingPickDateHint =>
+      'Selecciona una fecha resaltada para ver los horarios disponibles.';
+  @override
+  String get bookingConfirmTime => 'Confirmar';
+  @override
+  String get bookingEnterDetails => 'Tus datos';
+  @override
+  String get bookingBack => 'Volver';
+  @override
+  String get bookingTimezoneLabel => 'Zona horaria';
+  @override
+  String bookingHostHoursHint({required int startHour, required int endHour}) =>
+      'La disponibilidad sigue el horario laboral de Buenos Aires (${startHour}:00–${endHour}:00).';
+  @override
+  String get bookingTime => 'Horarios disponibles';
+  @override
+  String get bookingLoadingSlots => 'Cargando horarios…';
+  @override
+  String get bookingNoSlots => 'No hay horarios disponibles en esta fecha. Prueba otro día.';
+  @override
+  String get bookingSelected => 'Seleccionado';
+  @override
+  String get bookingNotes => 'Notas (opcional)';
+  @override
+  String get bookingNotesHint => 'Algo que quieras que sepa antes de la reunión…';
+  @override
+  String get bookingConfirm => 'Agendar reunión';
+  @override
+  String get bookingBooking => 'Agendando…';
+  @override
+  String get bookingSuccess =>
+      '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.';
+  @override
+  String get bookingSuccessCtaAbout => 'Volver al inicio';
+  @override
+  String get bookingSuccessCtaWork => 'Ver mi trabajo →';
+  @override
+  String get bookingSuccessCtaOss => 'Open source y herramientas →';
+  @override
+  String get bookingErrorGeneric => 'Algo salió mal. Por favor, inténtalo de nuevo.';
+  @override
+  String get bookingErrorRequired => 'Elige un horario y completa tu nombre y email.';
+  @override
+  String get bookingErrorConflict => 'Ese horario acaba de reservarse. Elige otro.';
+  @override
+  String get bookingPrevMonth => 'Mes anterior';
+  @override
+  String get bookingNextMonth => 'Mes siguiente';
   @override
   String get contactOnlineTitle => 'Encontrame en línea';
   @override
@@ -433,6 +502,7 @@ extension on AppLocalizationsEs {
       'metaTitleHome' => 'Sobre — Tomás Sasovsky',
       'metaTitleProjects' => 'Proyectos — Tomás Sasovsky',
       'metaTitleContact' => 'Contacto — Tomás Sasovsky',
+      'metaTitleBookMeeting' => 'Agendar reunión — Tomás Sasovsky',
       'siteTagline' => 'Sr. Flutter & Backend Engineer',
       'siteLocation' => 'Buenos Aires, Argentina',
       'navAbout' => 'Sobre',
@@ -469,10 +539,45 @@ extension on AppLocalizationsEs {
       'contactHeading' => 'Contacto',
       'contactSubtitle' => 'Vamos a trabajar juntos en algo genial.',
       'contactBookTitle' => 'Agenda una reunión',
-      'contactBookLine1' => 'Elige un tiempo que funcione para ti utilizando mi calendario.',
+      'contactBookLine1' => 'Elige un horario que te funcione.',
       'contactBookLine2' =>
-        'Recibirás una confirmación y un enlace de reunión de video automáticamente.',
+        'Recibirás una confirmación y un enlace de videollamada automáticamente.',
       'contactScheduleCall' => 'Agendar una llamada →',
+      'bookingMeetingTitle' => 'Llamada introductoria',
+      'bookingMeetingDuration' => '30 min',
+      'bookingSelectDateTime' => 'Elige fecha y hora',
+      'bookingStepDateTitle' => 'Elige una fecha',
+      'bookingStepTimeTitle' => 'Elige un horario',
+      'bookingStepDate' => 'Fecha',
+      'bookingStepTime' => 'Hora',
+      'bookingStepDetails' => 'Datos',
+      'bookingChangeDate' => 'Cambiar fecha',
+      'bookingPickDateHint' => 'Selecciona una fecha resaltada para ver los horarios disponibles.',
+      'bookingConfirmTime' => 'Confirmar',
+      'bookingEnterDetails' => 'Tus datos',
+      'bookingBack' => 'Volver',
+      'bookingTimezoneLabel' => 'Zona horaria',
+      'bookingHostHoursHint' =>
+        ({required int startHour, required int endHour}) =>
+            'La disponibilidad sigue el horario laboral de Buenos Aires (${startHour}:00–${endHour}:00).',
+      'bookingTime' => 'Horarios disponibles',
+      'bookingLoadingSlots' => 'Cargando horarios…',
+      'bookingNoSlots' => 'No hay horarios disponibles en esta fecha. Prueba otro día.',
+      'bookingSelected' => 'Seleccionado',
+      'bookingNotes' => 'Notas (opcional)',
+      'bookingNotesHint' => 'Algo que quieras que sepa antes de la reunión…',
+      'bookingConfirm' => 'Agendar reunión',
+      'bookingBooking' => 'Agendando…',
+      'bookingSuccess' =>
+        '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.',
+      'bookingSuccessCtaAbout' => 'Volver al inicio',
+      'bookingSuccessCtaWork' => 'Ver mi trabajo →',
+      'bookingSuccessCtaOss' => 'Open source y herramientas →',
+      'bookingErrorGeneric' => 'Algo salió mal. Por favor, inténtalo de nuevo.',
+      'bookingErrorRequired' => 'Elige un horario y completa tu nombre y email.',
+      'bookingErrorConflict' => 'Ese horario acaba de reservarse. Elige otro.',
+      'bookingPrevMonth' => 'Mes anterior',
+      'bookingNextMonth' => 'Mes siguiente',
       'contactOnlineTitle' => 'Encontrame en línea',
       'contactOnlineBody' =>
         'Ponte en contacto directamente — siempre feliz de hablar sobre Flutter, proyectos interesantes o oportunidades nuevas.',

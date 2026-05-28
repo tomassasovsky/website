@@ -2,7 +2,6 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../components/contact_form.dart';
-import '../data/contact_data.dart';
 import '../data/site_data.dart';
 import '../l10n/l10n_extension.dart';
 
@@ -40,9 +39,8 @@ class ContactPage extends StatelessComponent {
                     p([.text(s.contactBookLine2)]),
                   ]),
                   a(
-                    href: bookingUrl,
+                    href: '/${locale.languageCode}/book-meeting',
                     classes: 'btn btn-primary',
-                    attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
                     [.text(s.contactScheduleCall)],
                   ),
                 ]),

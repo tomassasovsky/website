@@ -55,6 +55,9 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'Contact — Tomás Sasovsky'
   String get metaTitleContact => 'Contact — Tomás Sasovsky';
 
+  /// en: 'Book a meeting — Tomás Sasovsky'
+  String get metaTitleBookMeeting => 'Book a meeting — Tomás Sasovsky';
+
   /// en: 'Sr. Flutter & Backend Engineer'
   String get siteTagline => 'Sr. Flutter & Backend Engineer';
 
@@ -158,8 +161,8 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'Book a meeting'
   String get contactBookTitle => 'Book a meeting';
 
-  /// en: 'Pick a time that works for you using my calendar.'
-  String get contactBookLine1 => 'Pick a time that works for you using my calendar.';
+  /// en: 'Pick a time that works for you.'
+  String get contactBookLine1 => 'Pick a time that works for you.';
 
   /// en: 'You'll get a confirmation and a video meeting link automatically.'
   String get contactBookLine2 =>
@@ -167,6 +170,104 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
 
   /// en: 'Schedule a call →'
   String get contactScheduleCall => 'Schedule a call →';
+
+  /// en: 'Intro call'
+  String get bookingMeetingTitle => 'Intro call';
+
+  /// en: '30 min'
+  String get bookingMeetingDuration => '30 min';
+
+  /// en: 'Select a Date & Time'
+  String get bookingSelectDateTime => 'Select a Date & Time';
+
+  /// en: 'Choose a date'
+  String get bookingStepDateTitle => 'Choose a date';
+
+  /// en: 'Choose a time'
+  String get bookingStepTimeTitle => 'Choose a time';
+
+  /// en: 'Date'
+  String get bookingStepDate => 'Date';
+
+  /// en: 'Time'
+  String get bookingStepTime => 'Time';
+
+  /// en: 'Details'
+  String get bookingStepDetails => 'Details';
+
+  /// en: 'Change date'
+  String get bookingChangeDate => 'Change date';
+
+  /// en: 'Select a highlighted date to see available times.'
+  String get bookingPickDateHint => 'Select a highlighted date to see available times.';
+
+  /// en: 'Confirm'
+  String get bookingConfirmTime => 'Confirm';
+
+  /// en: 'Enter Details'
+  String get bookingEnterDetails => 'Enter Details';
+
+  /// en: 'Back'
+  String get bookingBack => 'Back';
+
+  /// en: 'Time zone'
+  String get bookingTimezoneLabel => 'Time zone';
+
+  /// en: 'Availability is based on Buenos Aires business hours ({startHour: int}:00–{endHour: int}:00).'
+  String bookingHostHoursHint({required int startHour, required int endHour}) =>
+      'Availability is based on Buenos Aires business hours (${startHour}:00–${endHour}:00).';
+
+  /// en: 'Available times'
+  String get bookingTime => 'Available times';
+
+  /// en: 'Loading times…'
+  String get bookingLoadingSlots => 'Loading times…';
+
+  /// en: 'No times available on this date. Try another day.'
+  String get bookingNoSlots => 'No times available on this date. Try another day.';
+
+  /// en: 'Selected'
+  String get bookingSelected => 'Selected';
+
+  /// en: 'Notes (optional)'
+  String get bookingNotes => 'Notes (optional)';
+
+  /// en: 'Anything you'd like me to know before we meet…'
+  String get bookingNotesHint => 'Anything you\'d like me to know before we meet…';
+
+  /// en: 'Book meeting'
+  String get bookingConfirm => 'Book meeting';
+
+  /// en: 'Booking…'
+  String get bookingBooking => 'Booking…';
+
+  /// en: 'You're booked — check your email for the calendar invite and meeting link.'
+  String get bookingSuccess =>
+      'You\'re booked — check your email for the calendar invite and meeting link.';
+
+  /// en: 'Back to about'
+  String get bookingSuccessCtaAbout => 'Back to about';
+
+  /// en: 'See my work →'
+  String get bookingSuccessCtaWork => 'See my work →';
+
+  /// en: 'Open source & tools →'
+  String get bookingSuccessCtaOss => 'Open source & tools →';
+
+  /// en: 'Something went wrong. Please try again.'
+  String get bookingErrorGeneric => 'Something went wrong. Please try again.';
+
+  /// en: 'Please pick a time and fill in your name and email.'
+  String get bookingErrorRequired => 'Please pick a time and fill in your name and email.';
+
+  /// en: 'That time was just taken. Please pick another slot.'
+  String get bookingErrorConflict => 'That time was just taken. Please pick another slot.';
+
+  /// en: 'Previous month'
+  String get bookingPrevMonth => 'Previous month';
+
+  /// en: 'Next month'
+  String get bookingNextMonth => 'Next month';
 
   /// en: 'Find me online'
   String get contactOnlineTitle => 'Find me online';
@@ -591,6 +692,7 @@ extension on AppLocalizations {
       'metaTitleHome' => 'About — Tomás Sasovsky',
       'metaTitleProjects' => 'Projects — Tomás Sasovsky',
       'metaTitleContact' => 'Contact — Tomás Sasovsky',
+      'metaTitleBookMeeting' => 'Book a meeting — Tomás Sasovsky',
       'siteTagline' => 'Sr. Flutter & Backend Engineer',
       'siteLocation' => 'Buenos Aires, Argentina',
       'navAbout' => 'About',
@@ -627,9 +729,44 @@ extension on AppLocalizations {
       'contactHeading' => 'Contact',
       'contactSubtitle' => 'Let\'s work together on something great.',
       'contactBookTitle' => 'Book a meeting',
-      'contactBookLine1' => 'Pick a time that works for you using my calendar.',
+      'contactBookLine1' => 'Pick a time that works for you.',
       'contactBookLine2' => 'You\'ll get a confirmation and a video meeting link automatically.',
       'contactScheduleCall' => 'Schedule a call →',
+      'bookingMeetingTitle' => 'Intro call',
+      'bookingMeetingDuration' => '30 min',
+      'bookingSelectDateTime' => 'Select a Date & Time',
+      'bookingStepDateTitle' => 'Choose a date',
+      'bookingStepTimeTitle' => 'Choose a time',
+      'bookingStepDate' => 'Date',
+      'bookingStepTime' => 'Time',
+      'bookingStepDetails' => 'Details',
+      'bookingChangeDate' => 'Change date',
+      'bookingPickDateHint' => 'Select a highlighted date to see available times.',
+      'bookingConfirmTime' => 'Confirm',
+      'bookingEnterDetails' => 'Enter Details',
+      'bookingBack' => 'Back',
+      'bookingTimezoneLabel' => 'Time zone',
+      'bookingHostHoursHint' =>
+        ({required int startHour, required int endHour}) =>
+            'Availability is based on Buenos Aires business hours (${startHour}:00–${endHour}:00).',
+      'bookingTime' => 'Available times',
+      'bookingLoadingSlots' => 'Loading times…',
+      'bookingNoSlots' => 'No times available on this date. Try another day.',
+      'bookingSelected' => 'Selected',
+      'bookingNotes' => 'Notes (optional)',
+      'bookingNotesHint' => 'Anything you\'d like me to know before we meet…',
+      'bookingConfirm' => 'Book meeting',
+      'bookingBooking' => 'Booking…',
+      'bookingSuccess' =>
+        'You\'re booked — check your email for the calendar invite and meeting link.',
+      'bookingSuccessCtaAbout' => 'Back to about',
+      'bookingSuccessCtaWork' => 'See my work →',
+      'bookingSuccessCtaOss' => 'Open source & tools →',
+      'bookingErrorGeneric' => 'Something went wrong. Please try again.',
+      'bookingErrorRequired' => 'Please pick a time and fill in your name and email.',
+      'bookingErrorConflict' => 'That time was just taken. Please pick another slot.',
+      'bookingPrevMonth' => 'Previous month',
+      'bookingNextMonth' => 'Next month',
       'contactOnlineTitle' => 'Find me online',
       'contactOnlineBody' =>
         'Reach out directly — always happy to chat about Flutter, interesting projects, or new opportunities.',

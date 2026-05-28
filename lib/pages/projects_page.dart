@@ -30,15 +30,34 @@ class ProjectsPage extends StatelessComponent {
 }
 
 @client
-class ProjectsClientSection extends StatelessComponent {
+class ProjectsClientSection extends StatefulComponent {
   const ProjectsClientSection({required this.localeCode});
 
   /// Passed from the server shell; the hydrated client subtree is not under [LocaleScope].
   final String localeCode;
 
   @override
+  State<ProjectsClientSection> createState() => _ProjectsClientSectionState();
+}
+
+class _ProjectsClientSectionState extends State<ProjectsClientSection> {
+  var _hashFilterApplied = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!context.binding.isClient || _hashFilterApplied) return;
+    _hashFilterApplied = true;
+
+    final hash = web.window.location.hash.toLowerCase();
+    if (hash == '#oss' || hash == '#apps') {
+      context.read(projectsFilterProvider.notifier).state = hash.substring(1);
+    }
+  }
+
+  @override
   Component build(BuildContext context) {
-    final locale = localeFromPathSegment(localeCode) ?? AppLocale.en;
+    final locale = localeFromPathSegment(component.localeCode) ?? AppLocale.en;
     final s = locale.buildSync();
     final projects = loadProjects(locale.buildSync());
     final raw = context.watch(projectsFilterProvider);

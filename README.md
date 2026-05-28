@@ -38,7 +38,6 @@ dart run lib/main.server.dart
 
 ### Site identity
 - **`lib/data/site_data.dart`** — `siteName`, `siteAvatar`, and social links.
-- **`lib/data/contact_data.dart`** — booking/calendar URL.
 - **`lib/data/portfolio_content.dart`** — services list shown on the home page.
 
 ### Clients & projects
@@ -117,6 +116,58 @@ public/
   robots.txt
   assets/images/            # Static fallback copies of core images
 ```
+
+## Contact form & meeting booking
+
+Copy `.env.example` to `.env` and fill in the Google OAuth credentials. The same refresh token is used for:
+
+- **Contact form** — sends email via Gmail API
+- **Meeting booking** — reads availability and creates calendar events via Google Calendar API
+
+### Google OAuth setup
+
+1. Create a Google Cloud project and enable **Gmail API** and **Google Calendar API**.
+2. Create OAuth 2.0 credentials (Web application or Desktop).
+3. Authorize with these scopes:
+   - `https://www.googleapis.com/auth/gmail.send`
+   - `https://www.googleapis.com/auth/calendar.events`
+   - `https://www.googleapis.com/auth/calendar.freebusy`
+4. Store the refresh token in `GOOGLE_REFRESH_TOKEN`.
+
+If you already have a Gmail-only refresh token, re-authorize with the Calendar scopes above.
+
+### Quick setup script
+
+1. In Google Cloud Console, create a **Web application** OAuth client.
+2. Add `http://localhost:8080` to **Authorized redirect URIs**.
+3. Put `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in `.env`.
+4. Stop the dev server (it uses the same port), then run:
+
+```bash
+dart run tool/google_oauth_setup.dart --write
+```
+
+The script opens your browser, captures the callback, and writes `GOOGLE_REFRESH_TOKEN` to `.env`.
+
+### Booking configuration
+
+| Variable | Default | Description |
+|---|---|---|
+| `GOOGLE_CALENDAR_ID` | `primary` | Calendar to book against |
+| `BOOKING_TIMEZONE` | `America/Argentina/Buenos_Aires` | IANA timezone for events |
+| `BOOKING_UTC_OFFSET_HOURS` | `-3` | Offset used for slot generation |
+| `BOOKING_DURATION_MINUTES` | `30` | Meeting length |
+| `BOOKING_START_HOUR` | `9` | First slot (local time) |
+| `BOOKING_END_HOUR` | `17` | Last slot start boundary |
+| `BOOKING_DAYS_AHEAD` | `14` | How far ahead users can book |
+| `BOOKING_MIN_NOTICE_MINUTES` | `1440` | Minimum lead time before a slot (1440 = 24 hours) |
+| `BOOKING_WORK_DAYS_ONLY` | `true` | Skip weekends |
+
+Without credentials, the booking UI still works locally — slots are shown and submissions are logged to stderr instead of creating calendar events.
+
+Set `BOOKING_DEBUG=true` in `.env` for verbose server logs and error details in API responses.
+
+When Google credentials are configured, the **guest** receives Google’s native calendar invite (`sendUpdates=all`). The **host** (`CONTACT_EMAIL` or `GOOGLE_USER_EMAIL`) receives an HTML notification styled like Google Calendar — with Meet link and an **Open in Google Calendar** link scoped to the organizer’s calendar (guest invite links use a different `eid` and won’t open for the host). Gmail does not show “Add to calendar” for the organizer because the event is already on their calendar.
 
 ## License
 

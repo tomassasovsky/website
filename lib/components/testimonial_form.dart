@@ -30,12 +30,14 @@ class TestimonialForm extends StatelessComponent {
       input(
         type: InputType.text,
         name: 'website',
+        value: formState.honeypot,
         attributes: {
           'aria-hidden': 'true',
           'tabindex': '-1',
           'autocomplete': 'off',
           'style': 'position:absolute;left:-9999px;width:0;height:0',
         },
+        onInput: notifier.updateHoneypot,
       ),
       div(classes: 'form-row', [
         div(classes: 'form-group', [
