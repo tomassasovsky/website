@@ -6,6 +6,8 @@ abstract final class AppPaths {
 
   static String projects(AppLocale locale) => '/${locale.languageCode}/projects';
 
+  static String projectsWithFilter(AppLocale locale, String filter) => '${projects(locale)}#$filter';
+
   static String contact(AppLocale locale) => '/${locale.languageCode}/contact';
 
   static String newTestimonial(AppLocale locale) => '/${locale.languageCode}/new-testimonial';

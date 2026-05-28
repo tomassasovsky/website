@@ -9,7 +9,8 @@ import 'package:slang/generated.dart';
 import 'strings.g.dart';
 
 // Path: <root>
-class AppLocalizationsEs extends AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
+class AppLocalizationsEs extends AppLocalizations
+    with BaseTranslations<AppLocale, AppLocalizations> {
   /// You can call this constructor and build your own translation instance of this locale.
   /// Constructing via the enum [AppLocale.build] is preferred.
   AppLocalizationsEs({
@@ -129,7 +130,8 @@ class AppLocalizationsEs extends AppLocalizations with BaseTranslations<AppLocal
   @override
   String get contactBookLine1 => 'Elige un horario que te funcione.';
   @override
-  String get contactBookLine2 => 'Recibirás una confirmación y un enlace de videollamada automáticamente.';
+  String get contactBookLine2 =>
+      'Recibirás una confirmación y un enlace de videollamada automáticamente.';
   @override
   String get contactScheduleCall => 'Agendar una llamada →';
   @override
@@ -151,7 +153,8 @@ class AppLocalizationsEs extends AppLocalizations with BaseTranslations<AppLocal
   @override
   String get bookingChangeDate => 'Cambiar fecha';
   @override
-  String get bookingPickDateHint => 'Selecciona una fecha resaltada para ver los horarios disponibles.';
+  String get bookingPickDateHint =>
+      'Selecciona una fecha resaltada para ver los horarios disponibles.';
   @override
   String get bookingConfirmTime => 'Confirmar';
   @override
@@ -180,7 +183,14 @@ class AppLocalizationsEs extends AppLocalizations with BaseTranslations<AppLocal
   @override
   String get bookingBooking => 'Agendando…';
   @override
-  String get bookingSuccess => '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.';
+  String get bookingSuccess =>
+      '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.';
+  @override
+  String get bookingSuccessCtaAbout => 'Volver al inicio';
+  @override
+  String get bookingSuccessCtaWork => 'Ver mi trabajo →';
+  @override
+  String get bookingSuccessCtaOss => 'Open source y herramientas →';
   @override
   String get bookingErrorGeneric => 'Algo salió mal. Por favor, inténtalo de nuevo.';
   @override
@@ -245,19 +255,23 @@ class AppLocalizationsEs extends AppLocalizations with BaseTranslations<AppLocal
   @override
   String get svc0Title => 'Desarrollo de aplicaciones móviles';
   @override
-  String get svc0Desc => 'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.';
+  String get svc0Desc =>
+      'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.';
   @override
   String get svc1Title => 'Desarrollo de back-end y API';
   @override
-  String get svc1Desc => 'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.';
+  String get svc1Desc =>
+      'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.';
   @override
   String get svc2Title => 'Aplicaciones web y front-end';
   @override
-  String get svc2Desc => 'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.';
+  String get svc2Desc =>
+      'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.';
   @override
   String get svc3Title => 'Integraciones y DevOps';
   @override
-  String get svc3Desc => 'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.';
+  String get svc3Desc =>
+      'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.';
   @override
   String get svc4Title => 'Contribuciones a código abierto';
   @override
@@ -513,7 +527,8 @@ extension on AppLocalizationsEs {
       'portfolioLabel' => 'Portafolio',
       'projectsHeading' => 'Proyectos',
       'projectsSubtitle' =>
-        ({required int projectCount}) => '${projectCount} proyectos en móviles, backend y open source.',
+        ({required int projectCount}) =>
+            '${projectCount} proyectos en móviles, backend y open source.',
       'filterAll' => 'Todo',
       'filterApps' => 'Aplicaciones',
       'filterOss' => 'OSS / Herramientas',
@@ -525,7 +540,8 @@ extension on AppLocalizationsEs {
       'contactSubtitle' => 'Vamos a trabajar juntos en algo genial.',
       'contactBookTitle' => 'Agenda una reunión',
       'contactBookLine1' => 'Elige un horario que te funcione.',
-      'contactBookLine2' => 'Recibirás una confirmación y un enlace de videollamada automáticamente.',
+      'contactBookLine2' =>
+        'Recibirás una confirmación y un enlace de videollamada automáticamente.',
       'contactScheduleCall' => 'Agendar una llamada →',
       'bookingMeetingTitle' => 'Llamada introductoria',
       'bookingMeetingDuration' => '30 min',
@@ -552,7 +568,11 @@ extension on AppLocalizationsEs {
       'bookingNotesHint' => 'Algo que quieras que sepa antes de la reunión…',
       'bookingConfirm' => 'Agendar reunión',
       'bookingBooking' => 'Agendando…',
-      'bookingSuccess' => '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.',
+      'bookingSuccess' =>
+        '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.',
+      'bookingSuccessCtaAbout' => 'Volver al inicio',
+      'bookingSuccessCtaWork' => 'Ver mi trabajo →',
+      'bookingSuccessCtaOss' => 'Open source y herramientas →',
       'bookingErrorGeneric' => 'Algo salió mal. Por favor, inténtalo de nuevo.',
       'bookingErrorRequired' => 'Elige un horario y completa tu nombre y email.',
       'bookingErrorConflict' => 'Ese horario acaba de reservarse. Elige otro.',
@@ -586,13 +606,17 @@ extension on AppLocalizationsEs {
       'aboutP1' =>
         'Mis fortalezas incluyen la gestión de estado (Bloc, MVVM), la arquitectura por capas de Flutter, la arquitectura limpia y las prácticas modernas de CI/CD. También cuento con sólida experiencia en backend con TypeScript/Node.js, integración de APIs (REST/GraphQL) e infraestructura en la nube (GCP/AWS). Me siento cómodo liderando equipos y proyectos, impulsando iniciativas técnicas complejas desde su concepción hasta producción, y me importa profundamente la excelencia en ingeniería, la arquitectura escalable y las experiencias de usuario excepcionales.',
       'svc0Title' => 'Desarrollo de aplicaciones móviles',
-      'svc0Desc' => 'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.',
+      'svc0Desc' =>
+        'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.',
       'svc1Title' => 'Desarrollo de back-end y API',
-      'svc1Desc' => 'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.',
+      'svc1Desc' =>
+        'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.',
       'svc2Title' => 'Aplicaciones web y front-end',
-      'svc2Desc' => 'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.',
+      'svc2Desc' =>
+        'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.',
       'svc3Title' => 'Integraciones y DevOps',
-      'svc3Desc' => 'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.',
+      'svc3Desc' =>
+        'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.',
       'svc4Title' => 'Contribuciones a código abierto',
       'svc4Desc' =>
         'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y publicando proyectos de código abierto.',

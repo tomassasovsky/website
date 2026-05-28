@@ -880,6 +880,16 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
 }
 .form-success__msg { font-size: 0.9375rem; color: var(--text-2); max-width: 340px; line-height: 1.7; }
+.form-success__actions {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 0.625rem 0.75rem; margin-top: 0.25rem; max-width: 420px;
+}
+.form-success__link {
+  flex: 1 1 100%; font-size: 0.875rem; font-weight: 600;
+  color: var(--accent); text-decoration: none;
+}
+.form-success__link:hover { text-decoration: underline; }
+.book-meeting-scheduler--success .form-success__msg { max-width: 420px; }
 
 /* ── Book meeting page (Calendly-style) ────────────────────── */
 .book-meeting-page { padding-top: 2rem; padding-bottom: 4rem; }

@@ -8,6 +8,7 @@ import 'package:universal_web/web.dart' as web;
 import '../data/booking_timezones.dart';
 import '../l10n/generated/strings.g.dart';
 import '../l10n/locale_codec.dart';
+import '../l10n/paths.dart';
 import 'booking_tz_format.dart';
 
 enum _Step { pickTime, details, success }
@@ -641,10 +642,18 @@ class _BookingSchedulerState extends State<BookingScheduler> {
   Component build(BuildContext context) {
     final s = _s;
     if (_step == _Step.success) {
+      final locale = localeFromPathSegment(component.localeCode) ?? AppLocale.en;
       return div(classes: 'book-meeting-scheduler book-meeting-scheduler--success', [
         div(classes: 'form-success book-meeting-animate-in', [
           div(classes: 'form-success__icon', [.text('✓')]),
           p(classes: 'form-success__msg', [.text(s.bookingSuccess)]),
+          div(classes: 'form-success__actions', [
+            a(href: AppPaths.projects(locale), classes: 'btn btn-primary', [.text(s.bookingSuccessCtaWork)]),
+            a(href: AppPaths.home(locale), classes: 'btn btn-ghost', [.text(s.bookingSuccessCtaAbout)]),
+            a(href: AppPaths.projectsWithFilter(locale, 'oss'), classes: 'form-success__link', [
+              .text(s.bookingSuccessCtaOss),
+            ]),
+          ]),
         ]),
       ]);
     }

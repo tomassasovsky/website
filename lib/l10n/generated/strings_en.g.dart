@@ -165,7 +165,8 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get contactBookLine1 => 'Pick a time that works for you.';
 
   /// en: 'You'll get a confirmation and a video meeting link automatically.'
-  String get contactBookLine2 => 'You\'ll get a confirmation and a video meeting link automatically.';
+  String get contactBookLine2 =>
+      'You\'ll get a confirmation and a video meeting link automatically.';
 
   /// en: 'Schedule a call →'
   String get contactScheduleCall => 'Schedule a call →';
@@ -241,7 +242,17 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get bookingBooking => 'Booking…';
 
   /// en: 'You're booked — check your email for the calendar invite and meeting link.'
-  String get bookingSuccess => 'You\'re booked — check your email for the calendar invite and meeting link.';
+  String get bookingSuccess =>
+      'You\'re booked — check your email for the calendar invite and meeting link.';
+
+  /// en: 'Back to about'
+  String get bookingSuccessCtaAbout => 'Back to about';
+
+  /// en: 'See my work →'
+  String get bookingSuccessCtaWork => 'See my work →';
+
+  /// en: 'Open source & tools →'
+  String get bookingSuccessCtaOss => 'Open source & tools →';
 
   /// en: 'Something went wrong. Please try again.'
   String get bookingErrorGeneric => 'Something went wrong. Please try again.';
@@ -337,31 +348,36 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get svc0Title => 'Mobile app development';
 
   /// en: 'Design and build reliable iOS/Android apps with modern architecture and great UX.'
-  String get svc0Desc => 'Design and build reliable iOS/Android apps with modern architecture and great UX.';
+  String get svc0Desc =>
+      'Design and build reliable iOS/Android apps with modern architecture and great UX.';
 
   /// en: 'Backend & API development'
   String get svc1Title => 'Backend & API development';
 
   /// en: 'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.'
-  String get svc1Desc => 'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.';
+  String get svc1Desc =>
+      'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.';
 
   /// en: 'Web apps & front-end'
   String get svc2Title => 'Web apps & front-end';
 
   /// en: 'Responsive, accessible interfaces with performance in mind across all devices.'
-  String get svc2Desc => 'Responsive, accessible interfaces with performance in mind across all devices.';
+  String get svc2Desc =>
+      'Responsive, accessible interfaces with performance in mind across all devices.';
 
   /// en: 'Integrations & DevOps'
   String get svc3Title => 'Integrations & DevOps';
 
   /// en: 'Product integrations, monitoring, and CI/CD pipelines for dependable releases.'
-  String get svc3Desc => 'Product integrations, monitoring, and CI/CD pipelines for dependable releases.';
+  String get svc3Desc =>
+      'Product integrations, monitoring, and CI/CD pipelines for dependable releases.';
 
   /// en: 'Open source contributions'
   String get svc4Title => 'Open source contributions';
 
   /// en: 'Active contributor to community tools and libraries; maintaining and shipping OSS.'
-  String get svc4Desc => 'Active contributor to community tools and libraries; maintaining and shipping OSS.';
+  String get svc4Desc =>
+      'Active contributor to community tools and libraries; maintaining and shipping OSS.';
 
   /// en: 'Google Play'
   String get labelGooglePlay => 'Google Play';
@@ -539,7 +555,8 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get testiFormErrorRequired => 'Please fill in your name and testimonial.';
 
   /// en: 'Thank you! Your testimonial has been submitted and I'll review it shortly.'
-  String get testiFormSuccess => 'Thank you! Your testimonial has been submitted and I\'ll review it shortly.';
+  String get testiFormSuccess =>
+      'Thank you! Your testimonial has been submitted and I\'ll review it shortly.';
 
   /// en: 'Submit testimonial'
   String get testiFormSubmit => 'Submit testimonial';
@@ -700,7 +717,8 @@ extension on AppLocalizations {
       'portfolioLabel' => 'Portfolio',
       'projectsHeading' => 'Projects',
       'projectsSubtitle' =>
-        ({required int projectCount}) => '${projectCount} projects across mobile, backend, and open source.',
+        ({required int projectCount}) =>
+            '${projectCount} projects across mobile, backend, and open source.',
       'filterAll' => 'All',
       'filterApps' => 'Apps',
       'filterOss' => 'OSS / Tools',
@@ -739,7 +757,11 @@ extension on AppLocalizations {
       'bookingNotesHint' => 'Anything you\'d like me to know before we meet…',
       'bookingConfirm' => 'Book meeting',
       'bookingBooking' => 'Booking…',
-      'bookingSuccess' => 'You\'re booked — check your email for the calendar invite and meeting link.',
+      'bookingSuccess' =>
+        'You\'re booked — check your email for the calendar invite and meeting link.',
+      'bookingSuccessCtaAbout' => 'Back to about',
+      'bookingSuccessCtaWork' => 'See my work →',
+      'bookingSuccessCtaOss' => 'Open source & tools →',
       'bookingErrorGeneric' => 'Something went wrong. Please try again.',
       'bookingErrorRequired' => 'Please pick a time and fill in your name and email.',
       'bookingErrorConflict' => 'That time was just taken. Please pick another slot.',
@@ -773,15 +795,19 @@ extension on AppLocalizations {
       'aboutP1' =>
         'My strengths include state management (Bloc, MVVM), Flutter layered architecture, clean architecture, and modern CI/CD practices. I also bring strong backend experience with TypeScript/Node.js, API integration (REST/GraphQL), and cloud infrastructure (GCP/AWS). I\'m comfortable leading teams and projects, driving complex technical initiatives from concept to production, and I care deeply about engineering excellence, scalable architecture, and exceptional user experiences.',
       'svc0Title' => 'Mobile app development',
-      'svc0Desc' => 'Design and build reliable iOS/Android apps with modern architecture and great UX.',
+      'svc0Desc' =>
+        'Design and build reliable iOS/Android apps with modern architecture and great UX.',
       'svc1Title' => 'Backend & API development',
       'svc1Desc' => 'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.',
       'svc2Title' => 'Web apps & front-end',
-      'svc2Desc' => 'Responsive, accessible interfaces with performance in mind across all devices.',
+      'svc2Desc' =>
+        'Responsive, accessible interfaces with performance in mind across all devices.',
       'svc3Title' => 'Integrations & DevOps',
-      'svc3Desc' => 'Product integrations, monitoring, and CI/CD pipelines for dependable releases.',
+      'svc3Desc' =>
+        'Product integrations, monitoring, and CI/CD pipelines for dependable releases.',
       'svc4Title' => 'Open source contributions',
-      'svc4Desc' => 'Active contributor to community tools and libraries; maintaining and shipping OSS.',
+      'svc4Desc' =>
+        'Active contributor to community tools and libraries; maintaining and shipping OSS.',
       'labelGooglePlay' => 'Google Play',
       'labelAppStore' => 'App Store',
       'labelWebsite' => 'Website',
@@ -853,7 +879,8 @@ extension on AppLocalizations {
       'testiFormTestimonialHint' =>
         'Write freely — a few sentences to a few paragraphs is perfect. Feel free to mention the project we worked on, what stood out, and anything you\'d tell someone considering working with me.',
       'testiFormErrorRequired' => 'Please fill in your name and testimonial.',
-      'testiFormSuccess' => 'Thank you! Your testimonial has been submitted and I\'ll review it shortly.',
+      'testiFormSuccess' =>
+        'Thank you! Your testimonial has been submitted and I\'ll review it shortly.',
       'testiFormSubmit' => 'Submit testimonial',
       'testi0Date' => 'October 2025',
       'testi0P0' =>
