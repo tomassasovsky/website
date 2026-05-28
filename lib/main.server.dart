@@ -6,6 +6,7 @@ import 'package:jaspr/server.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_riverpod/legacy.dart';
 
+import 'api/booking_api.dart';
 import 'api/contact_api.dart';
 import 'api/testimonial_api.dart';
 import 'app.dart';
@@ -21,6 +22,7 @@ void main() {
   // is set) so a stray env var does not skip this and break MIME types for DDC.
   ServerApp.addMiddleware(sitemapMiddleware);
   ServerApp.addMiddleware(localeRedirectMiddleware);
+  ServerApp.addMiddleware(bookingApiMiddleware);
   ServerApp.addMiddleware(contactApiMiddleware);
   ServerApp.addMiddleware(testimonialApiMiddleware);
   ServerApp.addMiddleware(serveLocalDevWebAssets);

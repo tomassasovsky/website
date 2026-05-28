@@ -7,6 +7,7 @@ import 'components/nav_bar.dart';
 import 'l10n/generated/strings.g.dart';
 import 'l10n/locale_codec.dart';
 import 'l10n/locale_scope.dart';
+import 'pages/book_meeting_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/home_page.dart';
 import 'pages/new_testimonial_page.dart';
@@ -163,6 +164,10 @@ class App extends StatelessComponent {
                 Route(
                   path: 'contact',
                   builder: (context, state) => const ContactPage(),
+                ),
+                Route(
+                  path: 'book-meeting',
+                  builder: (context, state) => const BookMeetingPage(),
                 ),
                 Route(
                   path: 'new-testimonial',

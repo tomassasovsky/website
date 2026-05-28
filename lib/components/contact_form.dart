@@ -24,6 +24,7 @@ class _ContactFormState extends State<ContactForm> {
   var _email = '';
   var _subject = '';
   var _message = '';
+  var _honeypot = '';
   var _status = _Status.idle;
   var _errorMsg = '';
 
@@ -59,7 +60,7 @@ class _ContactFormState extends State<ContactForm> {
           'email': _email.trim(),
           'subject': _subject.trim(),
           'message': _message.trim(),
-          'website': '',
+          'website': _honeypot,
         }),
       );
       setState(() {
@@ -95,12 +96,14 @@ class _ContactFormState extends State<ContactForm> {
       input(
         type: InputType.text,
         name: 'website',
+        value: _honeypot,
         attributes: {
           'aria-hidden': 'true',
           'tabindex': '-1',
           'autocomplete': 'off',
           'style': 'position:absolute;left:-9999px;width:0;height:0',
         },
+        onInput: (String v) => setState(() => _honeypot = v),
       ),
       div(classes: 'form-row', [
         div(classes: 'form-group', [

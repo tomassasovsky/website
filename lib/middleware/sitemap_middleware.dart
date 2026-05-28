@@ -19,9 +19,11 @@ Middleware get sitemapMiddleware {
         '/en',
         '/en/projects',
         '/en/contact',
+        '/en/book-meeting',
         '/es',
         '/es/projects',
         '/es/contact',
+        '/es/book-meeting',
       ];
 
       final buffer = StringBuffer()

@@ -55,6 +55,9 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'Contact — Tomás Sasovsky'
   String get metaTitleContact => 'Contact — Tomás Sasovsky';
 
+  /// en: 'Book a meeting — Tomás Sasovsky'
+  String get metaTitleBookMeeting => 'Book a meeting — Tomás Sasovsky';
+
   /// en: 'Sr. Flutter & Backend Engineer'
   String get siteTagline => 'Sr. Flutter & Backend Engineer';
 
@@ -158,15 +161,102 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'Book a meeting'
   String get contactBookTitle => 'Book a meeting';
 
-  /// en: 'Pick a time that works for you using my calendar.'
-  String get contactBookLine1 => 'Pick a time that works for you using my calendar.';
+  /// en: 'Pick a time that works for you.'
+  String get contactBookLine1 => 'Pick a time that works for you.';
 
   /// en: 'You'll get a confirmation and a video meeting link automatically.'
-  String get contactBookLine2 =>
-      'You\'ll get a confirmation and a video meeting link automatically.';
+  String get contactBookLine2 => 'You\'ll get a confirmation and a video meeting link automatically.';
 
   /// en: 'Schedule a call →'
   String get contactScheduleCall => 'Schedule a call →';
+
+  /// en: 'Intro call'
+  String get bookingMeetingTitle => 'Intro call';
+
+  /// en: '30 min'
+  String get bookingMeetingDuration => '30 min';
+
+  /// en: 'Select a Date & Time'
+  String get bookingSelectDateTime => 'Select a Date & Time';
+
+  /// en: 'Choose a date'
+  String get bookingStepDateTitle => 'Choose a date';
+
+  /// en: 'Choose a time'
+  String get bookingStepTimeTitle => 'Choose a time';
+
+  /// en: 'Date'
+  String get bookingStepDate => 'Date';
+
+  /// en: 'Time'
+  String get bookingStepTime => 'Time';
+
+  /// en: 'Details'
+  String get bookingStepDetails => 'Details';
+
+  /// en: 'Change date'
+  String get bookingChangeDate => 'Change date';
+
+  /// en: 'Select a highlighted date to see available times.'
+  String get bookingPickDateHint => 'Select a highlighted date to see available times.';
+
+  /// en: 'Confirm'
+  String get bookingConfirmTime => 'Confirm';
+
+  /// en: 'Enter Details'
+  String get bookingEnterDetails => 'Enter Details';
+
+  /// en: 'Back'
+  String get bookingBack => 'Back';
+
+  /// en: 'Time zone'
+  String get bookingTimezoneLabel => 'Time zone';
+
+  /// en: 'Availability is based on Buenos Aires business hours ({startHour: int}:00–{endHour: int}:00).'
+  String bookingHostHoursHint({required int startHour, required int endHour}) =>
+      'Availability is based on Buenos Aires business hours (${startHour}:00–${endHour}:00).';
+
+  /// en: 'Available times'
+  String get bookingTime => 'Available times';
+
+  /// en: 'Loading times…'
+  String get bookingLoadingSlots => 'Loading times…';
+
+  /// en: 'No times available on this date. Try another day.'
+  String get bookingNoSlots => 'No times available on this date. Try another day.';
+
+  /// en: 'Selected'
+  String get bookingSelected => 'Selected';
+
+  /// en: 'Notes (optional)'
+  String get bookingNotes => 'Notes (optional)';
+
+  /// en: 'Anything you'd like me to know before we meet…'
+  String get bookingNotesHint => 'Anything you\'d like me to know before we meet…';
+
+  /// en: 'Book meeting'
+  String get bookingConfirm => 'Book meeting';
+
+  /// en: 'Booking…'
+  String get bookingBooking => 'Booking…';
+
+  /// en: 'You're booked — check your email for the calendar invite and meeting link.'
+  String get bookingSuccess => 'You\'re booked — check your email for the calendar invite and meeting link.';
+
+  /// en: 'Something went wrong. Please try again.'
+  String get bookingErrorGeneric => 'Something went wrong. Please try again.';
+
+  /// en: 'Please pick a time and fill in your name and email.'
+  String get bookingErrorRequired => 'Please pick a time and fill in your name and email.';
+
+  /// en: 'That time was just taken. Please pick another slot.'
+  String get bookingErrorConflict => 'That time was just taken. Please pick another slot.';
+
+  /// en: 'Previous month'
+  String get bookingPrevMonth => 'Previous month';
+
+  /// en: 'Next month'
+  String get bookingNextMonth => 'Next month';
 
   /// en: 'Find me online'
   String get contactOnlineTitle => 'Find me online';
@@ -247,36 +337,31 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get svc0Title => 'Mobile app development';
 
   /// en: 'Design and build reliable iOS/Android apps with modern architecture and great UX.'
-  String get svc0Desc =>
-      'Design and build reliable iOS/Android apps with modern architecture and great UX.';
+  String get svc0Desc => 'Design and build reliable iOS/Android apps with modern architecture and great UX.';
 
   /// en: 'Backend & API development'
   String get svc1Title => 'Backend & API development';
 
   /// en: 'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.'
-  String get svc1Desc =>
-      'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.';
+  String get svc1Desc => 'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.';
 
   /// en: 'Web apps & front-end'
   String get svc2Title => 'Web apps & front-end';
 
   /// en: 'Responsive, accessible interfaces with performance in mind across all devices.'
-  String get svc2Desc =>
-      'Responsive, accessible interfaces with performance in mind across all devices.';
+  String get svc2Desc => 'Responsive, accessible interfaces with performance in mind across all devices.';
 
   /// en: 'Integrations & DevOps'
   String get svc3Title => 'Integrations & DevOps';
 
   /// en: 'Product integrations, monitoring, and CI/CD pipelines for dependable releases.'
-  String get svc3Desc =>
-      'Product integrations, monitoring, and CI/CD pipelines for dependable releases.';
+  String get svc3Desc => 'Product integrations, monitoring, and CI/CD pipelines for dependable releases.';
 
   /// en: 'Open source contributions'
   String get svc4Title => 'Open source contributions';
 
   /// en: 'Active contributor to community tools and libraries; maintaining and shipping OSS.'
-  String get svc4Desc =>
-      'Active contributor to community tools and libraries; maintaining and shipping OSS.';
+  String get svc4Desc => 'Active contributor to community tools and libraries; maintaining and shipping OSS.';
 
   /// en: 'Google Play'
   String get labelGooglePlay => 'Google Play';
@@ -454,8 +539,7 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get testiFormErrorRequired => 'Please fill in your name and testimonial.';
 
   /// en: 'Thank you! Your testimonial has been submitted and I'll review it shortly.'
-  String get testiFormSuccess =>
-      'Thank you! Your testimonial has been submitted and I\'ll review it shortly.';
+  String get testiFormSuccess => 'Thank you! Your testimonial has been submitted and I\'ll review it shortly.';
 
   /// en: 'Submit testimonial'
   String get testiFormSubmit => 'Submit testimonial';
@@ -591,6 +675,7 @@ extension on AppLocalizations {
       'metaTitleHome' => 'About — Tomás Sasovsky',
       'metaTitleProjects' => 'Projects — Tomás Sasovsky',
       'metaTitleContact' => 'Contact — Tomás Sasovsky',
+      'metaTitleBookMeeting' => 'Book a meeting — Tomás Sasovsky',
       'siteTagline' => 'Sr. Flutter & Backend Engineer',
       'siteLocation' => 'Buenos Aires, Argentina',
       'navAbout' => 'About',
@@ -615,8 +700,7 @@ extension on AppLocalizations {
       'portfolioLabel' => 'Portfolio',
       'projectsHeading' => 'Projects',
       'projectsSubtitle' =>
-        ({required int projectCount}) =>
-            '${projectCount} projects across mobile, backend, and open source.',
+        ({required int projectCount}) => '${projectCount} projects across mobile, backend, and open source.',
       'filterAll' => 'All',
       'filterApps' => 'Apps',
       'filterOss' => 'OSS / Tools',
@@ -627,9 +711,40 @@ extension on AppLocalizations {
       'contactHeading' => 'Contact',
       'contactSubtitle' => 'Let\'s work together on something great.',
       'contactBookTitle' => 'Book a meeting',
-      'contactBookLine1' => 'Pick a time that works for you using my calendar.',
+      'contactBookLine1' => 'Pick a time that works for you.',
       'contactBookLine2' => 'You\'ll get a confirmation and a video meeting link automatically.',
       'contactScheduleCall' => 'Schedule a call →',
+      'bookingMeetingTitle' => 'Intro call',
+      'bookingMeetingDuration' => '30 min',
+      'bookingSelectDateTime' => 'Select a Date & Time',
+      'bookingStepDateTitle' => 'Choose a date',
+      'bookingStepTimeTitle' => 'Choose a time',
+      'bookingStepDate' => 'Date',
+      'bookingStepTime' => 'Time',
+      'bookingStepDetails' => 'Details',
+      'bookingChangeDate' => 'Change date',
+      'bookingPickDateHint' => 'Select a highlighted date to see available times.',
+      'bookingConfirmTime' => 'Confirm',
+      'bookingEnterDetails' => 'Enter Details',
+      'bookingBack' => 'Back',
+      'bookingTimezoneLabel' => 'Time zone',
+      'bookingHostHoursHint' =>
+        ({required int startHour, required int endHour}) =>
+            'Availability is based on Buenos Aires business hours (${startHour}:00–${endHour}:00).',
+      'bookingTime' => 'Available times',
+      'bookingLoadingSlots' => 'Loading times…',
+      'bookingNoSlots' => 'No times available on this date. Try another day.',
+      'bookingSelected' => 'Selected',
+      'bookingNotes' => 'Notes (optional)',
+      'bookingNotesHint' => 'Anything you\'d like me to know before we meet…',
+      'bookingConfirm' => 'Book meeting',
+      'bookingBooking' => 'Booking…',
+      'bookingSuccess' => 'You\'re booked — check your email for the calendar invite and meeting link.',
+      'bookingErrorGeneric' => 'Something went wrong. Please try again.',
+      'bookingErrorRequired' => 'Please pick a time and fill in your name and email.',
+      'bookingErrorConflict' => 'That time was just taken. Please pick another slot.',
+      'bookingPrevMonth' => 'Previous month',
+      'bookingNextMonth' => 'Next month',
       'contactOnlineTitle' => 'Find me online',
       'contactOnlineBody' =>
         'Reach out directly — always happy to chat about Flutter, interesting projects, or new opportunities.',
@@ -658,19 +773,15 @@ extension on AppLocalizations {
       'aboutP1' =>
         'My strengths include state management (Bloc, MVVM), Flutter layered architecture, clean architecture, and modern CI/CD practices. I also bring strong backend experience with TypeScript/Node.js, API integration (REST/GraphQL), and cloud infrastructure (GCP/AWS). I\'m comfortable leading teams and projects, driving complex technical initiatives from concept to production, and I care deeply about engineering excellence, scalable architecture, and exceptional user experiences.',
       'svc0Title' => 'Mobile app development',
-      'svc0Desc' =>
-        'Design and build reliable iOS/Android apps with modern architecture and great UX.',
+      'svc0Desc' => 'Design and build reliable iOS/Android apps with modern architecture and great UX.',
       'svc1Title' => 'Backend & API development',
       'svc1Desc' => 'TypeScript/Node.js services, REST APIs, authentication, payments, and docs.',
       'svc2Title' => 'Web apps & front-end',
-      'svc2Desc' =>
-        'Responsive, accessible interfaces with performance in mind across all devices.',
+      'svc2Desc' => 'Responsive, accessible interfaces with performance in mind across all devices.',
       'svc3Title' => 'Integrations & DevOps',
-      'svc3Desc' =>
-        'Product integrations, monitoring, and CI/CD pipelines for dependable releases.',
+      'svc3Desc' => 'Product integrations, monitoring, and CI/CD pipelines for dependable releases.',
       'svc4Title' => 'Open source contributions',
-      'svc4Desc' =>
-        'Active contributor to community tools and libraries; maintaining and shipping OSS.',
+      'svc4Desc' => 'Active contributor to community tools and libraries; maintaining and shipping OSS.',
       'labelGooglePlay' => 'Google Play',
       'labelAppStore' => 'App Store',
       'labelWebsite' => 'Website',
@@ -742,8 +853,7 @@ extension on AppLocalizations {
       'testiFormTestimonialHint' =>
         'Write freely — a few sentences to a few paragraphs is perfect. Feel free to mention the project we worked on, what stood out, and anything you\'d tell someone considering working with me.',
       'testiFormErrorRequired' => 'Please fill in your name and testimonial.',
-      'testiFormSuccess' =>
-        'Thank you! Your testimonial has been submitted and I\'ll review it shortly.',
+      'testiFormSuccess' => 'Thank you! Your testimonial has been submitted and I\'ll review it shortly.',
       'testiFormSubmit' => 'Submit testimonial',
       'testi0Date' => 'October 2025',
       'testi0P0' =>

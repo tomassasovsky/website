@@ -881,6 +881,410 @@ button { font-family: inherit; cursor: pointer; }
 }
 .form-success__msg { font-size: 0.9375rem; color: var(--text-2); max-width: 340px; line-height: 1.7; }
 
+/* ── Book meeting page (Calendly-style) ────────────────────── */
+.book-meeting-page { padding-top: 2rem; padding-bottom: 4rem; }
+.book-meeting-card {
+  max-width: 820px; margin: 0 auto;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-xl); padding: 2rem;
+  box-shadow: var(--shadow-card);
+}
+.book-meeting-event {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem;
+  margin-bottom: 1.75rem; padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.book-meeting-event__title {
+  font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em;
+  margin: 0; color: var(--text);
+}
+.book-meeting-event__duration {
+  display: inline-flex; align-items: center;
+  padding: 0.25rem 0.625rem; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--text-2); background: var(--surface-2);
+  border: 1px solid var(--border-mid);
+}
+
+.book-meeting-scheduler { min-width: 0; }
+.book-meeting-scheduler--success .form-success { padding: 2rem 0; }
+
+/* Premium motion */
+.book-meeting-ease { --book-ease: cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes book-meeting-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes book-meeting-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes book-meeting-scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes book-meeting-success-pop {
+  0% { opacity: 0; transform: scale(0.6); }
+  70% { transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.book-meeting-animate-in {
+  animation: book-meeting-fade-up 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.book-meeting-scheduler--success .form-success__icon {
+  animation: book-meeting-success-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.book-meeting-card__title {
+  font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em;
+  margin-bottom: 1.5rem; color: var(--text);
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-card__title--mobile { display: none; }
+.book-meeting-steps {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.book-meeting-steps__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-steps__item--active { color: var(--text); }
+.book-meeting-steps__item--done { color: var(--accent); }
+.book-meeting-steps__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-mid);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  transition:
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-steps__item--active .book-meeting-steps__dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(124, 92, 252, 0.35);
+}
+.book-meeting-steps__item--done .book-meeting-steps__dot {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.book-meeting-steps__line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  min-width: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.book-meeting-steps__line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-steps__item--done + .book-meeting-steps__line::after {
+  transform: scaleX(1);
+}
+.book-meeting-steps__label { white-space: nowrap; }
+.book-meeting-layout {
+  display: grid; grid-template-columns: minmax(220px, 280px) 1fr;
+  gap: 1.5rem; align-items: start;
+}
+.book-meeting-times { min-height: 280px; }
+.book-meeting-times__content { display: flex; flex-direction: column; }
+.book-meeting-times__hint {
+  font-size: 0.875rem; color: var(--text-muted); line-height: 1.7;
+}
+.book-meeting-times__date {
+  font-size: 0.9375rem; font-weight: 700; color: var(--text);
+  margin-bottom: 1rem;
+}
+.book-meeting-slot-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+.book-meeting-slot {
+  width: 100%;
+  padding: 0.5625rem 0.875rem;
+  border-radius: var(--r-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  transition:
+    background 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-slot:hover { background: var(--accent-faint); }
+.book-meeting-slot-list > .book-meeting-slot {
+  animation: book-meeting-fade-up 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.book-meeting-slot-list > .book-meeting-slot:nth-child(1) { animation-delay: 0.02s; }
+.book-meeting-slot-list > .book-meeting-slot:nth-child(2) { animation-delay: 0.04s; }
+.book-meeting-slot-list > .book-meeting-slot:nth-child(3) { animation-delay: 0.06s; }
+.book-meeting-slot-list > .book-meeting-slot:nth-child(4) { animation-delay: 0.08s; }
+.book-meeting-slot-list > .book-meeting-slot:nth-child(5) { animation-delay: 0.1s; }
+.book-meeting-slot-list > .book-meeting-slot:nth-child(6) { animation-delay: 0.12s; }
+.book-meeting-slot-list > .book-meeting-slot:nth-child(n+7) { animation-delay: 0.14s; }
+.book-meeting-slot--active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(124, 92, 252, 0.38);
+}
+.book-meeting-slot--ghost {
+  pointer-events: none;
+  border-color: var(--border-mid);
+  color: transparent;
+  background: var(--surface-2);
+  animation: book-meeting-pulse 1.4s ease-in-out infinite;
+}
+@keyframes book-meeting-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.book-meeting-confirm-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-confirm-wrap--open {
+  grid-template-rows: 1fr;
+}
+.book-meeting-confirm-wrap__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.book-meeting-confirm {
+  width: 100%;
+  margin-top: 0.375rem;
+  padding: 0.5625rem 1rem;
+  white-space: nowrap;
+  border-radius: var(--r-md);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-confirm-wrap--open .book-meeting-confirm {
+  opacity: 1;
+  transform: translateY(0);
+}
+.book-meeting-calendar { border-left: 1px solid var(--border); padding-left: 1.5rem; }
+.book-meeting-calendar__header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.book-meeting-calendar__month {
+  font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--text-2);
+  display: inline-block;
+}
+.book-meeting-calendar__nav { display: flex; gap: 0.25rem; }
+.book-meeting-calendar__arrow {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--border-mid); background: transparent;
+  color: var(--text-2); font-size: 1.125rem; line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-calendar__arrow:hover:not(:disabled) {
+  border-color: var(--accent-ring); color: var(--text);
+  background: var(--accent-faint);
+}
+.book-meeting-calendar__arrow:active:not(:disabled) { transform: scale(0.92); }
+.book-meeting-calendar__arrow:disabled { opacity: 0.35; cursor: not-allowed; }
+.book-meeting-calendar__weekdays {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem; margin-bottom: 0.5rem;
+}
+.book-meeting-calendar__weekday {
+  font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--text-muted); text-align: center; padding: 0.25rem 0;
+}
+.book-meeting-calendar__grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.25rem;
+}
+.book-meeting-calendar__day {
+  aspect-ratio: 1; border: none; border-radius: 50%;
+  background: transparent; color: var(--text-muted);
+  font-size: 0.8125rem; font-weight: 500;
+  cursor: default;
+  transition:
+    background 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    font-weight 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.book-meeting-calendar__day--empty { visibility: hidden; }
+.book-meeting-calendar__day--available {
+  color: var(--accent); cursor: pointer;
+  background: rgba(124, 92, 252, 0.12);
+}
+.book-meeting-calendar__day--available:hover {
+  background: rgba(124, 92, 252, 0.22);
+  transform: scale(1.06);
+}
+.book-meeting-calendar__day--available:active { transform: scale(0.94); }
+.book-meeting-calendar__day--selected {
+  background: var(--accent) !important;
+  color: #fff !important;
+  font-weight: 700;
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(124, 92, 252, 0.45);
+}
+.book-meeting-calendar__day--disabled { opacity: 0.35; cursor: not-allowed; }
+.book-meeting-calendar__tz-row {
+  margin-top: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.book-meeting-calendar__tz-label {
+  font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.book-meeting-calendar__tz-select {
+  width: 100%; padding: 0.5rem 0.65rem;
+  font-size: 0.8125rem; font-family: inherit;
+  color: var(--text); background: var(--surface-2);
+  border: 1px solid var(--border-mid); border-radius: var(--r-sm);
+  cursor: pointer; transition: border-color var(--t);
+}
+.book-meeting-calendar__tz-select:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(124,92,252,0.2);
+}
+.book-meeting-calendar__tz-hint {
+  margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;
+}
+.book-meeting-back {
+  background: none; border: none; padding: 0;
+  font-size: 0.8125rem; font-weight: 600; color: var(--text-2);
+  cursor: pointer; margin-bottom: 1rem;
+  transition: color var(--t);
+}
+.book-meeting-back:hover { color: var(--accent); }
+.book-meeting-back--mobile { display: none; }
+.book-meeting-flow-panel { width: 100%; }
+.book-meeting-summary {
+  font-size: 0.875rem; color: var(--text-2); margin-bottom: 1.5rem;
+}
+.book-meeting-details { width: 100%; max-width: 100%; }
+.booking-notes { min-height: 72px; }
+
+.book-meeting-skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.book-meeting-layout--skeleton .book-meeting-skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translate(-100%, -100%);
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 30%,
+    rgba(255, 255, 255, 0.14) 45%,
+    rgba(124, 92, 252, 0.22) 50%,
+    rgba(255, 255, 255, 0.14) 55%,
+    rgba(255, 255, 255, 0.04) 70%,
+    transparent 100%
+  );
+  animation: book-meeting-shimmer 1.5s ease-in-out infinite;
+  will-change: transform;
+}
+[data-theme="light"] .book-meeting-layout--skeleton .book-meeting-skeleton::after {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 30%,
+    rgba(255, 255, 255, 0.95) 45%,
+    rgba(109, 64, 240, 0.14) 50%,
+    rgba(255, 255, 255, 0.95) 55%,
+    rgba(255, 255, 255, 0.45) 70%,
+    transparent 100%
+  );
+}
+@media (prefers-reduced-motion: reduce) {
+  .book-meeting-layout--skeleton .book-meeting-skeleton::after { animation: none; opacity: 0; }
+  .book-meeting-times,
+  .book-meeting-calendar,
+  .book-meeting-slot,
+  .book-meeting-calendar__day,
+  .book-meeting-calendar__arrow,
+  .book-meeting-confirm,
+  .book-meeting-confirm-wrap,
+  .book-meeting-steps__dot,
+  .book-meeting-steps__line::after {
+    transition: none;
+  }
+  .book-meeting-animate-in,
+  .book-meeting-slot,
+  .book-meeting-slot-list > .book-meeting-slot,
+  .book-meeting-scheduler--success .form-success__icon {
+    animation: none;
+  }
+  .book-meeting-slot--ghost { animation: none; opacity: 0.7; }
+  .book-meeting-calendar__day--available:hover,
+  .book-meeting-calendar__day--selected {
+    transform: none;
+  }
+}
+@keyframes book-meeting-shimmer {
+  0% { transform: translate(-100%, -100%); }
+  100% { transform: translate(100%, 100%); }
+}
+.book-meeting-layout--skeleton {
+  position: relative;
+}
+.book-meeting-skeleton--hint { height: 1rem; width: 72%; margin-bottom: 1.25rem; }
+.book-meeting-skeleton--slot { height: 2.5rem; width: 100%; margin-bottom: 0.625rem; }
+.book-meeting-skeleton--month { height: 1.125rem; width: 8rem; }
+.book-meeting-skeleton--nav { height: 1.75rem; width: 4.5rem; margin-left: auto; }
+.book-meeting-skeleton--weekday { height: 0.75rem; width: 100%; }
+.book-meeting-skeleton--day { aspect-ratio: 1; width: 100%; border-radius: 999px; }
+.book-meeting-skeleton--select { height: 2.25rem; width: 100%; margin-top: 1.25rem; }
+.book-meeting-calendar__grid--skeleton { pointer-events: none; }
+.book-meeting-layout--skeleton .book-meeting-calendar__header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.book-meeting-slot-list--skeleton { display: flex; flex-direction: column; gap: 0.625rem; }
+
 /* ── Social links ──────────────────────────────────────────── */
 .social-links { display: flex; flex-direction: column; gap: 0.5rem; }
 .social-link {
@@ -941,6 +1345,59 @@ button { font-family: inherit; cursor: pointer; }
   /* Last card alone on its row → span both columns */
   .services-grid .service-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .projects-grid .project-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .book-meeting-card { padding: 1.5rem; }
+  .book-meeting-steps { display: flex; }
+  .book-meeting-card__title--desktop { display: none; }
+  .book-meeting-card__title--mobile { display: block; }
+  .book-meeting-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+    position: relative;
+    min-height: 18rem;
+  }
+  .book-meeting-times,
+  .book-meeting-calendar {
+    width: 100%;
+    transition:
+      opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .book-meeting-layout--phase-date .book-meeting-times {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(18px);
+    position: absolute;
+    inset: 0 auto auto 0;
+    pointer-events: none;
+  }
+  .book-meeting-layout--phase-date .book-meeting-calendar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    position: relative;
+  }
+  .book-meeting-layout--phase-time .book-meeting-calendar {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-18px);
+    position: absolute;
+    inset: 0 auto auto 0;
+    pointer-events: none;
+  }
+  .book-meeting-layout--phase-time .book-meeting-times {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    position: relative;
+  }
+  .book-meeting-layout--skeleton .book-meeting-times { display: none; }
+  .book-meeting-times { min-height: auto; }
+  .book-meeting-back--mobile { display: inline-flex; }
+  .book-meeting-calendar {
+    border-left: none; padding-left: 0;
+    border-top: none; padding-top: 0;
+  }
 }
 
 /* Testimonials: card can't be wider than the viewport */

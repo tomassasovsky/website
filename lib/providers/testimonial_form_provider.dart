@@ -14,6 +14,7 @@ class TestimonialFormState {
     this.role = '',
     this.linkedinUrl = '',
     this.testimonial = '',
+    this.honeypot = '',
     this.status = TestimonialSubmitStatus.idle,
     this.errorMsg = '',
   });
@@ -23,6 +24,7 @@ class TestimonialFormState {
   final String role;
   final String linkedinUrl;
   final String testimonial;
+  final String honeypot;
   final TestimonialSubmitStatus status;
   final String errorMsg;
 
@@ -36,6 +38,7 @@ class TestimonialFormState {
     String? role,
     String? linkedinUrl,
     String? testimonial,
+    String? honeypot,
     TestimonialSubmitStatus? status,
     String? errorMsg,
   }) {
@@ -45,6 +48,7 @@ class TestimonialFormState {
       role: role ?? this.role,
       linkedinUrl: linkedinUrl ?? this.linkedinUrl,
       testimonial: testimonial ?? this.testimonial,
+      honeypot: honeypot ?? this.honeypot,
       status: status ?? this.status,
       errorMsg: errorMsg ?? this.errorMsg,
     );
@@ -59,6 +63,7 @@ class TestimonialFormNotifier extends StateNotifier<TestimonialFormState> {
   void updateRole(String v) => state = state.copyWith(role: v);
   void updateLinkedinUrl(String v) => state = state.copyWith(linkedinUrl: v);
   void updateTestimonial(String v) => state = state.copyWith(testimonial: v);
+  void updateHoneypot(String v) => state = state.copyWith(honeypot: v);
 
   Future<void> submit(AppLocalizations s) async {
     if (state.name.trim().isEmpty || state.testimonial.trim().isEmpty) {
@@ -81,7 +86,7 @@ class TestimonialFormNotifier extends StateNotifier<TestimonialFormState> {
           'role': state.role.trim(),
           'linkedinUrl': state.linkedinUrl.trim(),
           'testimonial': state.testimonial.trim(),
-          'website': '',
+          'website': state.honeypot,
         }),
       );
       state = state.copyWith(

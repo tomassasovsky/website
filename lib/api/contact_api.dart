@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
 import 'package:shelf/shelf.dart';
 
-import '../env.dart';
 import 'api_utils.dart';
+import 'gmail_send.dart';
+import 'text_encoding.dart';
 
 // In-memory rate limit: IP → last submission time. Pruned on every request.
 final _rateLimit = <String, DateTime>{};
@@ -64,10 +64,10 @@ Future<Response> _handleContact(Request request) async {
   }
 
   // --- validate fields --------------------------------------------------
-  final name = (data['name'] as String? ?? '').trim();
-  final email = (data['email'] as String? ?? '').trim();
-  final subject = (data['subject'] as String? ?? '').trim();
-  final message = (data['message'] as String? ?? '').trim();
+  final name = normalizeUserText(data['name'] as String? ?? '');
+  final email = normalizeUserText(data['email'] as String? ?? '').toLowerCase();
+  final subject = normalizeUserText(data['subject'] as String? ?? '');
+  final message = normalizeUserText(data['message'] as String? ?? '', multiline: true);
 
   if (name.isEmpty || email.isEmpty || subject.isEmpty || message.isEmpty) {
     return Response.badRequest(body: '{"error":"All fields are required"}', headers: headers);
@@ -101,75 +101,31 @@ Future<void> _sendEmail({
   required String subject,
   required String message,
 }) async {
-  final env = appEnv;
-  final clientId = env['GOOGLE_CLIENT_ID'];
-  final clientSecret = env['GOOGLE_CLIENT_SECRET'];
-  final refreshToken = env['GOOGLE_REFRESH_TOKEN'];
-  final fromEmail = env['GOOGLE_USER_EMAIL'];
-  final toEmail = env['CONTACT_EMAIL'];
-
-  if ([clientId, clientSecret, refreshToken, fromEmail, toEmail].any((v) => v == null || v.isEmpty)) {
-    // Credentials not configured – log to console for local dev
+  final toEmail = notificationEmail;
+  if (toEmail == null) {
     stderr.writeln('[contact] (no credentials) message from $name <$email>: $subject');
     return;
   }
 
-  // 1. Exchange refresh token for access token
-  final tokenResp = await http.post(
-    Uri.parse('https://oauth2.googleapis.com/token'),
-    headers: {'content-type': 'application/x-www-form-urlencoded'},
-    body: {
-      'client_id': clientId,
-      'client_secret': clientSecret,
-      'refresh_token': refreshToken,
-      'grant_type': 'refresh_token',
-    },
+  await sendGmailMessage(
+    to: toEmail,
+    subject: '[Contact] $subject',
+    body: [
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      'Contact form submission',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+      '',
+      'Name:    $name',
+      'Email:   $email',
+      'Subject: $subject',
+      '',
+      '--- Message ---',
+      '',
+      message,
+      '',
+      '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    ].join('\n'),
+    replyToName: name,
+    replyToEmail: email,
   );
-  if (tokenResp.statusCode != 200) {
-    throw Exception('token exchange failed (${tokenResp.statusCode}): ${tokenResp.body}');
-  }
-  final accessToken = (jsonDecode(tokenResp.body) as Map<String, dynamic>)['access_token'] as String;
-
-  // 2. Build RFC 2822 message — sanitize every user value used in headers.
-  final safeName = sanitizeHeader(name);
-  final safeEmail = sanitizeHeader(email);
-  final safeSubject = sanitizeHeader(subject);
-
-  final raw = [
-    'From: $fromEmail',
-    'To: $toEmail',
-    'Reply-To: "$safeName" <$safeEmail>',
-    'Subject: [Contact] $safeSubject',
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    '',
-    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    'Contact form submission',
-    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-    '',
-    'Name:    $name',
-    'Email:   $email',
-    'Subject: $subject',
-    '',
-    '--- Message ---',
-    '',
-    message,
-    '',
-    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
-  ].join('\r\n');
-
-  final encoded = base64Url.encode(utf8.encode(raw)).replaceAll('=', '');
-
-  // 3. Send via Gmail API
-  final sendResp = await http.post(
-    Uri.parse('https://gmail.googleapis.com/gmail/v1/users/me/messages/send'),
-    headers: {
-      'authorization': 'Bearer $accessToken',
-      'content-type': 'application/json',
-    },
-    body: jsonEncode({'raw': encoded}),
-  );
-  if (sendResp.statusCode != 200) {
-    throw Exception('gmail send failed (${sendResp.statusCode}): ${sendResp.body}');
-  }
 }

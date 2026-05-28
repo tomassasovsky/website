@@ -9,8 +9,7 @@ import 'package:slang/generated.dart';
 import 'strings.g.dart';
 
 // Path: <root>
-class AppLocalizationsEs extends AppLocalizations
-    with BaseTranslations<AppLocale, AppLocalizations> {
+class AppLocalizationsEs extends AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// You can call this constructor and build your own translation instance of this locale.
   /// Constructing via the enum [AppLocale.build] is preferred.
   AppLocalizationsEs({
@@ -56,6 +55,8 @@ class AppLocalizationsEs extends AppLocalizations
   String get metaTitleProjects => 'Proyectos — Tomás Sasovsky';
   @override
   String get metaTitleContact => 'Contacto — Tomás Sasovsky';
+  @override
+  String get metaTitleBookMeeting => 'Agendar reunión — Tomás Sasovsky';
   @override
   String get siteTagline => 'Sr. Flutter & Backend Engineer';
   @override
@@ -126,12 +127,70 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get contactBookTitle => 'Agenda una reunión';
   @override
-  String get contactBookLine1 => 'Elige un tiempo que funcione para ti utilizando mi calendario.';
+  String get contactBookLine1 => 'Elige un horario que te funcione.';
   @override
-  String get contactBookLine2 =>
-      'Recibirás una confirmación y un enlace de reunión de video automáticamente.';
+  String get contactBookLine2 => 'Recibirás una confirmación y un enlace de videollamada automáticamente.';
   @override
   String get contactScheduleCall => 'Agendar una llamada →';
+  @override
+  String get bookingMeetingTitle => 'Llamada introductoria';
+  @override
+  String get bookingMeetingDuration => '30 min';
+  @override
+  String get bookingSelectDateTime => 'Elige fecha y hora';
+  @override
+  String get bookingStepDateTitle => 'Elige una fecha';
+  @override
+  String get bookingStepTimeTitle => 'Elige un horario';
+  @override
+  String get bookingStepDate => 'Fecha';
+  @override
+  String get bookingStepTime => 'Hora';
+  @override
+  String get bookingStepDetails => 'Datos';
+  @override
+  String get bookingChangeDate => 'Cambiar fecha';
+  @override
+  String get bookingPickDateHint => 'Selecciona una fecha resaltada para ver los horarios disponibles.';
+  @override
+  String get bookingConfirmTime => 'Confirmar';
+  @override
+  String get bookingEnterDetails => 'Tus datos';
+  @override
+  String get bookingBack => 'Volver';
+  @override
+  String get bookingTimezoneLabel => 'Zona horaria';
+  @override
+  String bookingHostHoursHint({required int startHour, required int endHour}) =>
+      'La disponibilidad sigue el horario laboral de Buenos Aires (${startHour}:00–${endHour}:00).';
+  @override
+  String get bookingTime => 'Horarios disponibles';
+  @override
+  String get bookingLoadingSlots => 'Cargando horarios…';
+  @override
+  String get bookingNoSlots => 'No hay horarios disponibles en esta fecha. Prueba otro día.';
+  @override
+  String get bookingSelected => 'Seleccionado';
+  @override
+  String get bookingNotes => 'Notas (opcional)';
+  @override
+  String get bookingNotesHint => 'Algo que quieras que sepa antes de la reunión…';
+  @override
+  String get bookingConfirm => 'Agendar reunión';
+  @override
+  String get bookingBooking => 'Agendando…';
+  @override
+  String get bookingSuccess => '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.';
+  @override
+  String get bookingErrorGeneric => 'Algo salió mal. Por favor, inténtalo de nuevo.';
+  @override
+  String get bookingErrorRequired => 'Elige un horario y completa tu nombre y email.';
+  @override
+  String get bookingErrorConflict => 'Ese horario acaba de reservarse. Elige otro.';
+  @override
+  String get bookingPrevMonth => 'Mes anterior';
+  @override
+  String get bookingNextMonth => 'Mes siguiente';
   @override
   String get contactOnlineTitle => 'Encontrame en línea';
   @override
@@ -186,23 +245,19 @@ class AppLocalizationsEs extends AppLocalizations
   @override
   String get svc0Title => 'Desarrollo de aplicaciones móviles';
   @override
-  String get svc0Desc =>
-      'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.';
+  String get svc0Desc => 'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.';
   @override
   String get svc1Title => 'Desarrollo de back-end y API';
   @override
-  String get svc1Desc =>
-      'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.';
+  String get svc1Desc => 'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.';
   @override
   String get svc2Title => 'Aplicaciones web y front-end';
   @override
-  String get svc2Desc =>
-      'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.';
+  String get svc2Desc => 'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.';
   @override
   String get svc3Title => 'Integraciones y DevOps';
   @override
-  String get svc3Desc =>
-      'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.';
+  String get svc3Desc => 'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.';
   @override
   String get svc4Title => 'Contribuciones a código abierto';
   @override
@@ -433,6 +488,7 @@ extension on AppLocalizationsEs {
       'metaTitleHome' => 'Sobre — Tomás Sasovsky',
       'metaTitleProjects' => 'Proyectos — Tomás Sasovsky',
       'metaTitleContact' => 'Contacto — Tomás Sasovsky',
+      'metaTitleBookMeeting' => 'Agendar reunión — Tomás Sasovsky',
       'siteTagline' => 'Sr. Flutter & Backend Engineer',
       'siteLocation' => 'Buenos Aires, Argentina',
       'navAbout' => 'Sobre',
@@ -457,8 +513,7 @@ extension on AppLocalizationsEs {
       'portfolioLabel' => 'Portafolio',
       'projectsHeading' => 'Proyectos',
       'projectsSubtitle' =>
-        ({required int projectCount}) =>
-            '${projectCount} proyectos en móviles, backend y open source.',
+        ({required int projectCount}) => '${projectCount} proyectos en móviles, backend y open source.',
       'filterAll' => 'Todo',
       'filterApps' => 'Aplicaciones',
       'filterOss' => 'OSS / Herramientas',
@@ -469,10 +524,40 @@ extension on AppLocalizationsEs {
       'contactHeading' => 'Contacto',
       'contactSubtitle' => 'Vamos a trabajar juntos en algo genial.',
       'contactBookTitle' => 'Agenda una reunión',
-      'contactBookLine1' => 'Elige un tiempo que funcione para ti utilizando mi calendario.',
-      'contactBookLine2' =>
-        'Recibirás una confirmación y un enlace de reunión de video automáticamente.',
+      'contactBookLine1' => 'Elige un horario que te funcione.',
+      'contactBookLine2' => 'Recibirás una confirmación y un enlace de videollamada automáticamente.',
       'contactScheduleCall' => 'Agendar una llamada →',
+      'bookingMeetingTitle' => 'Llamada introductoria',
+      'bookingMeetingDuration' => '30 min',
+      'bookingSelectDateTime' => 'Elige fecha y hora',
+      'bookingStepDateTitle' => 'Elige una fecha',
+      'bookingStepTimeTitle' => 'Elige un horario',
+      'bookingStepDate' => 'Fecha',
+      'bookingStepTime' => 'Hora',
+      'bookingStepDetails' => 'Datos',
+      'bookingChangeDate' => 'Cambiar fecha',
+      'bookingPickDateHint' => 'Selecciona una fecha resaltada para ver los horarios disponibles.',
+      'bookingConfirmTime' => 'Confirmar',
+      'bookingEnterDetails' => 'Tus datos',
+      'bookingBack' => 'Volver',
+      'bookingTimezoneLabel' => 'Zona horaria',
+      'bookingHostHoursHint' =>
+        ({required int startHour, required int endHour}) =>
+            'La disponibilidad sigue el horario laboral de Buenos Aires (${startHour}:00–${endHour}:00).',
+      'bookingTime' => 'Horarios disponibles',
+      'bookingLoadingSlots' => 'Cargando horarios…',
+      'bookingNoSlots' => 'No hay horarios disponibles en esta fecha. Prueba otro día.',
+      'bookingSelected' => 'Seleccionado',
+      'bookingNotes' => 'Notas (opcional)',
+      'bookingNotesHint' => 'Algo que quieras que sepa antes de la reunión…',
+      'bookingConfirm' => 'Agendar reunión',
+      'bookingBooking' => 'Agendando…',
+      'bookingSuccess' => '¡Listo! Revisa tu email para la invitación de calendario y el enlace de la reunión.',
+      'bookingErrorGeneric' => 'Algo salió mal. Por favor, inténtalo de nuevo.',
+      'bookingErrorRequired' => 'Elige un horario y completa tu nombre y email.',
+      'bookingErrorConflict' => 'Ese horario acaba de reservarse. Elige otro.',
+      'bookingPrevMonth' => 'Mes anterior',
+      'bookingNextMonth' => 'Mes siguiente',
       'contactOnlineTitle' => 'Encontrame en línea',
       'contactOnlineBody' =>
         'Ponte en contacto directamente — siempre feliz de hablar sobre Flutter, proyectos interesantes o oportunidades nuevas.',
@@ -501,17 +586,13 @@ extension on AppLocalizationsEs {
       'aboutP1' =>
         'Mis fortalezas incluyen la gestión de estado (Bloc, MVVM), la arquitectura por capas de Flutter, la arquitectura limpia y las prácticas modernas de CI/CD. También cuento con sólida experiencia en backend con TypeScript/Node.js, integración de APIs (REST/GraphQL) e infraestructura en la nube (GCP/AWS). Me siento cómodo liderando equipos y proyectos, impulsando iniciativas técnicas complejas desde su concepción hasta producción, y me importa profundamente la excelencia en ingeniería, la arquitectura escalable y las experiencias de usuario excepcionales.',
       'svc0Title' => 'Desarrollo de aplicaciones móviles',
-      'svc0Desc' =>
-        'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.',
+      'svc0Desc' => 'Diseñar y construir aplicaciones móviles de alta calidad y gran experiencia del usuario.',
       'svc1Title' => 'Desarrollo de back-end y API',
-      'svc1Desc' =>
-        'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.',
+      'svc1Desc' => 'Servicios de TypeScript/Node.js, APIs REST, autenticación, pagos y documentación.',
       'svc2Title' => 'Aplicaciones web y front-end',
-      'svc2Desc' =>
-        'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.',
+      'svc2Desc' => 'Interfaces web responsivas con rendimiento en mente para todos los dispositivos.',
       'svc3Title' => 'Integraciones y DevOps',
-      'svc3Desc' =>
-        'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.',
+      'svc3Desc' => 'Integraciones de productos, monitoreo y pipelines de CI/CD para entregas confiables.',
       'svc4Title' => 'Contribuciones a código abierto',
       'svc4Desc' =>
         'Contribuyente activo a herramientas y bibliotecas de la comunidad; manteniendo y publicando proyectos de código abierto.',
