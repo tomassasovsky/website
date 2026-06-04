@@ -502,6 +502,13 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   String get proj14Desc =>
       'Dart wrapper around the Radio Browser open API for discovering and streaming internet radio stations. Supports search by name, country, language, and tag, with typed models and a simple async interface.';
 
+  /// en: 'project-cover'
+  String get proj15Title => 'project-cover';
+
+  /// en: 'A Claude skill and Cursor rule for generating consistent 1920×1080 cover cards for software projects. Enforces a fixed portfolio layout while the AI picks a fresh palette and procedural mark per project — with Pillow rendering and install docs for Claude Code and Cursor.'
+  String get proj15Desc =>
+      'A Claude skill and Cursor rule for generating consistent 1920×1080 cover cards for software projects. Enforces a fixed portfolio layout while the AI picks a fresh palette and procedural mark per project — with Pillow rendering and install docs for Claude Code and Cursor.';
+
   /// en: 'Leave a Testimonial — Tomás Sasovsky'
   String get testiPageTitle => 'Leave a Testimonial — Tomás Sasovsky';
 
@@ -859,6 +866,9 @@ extension on AppLocalizations {
       'proj14Title' => 'radio-browser-api.dart',
       'proj14Desc' =>
         'Dart wrapper around the Radio Browser open API for discovering and streaming internet radio stations. Supports search by name, country, language, and tag, with typed models and a simple async interface.',
+      'proj15Title' => 'project-cover',
+      'proj15Desc' =>
+        'A Claude skill and Cursor rule for generating consistent 1920×1080 cover cards for software projects. Enforces a fixed portfolio layout while the AI picks a fresh palette and procedural mark per project — with Pillow rendering and install docs for Claude Code and Cursor.',
       'testiPageTitle' => 'Leave a Testimonial — Tomás Sasovsky',
       'testiPageHeading' => 'Leave a testimonial',
       'testiPageSubtitle' =>

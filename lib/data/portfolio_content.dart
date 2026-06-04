@@ -43,6 +43,7 @@ String _projectTitle(AppLocalizations t, int i) {
     12 => t.proj12Title,
     13 => t.proj13Title,
     14 => t.proj14Title,
+    15 => t.proj15Title,
     _ => throw RangeError('project index $i'),
   };
 }
@@ -64,12 +65,13 @@ String _projectDesc(AppLocalizations t, int i) {
     12 => t.proj12Desc,
     13 => t.proj13Desc,
     14 => t.proj14Desc,
+    15 => t.proj15Desc,
     _ => throw RangeError('project index $i'),
   };
 }
 
 List<Project> loadProjects(AppLocalizations t) {
-  assert(projectShells.length == 15);
+  assert(projectShells.length == 16);
   return [
     for (var i = 0; i < projectShells.length; i++) _projectAt(t, i),
   ];

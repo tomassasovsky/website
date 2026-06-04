@@ -365,6 +365,11 @@ class AppLocalizationsEs extends AppLocalizations
   String get proj14Desc =>
       'Wrapper de Dart para la API abierta de Radio Browser para descubrir y reproducir emisoras de radio por internet. Permite buscar por nombre, país, idioma y etiqueta, con modelos tipados y una interfaz asíncrona sencilla.';
   @override
+  String get proj15Title => 'project-cover';
+  @override
+  String get proj15Desc =>
+      'Skill de Claude y regla de Cursor para generar tarjetas de portada 1920×1080 coherentes para proyectos de software. Impone un layout fijo de portfolio mientras la IA elige paleta y marca procedural por proyecto — con render en Pillow e instrucciones de instalación para Claude Code y Cursor.';
+  @override
   String get testiPageTitle => 'Dejar un testimonio — Tomás Sasovsky';
   @override
   String get testiPageHeading => 'Dejar un testimonio';
@@ -671,6 +676,9 @@ extension on AppLocalizationsEs {
       'proj14Title' => 'radio-browser-api.dart',
       'proj14Desc' =>
         'Wrapper de Dart para la API abierta de Radio Browser para descubrir y reproducir emisoras de radio por internet. Permite buscar por nombre, país, idioma y etiqueta, con modelos tipados y una interfaz asíncrona sencilla.',
+      'proj15Title' => 'project-cover',
+      'proj15Desc' =>
+        'Skill de Claude y regla de Cursor para generar tarjetas de portada 1920×1080 coherentes para proyectos de software. Impone un layout fijo de portfolio mientras la IA elige paleta y marca procedural por proyecto — con render en Pillow e instrucciones de instalación para Claude Code y Cursor.',
       'testiPageTitle' => 'Dejar un testimonio — Tomás Sasovsky',
       'testiPageHeading' => 'Dejar un testimonio',
       'testiPageSubtitle' =>

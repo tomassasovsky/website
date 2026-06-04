@@ -3,11 +3,11 @@ library;
 
 import 'link_kind.dart';
 
-/// Link targets for each portfolio project (order matches `proj0…proj13` in ARB).
+/// Link targets for each portfolio project (order matches `proj0…proj15` in ARB).
 final List<ProjectShell> projectShells = [
   (
     tech: ['Flutter', 'Dart', 'Node.js', 'Bun'],
-  image: '/assets/images/eldorado-preview.jpeg',
+    image: '/assets/images/eldorado-preview.jpeg',
     imageFit: 'cover',
     categories: ['apps'],
     unreleased: false,
@@ -157,6 +157,16 @@ final List<ProjectShell> projectShells = [
     unreleased: false,
     links: [
       (LinkKind.github, 'https://github.com/tomassasovsky/radio-browser-api.dart'),
+    ],
+  ),
+  (
+    tech: ['Python'],
+    image: '/assets/images/project-cover-portfolio-cover.png',
+    imageFit: 'cover',
+    categories: ['oss'],
+    unreleased: false,
+    links: [
+      (LinkKind.github, 'https://github.com/tomassasovsky/project-cover'),
     ],
   ),
 ];
