@@ -119,7 +119,7 @@ List<String> formatShortWeekdayLabels(String locale) {
   try {
     final formatter = IntlDateTimeFormat(
       locale.toJS,
-      {'weekday': 'short'}.jsify(),
+      {'weekday': 'short', 'timeZone': 'UTC'}.jsify(),
     );
     return [
       for (var day = 7; day <= 13; day++)
