@@ -146,14 +146,14 @@ class _AboutSection extends StatelessComponent {
           .text(sectionAboutSubtitle),
         ]),
       ]),
+      div(classes: 'about-text', [
+        for (final paragraph in paragraphs) p([.text(paragraph)]),
+      ]),
       div(classes: 'about-stats', [
         _Stat(value: '5+', label: statYearsExperience),
         _Stat(value: '14+', label: statProjectsShipped),
         _Stat(value: '3', label: statContinentsServed),
         _Stat(value: '∞', label: statBugsSquashed),
-      ]),
-      div(classes: 'about-text', [
-        for (final paragraph in paragraphs) p([.text(paragraph)]),
       ]),
     ]);
   }
