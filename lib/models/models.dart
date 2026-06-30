@@ -67,6 +67,7 @@ class Role {
 class Testimonial {
   const Testimonial({
     required this.author,
+    required this.role,
     required this.paragraphs,
     required this.dateISO,
     required this.dateLabel,
@@ -74,6 +75,7 @@ class Testimonial {
   });
 
   final String author;
+  final String role;
   final List<String> paragraphs;
   final String dateISO;
   final String dateLabel;

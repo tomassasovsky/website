@@ -109,7 +109,10 @@ class _TestimonialCard extends StatelessComponent {
       attributes: hidden ? const {'aria-hidden': 'true', 'tabindex': '-1'} : const {},
       [
         div(classes: 'tcard__meta', [
-          span(classes: 'tcard__author', [.text(t.author)]),
+          div(classes: 'tcard__author-block', [
+            span(classes: 'tcard__author', [.text(t.author)]),
+            span(classes: 'tcard__role', [.text(t.role)]),
+          ]),
           a(
             href: t.linkedinUrl,
             classes: 'tcard__link',

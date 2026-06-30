@@ -564,63 +564,56 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'Submit testimonial'
   String get testiFormSubmit => 'Submit testimonial';
 
+  /// en: 'January 2025'
+  String get testi0Date => 'January 2025';
+
+  /// en: 'I had the pleasure of working closely with Tomás for 2.5 years on a variety of projects, including the development of a complex Android native app that integrated an NDK-based machine learning model.'
+  String get testi0P0 =>
+      'I had the pleasure of working closely with Tomás for 2.5 years on a variety of projects, including the development of a complex Android native app that integrated an NDK-based machine learning model.';
+
+  /// en: 'Throughout our time working together, he demonstrated exceptional technical expertise, particularly as a mobile Flutter developer, where his contributions elevated our capabilities in every area of the mobile stack.'
+  String get testi0P1 =>
+      'Throughout our time working together, he demonstrated exceptional technical expertise, particularly as a mobile Flutter developer, where his contributions elevated our capabilities in every area of the mobile stack.';
+
+  /// en: 'One of his standout accomplishments was designing and implementing a robust CI/CD pipeline that streamlined our development process. I strongly recommend him to any team looking for a talented, forward-thinking mobile developer.'
+  String get testi0P2 =>
+      'One of his standout accomplishments was designing and implementing a robust CI/CD pipeline that streamlined our development process. I strongly recommend him to any team looking for a talented, forward-thinking mobile developer.';
+
   /// en: 'October 2025'
-  String get testi0Date => 'October 2025';
+  String get testi1Date => 'October 2025';
 
   /// en: 'I'm excited to recommend Tomás as an outstanding software engineer. I've had the unique privilege of working alongside Tomás at IT-TechGroup and later leading him as Team Lead at SportsVisio, witnessing his remarkable evolution from promising junior developer to all-star engineer.'
-  String get testi0P0 =>
+  String get testi1P0 =>
       'I\'m excited to recommend Tomás as an outstanding software engineer. I\'ve had the unique privilege of working alongside Tomás at IT-TechGroup and later leading him as Team Lead at SportsVisio, witnessing his remarkable evolution from promising junior developer to all-star engineer.';
 
   /// en: 'What distinguishes Tomás is his unwavering reliability in delivering high-quality solutions. His work on background TUS upload optimization and Bloc-based architecture rewrite at SportsVisio exemplifies his ability to tackle complex, high-impact challenges.'
-  String get testi0P1 =>
+  String get testi1P1 =>
       'What distinguishes Tomás is his unwavering reliability in delivering high-quality solutions. His work on background TUS upload optimization and Bloc-based architecture rewrite at SportsVisio exemplifies his ability to tackle complex, high-impact challenges.';
 
   /// en: 'Tomás thrives on difficult problems that would intimidate most engineers. I could confidently take holidays knowing he'd handle any critical issue. Any organisation would be fortunate to have Tomás on their most challenging projects.'
-  String get testi0P2 =>
-      'Tomás thrives on difficult problems that would intimidate most engineers. I could confidently take holidays knowing he\'d handle any critical issue. Any organisation would be fortunate to have Tomás on their most challenging projects.';
-
-  /// en: 'January 2025'
-  String get testi1Date => 'January 2025';
-
-  /// en: 'I am thrilled to recommend Tomás Sasovsky as an exceptional Flutter Developer. Over the past three years, I've had the pleasure of working with Tomás as both a coworker and his team lead, and his contributions to our team have been invaluable.'
-  String get testi1P0 =>
-      'I am thrilled to recommend Tomás Sasovsky as an exceptional Flutter Developer. Over the past three years, I\'ve had the pleasure of working with Tomás as both a coworker and his team lead, and his contributions to our team have been invaluable.';
-
-  /// en: 'Tomás brings deep expertise in Flutter and mobile development, consistently delivering high-quality applications. His problem-solving skills and ability to write clean, scalable code have driven the success of numerous projects.'
-  String get testi1P1 =>
-      'Tomás brings deep expertise in Flutter and mobile development, consistently delivering high-quality applications. His problem-solving skills and ability to write clean, scalable code have driven the success of numerous projects.';
-
-  /// en: 'What truly sets Tomás apart is his collaborative spirit and dedication. He is a natural team player who shares knowledge generously, mentors junior developers, and fosters a positive work environment.'
   String get testi1P2 =>
-      'What truly sets Tomás apart is his collaborative spirit and dedication. He is a natural team player who shares knowledge generously, mentors junior developers, and fosters a positive work environment.';
+      'Tomás thrives on difficult problems that would intimidate most engineers. I could confidently take holidays knowing he\'d handle any critical issue. Any organisation would be fortunate to have Tomás on their most challenging projects.';
 
   /// en: 'January 2025'
   String get testi2Date => 'January 2025';
 
-  /// en: 'I had the pleasure of working closely with Tomás for 2.5 years on a variety of projects, including the development of a complex Android native app that integrated an NDK-based machine learning model.'
+  /// en: 'I am thrilled to recommend Tomás Sasovsky as an exceptional Flutter Developer. Over the past three years, I've had the pleasure of working with Tomás as both a coworker and his team lead, and his contributions to our team have been invaluable.'
   String get testi2P0 =>
-      'I had the pleasure of working closely with Tomás for 2.5 years on a variety of projects, including the development of a complex Android native app that integrated an NDK-based machine learning model.';
+      'I am thrilled to recommend Tomás Sasovsky as an exceptional Flutter Developer. Over the past three years, I\'ve had the pleasure of working with Tomás as both a coworker and his team lead, and his contributions to our team have been invaluable.';
 
-  /// en: 'Throughout our time working together, he demonstrated exceptional technical expertise, particularly as a mobile Flutter developer, where his contributions elevated our capabilities in every area of the mobile stack.'
+  /// en: 'Tomás brings deep expertise in Flutter and mobile development, consistently delivering high-quality applications. His problem-solving skills and ability to write clean, scalable code have driven the success of numerous projects.'
   String get testi2P1 =>
-      'Throughout our time working together, he demonstrated exceptional technical expertise, particularly as a mobile Flutter developer, where his contributions elevated our capabilities in every area of the mobile stack.';
+      'Tomás brings deep expertise in Flutter and mobile development, consistently delivering high-quality applications. His problem-solving skills and ability to write clean, scalable code have driven the success of numerous projects.';
 
-  /// en: 'One of his standout accomplishments was designing and implementing a robust CI/CD pipeline that streamlined our development process. I strongly recommend him to any team looking for a talented, forward-thinking mobile developer.'
+  /// en: 'What truly sets Tomás apart is his collaborative spirit and dedication. He is a natural team player who shares knowledge generously, mentors junior developers, and fosters a positive work environment.'
   String get testi2P2 =>
-      'One of his standout accomplishments was designing and implementing a robust CI/CD pipeline that streamlined our development process. I strongly recommend him to any team looking for a talented, forward-thinking mobile developer.';
+      'What truly sets Tomás apart is his collaborative spirit and dedication. He is a natural team player who shares knowledge generously, mentors junior developers, and fosters a positive work environment.';
 
   /// en: 'November 2021'
   String get testi3Date => 'November 2021';
 
-  /// en: 'Proactive and resolutive developer. If he doesn't know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.'
-  String get testi3P0 =>
-      'Proactive and resolutive developer. If he doesn\'t know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.';
-
-  /// en: 'November 2021'
-  String get testi4Date => 'November 2021';
-
   /// en: 'Tomás is a very talented engineer. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.'
-  String get testi4P0 =>
+  String get testi3P0 =>
       'Tomás is a very talented engineer. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.';
 
   /// en: 'Full-Stack Developer — El Dorado P2P'
@@ -886,32 +879,29 @@ extension on AppLocalizations {
       'testiFormSuccess' =>
         'Thank you! Your testimonial has been submitted and I\'ll review it shortly.',
       'testiFormSubmit' => 'Submit testimonial',
-      'testi0Date' => 'October 2025',
+      'testi0Date' => 'January 2025',
       'testi0P0' =>
-        'I\'m excited to recommend Tomás as an outstanding software engineer. I\'ve had the unique privilege of working alongside Tomás at IT-TechGroup and later leading him as Team Lead at SportsVisio, witnessing his remarkable evolution from promising junior developer to all-star engineer.',
+        'I had the pleasure of working closely with Tomás for 2.5 years on a variety of projects, including the development of a complex Android native app that integrated an NDK-based machine learning model.',
       'testi0P1' =>
-        'What distinguishes Tomás is his unwavering reliability in delivering high-quality solutions. His work on background TUS upload optimization and Bloc-based architecture rewrite at SportsVisio exemplifies his ability to tackle complex, high-impact challenges.',
+        'Throughout our time working together, he demonstrated exceptional technical expertise, particularly as a mobile Flutter developer, where his contributions elevated our capabilities in every area of the mobile stack.',
       'testi0P2' =>
-        'Tomás thrives on difficult problems that would intimidate most engineers. I could confidently take holidays knowing he\'d handle any critical issue. Any organisation would be fortunate to have Tomás on their most challenging projects.',
-      'testi1Date' => 'January 2025',
+        'One of his standout accomplishments was designing and implementing a robust CI/CD pipeline that streamlined our development process. I strongly recommend him to any team looking for a talented, forward-thinking mobile developer.',
+      'testi1Date' => 'October 2025',
       'testi1P0' =>
-        'I am thrilled to recommend Tomás Sasovsky as an exceptional Flutter Developer. Over the past three years, I\'ve had the pleasure of working with Tomás as both a coworker and his team lead, and his contributions to our team have been invaluable.',
+        'I\'m excited to recommend Tomás as an outstanding software engineer. I\'ve had the unique privilege of working alongside Tomás at IT-TechGroup and later leading him as Team Lead at SportsVisio, witnessing his remarkable evolution from promising junior developer to all-star engineer.',
       'testi1P1' =>
-        'Tomás brings deep expertise in Flutter and mobile development, consistently delivering high-quality applications. His problem-solving skills and ability to write clean, scalable code have driven the success of numerous projects.',
+        'What distinguishes Tomás is his unwavering reliability in delivering high-quality solutions. His work on background TUS upload optimization and Bloc-based architecture rewrite at SportsVisio exemplifies his ability to tackle complex, high-impact challenges.',
       'testi1P2' =>
-        'What truly sets Tomás apart is his collaborative spirit and dedication. He is a natural team player who shares knowledge generously, mentors junior developers, and fosters a positive work environment.',
+        'Tomás thrives on difficult problems that would intimidate most engineers. I could confidently take holidays knowing he\'d handle any critical issue. Any organisation would be fortunate to have Tomás on their most challenging projects.',
       'testi2Date' => 'January 2025',
       'testi2P0' =>
-        'I had the pleasure of working closely with Tomás for 2.5 years on a variety of projects, including the development of a complex Android native app that integrated an NDK-based machine learning model.',
+        'I am thrilled to recommend Tomás Sasovsky as an exceptional Flutter Developer. Over the past three years, I\'ve had the pleasure of working with Tomás as both a coworker and his team lead, and his contributions to our team have been invaluable.',
       'testi2P1' =>
-        'Throughout our time working together, he demonstrated exceptional technical expertise, particularly as a mobile Flutter developer, where his contributions elevated our capabilities in every area of the mobile stack.',
+        'Tomás brings deep expertise in Flutter and mobile development, consistently delivering high-quality applications. His problem-solving skills and ability to write clean, scalable code have driven the success of numerous projects.',
       'testi2P2' =>
-        'One of his standout accomplishments was designing and implementing a robust CI/CD pipeline that streamlined our development process. I strongly recommend him to any team looking for a talented, forward-thinking mobile developer.',
+        'What truly sets Tomás apart is his collaborative spirit and dedication. He is a natural team player who shares knowledge generously, mentors junior developers, and fosters a positive work environment.',
       'testi3Date' => 'November 2021',
       'testi3P0' =>
-        'Proactive and resolutive developer. If he doesn\'t know how to do something he finds it out and gives results, always. He ensures to perform quality code and guarantees you for that.',
-      'testi4Date' => 'November 2021',
-      'testi4P0' =>
         'Tomás is a very talented engineer. He has a solid knowledge of Flutter. He is very committed when he has project responsibilities. I recommend him as a co-worker or project leader, since he is always willing to learn more and help in a totally selfless way.',
       'exp0Title' => 'Full-Stack Developer — El Dorado P2P',
       'exp0Range' => 'Feb 2025 — Sep 2025 · Buenos Aires (Hybrid)',

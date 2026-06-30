@@ -60,7 +60,10 @@ class _TestimonialExample extends StatelessComponent {
   Component build(BuildContext context) {
     return div(classes: 'testimonial-example', [
       div(classes: 'testimonial-example__meta', [
-        span(classes: 'tcard__author', [.text(testimonial.author)]),
+        div(classes: 'tcard__author-block', [
+          span(classes: 'tcard__author', [.text(testimonial.author)]),
+          span(classes: 'tcard__role', [.text(testimonial.role)]),
+        ]),
         span(classes: 'tcard__date', [.text(' · ${testimonial.dateLabel}')]),
       ]),
       div(classes: 'tcard__body', [
