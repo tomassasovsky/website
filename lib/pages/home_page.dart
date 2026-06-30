@@ -16,7 +16,7 @@ class HomePage extends StatelessComponent {
   Component build(BuildContext context) {
     final s = context.strings;
     final locale = context.locale;
-    final aboutParagraphs = loadAboutParagraphs(s);
+    final aboutParagraphs = loadAboutText(s);
     final services = loadServices(s);
 
     return .fragment([

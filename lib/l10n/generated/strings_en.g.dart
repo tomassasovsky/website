@@ -336,13 +336,9 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
   /// en: 'Language'
   String get langSwitchLabel => 'Language';
 
-  /// en: 'I'm a full-stack software engineer with 5+ years of professional experience, specialising in cross-platform mobile development with Flutter and Dart. I've architected and delivered production Flutter applications used by real users at scale across fintech, sports tech, and health sectors.'
-  String get aboutP0 =>
-      'I\'m a full-stack software engineer with 5+ years of professional experience, specialising in cross-platform mobile development with Flutter and Dart. I\'ve architected and delivered production Flutter applications used by real users at scale across fintech, sports tech, and health sectors.';
-
-  /// en: 'My strengths include state management (Bloc, MVVM), Flutter layered architecture, clean architecture, and modern CI/CD practices. I also bring strong backend experience with TypeScript/Node.js, API integration (REST/GraphQL), and cloud infrastructure (GCP/AWS). I'm comfortable leading teams and projects, driving complex technical initiatives from concept to production, and I care deeply about engineering excellence, scalable architecture, and exceptional user experiences.'
-  String get aboutP1 =>
-      'My strengths include state management (Bloc, MVVM), Flutter layered architecture, clean architecture, and modern CI/CD practices. I also bring strong backend experience with TypeScript/Node.js, API integration (REST/GraphQL), and cloud infrastructure (GCP/AWS). I\'m comfortable leading teams and projects, driving complex technical initiatives from concept to production, and I care deeply about engineering excellence, scalable architecture, and exceptional user experiences.';
+  /// en: 'I enjoy taking ideas from "wouldn't it be cool if..." to something real that people can use. I love understanding how systems work, solving difficult problems, and building products that make an impact.'
+  String get about =>
+      'I enjoy taking ideas from "wouldn\'t it be cool if..." to something real that people can use. I love understanding how systems work, solving difficult problems, and building products that make an impact.';
 
   /// en: 'Mobile app development'
   String get svc0Title => 'Mobile app development';
@@ -797,10 +793,8 @@ extension on AppLocalizations {
       'langSwitchEnglish' => 'EN',
       'langSwitchSpanish' => 'ES',
       'langSwitchLabel' => 'Language',
-      'aboutP0' =>
-        'I\'m a full-stack software engineer with 5+ years of professional experience, specialising in cross-platform mobile development with Flutter and Dart. I\'ve architected and delivered production Flutter applications used by real users at scale across fintech, sports tech, and health sectors.',
-      'aboutP1' =>
-        'My strengths include state management (Bloc, MVVM), Flutter layered architecture, clean architecture, and modern CI/CD practices. I also bring strong backend experience with TypeScript/Node.js, API integration (REST/GraphQL), and cloud infrastructure (GCP/AWS). I\'m comfortable leading teams and projects, driving complex technical initiatives from concept to production, and I care deeply about engineering excellence, scalable architecture, and exceptional user experiences.',
+      'about' =>
+        'I enjoy taking ideas from "wouldn\'t it be cool if..." to something real that people can use. I love understanding how systems work, solving difficult problems, and building products that make an impact.',
       'svc0Title' => 'Mobile app development',
       'svc0Desc' =>
         'Design and build reliable iOS/Android apps with modern architecture and great UX.',

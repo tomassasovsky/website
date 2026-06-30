@@ -14,7 +14,7 @@ String linkLabel(AppLocalizations t, LinkKind k) {
   };
 }
 
-List<String> loadAboutParagraphs(AppLocalizations t) => [t.aboutP0, t.aboutP1];
+List<String> loadAboutText(AppLocalizations t) => [t.about];
 
 List<Service> loadServices(AppLocalizations t) {
   return [
