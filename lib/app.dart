@@ -106,8 +106,13 @@ class App extends StatelessComponent {
                     content:
                         "(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();",
                   ),
-                  // Favicon
+                  // Favicon (svg for modern browsers; ico for legacy / auto-requests)
                   link(rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'),
+                  link(
+                    rel: 'icon',
+                    href: '/favicon.ico',
+                    attributes: const {'sizes': 'any'},
+                  ),
                   // Keep one canonical URL per locale path and expose alternates.
                   link(rel: 'canonical', href: canonicalPath),
                   for (final path in alternatePaths)

@@ -358,6 +358,8 @@ button { font-family: inherit; cursor: pointer; }
 .hero__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
 /* ── About ─────────────────────────────────────────────────── */
+.section-header:has(+ .about-text) { margin-bottom: 1.25rem; }
+
 /* Stats strip */
 .about-stats {
   display: grid;
@@ -367,7 +369,6 @@ button { font-family: inherit; cursor: pointer; }
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   overflow: hidden;
-  margin-bottom: 2.5rem;
 }
 .about-stat {
   background: var(--surface);
@@ -388,6 +389,9 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 500; letter-spacing: 0.01em;
 }
 
+.about-text {
+  margin-bottom: 2.5rem;
+}
 .about-text p {
   color: var(--text-2); font-size: 0.9375rem;
   line-height: 1.9; margin-bottom: 1rem;
