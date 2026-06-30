@@ -93,29 +93,28 @@ Project _projectAt(AppLocalizations t, int i) {
   );
 }
 
-const _testimonialShells = <({String author, String dateISO, String linkedinUrl})>[
+const _testimonialShells = <({String author, String role, String dateISO, String linkedinUrl})>[
+  (
+    author: 'Mike Mathieu',
+    role: 'Co-Founder & CTO @ Jamie AI | ex-Uber',
+    dateISO: '2025-01-25',
+    linkedinUrl: 'https://www.linkedin.com/in/michael-mathieu-b1973571/',
+  ),
   (
     author: 'Jorge Rincon Arias',
+    role: 'Founding Software Engineer at Olira',
     dateISO: '2025-10-08',
     linkedinUrl: 'https://www.linkedin.com/in/jorgejrincon/',
   ),
   (
     author: 'Tomás Tisocco',
+    role: 'Mobile Team Leader at SportsVisio, Inc.',
     dateISO: '2025-01-27',
     linkedinUrl: 'https://www.linkedin.com/in/tomastisocco/',
   ),
   (
-    author: 'Michael Mathieu',
-    dateISO: '2025-01-25',
-    linkedinUrl: 'https://www.linkedin.com/in/michael-mathieu-b1973571/',
-  ),
-  (
-    author: 'Nicolás Rodsevich',
-    dateISO: '2021-11-22',
-    linkedinUrl: 'https://www.linkedin.com/in/nicolas-rodsevich/',
-  ),
-  (
     author: 'Ignacio Suarez Smith',
+    role: 'Sr Flutter Developer | Frontend Developer @ IBM',
     dateISO: '2021-11-22',
     linkedinUrl: 'https://www.linkedin.com/in/ignaciossmith/',
   ),
@@ -127,7 +126,6 @@ String _testimonialDateLabel(AppLocalizations t, int i) {
     1 => t.testi1Date,
     2 => t.testi2Date,
     3 => t.testi3Date,
-    4 => t.testi4Date,
     _ => throw RangeError('testimonial index $i'),
   };
 }
@@ -138,7 +136,6 @@ List<String> _testimonialParagraphs(AppLocalizations t, int i) {
     1 => [t.testi1P0, t.testi1P1, t.testi1P2],
     2 => [t.testi2P0, t.testi2P1, t.testi2P2],
     3 => [t.testi3P0],
-    4 => [t.testi4P0],
     _ => throw RangeError('testimonial index $i'),
   };
 }
@@ -148,6 +145,7 @@ List<Testimonial> loadTestimonials(AppLocalizations t) {
     for (var i = 0; i < _testimonialShells.length; i++)
       Testimonial(
         author: _testimonialShells[i].author,
+        role: _testimonialShells[i].role,
         dateISO: _testimonialShells[i].dateISO,
         linkedinUrl: _testimonialShells[i].linkedinUrl,
         dateLabel: _testimonialDateLabel(t, i),

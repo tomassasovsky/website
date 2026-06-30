@@ -589,8 +589,10 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Card internals */
-.tcard__meta { display: flex; align-items: center; justify-content: space-between; }
+.tcard__meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.tcard__author-block { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
 .tcard__author { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+.tcard__role { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
 .tcard__link {
   font-size: 0.73rem; color: var(--text-muted);
   transition: color var(--t);
@@ -1324,7 +1326,7 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: var(--r-md); padding: 1.25rem 1.5rem;
 }
 .testimonial-example__meta {
-  display: flex; align-items: baseline; gap: 0.25rem;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
   margin-bottom: 0.75rem;
 }
 .tcard__date { font-size: 0.8rem; color: var(--text-muted); }
