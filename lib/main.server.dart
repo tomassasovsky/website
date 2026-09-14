@@ -35,9 +35,9 @@ void main() {
       lang: 'en',
       styles: [
         css.import(
-          'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=JetBrains+Mono:wght@400;500&display=swap',
+          'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Instrument+Serif:ital@0;1&display=swap',
         ),
-        css.import('/styles.css'),
+        css.import('/styles.css?v=10'),
       ],
       body: ProviderScope(
         sync: [projectsFilterProvider.syncWith(kProjectsFilterSyncId)],

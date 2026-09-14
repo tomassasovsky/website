@@ -104,7 +104,7 @@ class App extends StatelessComponent {
                   // Inline script: apply stored theme immediately to prevent flash
                   script(
                     content:
-                        "(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();",
+                        "(function(){var t='light';try{if(localStorage.getItem('theme')==='dark')t='dark';}catch(e){}document.documentElement.setAttribute('data-theme',t);})();",
                   ),
                   // Favicon (svg for modern browsers; ico for legacy / auto-requests)
                   link(rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg'),
@@ -127,14 +127,7 @@ class App extends StatelessComponent {
                     attributes: const {'hreflang': 'x-default'},
                   ),
                   meta(name: 'robots', content: robotsContent),
-                  // Lottie player (defer so it runs in order before theme.js)
-                  script(
-                    src: 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js',
-                    defer: true,
-                  ),
-                  script(src: '/scroll-avatar.js', defer: true),
-                  script(src: '/theme.js', defer: true),
-                  script(src: '/clients-carousel.js', defer: true),
+                  script(src: '/theme.js?v=2', defer: true),
                   // Plausible analytics
                   script(
                     src: 'https://stats.aquiles.dev/js/pa-72E8qMm_ZzdUZJw4uBtzt.js',
@@ -150,8 +143,9 @@ class App extends StatelessComponent {
                 locale: locale,
                 strings: strings,
                 child: div(classes: 'site-wrapper', [
+                  a(href: '$canonicalPath#main-content', classes: 'skip-link', [.text(strings.skipToContent)]),
                   const NavBar(),
-                  child,
+                  main_(id: 'main-content', attributes: const {'tabindex': '-1'}, [child]),
                   const Footer(),
                 ]),
               ),

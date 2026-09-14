@@ -52,6 +52,15 @@ class _ProjectsClientSectionState extends State<ProjectsClientSection> {
     final hash = web.window.location.hash.toLowerCase();
     if (hash == '#oss' || hash == '#apps') {
       context.read(projectsFilterProvider.notifier).state = hash.substring(1);
+    } else if (hash.startsWith('#project-')) {
+      final index = int.tryParse(hash.substring('#project-'.length));
+      final locale = localeFromPathSegment(component.localeCode) ?? AppLocale.en;
+      final projects = loadProjects(locale.buildSync());
+      if (index != null && index >= 0 && index < projects.length) {
+        final project = projects[index];
+        context.read(projectsFilterProvider.notifier).state = project.categories.contains(_kOss) ? _kOss : _kApps;
+        context.read(selectedProjectProvider.notifier).state = project;
+      }
     }
   }
 
@@ -92,6 +101,7 @@ class _ProjectsClientSectionState extends State<ProjectsClientSection> {
             for (final f in filters)
               button(
                 classes: 'filter-btn${activeFilter == f.key ? ' active' : ''}',
+                attributes: {'aria-pressed': '${activeFilter == f.key}'},
                 onClick: () {
                   final next = (f.key == _kApps || f.key == _kOss) ? f.key : _kAll;
                   context.read(projectsFilterProvider.notifier).state = next;
@@ -154,28 +164,32 @@ class _ProjectCard extends StatelessComponent {
   Component build(BuildContext context) {
     final s = strings;
     return div(
-      classes: 'project-card project-card--clickable',
-      events: events(onClick: onTap),
+      classes: 'project-card${project.categories.contains(_kOss) ? ' project-card--tool' : ''}',
       [
-        if (project.image != null)
-          img(
-            src: project.image!,
-            alt: project.title,
-            classes:
-                'project-card__img${switch (project.imageFit) {
-                  'contain' => ' project-card__img--contain',
-                  'fill' => ' project-card__img--fill',
-                  'scale-down' => ' project-card__img--scale-down',
-                  _ => '',
-                }}',
-          )
-        else
-          div(classes: 'project-card__placeholder', [
-            span(classes: 'project-card__placeholder-text', [.text('{ }')]),
-          ]),
+        if (project.image != null && !project.categories.contains(_kOss))
+          button(
+            classes: 'project-card__image-button',
+            attributes: {'aria-label': project.title, 'aria-haspopup': 'dialog'},
+            onClick: onTap,
+            [
+              img(
+                src: project.image!,
+                alt: '',
+                attributes: const {'loading': 'lazy', 'width': '640', 'height': '360'},
+                classes: 'project-card__img',
+              ),
+            ],
+          ),
         div(classes: 'project-card__body', [
           div(classes: 'project-card__header', [
-            h3(classes: 'project-card__title', [.text(project.title)]),
+            h2(classes: 'project-card__title', [
+              button(
+                classes: 'project-card__open',
+                attributes: const {'aria-haspopup': 'dialog'},
+                onClick: onTap,
+                [.text(project.title)],
+              ),
+            ]),
             if (project.unreleased) span(classes: 'project-card__badge', [.text(s.projectUnreleased)]),
           ]),
           p(classes: 'project-card__desc', [.text(project.description)]),
@@ -216,13 +230,34 @@ class _ProjectModal extends StatefulComponent {
 
 class _ProjectModalState extends State<_ProjectModal> {
   late final web.EventListener _keyHandler;
+  web.HTMLElement? _previousFocus;
 
   @override
   void initState() {
     super.initState();
+    _previousFocus = web.document.activeElement as web.HTMLElement?;
+    Future<void>.delayed(Duration.zero, () {
+      if (!mounted) return;
+      (web.document.querySelector('.project-modal__close') as web.HTMLElement?)?.focus();
+    });
     _keyHandler = (web.Event e) {
-      if ((e as web.KeyboardEvent).key == 'Escape') {
+      final key = e as web.KeyboardEvent;
+      if (key.key == 'Escape') {
+        e.preventDefault();
         component.onClose();
+      } else if (key.key == 'Tab') {
+        final controls = web.document.querySelectorAll('.project-modal button, .project-modal a[href]');
+        if (controls.length == 0) return;
+        final first = controls.item(0) as web.HTMLElement;
+        final last = controls.item(controls.length - 1) as web.HTMLElement;
+        final focused = web.document.activeElement;
+        if (key.shiftKey && focused == first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!key.shiftKey && focused == last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     }.toJS;
     web.document.addEventListener('keydown', _keyHandler);
@@ -231,6 +266,7 @@ class _ProjectModalState extends State<_ProjectModal> {
   @override
   void dispose() {
     web.document.removeEventListener('keydown', _keyHandler);
+    if (_previousFocus?.isConnected ?? false) _previousFocus?.focus();
     super.dispose();
   }
 
@@ -245,34 +281,27 @@ class _ProjectModalState extends State<_ProjectModal> {
       [
         div(
           classes: 'project-modal',
+          attributes: const {'role': 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'project-modal-title'},
           events: {
             'click': (e) => e.stopPropagation(),
           },
           [
             button(
               classes: 'project-modal__close',
+              attributes: {'aria-label': s.closeProject, 'autofocus': ''},
               onClick: onClose,
               [.text('×')],
             ),
-            if (project.image != null)
+            if (project.image != null && !project.categories.contains(_kOss))
               img(
                 src: project.image!,
                 alt: project.title,
-                classes:
-                    'project-modal__img${switch (project.imageFit) {
-                      'contain' => ' project-card__img--contain',
-                      'fill' => ' project-card__img--fill',
-                      'scale-down' => ' project-card__img--scale-down',
-                      _ => '',
-                    }}',
-              )
-            else
-              div(classes: 'project-modal__placeholder', [
-                span(classes: 'project-card__placeholder-text', [.text('{ }')]),
-              ]),
+                classes: 'project-modal__img',
+                attributes: const {'width': '640', 'height': '360'},
+              ),
             div(classes: 'project-modal__body', [
               div(classes: 'project-card__header', [
-                h2(classes: 'project-modal__title', [.text(project.title)]),
+                h2(id: 'project-modal-title', classes: 'project-modal__title', [.text(project.title)]),
                 if (project.unreleased) span(classes: 'project-card__badge', [.text(s.projectUnreleased)]),
               ]),
               p(classes: 'project-modal__desc', [.text(project.description)]),

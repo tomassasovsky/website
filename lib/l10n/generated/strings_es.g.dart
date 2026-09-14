@@ -51,6 +51,27 @@ class AppLocalizationsEs extends AppLocalizations
 
   // Translations
   @override
+  String get heroIntro =>
+      'Desarrollo apps móviles, los backends que las hacen funcionar y herramientas de código abierto para otros desarrolladores.';
+  @override
+  String get selectedWork => 'Proyectos destacados';
+  @override
+  String get viewAllProjects => 'Todos los proyectos';
+  @override
+  String get menuLabel => 'Menú';
+  @override
+  String get themeToggle => 'Cambiar tema de color';
+  @override
+  String get skipToContent => 'Ir al contenido';
+  @override
+  String get previousTestimonial => 'Testimonio anterior';
+  @override
+  String get nextTestimonial => 'Siguiente testimonio';
+  @override
+  String testimonialNumber({required Object number}) => 'Testimonio ${number}';
+  @override
+  String get closeProject => 'Cerrar proyecto';
+  @override
   String get metaTitleHome => 'Sobre — Tomás Sasovsky';
   @override
   String get metaTitleProjects => 'Proyectos — Tomás Sasovsky';
@@ -496,6 +517,17 @@ class AppLocalizationsEs extends AppLocalizations
 extension on AppLocalizationsEs {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
+      'heroIntro' =>
+        'Desarrollo apps móviles, los backends que las hacen funcionar y herramientas de código abierto para otros desarrolladores.',
+      'selectedWork' => 'Proyectos destacados',
+      'viewAllProjects' => 'Todos los proyectos',
+      'menuLabel' => 'Menú',
+      'themeToggle' => 'Cambiar tema de color',
+      'skipToContent' => 'Ir al contenido',
+      'previousTestimonial' => 'Testimonio anterior',
+      'nextTestimonial' => 'Siguiente testimonio',
+      'testimonialNumber' => ({required Object number}) => 'Testimonio ${number}',
+      'closeProject' => 'Cerrar proyecto',
       'metaTitleHome' => 'Sobre — Tomás Sasovsky',
       'metaTitleProjects' => 'Proyectos — Tomás Sasovsky',
       'metaTitleContact' => 'Contacto — Tomás Sasovsky',

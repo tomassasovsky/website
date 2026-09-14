@@ -61,7 +61,9 @@ dart run build_runner build
 
 ## Styling
 
-Global CSS lives in `web/styles.css`. CSS custom properties (colors, shadows, radii) are near the top — tweak those to re-theme quickly. Light/dark theme tokens are in `[data-theme="light"]`.
+Global CSS lives in `web/styles.css`. The default palette is white and charcoal with neutral gray accents. CSS custom properties are near the top; dark theme tokens are in `[data-theme="dark"]`. The header toggle saves the visitor's preference. Typography pairs DM Sans with Instrument Serif, with system fallbacks.
+
+The home page highlights two projects, followed by an about section, services, a static client grid, and manually navigated testimonials. The project collection uses image previews and consistent neutral card backgrounds for apps and text entries for open-source tools. Shared layouts cover contact, booking, and testimonials in both languages. Bump the asset version in `lib/main.server.dart` or `lib/app.dart` when changing cached CSS or theme JavaScript.
 
 ## Analytics
 
@@ -107,11 +109,9 @@ lib/
   models/                   # Shared data models
 web/
   styles.css                # Global stylesheet
-  theme.js                  # Dark/light theme toggle + view-transition
-  scroll-avatar.js          # Navbar avatar scroll behavior
+  theme.js                  # Dark/light theme toggle with saved preference
   assets/
     images/                 # All image assets served at /assets/images/
-    theme-switch.json       # Lottie animation for theme button
 public/
   robots.txt
   assets/images/            # Static fallback copies of core images

@@ -63,6 +63,7 @@ class _TestimonialsCarouselState extends State<TestimonialsCarousel> {
 
   @override
   Component build(BuildContext context) {
+    final s = (localeFromPathSegment(component.localeCode) ?? AppLocale.en).buildSync();
     return div(classes: 'tcarousel', [
       div(
         classes: 'tcarousel__stage',
@@ -74,6 +75,7 @@ class _TestimonialsCarouselState extends State<TestimonialsCarousel> {
       div(classes: 'tcarousel__controls', [
         button(
           classes: 'tcarousel__btn',
+          attributes: {'aria-label': s.previousTestimonial},
           onClick: () => _go(_prevIndex),
           [.text('‹')],
         ),
@@ -81,12 +83,17 @@ class _TestimonialsCarouselState extends State<TestimonialsCarousel> {
           for (var i = 0; i < _items.length; i++)
             button(
               classes: 'tcarousel__dot${i == _index ? ' active' : ''}',
+              attributes: {
+                'aria-label': s.testimonialNumber(number: '${i + 1}'),
+                'aria-pressed': '${i == _index}',
+              },
               onClick: () => _go(i),
               [],
             ),
         ]),
         button(
           classes: 'tcarousel__btn',
+          attributes: {'aria-label': s.nextTestimonial},
           onClick: () => _go(_nextIndex),
           [.text('›')],
         ),
@@ -103,11 +110,14 @@ class _TestimonialCard extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final hidden = slotClass == 'hidden';
+    final hidden = slotClass != 'active';
     return div(
       classes: 'tcard-item tcard-item--$slotClass',
       attributes: hidden ? const {'aria-hidden': 'true', 'tabindex': '-1'} : const {},
       [
+        blockquote(classes: 'tcard__body', [
+          for (final para in t.paragraphs) p([.text(para)]),
+        ]),
         div(classes: 'tcard__meta', [
           div(classes: 'tcard__author-block', [
             span(classes: 'tcard__author', [.text(t.author)]),
@@ -119,9 +129,6 @@ class _TestimonialCard extends StatelessComponent {
             attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
             [.text(t.dateLabel)],
           ),
-        ]),
-        div(classes: 'tcard__body', [
-          for (final para in t.paragraphs) p([.text(para)]),
         ]),
       ],
     );

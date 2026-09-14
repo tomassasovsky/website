@@ -15,6 +15,8 @@ enum _Step { pickTime, details, success }
 
 enum _PickPhase { date, time }
 
+typedef _TimeRow = ({String slot, int index, bool present});
+
 @client
 class BookingScheduler extends StatefulComponent {
   const BookingScheduler({required this.localeCode, super.key});
@@ -35,6 +37,11 @@ class _BookingSchedulerState extends State<BookingScheduler> {
   var _monthLoadStarted = false;
   var _initialLoadDone = false;
   var _slotsLoading = false;
+  var _slotRequestId = 0;
+  var _monthRequestId = 0;
+  var _slotsDate = '';
+  var _dateDirection = 1;
+  var _timeRows = <String, _TimeRow>{};
 
   var _viewYear = 0;
   var _viewMonth = 0;
@@ -88,6 +95,11 @@ class _BookingSchedulerState extends State<BookingScheduler> {
 
   void _resetPickPhase() {
     _pickPhase = _PickPhase.date;
+    _slotRequestId++;
+    _slotsLoading = false;
+    _slotsDate = '';
+    _slots = [];
+    _timeRows = {};
   }
 
   String _pickTimeTitle(AppLocalizations s) {
@@ -104,11 +116,13 @@ class _BookingSchedulerState extends State<BookingScheduler> {
   }
 
   void _selectSlot(String slot) {
+    if (_slotsLoading || _slotsDate != _selectedDate || !_slots.contains(slot)) return;
+    final firstSelection = _selectedSlot.isEmpty;
     setState(() {
       _selectedSlot = slot;
       _errorMsg = '';
     });
-    _ensureConfirmVisible();
+    if (firstSelection) _ensureConfirmVisible();
   }
 
   void _ensureConfirmVisible() {
@@ -123,7 +137,7 @@ class _BookingSchedulerState extends State<BookingScheduler> {
 
       final rect = el.getBoundingClientRect();
       const topClearance = 24.0;
-      const bottomClearance = 96.0;
+      const bottomClearance = 24.0;
       final viewportBottom = web.window.innerHeight - bottomClearance;
 
       var delta = 0.0;
@@ -143,7 +157,7 @@ class _BookingSchedulerState extends State<BookingScheduler> {
     Future.microtask(() {
       if (!mounted) return;
       scrollIfNeeded();
-      Future.delayed(const Duration(milliseconds: 360), () {
+      Future.delayed(const Duration(milliseconds: 180), () {
         if (!mounted) return;
         scrollIfNeeded();
       });
@@ -258,11 +272,12 @@ class _BookingSchedulerState extends State<BookingScheduler> {
   }
 
   Future<void> _loadMonth({bool advanceIfEmpty = false}) async {
+    final requestId = ++_monthRequestId;
     try {
       if (advanceIfEmpty) {
         final data = await _fetchMonthData(_viewYear, _viewMonth, findFirst: true);
         final dates = (data['dates'] as List<dynamic>? ?? []).cast<String>();
-        if (!mounted) return;
+        if (!mounted || requestId != _monthRequestId) return;
         setState(() {
           _viewYear = data['year'] as int? ?? _viewYear;
           _viewMonth = data['month'] as int? ?? _viewMonth;
@@ -275,14 +290,14 @@ class _BookingSchedulerState extends State<BookingScheduler> {
 
       final data = await _fetchMonthData(_viewYear, _viewMonth);
       final dates = (data['dates'] as List<dynamic>? ?? []).cast<String>();
-      if (!mounted) return;
+      if (!mounted || requestId != _monthRequestId) return;
       setState(() {
         _applyMonthResult(data, dates);
         _initialLoadDone = true;
       });
       if (_selectedDate.isNotEmpty) await _loadSlots(_selectedDate);
     } catch (_) {
-      if (!mounted) return;
+      if (!mounted || requestId != _monthRequestId) return;
       setState(() {
         _initialLoadDone = true;
         _errorMsg = _s.bookingErrorGeneric;
@@ -293,14 +308,36 @@ class _BookingSchedulerState extends State<BookingScheduler> {
   String _dateKey(int year, int month, int day) =>
       '$year-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}';
 
+  // Clock times keep their identity across dates, so existing rows transition
+  // from their current position instead of replaying an entrance animation.
+  String _timeRowKey(String slot) => DateTime.parse(slot).toUtc().toIso8601String().substring(11);
+
+  void _updateTimeRows(List<String> slots) {
+    final next = <String, _TimeRow>{
+      for (final (index, slot) in slots.indexed) _timeRowKey(slot): (slot: slot, index: index, present: true),
+    };
+    for (final entry in _timeRows.entries) {
+      if (!next.containsKey(entry.key)) {
+        next[entry.key] = (slot: entry.value.slot, index: entry.value.index, present: false);
+      }
+    }
+    _timeRows = next;
+  }
+
   Future<void> _loadSlots(String date) async {
     if (!mounted) return;
+    final requestId = ++_slotRequestId;
+    final timezone = _viewerTimezone;
+    // Allow the outgoing transition to register even with a cached response.
+    final outgoing = Future<void>.delayed(const Duration(milliseconds: 120));
+    bool isCurrentRequest() =>
+        mounted && requestId == _slotRequestId && date == _selectedDate && timezone == _viewerTimezone;
     setState(() {
       _slotsLoading = true;
       _selectedSlot = '';
     });
     try {
-      final tz = Uri.encodeComponent(_viewerTimezone);
+      final tz = Uri.encodeComponent(timezone);
       final resp = await http.get(
         Uri.parse('/api/booking/availability?date=$date&timezone=$tz'),
       );
@@ -308,19 +345,29 @@ class _BookingSchedulerState extends State<BookingScheduler> {
         throw StateError('availability failed');
       }
       final data = jsonDecode(resp.body) as Map<String, dynamic>;
+      await outgoing;
       final slots = (data['slots'] as List<dynamic>? ?? [])
           .map((entry) => (entry as Map<String, dynamic>)['start'] as String)
           .toList();
-      if (!mounted) return;
+      if (!isCurrentRequest()) return;
       setState(() {
         _applyViewerMeta(data);
         _slots = slots;
+        _updateTimeRows(slots);
+        _slotsDate = date;
         _slotsLoading = false;
       });
+      Future<void>.delayed(const Duration(milliseconds: 300), () {
+        if (!isCurrentRequest() || !_timeRows.values.any((row) => !row.present)) return;
+        setState(() => _timeRows.removeWhere((_, row) => !row.present));
+      });
     } catch (_) {
-      if (!mounted) return;
+      if (!isCurrentRequest()) return;
       setState(() {
         _slotsLoading = false;
+        _slots = [];
+        _timeRows = {};
+        _slotsDate = '';
         _errorMsg = _s.bookingErrorGeneric;
       });
     }
@@ -329,7 +376,12 @@ class _BookingSchedulerState extends State<BookingScheduler> {
   void _selectDate(int year, int month, int day) {
     final key = _dateKey(year, month, day);
     if (!_availableDates.contains(key)) return;
+    if (key == _selectedDate && (_slotsLoading || _slotsDate == key)) {
+      setState(() => _pickPhase = _PickPhase.time);
+      return;
+    }
     setState(() {
+      _dateDirection = key.compareTo(_selectedDate) >= 0 ? 1 : -1;
       _selectedDate = key;
       _selectedSlot = '';
       _errorMsg = '';
@@ -369,7 +421,7 @@ class _BookingSchedulerState extends State<BookingScheduler> {
   }
 
   void _confirmTime() {
-    if (_selectedSlot.isEmpty) return;
+    if (_slotsLoading || _slotsDate != _selectedDate || !_slots.contains(_selectedSlot)) return;
     setState(() {
       _step = _Step.details;
       _errorMsg = '';
@@ -589,10 +641,10 @@ class _BookingSchedulerState extends State<BookingScheduler> {
 
   Component _buildTimesPanel(AppLocalizations s) {
     if (_selectedDate.isEmpty) {
-      return p(classes: 'book-meeting-times__hint book-meeting-animate-in', [.text(s.bookingPickDateHint)]);
+      return p(classes: 'book-meeting-times__hint', [.text(s.bookingPickDateHint)]);
     }
 
-    return div(classes: 'book-meeting-times__content book-meeting-animate-in', [
+    return div(classes: 'book-meeting-times__content', [
       button(
         type: ButtonType.button,
         classes: 'book-meeting-back book-meeting-back--mobile',
@@ -600,41 +652,70 @@ class _BookingSchedulerState extends State<BookingScheduler> {
         [.text('← ${s.bookingChangeDate}')],
       ),
       p(classes: 'book-meeting-times__date', [.text(_formatSelectedDateHeader())]),
-      if (_slotsLoading)
-        div(classes: 'book-meeting-slot-list book-meeting-slot-list--loading', [
-          for (var i = 0; i < 4; i++) div(classes: 'book-meeting-slot book-meeting-slot--ghost', []),
-        ])
-      else if (_slots.isEmpty)
-        p(classes: 'book-meeting-times__hint', [.text(s.bookingNoSlots)])
-      else
-        div(
-          key: ValueKey('slots-$_selectedDate'),
-          classes: 'book-meeting-slot-list',
-          [
-            for (final slot in _slots)
-              button(
-                type: ButtonType.button,
-                classes: 'book-meeting-slot${slot == _selectedSlot ? ' book-meeting-slot--active' : ''}',
-                onClick: () => _selectSlot(slot),
-                [.text(_formatSlotLabel(slot))],
-              ),
+      // Keep this list mounted while a new date loads. Existing rows stay in
+      // place, disabled and gently dimmed, until the latest request resolves.
+      div(
+        key: const ValueKey('booking-slots'),
+        classes: 'book-meeting-slot-list${_slotsLoading ? ' book-meeting-slot-list--loading' : ''}',
+        attributes: {
+          'aria-busy': '$_slotsLoading',
+          'aria-label': s.bookingTime,
+          'style': '--date-direction: $_dateDirection',
+        },
+        [
+          if (_timeRows.isNotEmpty)
             div(
-              classes: 'book-meeting-confirm-wrap${_selectedSlot.isNotEmpty ? ' book-meeting-confirm-wrap--open' : ''}',
+              key: const ValueKey('time-rows'),
+              classes: 'book-meeting-slot-stack',
+              attributes: {'style': '--slot-count: ${_slots.length}'},
               [
-                div(classes: 'book-meeting-confirm-wrap__inner', [
+                for (final entry in _timeRows.entries)
                   button(
+                    key: ValueKey(entry.key),
                     type: ButtonType.button,
-                    id: 'booking-confirm',
-                    classes: 'btn btn-primary book-meeting-confirm',
-                    attributes: _selectedSlot.isEmpty ? {'tabindex': '-1', 'aria-hidden': 'true'} : {},
-                    onClick: _selectedSlot.isEmpty ? null : _confirmTime,
-                    [.text(s.bookingConfirmTime)],
+                    classes:
+                        'book-meeting-slot book-meeting-slot--positioned'
+                        '${entry.value.slot == _selectedSlot ? ' book-meeting-slot--active' : ''}'
+                        '${!entry.value.present ? ' book-meeting-slot--leaving' : ''}',
+                    attributes: {
+                      'style': '--slot-index: ${entry.value.index}',
+                      'aria-pressed': '${entry.value.slot == _selectedSlot}',
+                      if (_slotsLoading || !entry.value.present) 'disabled': '',
+                      if (!entry.value.present) 'aria-hidden': 'true',
+                    },
+                    onClick: _slotsLoading || !entry.value.present ? null : () => _selectSlot(entry.value.slot),
+                    [.text(_formatSlotLabel(entry.value.slot))],
                   ),
-                ]),
               ],
+            )
+          else if (_slotsLoading) ...[
+            p(
+              classes: 'book-meeting-times__hint',
+              attributes: const {'role': 'status'},
+              [.text(s.bookingLoadingSlots)],
             ),
-          ],
-        ),
+            for (var i = 0; i < 4; i++)
+              div(classes: 'book-meeting-slot book-meeting-slot--ghost', attributes: const {'aria-hidden': 'true'}, []),
+          ] else
+            p(classes: 'book-meeting-times__hint', [.text(s.bookingNoSlots)]),
+        ],
+      ),
+      // The action stays beside the list instead of scrolling away with rows.
+      div(
+        classes: 'book-meeting-confirm-wrap${_selectedSlot.isNotEmpty ? ' book-meeting-confirm-wrap--open' : ''}',
+        [
+          div(classes: 'book-meeting-confirm-wrap__inner', [
+            button(
+              type: ButtonType.button,
+              id: 'booking-confirm',
+              classes: 'btn btn-primary book-meeting-confirm',
+              attributes: _selectedSlot.isEmpty ? {'tabindex': '-1', 'aria-hidden': 'true'} : {},
+              onClick: _selectedSlot.isEmpty ? null : _confirmTime,
+              [.text(s.bookingConfirmTime)],
+            ),
+          ]),
+        ],
+      ),
     ]);
   }
 
@@ -676,8 +757,7 @@ class _BookingSchedulerState extends State<BookingScheduler> {
         _buildStepIndicator(s),
         h2(classes: 'book-meeting-card__title book-meeting-card__title--desktop', [.text(s.bookingSelectDateTime)]),
         h2(
-          key: ValueKey('mobile-title-${_pickPhase.name}'),
-          classes: 'book-meeting-card__title book-meeting-card__title--mobile book-meeting-animate-in',
+          classes: 'book-meeting-card__title book-meeting-card__title--mobile',
           [.text(_pickTimeTitle(s))],
         ),
         if (!_initialLoadDone)

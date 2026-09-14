@@ -34,6 +34,13 @@ class HomePage extends StatelessComponent {
             projectsHref: AppPaths.projects(locale),
           ),
           hr(classes: 'divider'),
+          _SelectedWork(
+            title: s.selectedWork,
+            viewAll: s.viewAllProjects,
+            projects: loadProjects(s).take(2).toList(),
+            projectsHref: AppPaths.projects(locale),
+          ),
+          hr(classes: 'divider'),
           _AboutSection(
             sectionAbout: s.sectionAbout,
             sectionWhoIAm: s.sectionWhoIAm,
@@ -42,7 +49,6 @@ class HomePage extends StatelessComponent {
             statYearsExperience: s.statYearsExperience,
             statProjectsShipped: s.statProjectsShipped,
             statContinentsServed: s.statContinentsServed,
-            statBugsSquashed: s.statBugsSquashed,
           ),
           hr(classes: 'divider'),
           _ServicesSection(
@@ -92,25 +98,28 @@ class _Hero extends StatelessComponent {
   Component build(BuildContext context) {
     return div(classes: 'hero', [
       div(classes: 'hero__text', [
-        div(classes: 'hero__badge', [.text(badge)]),
+        p(classes: 'hero__eyebrow', [.text(tagline)]),
         h1(classes: 'hero__name', [.text(siteName)]),
-        p(classes: 'hero__tagline', [.text(tagline)]),
+        p(classes: 'hero__tagline', [.text(context.strings.heroIntro)]),
         div(classes: 'hero__stack', [
           for (final tech in const ['Flutter', 'Dart', 'TypeScript', 'Node.js', 'GCP'])
             span(classes: 'stack-tag', [.text(tech)]),
         ]),
-        p(classes: 'hero__location', [.text('📍  $location')]),
         div(classes: 'hero__actions', [
-          a(href: contactHref, classes: 'btn btn-primary', [.text(primaryCta)]),
-          a(href: projectsHref, classes: 'btn btn-ghost', [.text(secondaryCta)]),
+          a(href: projectsHref, classes: 'btn btn-primary', [.text(secondaryCta), .text(' ↗')]),
+          a(href: contactHref, classes: 'btn btn-ghost', [.text(primaryCta)]),
         ]),
+        div(classes: 'hero__badge', [.text(badge)]),
       ]),
-      img(
-        src: siteAvatar,
-        alt: siteName,
-        classes: 'hero__image',
-        id: 'hero-avatar',
-      ),
+      div(classes: 'hero__portrait', [
+        img(
+          src: siteAvatar,
+          alt: siteName,
+          classes: 'hero__image',
+          attributes: const {'width': '256', 'height': '256'},
+        ),
+        p(classes: 'hero__location', [.text(location)]),
+      ]),
     ]);
   }
 }
@@ -124,7 +133,6 @@ class _AboutSection extends StatelessComponent {
     required this.statYearsExperience,
     required this.statProjectsShipped,
     required this.statContinentsServed,
-    required this.statBugsSquashed,
   });
 
   final String sectionAbout;
@@ -134,26 +142,24 @@ class _AboutSection extends StatelessComponent {
   final String statYearsExperience;
   final String statProjectsShipped;
   final String statContinentsServed;
-  final String statBugsSquashed;
 
   @override
   Component build(BuildContext context) {
-    return div(classes: 'section', [
+    return div(classes: 'section section--split', [
       div(classes: 'section-header', [
         p(classes: 'section-label', [.text(sectionAbout)]),
         h2(classes: 'section-title', [.text(sectionWhoIAm)]),
-        p(classes: 'section-subtitle', [
-          .text(sectionAboutSubtitle),
+      ]),
+      div(classes: 'section-content', [
+        p(classes: 'about-intro', [.text(sectionAboutSubtitle)]),
+        div(classes: 'about-text', [
+          for (final paragraph in paragraphs) p([.text(paragraph)]),
         ]),
-      ]),
-      div(classes: 'about-text', [
-        for (final paragraph in paragraphs) p([.text(paragraph)]),
-      ]),
-      div(classes: 'about-stats', [
-        _Stat(value: '5+', label: statYearsExperience),
-        _Stat(value: '14+', label: statProjectsShipped),
-        _Stat(value: '3', label: statContinentsServed),
-        _Stat(value: '∞', label: statBugsSquashed),
+        div(classes: 'about-stats', [
+          _Stat(value: '5+', label: statYearsExperience),
+          _Stat(value: '14+', label: statProjectsShipped),
+          _Stat(value: '3', label: statContinentsServed),
+        ]),
       ]),
     ]);
   }
@@ -172,29 +178,32 @@ class _ServicesSection extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return div(classes: 'section', [
+    return div(classes: 'section section--split', [
       div(classes: 'section-header', [
         p(classes: 'section-label', [.text(sectionServices)]),
         h2(classes: 'section-title', [.text(sectionWhatIDo)]),
       ]),
       div(classes: 'services-grid', [
-        for (final service in services) _ServiceCard(service: service),
+        for (var i = 0; i < services.length; i++) _ServiceCard(service: services[i], index: i + 1),
       ]),
     ]);
   }
 }
 
 class _ServiceCard extends StatelessComponent {
-  const _ServiceCard({required this.service});
+  const _ServiceCard({required this.service, required this.index});
 
   final Service service;
+  final int index;
 
   @override
   Component build(BuildContext context) {
     return div(classes: 'service-card', [
-      img(src: service.icon, alt: service.title, classes: 'service-card__icon'),
-      p(classes: 'service-card__title', [.text(service.title)]),
-      p(classes: 'service-card__desc', [.text(service.description)]),
+      span(classes: 'service-card__number', [.text(index.toString().padLeft(2, '0'))]),
+      div([
+        h3(classes: 'service-card__title', [.text(service.title)]),
+        p(classes: 'service-card__desc', [.text(service.description)]),
+      ]),
     ]);
   }
 }
@@ -210,35 +219,19 @@ class _ClientsSection extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return div(classes: 'section', [
+    return div(classes: 'section section--split', [
       div(classes: 'section-header', [
         p(classes: 'section-label', [.text(sectionExperience)]),
         h2(classes: 'section-title', [.text(sectionTrustedBy)]),
       ]),
-      div(classes: 'clients-carousel', [
-        div(classes: 'clients-track', [
-          // First pass
-          for (final client in clients)
-            if (client.effectiveLogo != null)
-              a(
-                href: client.url,
-                attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
-                [img(src: client.effectiveLogo!, alt: client.name, classes: 'client-logo')],
-              ),
-          // Duplicate for seamless loop (aria-hidden = decorative repeat)
-          for (final client in clients)
-            if (client.effectiveLogo != null)
-              a(
-                href: client.url,
-                attributes: const {
-                  'target': '_blank',
-                  'rel': 'noopener noreferrer',
-                  'aria-hidden': 'true',
-                  'tabindex': '-1',
-                },
-                [img(src: client.effectiveLogo!, alt: '', classes: 'client-logo')],
-              ),
-        ]),
+      div(classes: 'clients-grid', [
+        for (final client in clients)
+          if (client.effectiveLogo != null)
+            a(
+              href: client.url,
+              attributes: const {'target': '_blank', 'rel': 'noopener noreferrer'},
+              [img(src: client.effectiveLogo!, alt: client.name, classes: 'client-logo')],
+            ),
       ]),
     ]);
   }
@@ -257,12 +250,52 @@ class _TestimonialsSection extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    return div(classes: 'section', [
+    return div(classes: 'section section--split', [
       div(classes: 'section-header', [
         p(classes: 'section-label', [.text(sectionTestimonials)]),
         h2(classes: 'section-title', [.text(sectionWhatPeopleSay)]),
       ]),
       TestimonialsCarousel(localeCode: localeCode),
+    ]);
+  }
+}
+
+class _SelectedWork extends StatelessComponent {
+  const _SelectedWork({
+    required this.title,
+    required this.viewAll,
+    required this.projects,
+    required this.projectsHref,
+  });
+
+  final String title;
+  final String viewAll;
+  final List<Project> projects;
+  final String projectsHref;
+
+  @override
+  Component build(BuildContext context) {
+    return section(classes: 'section selected-work', [
+      div(classes: 'section-header section-header--inline', [
+        h2(classes: 'section-title', [.text(title)]),
+        a(href: projectsHref, classes: 'text-link', [.text(viewAll), .text(' ↗')]),
+      ]),
+      div(classes: 'selected-work__grid', [
+        for (final (index, project) in projects.indexed)
+          a(href: '$projectsHref#project-$index', classes: 'work-preview', [
+            img(
+              src: project.image!,
+              alt: '',
+              classes: 'work-preview__image',
+              attributes: const {'loading': 'lazy', 'width': '640', 'height': '360'},
+            ),
+            div(classes: 'work-preview__caption', [
+              h3([.text(project.title)]),
+              span(attributes: const {'aria-hidden': 'true'}, [.text('↗')]),
+            ]),
+            p(classes: 'work-preview__tech', [.text(project.tech.join(' / '))]),
+          ]),
+      ]),
     ]);
   }
 }

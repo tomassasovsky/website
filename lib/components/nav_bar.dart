@@ -23,8 +23,6 @@ class NavBar extends StatelessComponent {
       (href: AppPaths.contact(locale), label: s.navContact),
     ];
 
-    final onHome = _pathMatches(path, AppPaths.home(locale));
-
     final langLinks = <Component>[
       _LangLink(
         label: s.langSwitchEnglish,
@@ -41,16 +39,14 @@ class NavBar extends StatelessComponent {
       ),
     ];
 
-    return nav(classes: 'navbar${onHome ? '' : ' navbar--scrolled'}', [
+    return nav(classes: 'navbar', [
       div(classes: 'container', [
-        // Hidden checkbox — CSS-only mobile menu toggle
-        input(type: InputType.checkbox, id: 'nav-toggle', classes: 'nav-toggle'),
         div(classes: 'navbar__inner', [
           Link(
             to: AppPaths.home(locale),
             classes: 'navbar__brand',
             children: [
-              img(src: siteAvatar, alt: siteName, classes: 'navbar__avatar'),
+              span(classes: 'navbar__monogram', attributes: const {'aria-hidden': 'true'}, [.text('ts.')]),
               .text(siteName),
             ],
           ),
@@ -61,50 +57,42 @@ class NavBar extends StatelessComponent {
                   to: item.href,
                   classes: 'navbar__link${_pathMatches(path, item.href) ? ' active' : ''}',
                   children: [.text(item.label)],
-                  styles: item == links.last ? null : Styles(margin: Spacing.symmetric(horizontal: 0.5.em)),
+                  attributes: _pathMatches(path, item.href) ? const {'aria-current': 'page'} : const {},
                 ),
               ]),
           ]),
           div(classes: 'navbar__right', [
             button(
               classes: 'theme-toggle',
-              attributes: const {
+              attributes: {
                 'onclick': 'window.toggleTheme(this)',
-                'title': 'Toggle theme',
+                'title': s.themeToggle,
+                'aria-label': s.themeToggle,
                 'type': 'button',
               },
-              [div(id: 'theme-lottie', classes: 'theme-lottie', [])],
+              [
+                span(classes: 'theme-toggle__icon', attributes: const {'aria-hidden': 'true'}, []),
+              ],
             ),
             div(
               classes: 'navbar__lang',
               attributes: {'title': s.langSwitchLabel},
               langLinks,
             ),
-            label(
-              htmlFor: 'nav-toggle',
-              classes: 'navbar__hamburger',
-              attributes: const {'aria-label': 'Toggle menu'},
-              [
-                span(classes: 'navbar__bar', []),
-                span(classes: 'navbar__bar', []),
-                span(classes: 'navbar__bar', []),
-              ],
-            ),
+            details(classes: 'navbar__menu', [
+              summary([.text(s.menuLabel)]),
+              div(classes: 'navbar__mobile-menu', [
+                for (final item in links)
+                  a(
+                    href: item.href,
+                    classes: 'navbar__mobile-link${_pathMatches(path, item.href) ? ' active' : ''}',
+                    attributes: _pathMatches(path, item.href) ? const {'aria-current': 'page'} : const {},
+                    [.text(item.label)],
+                  ),
+                div(classes: 'navbar__mobile-lang', langLinks),
+              ]),
+            ]),
           ]),
-        ]),
-        // Mobile dropdown (shown when checkbox is checked)
-        div(classes: 'navbar__mobile-menu', [
-          for (final item in links)
-            Link(
-              to: item.href,
-              classes: 'navbar__mobile-link${_pathMatches(path, item.href) ? ' active' : ''}',
-              children: [.text(item.label)],
-            ),
-          div(
-            classes: 'navbar__mobile-lang',
-            attributes: {'title': s.langSwitchLabel},
-            langLinks,
-          ),
         ]),
       ]),
     ]);

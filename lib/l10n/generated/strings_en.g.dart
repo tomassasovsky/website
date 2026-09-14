@@ -46,6 +46,37 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
 
   // Translations
 
+  /// en: 'I build mobile apps, the backends that power them, and open-source tools for other developers.'
+  String get heroIntro =>
+      'I build mobile apps, the backends that power them, and open-source tools for other developers.';
+
+  /// en: 'Selected work'
+  String get selectedWork => 'Selected work';
+
+  /// en: 'All projects'
+  String get viewAllProjects => 'All projects';
+
+  /// en: 'Menu'
+  String get menuLabel => 'Menu';
+
+  /// en: 'Toggle color theme'
+  String get themeToggle => 'Toggle color theme';
+
+  /// en: 'Skip to content'
+  String get skipToContent => 'Skip to content';
+
+  /// en: 'Previous testimonial'
+  String get previousTestimonial => 'Previous testimonial';
+
+  /// en: 'Next testimonial'
+  String get nextTestimonial => 'Next testimonial';
+
+  /// en: 'Testimonial {number}'
+  String testimonialNumber({required Object number}) => 'Testimonial ${number}';
+
+  /// en: 'Close project'
+  String get closeProject => 'Close project';
+
   /// en: 'About — Tomás Sasovsky'
   String get metaTitleHome => 'About — Tomás Sasovsky';
 
@@ -685,6 +716,17 @@ class AppLocalizations with BaseTranslations<AppLocale, AppLocalizations> {
 extension on AppLocalizations {
   dynamic _flatMapFunction(String path) {
     return switch (path) {
+      'heroIntro' =>
+        'I build mobile apps, the backends that power them, and open-source tools for other developers.',
+      'selectedWork' => 'Selected work',
+      'viewAllProjects' => 'All projects',
+      'menuLabel' => 'Menu',
+      'themeToggle' => 'Toggle color theme',
+      'skipToContent' => 'Skip to content',
+      'previousTestimonial' => 'Previous testimonial',
+      'nextTestimonial' => 'Next testimonial',
+      'testimonialNumber' => ({required Object number}) => 'Testimonial ${number}',
+      'closeProject' => 'Close project',
       'metaTitleHome' => 'About — Tomás Sasovsky',
       'metaTitleProjects' => 'Projects — Tomás Sasovsky',
       'metaTitleContact' => 'Contact — Tomás Sasovsky',
