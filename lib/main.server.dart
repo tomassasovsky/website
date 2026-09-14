@@ -14,6 +14,7 @@ import 'main.server.options.dart';
 import 'middleware/locale_redirect_middleware.dart';
 import 'middleware/serve_generated_client_js.dart';
 import 'middleware/sitemap_middleware.dart';
+import 'middleware/versioned_client_assets.dart';
 import 'providers/projects_filter_provider.dart';
 
 void main() {
@@ -27,7 +28,7 @@ void main() {
   ServerApp.addMiddleware(testimonialApiMiddleware);
   ServerApp.addMiddleware(serveLocalDevWebAssets);
 
-  Jaspr.initializeApp(options: defaultServerOptions);
+  Jaspr.initializeApp(options: versionClientAssets(defaultServerOptions));
 
   runApp(
     Document(
