@@ -89,12 +89,12 @@ docker-compose up --build
 
 ### Manual (AOT binary)
 ```bash
-dart pub global activate jaspr_cli
-dart pub global run jaspr_cli:jaspr build
+dart pub get
+dart run jaspr_cli:jaspr build
 ./build/jaspr/app
 ```
 
-The server listens on port **8080** by default. Override with the `JASPR_PORT` environment variable.
+The server listens on port **8080** by default. Override with the `PORT` environment variable. Docker uses Dart 3.12.1 and the project-locked Jaspr CLI so the CLI and build daemon resolve together.
 
 ## Project structure
 

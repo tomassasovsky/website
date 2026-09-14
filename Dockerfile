@@ -3,20 +3,17 @@
 # Uses jaspr_cli to compile server (AOT) + client (dart2js) in one step.
 # Output lands in /app/build/jaspr/
 # ─────────────────────────────────────────────────────────────────────────────
-FROM dart:stable AS build
-RUN dart pub global activate jaspr_cli
+FROM dart:3.12.1 AS build
 WORKDIR /app
 
 # Cache pub deps before copying source
 COPY pubspec.* ./
-RUN dart pub get
+RUN dart pub get --enforce-lockfile
 
 COPY . .
 
-# Drop any local overrides that could break the production build
-RUN rm -f pubspec_overrides.yaml
-
-RUN dart pub global run jaspr_cli:jaspr build
+# Run the CLI from the same locked dependency graph as the build daemon.
+RUN dart run jaspr_cli:jaspr build
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Stage 2 – runtime
@@ -27,7 +24,7 @@ COPY --from=build /runtime/ /
 COPY --from=build /app/build/jaspr/ /app/
 WORKDIR /app
 
-# Jaspr server listens on 8080 by default (override with JASPR_PORT)
+# Jaspr server listens on 8080 by default (override with PORT)
 EXPOSE 8080
 
 CMD ["./app"]

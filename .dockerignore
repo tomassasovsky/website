@@ -1,0 +1,9 @@
+.git
+.dart_tool
+build
+node_modules
+.env*
+pubspec_overrides.yaml
+.DS_Store
+.idea
+docs/code-review
